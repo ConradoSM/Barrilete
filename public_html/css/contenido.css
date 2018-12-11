@@ -422,7 +422,8 @@
         margin-bottom: 10px;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 1.3em; 
+        font-size: 1.3em;
+        margin-top: 0px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         position: relative;
@@ -457,29 +458,35 @@
         position: relative;
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
         background-color: #e6e6e6;
+        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    article.fotos:last-child {
+        margin-bottom: 0px;
     }
     article.fotos img {
         width: 100%;
         height: auto;
     }
     article.fotos p:first-child {
-        position: absolute;
+        position: relative;
         display: block;
         padding: 10px;
         top: 0;
         margin-top: 0px;
         color: #fff;
-        background-color: rgba(0,0,0,0.5); 
-        font-size: 2em;
+        background-color: rgba(0,0,0,1); 
+        font-size: 1.5em;
     }
     article.fotos p:last-child {
         display: block;
         margin-top: 10px;
         margin: 10px;
-        font-size: 2em;
+        font-size: 1em;
     }
-    
     /************************ 
     ***ASIDE PUBLICACIONES***
     ************************/
@@ -545,7 +552,8 @@
         margin-bottom: 10px;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 1.3em; 
+        font-size: 1.3em;
+        margin-top:0px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         position: relative;
@@ -580,29 +588,35 @@
         position: relative;
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
         background-color: #e6e6e6;
+        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    article.fotos:last-child {
+        margin-bottom: 0px;
     }
     article.fotos img {
         width: 100%;
         height: auto;
     }
     article.fotos p:first-child {
-        position: absolute;
+        position: relative;
         display: block;
         padding: 10px;
         top: 0;
         margin-top: 0px;
         color: #fff;
-        background-color: rgba(0,0,0,0.5); 
-        font-size: 2em;
+        background-color: rgba(0,0,0,1); 
+        font-size: 1.5em;
     }
     article.fotos p:last-child {
         display: block;
         margin-top: 10px;
         margin: 10px;
-        font-size: 2em;
-    }
-    
+        font-size: 1em;
+    }    
     /************************ 
     ***ASIDE PUBLICACIONES***
     ************************/
