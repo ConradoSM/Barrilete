@@ -24,11 +24,12 @@
     }
     article.pub p.info, article.pub_galeria p.info {
         font-size: 1em; 
+        margin-top: 0px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         position: relative;
         width: auto;
-        height: 1.25em;
+        height: 1.5em;
         vertical-align: middle;
         margin-left: 20px;
     }
@@ -58,27 +59,34 @@
         position: relative;
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
         background-color: #e6e6e6;
+        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    article.fotos:last-child {
+        margin-bottom: 0px;
     }
     article.fotos img {
         width: 100%;
         height: auto;
     }
     article.fotos p:first-child {
-        position: absolute;
+        position: relative;
         display: block;
         padding: 10px;
         top: 0;
         margin-top: 0px;
         color: #fff;
-        background-color: rgba(0,0,0,0.5); 
-        font-size: 2em;
+        background-color: rgba(0,0,0,1); 
+        font-size: 1.5em;
     }
     article.fotos p:last-child {
         display: block;
         margin-top: 10px;
         margin: 10px;
-        font-size: 2em;
+        font-size: 1em;
     }
     /************************ 
     ***ASIDE PUBLICACIONES***
@@ -88,7 +96,7 @@
         height: auto;
         background-color: rgba(200,224,205,0.3);
     }
-    aside.pubSeccion article {
+    aside.pubSeccion article.pubArticle {
         position: relative;
         display: flex;
         flex-flow: row wrap;
@@ -97,14 +105,14 @@
         margin-bottom: 10px;
         overflow: hidden;
     }
-    aside.pubSeccion article:last-child {
+    aside.pubSeccion article.pubArticle:last-child {
         margin-bottom: 0px;
     }
-    aside.pubSeccion article img {
+    aside.pubSeccion article.pubArticle img {
         width: 100%;
-        height: auto;
+        height: 300px;
     }
-    aside.pubSeccion article a {
+    aside.pubSeccion article.pubArticle a {
         position: absolute;
         display: block;
         width: 100%;
@@ -118,7 +126,7 @@
         background-color: rgba(0,0,0,0.5);
         text-shadow: 1px 1px 3px #000000;
     }
-    aside.pubSeccion article a:hover {
+    aside.pubSeccion article.pubArticle a:hover {
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
@@ -149,11 +157,12 @@
     }
     article.pub p.info, article.pub_galeria p.info {
         font-size: 1em; 
+        margin-top: 0px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         position: relative;
         width: auto;
-        height: 1.25em;
+        height: 1.5em;
         vertical-align: middle;
         margin-left: 20px;
     }
@@ -183,27 +192,34 @@
         position: relative;
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
         background-color: #e6e6e6;
+        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    article.fotos:last-child {
+        margin-bottom: 0px;
     }
     article.fotos img {
         width: 100%;
         height: auto;
     }
     article.fotos p:first-child {
-        position: absolute;
+        position: relative;
         display: block;
         padding: 10px;
         top: 0;
         margin-top: 0px;
         color: #fff;
-        background-color: rgba(0,0,0,0.5); 
-        font-size: 2em;
+        background-color: rgba(0,0,0,1); 
+        font-size: 1.5em;
     }
     article.fotos p:last-child {
         display: block;
         margin-top: 10px;
         margin: 10px;
-        font-size: 2em;
+        font-size: 1em;
     }
     /************************ 
     ***ASIDE PUBLICACIONES***
@@ -213,7 +229,7 @@
         height: auto;
         background-color: rgba(200,224,205,0.3);
     }
-    aside.pubSeccion article {
+    aside.pubSeccion article.pubArticle {
         position: relative;
         display: flex;
         flex-flow: row wrap;
@@ -222,14 +238,14 @@
         margin-bottom: 10px;
         overflow: hidden;
     }
-    aside.pubSeccion article:last-child {
+    aside.pubSeccion article.pubArticle:last-child {
         margin-bottom: 0px;
     }
-    aside.pubSeccion article img {
+    aside.pubSeccion article.pubArticle img {
         width: 100%;
         height: auto;
     }
-    aside.pubSeccion article a {
+    aside.pubSeccion article.pubArticle a {
         position: absolute;
         display: block;
         width: 100%;
@@ -243,7 +259,7 @@
         background-color: rgba(0,0,0,0.5);
         text-shadow: 1px 1px 3px #000000;
     }
-    aside.pubSeccion article a:hover {
+    aside.pubSeccion article.pubArticle a:hover {
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
@@ -274,11 +290,12 @@
     }
     article.pub p.info, article.pub_galeria p.info {
         font-size: 1em; 
+        margin-top: 0px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         position: relative;
         width: auto;
-        height: 1.25em;
+        height: 1.5em;
         vertical-align: middle;
         margin-left: 20px;
     }
@@ -308,27 +325,34 @@
         position: relative;
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
         background-color: #e6e6e6;
+        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    article.fotos:last-child {
+        margin-bottom: 0px;
     }
     article.fotos img {
         width: 100%;
         height: auto;
     }
     article.fotos p:first-child {
-        position: absolute;
+        position: relative;
         display: block;
         padding: 10px;
         top: 0;
         margin-top: 0px;
         color: #fff;
-        background-color: rgba(0,0,0,0.5); 
-        font-size: 2em;
+        background-color: rgba(0,0,0,1); 
+        font-size: 1.5em;
     }
     article.fotos p:last-child {
         display: block;
         margin-top: 10px;
         margin: 10px;
-        font-size: 2em;
+        font-size: 1em;
     }
     /************************ 
     ***ASIDE PUBLICACIONES***
@@ -343,7 +367,7 @@
         height: auto;
         background-color: rgba(200,224,205,0.3);
     }
-    aside.pubSeccion article {
+    aside.pubSeccion article.pubArticle {
         position: relative;
         display: flex;
         flex-flow: column nowrap;
@@ -352,11 +376,11 @@
         margin-bottom: 10px;
         overflow: hidden;
     }
-    aside.pubSeccion article img {
+    aside.pubSeccion article.pubArticle img {
         width: 100%;
         height: 250px;
     }
-    aside.pubSeccion article a {
+    aside.pubSeccion article.pubArticle a {
         position: absolute;
         display: block;
         width: 100%;
@@ -371,7 +395,7 @@
         background-color: rgba(0,0,0,0.5);
         text-shadow: 1px 1px 3px #000000;
     }
-    aside.pubSeccion article a:hover {
+    aside.pubSeccion article.pubArticle a:hover {
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
@@ -464,7 +488,7 @@
         height: auto;
         background-color: rgba(200,224,205,0.3);
     }
-    aside.pubSeccion article {
+    aside.pubSeccion article.pubArticle {
         position: relative;
         display: flex;
         flex-flow: row wrap;
@@ -473,14 +497,14 @@
         margin-bottom: 10px;
         overflow: hidden;
     }
-    aside.pubSeccion article:last-child {
+    aside.pubSeccion article.pubArticle:last-child {
         margin-bottom: 0px;
     }
-    aside.pubSeccion article img {
+    aside.pubSeccion article.pubArticle img {
         width: 100%;
         height: 225px;
     }
-    aside.pubSeccion article a {
+    aside.pubSeccion article.pubArticle a {
         position: absolute;
         display: block;
         width: 100%;
@@ -494,7 +518,7 @@
         background-color: rgba(0,0,0,0.5);
         text-shadow: 1px 1px 3px #000000;
     }
-    aside.pubSeccion article a:hover {
+    aside.pubSeccion article.pubArticle a:hover {
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
@@ -587,7 +611,7 @@
         height: auto;
         background-color: rgba(200,224,205,0.3);
     }
-    aside.pubSeccion article {
+    aside.pubSeccion article.pubArticle {
         position: relative;
         display: flex;
         flex-flow: row wrap;
@@ -596,14 +620,14 @@
         margin-bottom: 10px;
         overflow: hidden;
     }
-    aside.pubSeccion article:last-child {
+    aside.pubSeccion article.pubArticle:last-child {
         margin-bottom: 0px;
     }
-    aside.pubSeccion article img {
+    aside.pubSeccion article.pubArticle img {
         width: 100%;
         height: 225px;
     }
-    aside.pubSeccion article a {
+    aside.pubSeccion article.pubArticle a {
         position: absolute;
         display: block;
         width: 100%;
@@ -617,7 +641,7 @@
         background-color: rgba(0,0,0,0.5);
         text-shadow: 1px 1px 3px #000000;
     }
-    aside.pubSeccion article a:hover {
+    aside.pubSeccion article.pubArticle a:hover {
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
