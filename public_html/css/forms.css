@@ -1,0 +1,5 @@
+/* Estilos Formularios */
+input[type=text], input[type=password], input[type=email], input[type=url], input[type=number], input[type=date], input[type=search], select {
+	font-family: 'Oswald', sans-serif;
+        padding: 0px;
+}

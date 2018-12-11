@@ -1,0 +1,624 @@
+@media (max-width: 575.98px) {
+    /************************ 
+    ***ARTICLE PUBLICACION***
+    ************************/
+    div.pubContainer {
+        display: flex;
+        flex-flow: column wrap;
+        width: 100%;
+        height: auto;
+    }
+    article.pub {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+    article.pub_galeria {
+        width: 100%;
+        height: auto;
+    }
+    article.pub img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    article.pub p.info, article.pub_galeria p.info {
+        font-size: 1em; 
+    }
+    article p.info img.svg, article.pub_galeria p.info img.svg {
+        position: relative;
+        width: auto;
+        height: 1.25em;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
+        margin-left: 0px;
+    }
+    article.pub h2, article.pub_galeria h2 {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 10px;
+        line-height: 1em;
+        color: black;
+    }
+    article.pub p, article.pub_galeria p {
+        margin-top: 30px;
+        font-size: 1.25em;
+    }
+    article.pub p.copete, article.pub_galeria p.copete {
+        margin-bottom: 30px;
+        color: #a0a0a6;
+    }
+    /**********
+    ***FOTOS***
+    ***********/
+    article.fotos {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #e6e6e6;
+    }
+    article.fotos img {
+        width: 100%;
+        height: auto;
+    }
+    article.fotos p:first-child {
+        position: absolute;
+        display: block;
+        padding: 10px;
+        top: 0;
+        margin-top: 0px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.5); 
+        font-size: 2em;
+    }
+    article.fotos p:last-child {
+        display: block;
+        margin-top: 10px;
+        margin: 10px;
+        font-size: 2em;
+    }
+    /************************ 
+    ***ASIDE PUBLICACIONES***
+    ************************/
+    aside.pubSeccion {
+        width: 100%;
+        height: auto;
+        background-color: rgba(200,224,205,0.3);
+    }
+    aside.pubSeccion article {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    aside.pubSeccion article:last-child {
+        margin-bottom: 0px;
+    }
+    aside.pubSeccion article img {
+        width: 100%;
+        height: auto;
+    }
+    aside.pubSeccion article a {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        margin-bottom: 0px;
+        color: white;
+        text-decoration: none;
+        font-size: 2em;
+        padding: 10px;
+        background-color: rgba(0,0,0,0.5);
+        text-shadow: 1px 1px 3px #000000;
+    }
+    aside.pubSeccion article a:hover {
+        background-color: rgba(0,153,216,0.5);
+        transition: background-color 0.3s ease-out;
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    /************************ 
+    ***ARTICLE PUBLICACION***
+    ************************/
+    div.pubContainer {
+        display: flex;
+        flex-flow: column wrap;
+        width: 100%;
+        height: auto;
+    }
+    article.pub {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+    article.pub_galeria {
+        width: 100%;
+        height: auto;
+    }
+    article.pub img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    article.pub p.info, article.pub_galeria p.info {
+        font-size: 1em; 
+    }
+    article p.info img.svg, article.pub_galeria p.info img.svg {
+        position: relative;
+        width: auto;
+        height: 1.25em;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
+        margin-left: 0px;
+    }
+    article.pub h2, article.pub_galeria h2 {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 10px;
+        line-height: 1em;
+        color: black;
+    }
+    article.pub p, article.pub_galeria p {
+        margin-top: 30px;
+        font-size: 1.25em;
+    }
+    article.pub p.copete, article.pub_galeria p.copete {
+        margin-bottom: 30px;
+        color: #a0a0a6;
+    }
+    /**********
+    ***FOTOS***
+    ***********/
+    article.fotos {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #e6e6e6;
+    }
+    article.fotos img {
+        width: 100%;
+        height: auto;
+    }
+    article.fotos p:first-child {
+        position: absolute;
+        display: block;
+        padding: 10px;
+        top: 0;
+        margin-top: 0px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.5); 
+        font-size: 2em;
+    }
+    article.fotos p:last-child {
+        display: block;
+        margin-top: 10px;
+        margin: 10px;
+        font-size: 2em;
+    }
+    /************************ 
+    ***ASIDE PUBLICACIONES***
+    ************************/
+    aside.pubSeccion {
+        width: 100%;
+        height: auto;
+        background-color: rgba(200,224,205,0.3);
+    }
+    aside.pubSeccion article {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    aside.pubSeccion article:last-child {
+        margin-bottom: 0px;
+    }
+    aside.pubSeccion article img {
+        width: 100%;
+        height: auto;
+    }
+    aside.pubSeccion article a {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        margin-bottom: 0px;
+        color: white;
+        text-decoration: none;
+        font-size: 2em;
+        padding: 10px;
+        background-color: rgba(0,0,0,0.5);
+        text-shadow: 1px 1px 3px #000000;
+    }
+    aside.pubSeccion article a:hover {
+        background-color: rgba(0,153,216,0.5);
+        transition: background-color 0.3s ease-out;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /************************ 
+    ***ARTICLE PUBLICACION***
+    ************************/
+    div.pubContainer {
+        display: flex;
+        flex-flow: column wrap;
+        width: 100%;
+        height: auto;
+    }
+    article.pub {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+    article.pub_galeria {
+        width: 100%;
+        height: auto;
+    }
+    article.pub img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    article.pub p.info, article.pub_galeria p.info {
+        font-size: 1em; 
+    }
+    article p.info img.svg, article.pub_galeria p.info img.svg {
+        position: relative;
+        width: auto;
+        height: 1.25em;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
+        margin-left: 0px;
+    }
+    article.pub h2, article.pub_galeria h2 {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 10px;
+        line-height: 1em;
+        color: black;
+    }
+    article.pub p, article.pub_galeria p {
+        margin-top: 30px;
+        font-size: 1.25em;
+    }
+    article.pub p.copete, article.pub_galeria p.copete {
+        margin-bottom: 30px;
+        color: #a0a0a6;
+    }
+    /**********
+    ***FOTOS***
+    ***********/
+    article.fotos {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #e6e6e6;
+    }
+    article.fotos img {
+        width: 100%;
+        height: auto;
+    }
+    article.fotos p:first-child {
+        position: absolute;
+        display: block;
+        padding: 10px;
+        top: 0;
+        margin-top: 0px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.5); 
+        font-size: 2em;
+    }
+    article.fotos p:last-child {
+        display: block;
+        margin-top: 10px;
+        margin: 10px;
+        font-size: 2em;
+    }
+    /************************ 
+    ***ASIDE PUBLICACIONES***
+    ************************/
+    aside.pubSeccion {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding: 10px;
+        width: 100%;
+        height: auto;
+        background-color: rgba(200,224,205,0.3);
+    }
+    aside.pubSeccion article {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        width: 49.5%;
+        height: auto;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    aside.pubSeccion article img {
+        width: 100%;
+        height: 250px;
+    }
+    aside.pubSeccion article a {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        margin-bottom: 0px;
+        color: white;
+        text-decoration: none;
+        font-size: 1.9em;
+        line-height: 35px;
+        padding: 10px;
+        background-color: rgba(0,0,0,0.5);
+        text-shadow: 1px 1px 3px #000000;
+    }
+    aside.pubSeccion article a:hover {
+        background-color: rgba(0,153,216,0.5);
+        transition: background-color 0.3s ease-out;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    /************************ 
+    ***ARTICLE PUBLICACION***
+    ************************/
+    div.pubContainer {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    article.pub {
+        width: 70%;
+        padding-right: 10px;
+    }
+    article.pub_galeria {
+        width: 100%;
+        height: auto;
+    }
+    article.pub img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    article.pub p.info, article.pub_galeria p.info {
+        font-size: 1.3em; 
+    }
+    article p.info img.svg, article.pub_galeria p.info img.svg {
+        position: relative;
+        width: auto;
+        height: 1.3em;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
+        margin-left: 0px;
+    }
+    article.pub h2, article.pub_galeria h2 {
+        font-size: 3.75em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 10px;
+        line-height: 65px;
+        color: black;
+    }
+    article.pub p, article.pub_galeria p {
+        margin-top: 30px;
+        font-size: 1.9em;
+    }
+    article.pub p.copete, article.pub_galeria p.copete {
+        margin-bottom: 30px;
+        color: #a0a0a6;
+    }
+    /**********
+    ***FOTOS***
+    ***********/
+    article.fotos {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #e6e6e6;
+    }
+    article.fotos img {
+        width: 100%;
+        height: auto;
+    }
+    article.fotos p:first-child {
+        position: absolute;
+        display: block;
+        padding: 10px;
+        top: 0;
+        margin-top: 0px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.5); 
+        font-size: 2em;
+    }
+    article.fotos p:last-child {
+        display: block;
+        margin-top: 10px;
+        margin: 10px;
+        font-size: 2em;
+    }
+    
+    /************************ 
+    ***ASIDE PUBLICACIONES***
+    ************************/
+    aside.pubSeccion {
+        width: 30%;
+        height: auto;
+        background-color: rgba(200,224,205,0.3);
+    }
+    aside.pubSeccion article {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    aside.pubSeccion article:last-child {
+        margin-bottom: 0px;
+    }
+    aside.pubSeccion article img {
+        width: 100%;
+        height: 225px;
+    }
+    aside.pubSeccion article a {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        margin-bottom: 0px;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5em;
+        padding: 5px;
+        background-color: rgba(0,0,0,0.5);
+        text-shadow: 1px 1px 3px #000000;
+    }
+    aside.pubSeccion article a:hover {
+        background-color: rgba(0,153,216,0.5);
+        transition: background-color 0.3s ease-out;
+    }
+}
+@media (min-width: 1200px) {
+    /************************ 
+    ***ARTICLE PUBLICACION***
+    ************************/
+    div.pubContainer {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    article.pub {
+        width: 70%;
+        padding-right: 10px;
+    }
+    article.pub_galeria {
+        width: 100%;
+        height: auto;
+    }
+    article.pub img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    article.pub p.info, article.pub_galeria p.info {
+        font-size: 1.3em; 
+    }
+    article p.info img.svg, article.pub_galeria p.info img.svg {
+        position: relative;
+        width: auto;
+        height: 1.3em;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
+        margin-left: 0px;
+    }
+    article.pub h2, article.pub_galeria h2 {
+        font-size: 3.75em;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-top: 10px;
+        line-height: 65px;
+        color: black;
+    }
+    article.pub p, article.pub_galeria p {
+        margin-top: 30px;
+        font-size: 1.9em;
+    }
+    article.pub p.copete, article.pub_galeria p.copete {
+        margin-bottom: 30px;
+        color: #a0a0a6;
+    }
+    /**********
+    ***FOTOS***
+    ***********/
+    article.fotos {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #e6e6e6;
+    }
+    article.fotos img {
+        width: 100%;
+        height: auto;
+    }
+    article.fotos p:first-child {
+        position: absolute;
+        display: block;
+        padding: 10px;
+        top: 0;
+        margin-top: 0px;
+        color: #fff;
+        background-color: rgba(0,0,0,0.5); 
+        font-size: 2em;
+    }
+    article.fotos p:last-child {
+        display: block;
+        margin-top: 10px;
+        margin: 10px;
+        font-size: 2em;
+    }
+    
+    /************************ 
+    ***ASIDE PUBLICACIONES***
+    ************************/
+    aside.pubSeccion {
+        width: 30%;
+        height: auto;
+        background-color: rgba(200,224,205,0.3);
+    }
+    aside.pubSeccion article {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+    aside.pubSeccion article:last-child {
+        margin-bottom: 0px;
+    }
+    aside.pubSeccion article img {
+        width: 100%;
+        height: 225px;
+    }
+    aside.pubSeccion article a {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        margin-bottom: 0px;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5em;
+        padding: 5px;
+        background-color: rgba(0,0,0,0.5);
+        text-shadow: 1px 1px 3px #000000;
+    }
+    aside.pubSeccion article a:hover {
+        background-color: rgba(0,153,216,0.5);
+        transition: background-color 0.3s ease-out;
+    }
+}
