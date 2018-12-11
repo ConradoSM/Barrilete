@@ -8,61 +8,14 @@
         <link rel="stylesheet" href="{{asset('css/titularesIndex.css')}}" />
         <link rel="stylesheet" href="{{asset('css/forms.css')}}" />
         <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
-        <script type="text/javascript">
-            $(function () {
-                var header = $('header');
-                var logo = $('img#logo');
-                var btn = $('a#menu-btn');
-                var sbtn = $('img#search-btn');
-
-                $(window).scroll(function () {
-                    var scroll = $(window).scrollTop();
-                    if (scroll >= 20) {
-                        header.removeClass('relative').addClass('fixed');
-                        logo.removeClass('logo').addClass('logoSmall');
-                        btn.removeClass('menu-btn').addClass('menu-btn-small');
-                        sbtn.removeClass('search-btn').addClass('search-btn-small');
-                    } else {
-                        header.removeClass('fixed').addClass('relative');
-                        logo.removeClass('logoSmall').addClass('logo');
-                        btn.removeClass('menu-btn-small').addClass('menu-btn');
-                        sbtn.removeClass('search-btn-small').addClass('search-btn');
-                    }
-                });
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('a#menu-btn').on('click', function () {
-                    $('div.menu-btn-block').toggleClass('active');
-                    $('nav.none').toggleClass('active');
-                    $('div#glass.hide').toggleClass('show');
-
-                    $('div#glass').on('click', function () {
-                        $('div#glass').removeClass('show');
-                        $('nav.none').removeClass('active');
-                        $('div.menu-btn-block').removeClass('active');
-                    });
-                });
-                $('img#search-btn').on('click', function () {
-                    $('div#search').slideDown('fast', 'linear');
-
-                    $('div#glass.hide').addClass('show');
-
-                    $('div#glass').on('click', function () {
-                        $('div#search').slideUp('fast', 'linear');
-                        $('div#glass').removeClass('show');
-                    });
-                });
-            });
-        </script>
+        <script type="text/javascript" src="{{asset('js/scripts.js')}}"></script>
     </head>
     <body>
         <header class="relative">
             <div class="navContainer">
                 <div id="search">
                     <form action="#" method="post">
-                        <input type="search" value="" placeholder="Buscar..." />
+                        <input id="inputText" type="search" value="" placeholder="Buscar..." />
                         <img src="{{asset('svg/search.svg')}}" title="Buscar" />
                     </form>
                 </div>
