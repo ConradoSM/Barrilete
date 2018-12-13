@@ -14,8 +14,8 @@
         <header class="relative">
             <div class="navContainer">
                 <div id="search">
-                    <form action="#" method="post">
-                        <input id="inputText" type="search" value="" placeholder="Buscar..." />
+                    <form action="{{ route('search') }}" method="get">
+                        <input id="inputText" type="search" value="" name="query" placeholder="Buscar..." />
                         <img src="{{asset('svg/search.svg')}}" title="Buscar" />
                     </form>
                 </div>
