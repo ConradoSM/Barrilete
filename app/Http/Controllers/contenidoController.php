@@ -45,9 +45,27 @@ class contenidoController extends Controller {
     public function search(Request $request) {
         
         $busqueda = $request->input('query');
+        $seccion = $request->input('sec');
         
-        $resultado = Articulos::whereRaw("MATCH (titulo,copete,cuerpo) AGAINST (? IN BOOLEAN MODE)", array($busqueda))->paginate(10);
-        $resultado->appends(['query' => $busqueda]);
+        if ($seccion == 'articulos') {
+        $resultado = Articulos::whereRaw("MATCH (titulo,copete,cuerpo) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+                ->orderBy('id','DESC')
+                ->paginate(10);
+        
+        } elseif ($seccion == 'galerias') {
+        $resultado = Galerias::whereRaw("MATCH (titulo,copete) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+                ->orderBy('id','DESC')
+                ->paginate(10);
+        
+        } elseif ($seccion == 'encuestas') {
+        $resultado = Encuestas::whereRaw("MATCH (titulo,copete) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+                ->orderBy('id','DESC')
+                ->paginate(10);             
+        } else {
+            return view('search_error');
+        }
+        
+        $resultado->appends(['query' => $busqueda, 'sec' => $seccion]);
         
         return view('search', compact('resultado'));
     }
@@ -55,6 +73,7 @@ class contenidoController extends Controller {
     /*     * VER ARTÍCULO SEGÚN  ID Y SECCIÓN* */
 
     public function show($id, $seccion) {
+        
         $article = Articulos::whereId($id)
                 ->where('seccion', $seccion)
                 ->where('publicar', 1)

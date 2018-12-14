@@ -13,4 +13,5 @@
     <br />
     <a href="{{ route('home') }}">Volver al inicio</a>
 </article>
+<img class="errorIMG" src="img/error.gif" />
 @endsection

@@ -130,6 +130,108 @@
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
+    /************************ 
+    ***SEARCH RESULTS***
+    ************************/
+    div.searchResultContainer {
+        width: 100%;
+        height: auto;
+    }
+    div.searchResultContainer p.searchFilter {
+        margin: 10px 0px 10px 0px;
+        padding-bottom: 2px;
+        font-size: 1.7em;
+        border-bottom: 1px solid #ccc;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #333;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
+        color: #000;
+    }
+    div.searchResultContainer p.searchFilter a.active {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #007600;
+        border-bottom: 5px solid #007600;
+    }
+    div.searchResultContainer p.searchInfo {
+        margin: 20px 0px 20px 0px;
+        color: #666;
+        font-size: 1.7em;
+    }
+    div.searchResultContainer article.searchResult{
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 3px #666;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    div.searchResultContainer article.searchResult p.searchDate {
+        font-size: 1em;
+        color: #666;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle {
+        font-size: 2.5em;
+        color: #006699;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle:hover {
+        color: #0084c6;
+        text-decoration: underline;
+    }
+    div.searchResultContainer article.searchResult p.searchCopete {
+        font-size: 1.5em;
+    }
+    div.searchResultContainer ul.pagination {
+        display: flex;
+        flex-flow: row nowrap;
+        width: auto;
+        list-style: none;
+    }
+    div.searchResultContainer ul.pagination li.page-item {
+        margin: 0px;
+        padding: 5px 0px 5px 0px;      
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #0086b3;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+        background-color: #00abe5;
+        transition: 0.3s;
+    }
+    div.searchResultContainer ul.pagination li.disabled span.page-link {
+        margin: 0px;
+        padding: 4px 15px 4px 15px;
+        background-color: #ccc;
+        font-size: 2em;
+        color: #666;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.active span.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #005b7a;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;       
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;      
+    }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
     /************************ 
@@ -262,6 +364,108 @@
     aside.pubSeccion article.pubArticle a:hover {
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
+    }
+    /************************ 
+    ***SEARCH RESULTS***
+    ************************/
+    div.searchResultContainer {
+        width: 100%;
+        height: auto;
+    }
+    div.searchResultContainer p.searchFilter {
+        margin: 10px 0px 10px 0px;
+        padding-bottom: 2px;
+        font-size: 1.7em;
+        border-bottom: 1px solid #ccc;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #333;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
+        color: #000;
+    }
+    div.searchResultContainer p.searchFilter a.active {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #007600;
+        border-bottom: 5px solid #007600;
+    }
+    div.searchResultContainer p.searchInfo {
+        margin: 20px 0px 20px 0px;
+        color: #666;
+        font-size: 1.7em;
+    }
+    div.searchResultContainer article.searchResult{
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 3px #666;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    div.searchResultContainer article.searchResult p.searchDate {
+        font-size: 1em;
+        color: #666;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle {
+        font-size: 2.5em;
+        color: #006699;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle:hover {
+        color: #0084c6;
+        text-decoration: underline;
+    }
+    div.searchResultContainer article.searchResult p.searchCopete {
+        font-size: 1.5em;
+    }
+    div.searchResultContainer ul.pagination {
+        display: flex;
+        flex-flow: row nowrap;
+        width: auto;
+        list-style: none;
+    }
+    div.searchResultContainer ul.pagination li.page-item {
+        margin: 0px;
+        padding: 5px 0px 5px 0px;      
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #0086b3;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+        background-color: #00abe5;
+        transition: 0.3s;
+    }
+    div.searchResultContainer ul.pagination li.disabled span.page-link {
+        margin: 0px;
+        padding: 4px 15px 4px 15px;
+        background-color: #ccc;
+        font-size: 2em;
+        color: #666;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.active span.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #005b7a;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;       
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;      
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -399,6 +603,108 @@
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
+    /************************ 
+    ***SEARCH RESULTS***
+    ************************/
+    div.searchResultContainer {
+        width: 100%;
+        height: auto;
+    }
+    div.searchResultContainer p.searchFilter {
+        margin: 10px 0px 10px 0px;
+        padding-bottom: 2px;
+        font-size: 1.7em;
+        border-bottom: 1px solid #ccc;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #333;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
+        color: #000;
+    }
+    div.searchResultContainer p.searchFilter a.active {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #007600;
+        border-bottom: 5px solid #007600;
+    }
+    div.searchResultContainer p.searchInfo {
+        margin: 20px 0px 20px 0px;
+        color: #666;
+        font-size: 1.7em;
+    }
+    div.searchResultContainer article.searchResult{
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 3px #666;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    div.searchResultContainer article.searchResult p.searchDate {
+        font-size: 1em;
+        color: #666;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle {
+        font-size: 2.5em;
+        color: #006699;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle:hover {
+        color: #0084c6;
+        text-decoration: underline;
+    }
+    div.searchResultContainer article.searchResult p.searchCopete {
+        font-size: 1.5em;
+    }
+    div.searchResultContainer ul.pagination {
+        display: flex;
+        flex-flow: row nowrap;
+        width: auto;
+        list-style: none;
+    }
+    div.searchResultContainer ul.pagination li.page-item {
+        margin: 0px;
+        padding: 5px 0px 5px 0px;      
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #0086b3;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+        background-color: #00abe5;
+        transition: 0.3s;
+    }
+    div.searchResultContainer ul.pagination li.disabled span.page-link {
+        margin: 0px;
+        padding: 4px 15px 4px 15px;
+        background-color: #ccc;
+        font-size: 2em;
+        color: #666;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.active span.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #005b7a;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;       
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;      
+    }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
     /************************ 
@@ -529,6 +835,108 @@
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
     }
+    /************************ 
+    ***SEARCH RESULTS***
+    ************************/
+    div.searchResultContainer {
+        width: 100%;
+        height: auto;
+    }
+    div.searchResultContainer p.searchFilter {
+        margin: 10px 0px 10px 0px;
+        padding-bottom: 2px;
+        font-size: 1.7em;
+        border-bottom: 1px solid #ccc;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #333;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
+        color: #000;
+    }
+    div.searchResultContainer p.searchFilter a.active {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #007600;
+        border-bottom: 5px solid #007600;
+    }
+    div.searchResultContainer p.searchInfo {
+        margin: 20px 0px 20px 0px;
+        color: #666;
+        font-size: 1.7em;
+    }
+    div.searchResultContainer article.searchResult{
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 3px #666;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    div.searchResultContainer article.searchResult p.searchDate {
+        font-size: 1em;
+        color: #666;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle {
+        font-size: 2.5em;
+        color: #006699;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle:hover {
+        color: #0084c6;
+        text-decoration: underline;
+    }
+    div.searchResultContainer article.searchResult p.searchCopete {
+        font-size: 1.5em;
+    }
+    div.searchResultContainer ul.pagination {
+        display: flex;
+        flex-flow: row nowrap;
+        width: auto;
+        list-style: none;
+    }
+    div.searchResultContainer ul.pagination li.page-item {
+        margin: 0px;
+        padding: 5px 0px 5px 0px;      
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #0086b3;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+        background-color: #00abe5;
+        transition: 0.3s;
+    }
+    div.searchResultContainer ul.pagination li.disabled span.page-link {
+        margin: 0px;
+        padding: 4px 15px 4px 15px;
+        background-color: #ccc;
+        font-size: 2em;
+        color: #666;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.active span.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #005b7a;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;       
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;      
+    }
 }
 @media (min-width: 1200px) {
     /************************ 
@@ -658,5 +1066,107 @@
     aside.pubSeccion article.pubArticle a:hover {
         background-color: rgba(0,153,216,0.5);
         transition: background-color 0.3s ease-out;
+    }
+    /************************ 
+    ***SEARCH RESULTS***
+    ************************/
+    div.searchResultContainer {
+        width: 100%;
+        height: auto;
+    }
+    div.searchResultContainer p.searchFilter {
+        margin: 10px 0px 10px 0px;
+        padding-bottom: 2px;
+        font-size: 1.7em;
+        border-bottom: 1px solid #ccc;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #333;
+    }
+    div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
+        color: #000;
+    }
+    div.searchResultContainer p.searchFilter a.active {
+        font-size: 1.75em;
+        margin: 10px 15px;
+        color: #007600;
+        border-bottom: 5px solid #007600;
+    }
+    div.searchResultContainer p.searchInfo {
+        margin: 20px 0px 20px 0px;
+        color: #666;
+        font-size: 1.7em;
+    }
+    div.searchResultContainer article.searchResult{
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0px 0px 3px #666;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    div.searchResultContainer article.searchResult p.searchDate {
+        font-size: 1em;
+        color: #666;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle {
+        font-size: 2.5em;
+        color: #006699;
+    }
+    div.searchResultContainer article.searchResult a.searchTitle:hover {
+        color: #0084c6;
+        text-decoration: underline;
+    }
+    div.searchResultContainer article.searchResult p.searchCopete {
+        font-size: 1.5em;
+    }
+    div.searchResultContainer ul.pagination {
+        display: flex;
+        flex-flow: row nowrap;
+        width: auto;
+        list-style: none;
+    }
+    div.searchResultContainer ul.pagination li.page-item {
+        margin: 0px;
+        padding: 5px 0px 5px 0px;      
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #0086b3;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+        background-color: #00abe5;
+        transition: 0.3s;
+    }
+    div.searchResultContainer ul.pagination li.disabled span.page-link {
+        margin: 0px;
+        padding: 4px 15px 4px 15px;
+        background-color: #ccc;
+        font-size: 2em;
+        color: #666;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.active span.page-link {
+        margin: 0px;
+        padding: 5px 15px 5px 15px;
+        background-color: #005b7a;
+        font-size: 2em;
+        color: #fff;
+        box-shadow: 0px 0px 3px 0px #666;
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;       
+    }
+    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;      
     }
 }

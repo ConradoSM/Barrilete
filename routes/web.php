@@ -8,9 +8,6 @@ Route::get('/gallery/{id}/{titulo}', 'contenidoController@gallery')->name('galle
 Route::get('/poll/{id}/{titulo}', 'contenidoController@poll')->name('poll');
 Route::post('/poll-vote', 'contenidoController@votar')->name('poll-vote');
 
-Route::get('/admin', function () {
-    return view('adminlte');
-});
 Route::get('resizeImgFirst/{image}', 'ImageController@showImageArticulosIndexFirst')->name('imgFirst');
 Route::get('resizeImgSecond/{image}', 'ImageController@showImageArticulosIndexSecond')->name('imgSecond');
 

@@ -14,9 +14,10 @@
         <header class="relative">
             <div class="navContainer">
                 <div id="search">
-                    <form action="{{ route('search') }}" method="get">
+                    <form action="{{ route('search') }}" method="get" id="formSearch">
                         <input id="inputText" type="search" value="" name="query" placeholder="Buscar..." />
-                        <img src="{{asset('svg/search.svg')}}" title="Buscar" />
+                        <img src="{{asset('svg/search.svg')}}" title="Buscar" onClick="document.getElementById('formSearch').submit();" />
+                        <input type="hidden" value="articulos" name="sec" />
                     </form>
                 </div>
                 <img id="logo" class="logo" onclick="location.href ='{{ route('home') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
