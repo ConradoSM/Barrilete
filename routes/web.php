@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'contenidoController@index')->name('home');
+
 Route::get('/article/{id}/{seccion}/{titulo}', 'contenidoController@show')->name('article');
 Route::get('/sec/{seccion}', 'contenidoController@sec')->name('section');
 Route::get('/galleries', 'contenidoController@galleries')->name('galleries');

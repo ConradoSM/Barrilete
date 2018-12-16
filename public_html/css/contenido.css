@@ -144,16 +144,16 @@
         border-bottom: 1px solid #ccc;
     }
     div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1.75em;
-        margin: 10px 15px;
+        font-size: 1em;
+        margin: 10px 10px;
         color: #333;
     }
     div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
         color: #000;
     }
     div.searchResultContainer p.searchFilter a.active {
-        font-size: 1.75em;
-        margin: 10px 15px;
+        font-size: 1em;
+        margin: 10px 10px;
         color: #007600;
         border-bottom: 5px solid #007600;
     }
@@ -177,6 +177,7 @@
     }
     div.searchResultContainer article.searchResult a.searchTitle {
         font-size: 2.5em;
+        line-height: 1em;
         color: #006699;
     }
     div.searchResultContainer article.searchResult a.searchTitle:hover {
@@ -202,7 +203,6 @@
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
@@ -210,11 +210,10 @@
     }
     div.searchResultContainer ul.pagination li.disabled span.page-link {
         margin: 0px;
-        padding: 4px 15px 4px 15px;
+        padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.active span.page-link {
         margin: 0px;
@@ -222,7 +221,6 @@
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
@@ -231,6 +229,28 @@
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
+    }
+    /******************
+    ***MAS ENCUESTAS***
+    ******************/
+    article.morePolls {
+        position: relative;
+        align-self: flex-start;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    article.morePolls:hover {
+        background-color: rgba(199,226,231,0.7);
+        transition: background-color 0.3s ease;
+    }
+    article.morePolls p {
+        font-size: 1em;
+        margin:0px;
+    }
+    article.morePolls a {
+        font-size: 1.5em;
+        line-height: 35px;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -379,16 +399,16 @@
         border-bottom: 1px solid #ccc;
     }
     div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1.75em;
-        margin: 10px 15px;
+        font-size: 1em;
+        margin: 10px 10px;
         color: #333;
     }
     div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
         color: #000;
     }
     div.searchResultContainer p.searchFilter a.active {
-        font-size: 1.75em;
-        margin: 10px 15px;
+        font-size: 1em;
+        margin: 10px 10px;
         color: #007600;
         border-bottom: 5px solid #007600;
     }
@@ -412,6 +432,7 @@
     }
     div.searchResultContainer article.searchResult a.searchTitle {
         font-size: 2.5em;
+        line-height: 1em;
         color: #006699;
     }
     div.searchResultContainer article.searchResult a.searchTitle:hover {
@@ -437,7 +458,6 @@
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
@@ -445,11 +465,10 @@
     }
     div.searchResultContainer ul.pagination li.disabled span.page-link {
         margin: 0px;
-        padding: 4px 15px 4px 15px;
+        padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.active span.page-link {
         margin: 0px;
@@ -457,7 +476,6 @@
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
@@ -466,6 +484,28 @@
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
+    }
+    /******************
+    ***MAS ENCUESTAS***
+    ******************/
+    article.morePolls {
+        position: relative;
+        align-self: flex-start;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    article.morePolls:hover {
+        background-color: rgba(199,226,231,0.7);
+        transition: background-color 0.3s ease;
+    }
+    article.morePolls p {
+        font-size: 1em;
+        margin:0px;
+    }
+    article.morePolls a {
+        font-size: 1.5em;
+        line-height: 35px;
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -617,16 +657,16 @@
         border-bottom: 1px solid #ccc;
     }
     div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1.75em;
-        margin: 10px 15px;
+        font-size: 1em;
+        margin: 10px 10px;
         color: #333;
     }
     div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
         color: #000;
     }
     div.searchResultContainer p.searchFilter a.active {
-        font-size: 1.75em;
-        margin: 10px 15px;
+        font-size: 1em;
+        margin: 10px 10px;
         color: #007600;
         border-bottom: 5px solid #007600;
     }
@@ -650,6 +690,7 @@
     }
     div.searchResultContainer article.searchResult a.searchTitle {
         font-size: 2.5em;
+        line-height: 1em;
         color: #006699;
     }
     div.searchResultContainer article.searchResult a.searchTitle:hover {
@@ -675,7 +716,6 @@
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
@@ -683,11 +723,10 @@
     }
     div.searchResultContainer ul.pagination li.disabled span.page-link {
         margin: 0px;
-        padding: 4px 15px 4px 15px;
+        padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.active span.page-link {
         margin: 0px;
@@ -695,7 +734,6 @@
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
@@ -704,6 +742,28 @@
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
+    }
+    /******************
+    ***MAS ENCUESTAS***
+    ******************/
+    article.morePolls {
+        position: relative;
+        align-self: flex-start;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    article.morePolls:hover {
+        background-color: rgba(199,226,231,0.7);
+        transition: background-color 0.3s ease;
+    }
+    article.morePolls p {
+        font-size: 1em;
+        margin:0px;
+    }
+    article.morePolls a {
+        font-size: 1.5em;
+        line-height: 35px;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -907,7 +967,6 @@
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
@@ -915,11 +974,10 @@
     }
     div.searchResultContainer ul.pagination li.disabled span.page-link {
         margin: 0px;
-        padding: 4px 15px 4px 15px;
+        padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.active span.page-link {
         margin: 0px;
@@ -927,7 +985,6 @@
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
@@ -936,6 +993,28 @@
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
+    }
+    /******************
+    ***MAS ENCUESTAS***
+    ******************/
+    article.morePolls {
+        position: relative;
+        align-self: flex-start;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    article.morePolls:hover {
+        background-color: rgba(199,226,231,0.7);
+        transition: background-color 0.3s ease;
+    }
+    article.morePolls p {
+        font-size: 1em;
+        margin:0px;
+    }
+    article.morePolls a {
+        font-size: 1.5em;
+        line-height: 35px;
     }
 }
 @media (min-width: 1200px) {
@@ -1139,7 +1218,6 @@
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
@@ -1147,11 +1225,10 @@
     }
     div.searchResultContainer ul.pagination li.disabled span.page-link {
         margin: 0px;
-        padding: 4px 15px 4px 15px;
+        padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.active span.page-link {
         margin: 0px;
@@ -1159,7 +1236,6 @@
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
-        box-shadow: 0px 0px 3px 0px #666;
     }
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
@@ -1168,5 +1244,47 @@
     div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
+    }
+    /*****************
+    ***VER ENCUESTA***
+    *****************/
+    article.pollOptions {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        background-color: rgba(200,224,205,0.8);
+    }
+    article.pollOptions p.barResult {
+        background-color: #666600;
+        padding: 10px;
+        margin: 0px 0px 20px 0px;
+        color: #fff;
+        text-shadow: 0px 0px 5px #000;
+    }
+    article.pollOptions p.options {
+        margin: 0px 10px 0px 0px;
+    }
+    
+    /******************
+    ***MAS ENCUESTAS***
+    ******************/
+    article.morePolls {
+        position: relative;
+        align-self: flex-start;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+    article.morePolls:hover {
+        background-color: rgba(200,224,205,0.6);
+        transition: background-color 0.3s ease;
+    }
+    article.morePolls p {
+        font-size: 1em;
+        margin:0px;
+    }
+    article.morePolls a {
+        font-size: 1.5em;
+        line-height: 35px;
     }
 }

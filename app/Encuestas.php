@@ -8,4 +8,5 @@ class Encuestas extends Model
 {
     protected $table = 'encuesta';
     public $timestamps = false;
+    
 }

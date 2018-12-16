@@ -8,4 +8,5 @@ class Votos extends Model
 {
     protected $table = 'encuesta_options';
     public $timestamps = false;
+    
 }
