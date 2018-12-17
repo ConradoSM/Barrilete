@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.barrilete')
 @section('title', $poll->titulo)
 @section('content')
 <div class="pubContainer">
@@ -30,7 +30,7 @@
                 @empty
                 <h1>No hay opciones</h1>
                 @endforelse           
-                {{ csrf_field() }}
+                @csrf
                 <input type="hidden" name="id_encuesta" value="{{$poll->id}}" />
                 <input type="hidden" name="ip" value="{{Request::ip()}}" />
                 <input type="hidden" name="titulo_encuesta" value="{{str_slug($poll->titulo,'-')}}" />

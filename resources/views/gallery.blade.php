@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.barrilete')
 @section('title', $gallery->titulo)
 @section('content')
 <div class="pubContainer">

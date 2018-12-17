@@ -14,7 +14,7 @@ class contenidoController extends Controller {
     
     /**TITULARES INDEX**/
 
-    public function index() {
+    public function home() {
         $titularesIndex = Articulos::select('id', 'titulo', 'copete', 'foto', 'seccion', 'video')
         ->where('publicar', 1)
         ->orderBy('id', 'DESC')
@@ -35,7 +35,7 @@ class contenidoController extends Controller {
         ->limit(3)
         ->get();
 
-        return view('home')
+        return view('default')
         ->with(compact('titularesIndex'))
         ->with(compact('galeriasIndex'))
         ->with(compact('pollsIndex'));
@@ -61,7 +61,7 @@ class contenidoController extends Controller {
             ->orderBy('id', 'DESC')
             ->paginate(10);
         } else {
-            return view('search_error');
+            return view('errors.search-error');
         }
 
         $resultado->appends(['query' => $busqueda, 'sec' => $seccion]);
@@ -96,7 +96,7 @@ class contenidoController extends Controller {
             ->with(compact('article'))
             ->with(compact('moreArticles'));
         } else {
-            return view('article_error');
+            return view('errors.article-error');
         }
     }
 
@@ -113,7 +113,7 @@ class contenidoController extends Controller {
             $section = $section->get();
             return view('section', compact('section'));
         } else {
-            return view('article_error');
+            return view('errors.article-error');
         }
     }
 
@@ -132,7 +132,7 @@ class contenidoController extends Controller {
             $galleries = $galleries->get();
             return view('galleries', compact('galleries'));
         } else {
-            return view('article_error');
+            return view('errors.article-error');
         }
     }
 
@@ -156,7 +156,7 @@ class contenidoController extends Controller {
             ->with(compact('gallery'))
             ->with(compact('fotos'));
         } else {
-            return view('article_error');
+            return view('errors.article-error');
         }
     }
 
@@ -210,7 +210,7 @@ class contenidoController extends Controller {
                 ->with(compact('morePolls'));
             }
         } else {
-            return view('article_error');
+            return view('errors.article-error');
         }
     }
 
@@ -238,7 +238,7 @@ class contenidoController extends Controller {
 
             return redirect('poll/'.$idPoll.'/'.$pollTitle);
             } else {
-                return view('article_error');
+                return view('errors.article-error');
         }       
     }
 }

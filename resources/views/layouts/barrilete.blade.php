@@ -20,7 +20,7 @@
                         <input type="hidden" value="articulos" name="sec" />
                     </form>
                 </div>
-                <img id="logo" class="logo" onclick="location.href ='{{ route('home') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
+                <img id="logo" class="logo" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
                 <nav class="none">
                     <ul>
                         <li><a href="{{ route('section', ['seccion' => 'sociedad']) }}" title="Sociedad">SOCIEDAD</a></li>
@@ -65,10 +65,10 @@
                 <div>
                     <h2>Ingreso al sistema</h2>
                     <ul>
-                        <li><a href="#">LOGIN</a></li>
-                        <li><a href="#">PANEL DE CONTROL</a></li>
-                        <li><a href="#">REGISTRO</a></li>
-                        <li><a href="#">OLVIDÉ MI CONTRASEÑA</a></li>
+                        <li><a href="{{ route('login') }}">LOGIN</a></li>
+                        <li><a href="{{ route('dashboard') }}">PANEL DE CONTROL</a></li>
+                        <li><a href="{{ route('register') }}">REGISTRO</a></li>
+                        <li><a href="{{ route('password.request') }}">OLVIDÉ MI CONTRASEÑA</a></li>
                     </ul>
                     <h2>Contacto</h2>
                     <ul>
@@ -76,10 +76,6 @@
                     </ul>
                 </div>
                 <div>
-                    <h2>Herramientas</h2>
-                    <ul>
-                        <li><a href="#">BUSCADOR</a></li>
-                    </ul>
                     <h2>Institucional</h2>
                     <p class="footerCopyright">Conrado Maranguello, responsable editorial</p>
                     <p class="footerCopyright">©2016 - 2019 todos los derechos reservados<br />Versión: 2.0 02122018 build 18.30 BETA</p>

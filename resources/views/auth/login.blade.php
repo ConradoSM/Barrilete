@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.barrilete')
 
 @section('content')
 <div class="container">

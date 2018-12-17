@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.barrilete')
 @section('title','Error: artículo no encontrado')
 @section('content')
 <article class="pub">
@@ -11,7 +11,7 @@
         <li>Se eliminó definitivamente la página web.</li>
     </ol>
     <br />
-    <a href="{{ route('home') }}">Volver al inicio</a>
+    <a href="{{ route('default') }}">Volver al inicio</a>
 </article>
 <img class="errorIMG" src="{{asset('img/error.gif')}}" />
 @endsection

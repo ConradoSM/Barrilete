@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.barrilete')
 @section('title', 'Barrilete')
 @section('content')
 @php ($i=0) @endphp

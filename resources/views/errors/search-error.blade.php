@@ -1,8 +1,8 @@
-@extends('layout')
+@extends('layouts.barrilete')
 @section('title','Error: artículo no encontrado')
 @section('content')
 <article class="pub">
-    <h1>Error al buscar</h1>
+    <h1>Error en la búsqueda</h1>
     <h3>El servidor no pudo procesar la búsqueda solicitada por el cliente. Esto puede deberse a que:</h3>
     <hr />
     <ol>
@@ -12,7 +12,7 @@
         <li>Se eliminó definitivamente la página web.</li>
     </ol>
     <br />
-    <a href="{{ route('home') }}">Volver al inicio</a>
+    <a href="{{ route('default') }}">Volver al inicio</a>
 </article>
 <img class="errorIMG" src="img/error.gif" />
 @endsection

@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'contenidoController@index')->name('home');
+Route::get('/', 'contenidoController@home')->name('default');
 
 Route::get('/article/{id}/{seccion}/{titulo}', 'contenidoController@show')->name('article');
 Route::get('/sec/{seccion}', 'contenidoController@sec')->name('section');
@@ -13,3 +13,7 @@ Route::get('resizeImgFirst/{image}', 'ImageController@showImageArticulosIndexFir
 Route::get('resizeImgSecond/{image}', 'ImageController@showImageArticulosIndexSecond')->name('imgSecond');
 
 Route::get('search', 'contenidoController@search')->name('search');
+
+Auth::routes();
+
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
