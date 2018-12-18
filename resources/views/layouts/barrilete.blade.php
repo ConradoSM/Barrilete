@@ -64,11 +64,13 @@
                 </div>
                 <div>
                     <h2>Ingreso al sistema</h2>
-                    <ul>
+                    <ul>@guest
                         <li><a href="{{ route('login') }}">LOGIN</a></li>
-                        <li><a href="{{ route('dashboard') }}">PANEL DE CONTROL</a></li>
                         <li><a href="{{ route('register') }}">REGISTRO</a></li>
                         <li><a href="{{ route('password.request') }}">OLVIDÉ MI CONTRASEÑA</a></li>
+                        @else
+                        <li><a href="{{ route('dashboard') }}">PANEL DE CONTROL</a></li>
+                        @endguest
                     </ul>
                     <h2>Contacto</h2>
                     <ul>
