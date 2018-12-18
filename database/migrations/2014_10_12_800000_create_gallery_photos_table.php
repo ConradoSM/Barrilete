@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePollIpTable extends Migration
+class CreateGalleryPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreatePollIpTable extends Migration
      */
     public function up()
     {
-        Schema::create('poll_ip', function (Blueprint $table) {
+        Schema::create('gallery_photos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('poll_id')->unsigned();
-            $table->foreign('poll_id')->references('id')->on('poll');         
-            $table->ipAddress('ip');
+            $table->integer('gallery_id')->unsigned();
+            $table->foreign('gallery_id')->references('id')->on('gallery')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('title');         
+            $table->string('photo');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,7 +32,7 @@ class CreatePollIpTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('poll_ip');
+        Schema::dropIfExists('gallery_photos');
     }
 }
 

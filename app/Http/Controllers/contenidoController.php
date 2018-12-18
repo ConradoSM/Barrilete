@@ -3,41 +3,42 @@
 namespace barrilete\Http\Controllers;
 
 use Illuminate\Http\Request;
-use barrilete\Articulos;
-use barrilete\Galerias;
-use barrilete\Fotos;
-use barrilete\Encuestas;
-use barrilete\Votos;
-use barrilete\EncuestasIp;
+use barrilete\Articles;
+use barrilete\Gallery;
+use barrilete\GalleryPhotos;
+use barrilete\Poll;
+use barrilete\PollOptions;
+use barrilete\PollIp;
 
 class contenidoController extends Controller {
     
     /**TITULARES INDEX**/
 
     public function home() {
-        $titularesIndex = Articulos::select('id', 'titulo', 'copete', 'foto', 'seccion', 'video')
-        ->where('publicar', 1)
-        ->orderBy('id', 'DESC')
+        
+        $articlesIndex = Articles::select('articles.id', 'articles.title', 'articles.article_desc', 'articles.photo', 'articles.section_id', 'articles.video', 'sections.section')
+        ->join('sections','sections.id','articles.section_id')
+        ->where('articles.status','PUBLISHED')
+        ->orderBy('articles.id','DESC')
         ->limit(15)
         ->get();
 
-        $galeriasIndex = Galerias::select('momentos.id', 'momentos.titulo', 'fotos.foto')
-        ->join('fotos', 'momentos.id', 'fotos.idmomento')
-        ->where('momentos.publicar', 1)
-        ->limit(1)
-        ->groupBy('momentos.id')
-        ->orderBy('momentos.id', 'DESC')
+        $galleryIndex = Gallery::select('gallery.id', 'gallery.title', 'gallery_photos.photo')
+        ->join('gallery_photos','gallery.id','gallery_photos.gallery_id')
+        ->where('gallery.status','PUBLISHED')
+        ->groupBy('gallery.id')
+        ->orderBy('gallery.id','DESC')
         ->first();
 
-        $pollsIndex = Encuestas::select('id', 'titulo', 'fecha')
-        ->where('publicar', 1)
-        ->orderBy('id', 'DESC')
+        $pollsIndex = Poll::select('id', 'title', 'date')
+        ->where('status','PUBLISHED')
+        ->orderBy('id','DESC')
         ->limit(3)
         ->get();
 
         return view('default')
-        ->with(compact('titularesIndex'))
-        ->with(compact('galeriasIndex'))
+        ->with(compact('articlesIndex'))
+        ->with(compact('galleryIndex'))
         ->with(compact('pollsIndex'));
     }
 
@@ -49,15 +50,15 @@ class contenidoController extends Controller {
         $seccion = $request->input('sec');
 
         if ($seccion == 'articulos') {
-            $resultado = Articulos::whereRaw("MATCH (titulo,copete,cuerpo) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+            $resultado = Articles::whereRaw("MATCH (title,article_desc,article_body) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
             ->orderBy('id', 'DESC')
             ->paginate(10);
         } elseif ($seccion == 'galerias') {
-            $resultado = Galerias::whereRaw("MATCH (titulo,copete) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+            $resultado = Gallery::whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
             ->orderBy('id', 'DESC')
             ->paginate(10);
         } elseif ($seccion == 'encuestas') {
-            $resultado = Encuestas::whereRaw("MATCH (titulo,copete) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+            $resultado = Poll::whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
             ->orderBy('id', 'DESC')
             ->paginate(10);
         } else {
@@ -71,9 +72,9 @@ class contenidoController extends Controller {
 
     /**VER ARTÍCULO SEGÚN  ID Y SECCIÓN**/
 
-    public function show($id, $seccion) {
+    public function showArticle($id, $seccion) {
 
-        $article = Articulos::whereId($id)
+        $article = Articles::whereId($id)
         ->where('seccion', $seccion)
         ->where('publicar', 1)
         ->limit(1);
@@ -81,10 +82,10 @@ class contenidoController extends Controller {
         if ($article->exists()) {
 
             $article = $article->first();
-            Articulos::whereId($id)
+            Articles::whereId($id)
             ->update(['visitas' => $article->visitas + 1]);
 
-            $moreArticles = Articulos::select('id', 'titulo', 'foto', 'seccion')
+            $moreArticles = Articles::select('id', 'titulo', 'foto', 'seccion')
             ->where('id', '!=', $id)
             ->where('publicar', 1)
             ->where('seccion', $seccion)
@@ -102,8 +103,8 @@ class contenidoController extends Controller {
 
     /**VER SECCIONES**/
 
-    public function sec($seccion) {
-        $section = Articulos::select('id', 'titulo', 'copete', 'foto', 'video', 'seccion')
+    public function section($seccion) {
+        $section = Articles::select('id', 'titulo', 'copete', 'foto', 'video', 'seccion')
         ->where([['seccion', $seccion], ['publicar', 1],])
         ->orderBy('id', 'DESC')
         ->limit(15);
@@ -119,8 +120,8 @@ class contenidoController extends Controller {
 
     /**VER GALERÍAS DE FOTOS**/
 
-    public function galleries() {
-        $galleries = Galerias::select('momentos.id', 'momentos.titulo', 'momentos.copete', 'fotos.foto')
+    public function gallery() {
+        $galleries = Gallery::select('momentos.id', 'momentos.titulo', 'momentos.copete', 'fotos.foto')
         ->join('fotos', 'momentos.id', 'fotos.idmomento')
         ->where('momentos.publicar', 1)
         ->limit(15)
@@ -138,15 +139,15 @@ class contenidoController extends Controller {
 
     /**MOSTRAR GALERÍA SEGÚN ID**/
 
-    public function gallery($id) {
-        $gallery = Galerias::whereId($id)
+    public function showgGallery($id) {
+        $gallery = Gallery::whereId($id)
         ->where('publicar', 1)
         ->limit(1);
 
         if ($gallery->exists()) {
 
             $gallery = $gallery->first();
-            Galerias::whereId($id)
+            Gallery::whereId($id)
             ->update(['visitas' => $gallery->visitas + 1]);
 
             $fotos = Fotos::where('idmomento', $id)
@@ -164,13 +165,13 @@ class contenidoController extends Controller {
 
     public function poll($id) {
         
-        $poll = Encuestas::whereId($id)
+        $poll = Poll::whereId($id)
         ->where('publicar', 1)
         ->limit(1); 
         
-        $options = Votos::where('id_encuesta', $id);
+        $options = PollOptions::where('id_encuesta', $id);
         
-        $morePolls = Encuestas::select('id', 'titulo', 'fecha')
+        $morePolls = Poll::select('id', 'titulo', 'fecha')
         ->where('id', '!=', $id)
         ->where('publicar', 1)
         ->orderBy('id', 'DESC')
@@ -179,7 +180,7 @@ class contenidoController extends Controller {
         if ($poll->exists()) {
 
             $ip = Request()->ip();
-            $ipAddr = EncuestasIp::where('id_encuesta', $id)
+            $ipAddr = PollIp::where('id_encuesta', $id)
             ->where('ip', $ip)
             ->first();
 
@@ -188,7 +189,7 @@ class contenidoController extends Controller {
                 $poll = $poll->first();
                 $options = $options->get();
                 $morePolls = $morePolls->get();
-                Encuestas::whereId($id)->update(['visitas' => $poll->visitas + 1]);
+                Poll::whereId($id)->update(['visitas' => $poll->visitas + 1]);
 
                 return view('poll')
                 ->with('status', false)
@@ -199,7 +200,7 @@ class contenidoController extends Controller {
                 
                 $poll = $poll->first();
                 $options = $options->get();
-                $totalVotos = $options->sum('votos');
+                $totalPollOptions = $options->sum('votos');
                 $morePolls = $morePolls->get();
                 
                 return view('poll')
@@ -216,25 +217,25 @@ class contenidoController extends Controller {
 
     /**VOTOS DE LA ENCUESTA**/
 
-    public function votar(Request $request) {
+    public function pollVote(Request $request) {
 
         $idOpcion = $request->input('id_opcion');
         $idPoll = $request->input('id_encuesta');
         $pollTitle = $request->input('titulo_encuesta');
         $ip = $request->input('ip');
 
-        $optionPoll = Votos::whereId($idOpcion)
+        $optionPoll = PollOptions::whereId($idOpcion)
         ->where('id_encuesta', $idPoll)
         ->limit(1)
         ->first();
 
         if ($optionPoll->exists()) {
 
-            Votos::whereId($optionPoll->id)
+            PollOptions::whereId($optionPoll->id)
             ->where('id_encuesta', $idPoll)
             ->update(['votos' => $optionPoll->votos + 1]);
 
-            EncuestasIp::create($request->all());
+            PollIp::create($request->all());
 
             return redirect('poll/'.$idPoll.'/'.$pollTitle);
             } else {

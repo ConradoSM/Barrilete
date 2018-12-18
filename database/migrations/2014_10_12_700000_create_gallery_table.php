@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePollTable extends Migration
+class CreateGalleryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreatePollTable extends Migration
      */
     public function up()
     {
-        Schema::create('poll', function (Blueprint $table) {
+        Schema::create('gallery', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
             $table->string('title');
             $table->datetime('date');          
-            $table->string('author');
+            $table->integer('section_id')->unsigned();
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('restrict')->onUpdate('restrict');
+            $table->integer('author');
             $table->string('article_desc');
-            $table->boolean('publish')->default(0);
-            $table->integer('views')->default(0);
+            $table->enum('status', ['PUBLISHED','DRAFT'])->default('DRAFT');
+            $table->integer('views');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -36,7 +38,7 @@ class CreatePollTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('poll');
+        Schema::dropIfExists('gallery');
     }
 }
 

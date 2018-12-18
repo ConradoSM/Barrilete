@@ -17,7 +17,7 @@ class CreatePollOptionsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('poll_id')->unsigned();
-            $table->foreign('poll_id')->references('id')->on('poll');         
+            $table->foreign('poll_id')->references('id')->on('poll')->onDelete('cascade')->onUpdate('cascade');         
             $table->string('option');
             $table->integer('votes');
             $table->rememberToken();

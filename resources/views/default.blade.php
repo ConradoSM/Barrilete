@@ -2,18 +2,19 @@
 @section('title', 'Barrilete')
 @section('content')
 @php ($i=0) @endphp
-@forelse ($titularesIndex as $tituloIndex)
+@forelse ($articlesIndex as $article)
 @php ($i++) @endphp
 <article class="pubIndex">
-    <div class="seccion" onclick="location.href ='{{ route('section', ['seccion' => str_slug($tituloIndex -> seccion)]) }}'">{{ $tituloIndex -> seccion }}</div>
-    @if ($tituloIndex -> video == 1)<img src="img/play-button.png" class="video" />@endif
-    @if ($i == 1)
-    <img src="img/articles/{{ $tituloIndex->foto }}" title="{{ $tituloIndex -> titulo  }}" alt="{{ $tituloIndex -> titulo  }}" />
-    @else
-    <img src="{{ route('imgFirst', ['image'=>$tituloIndex->foto]) }}" title="{{ $tituloIndex -> titulo  }}" alt="{{ $tituloIndex -> titulo  }}" />
+    <div class="seccion" onclick="location.href ='{{route('section',['seccion'=>str_slug($article->section)])}}'">{{$article->section}}</div>
+    @if ($article->video == 1)<img src="img/play-button.png" class="video" />
     @endif
-    <a href="{{ route('article', ['id' => $tituloIndex -> id, 'seccion' => str_slug($tituloIndex -> seccion), 'titulo' => str_slug($tituloIndex -> titulo, '-')]) }}">{{ $tituloIndex -> titulo  }}</a>
-    <p>{{ $tituloIndex -> copete }}</p>
+    @if ($i == 1)
+    <img src="img/articles/{{$article->photo}}" title="{{$article->title}}" alt="{{$article->title}}" />
+    @else
+    <img src="{{route('imgFirst',['image'=>$article->photo])}}" title="{{$article->title}}" alt="{{$article->title}}" />
+    @endif
+    <a href="{{route('article',['id'=>$article->id,'seccion'=>str_slug($article->section),'titulo'=>str_slug($article->title,'-')])}}">{{$article->title}}</a>
+    <p>{{$article->article_desc}}</p>
 </article>
 @empty
 <h1>No hay artículos para mostrar</h1>
@@ -21,20 +22,24 @@
 <hr />
 <div class="galeriasContainerIndex">
     <h1>Galerías de fotos</h1>
-    <article class="galeriaIndex">
-        <img src="{{route('imgSecond', ['image' => $galeriasIndex->foto])}}" title="{{$galeriasIndex->titulo}}" alt="{{$galeriasIndex->titulo}}" />
-        <a href="{{route('gallery', ['id' => $galeriasIndex->id, 'titulo' => str_slug($galeriasIndex->titulo, '-')])}}">{{$galeriasIndex->titulo}}</a>       
-    </article>
+    @if ($galleryIndex)
+        <article class="galeriaIndex">
+            <img src="{{route('imgSecond',['image'=>$galleryIndex->photo])}}" title="{{$galleryIndex->title}}" alt="{{$galleryIndex->title}}" />
+            <a href="{{route('gallery',['id'=>$galleryIndex->id,'titulo'=>str_slug($galleryIndex->title,'-')])}}">{{$galleryIndex->title}}</a>       
+        </article>
+    @else
+    <h2>No hay galerías</h2>
+    @endif
 </div>
 <div class="pollsContainerIndex">
     <h1>Últimas encuestas</h1>
     @forelse ($pollsIndex as $pollIndex)
     <article class="pollIndex">
-        <p>{{$pollIndex->fecha}}</p>
-        <a href="{{route('poll', ['id' => $pollIndex->id, 'titulo' => str_slug($pollIndex->titulo, '-')])}}">{{$pollIndex->titulo}}</a>
+        <p>{{$pollIndex->date}}</p>
+        <a href="{{route('poll',['id'=>$pollIndex->id,'titulo'=>str_slug($pollIndex->title,'-')])}}">{{$pollIndex->title}}</a>
     </article>
     @empty
-    <h1>NO HAY ENCUESTAS PARA MOSTRAR</h1>
+    <h2>No hay encuestas</h2>
     @endforelse
 </div>
 @endsection
