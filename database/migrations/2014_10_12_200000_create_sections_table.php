@@ -15,8 +15,8 @@ class CreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('section');
+            $table->increments('id')->unsigned();
+            $table->string('section')->unique();
             $table->rememberToken();
             $table->timestamps();
         });

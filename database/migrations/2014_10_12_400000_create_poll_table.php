@@ -15,17 +15,18 @@ class CreatePollTable extends Migration
     {
         Schema::create('poll', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('title')->unique();
             $table->datetime('date'); 
             $table->integer('section_id')->unsigned();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('restrict')->onUpdate('restrict');
             $table->string('author');
-            $table->string('article_desc');
+            $table->mediumText('article_desc');
             $table->enum('status', ['PUBLISHED','DRAFT'])->default('DRAFT');
-            $table->integer('views')->default(0);
+            $table->integer('views')->unsigned()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

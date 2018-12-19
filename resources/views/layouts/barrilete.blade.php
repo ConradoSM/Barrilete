@@ -3,6 +3,9 @@
     <head>
         <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="author" content="Conrado Maranguello" />
+        <meta name="description" content="@yield('description')" />
+        <meta name="keywords" content="@yield('keywords')" />
         <link rel="stylesheet" href="{{asset('css/main.css')}}" />
         <link rel="stylesheet" href="{{asset('css/contenido.css')}}" />
         <link rel="stylesheet" href="{{asset('css/titularesIndex.css')}}" />
@@ -56,7 +59,7 @@
                         <li><a href="{{ route('section', ['seccion' => 'economia']) }}" title="Economía">ECONOMIA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'internacionales']) }}" title="Mundo">MUNDO</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'deportes']) }}" title="Deportes">DEPORTES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'cultura']) }}"title="Cultura">CULTURA</a></li>
+                        <li><a href="{{ route('section', ['seccion' => 'cultura']) }}" title="Cultura">CULTURA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'tecno']) }}" title="Tecnología">TECNOLOGIA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'editoriales']) }}" title="Editoriales">EDITORIALES</a></li>
                         <li><a href="{{ route('galleries') }}">GALERIAS</a>

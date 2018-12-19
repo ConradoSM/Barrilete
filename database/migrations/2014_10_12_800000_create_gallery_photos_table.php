@@ -15,7 +15,7 @@ class CreateGalleryPhotosTable extends Migration
     {
         Schema::create('gallery_photos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('gallery_id')->unsigned();
             $table->foreign('gallery_id')->references('id')->on('gallery')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');         

@@ -15,7 +15,7 @@ class CreatePollIpTable extends Migration
     {
         Schema::create('poll_ip', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('poll_id')->unsigned();
             $table->foreign('poll_id')->references('id')->on('poll')->onDelete('cascade')->onUpdate('cascade');         
             $table->ipAddress('ip');

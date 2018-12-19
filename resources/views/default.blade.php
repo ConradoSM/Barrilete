@@ -1,11 +1,13 @@
 @extends('layouts.barrilete')
 @section('title', 'Barrilete')
+@section('description', 'Secciones de noticias, galerías de fotos, encuestas, toda la actualidad en un solo sitio')
+@section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
 @section('content')
 @php ($i=0) @endphp
 @forelse ($articlesIndex as $article)
 @php ($i++) @endphp
 <article class="pubIndex">
-    <div class="seccion" onclick="location.href ='{{route('section',['seccion'=>str_slug($article->section)])}}'">{{$article->section}}</div>
+    <div class="seccion" onclick="location.href ='{{route('section',['seccion'=>str_slug($article->section->section)])}}'">{{$article->section->section}}</div>
     @if ($article->video == 1)<img src="img/play-button.png" class="video" />
     @endif
     @if ($i == 1)
@@ -13,7 +15,7 @@
     @else
     <img src="{{route('imgFirst',['image'=>$article->photo])}}" title="{{$article->title}}" alt="{{$article->title}}" />
     @endif
-    <a href="{{route('article',['id'=>$article->id,'seccion'=>str_slug($article->section),'titulo'=>str_slug($article->title,'-')])}}">{{$article->title}}</a>
+    <a href="{{route('article',['id'=>$article->id,'section'=>str_slug($article->section->section),'title'=>str_slug($article->title,'-')])}}">{{$article->title}}</a>
     <p>{{$article->article_desc}}</p>
 </article>
 @empty

@@ -16,10 +16,10 @@ class contenidoController extends Controller {
 
     public function home() {
         
-        $articlesIndex = Articles::select('articles.id', 'articles.title', 'articles.article_desc', 'articles.photo', 'articles.section_id', 'articles.video', 'sections.section')
-        ->join('sections','sections.id','articles.section_id')
-        ->where('articles.status','PUBLISHED')
-        ->orderBy('articles.id','DESC')
+        $articlesIndex = Articles::select('id','title','article_desc','photo','section_id','video')
+        ->with('section')
+        ->where('status','PUBLISHED')
+        ->orderBy('id','DESC')
         ->limit(15)
         ->get();
 
@@ -75,20 +75,20 @@ class contenidoController extends Controller {
     public function showArticle($id, $seccion) {
 
         $article = Articles::whereId($id)
-        ->where('seccion', $seccion)
-        ->where('publicar', 1)
-        ->limit(1);
+        ->where('status','PUBLISHED')
+        ->with('user')
+        ->with('section');
 
         if ($article->exists()) {
 
             $article = $article->first();
             Articles::whereId($id)
-            ->update(['visitas' => $article->visitas + 1]);
+            ->update(['views' => $article->views + 1]);
 
-            $moreArticles = Articles::select('id', 'titulo', 'foto', 'seccion')
+            $moreArticles = Articles::select('id', 'title', 'photo')
             ->where('id', '!=', $id)
-            ->where('publicar', 1)
-            ->where('seccion', $seccion)
+            ->where('status', 'PUBLISHED')
+            ->with('section')
             ->orderBy('id', 'DESC')
             ->limit(8)
             ->get();

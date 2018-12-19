@@ -15,11 +15,11 @@ class CreatePollOptionsTable extends Migration
     {
         Schema::create('poll_options', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('poll_id')->unsigned();
             $table->foreign('poll_id')->references('id')->on('poll')->onDelete('cascade')->onUpdate('cascade');         
             $table->string('option');
-            $table->integer('votes');
+            $table->integer('votes')->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });

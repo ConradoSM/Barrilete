@@ -1,5 +1,7 @@
 @extends('layouts.barrilete')
 @section('title', 'Barrilete')
+@section('description', $galeria -> copete)
+@section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
 @section('content')
 @php ($i=0) @endphp
 @forelse ($galleries as $galeria)
