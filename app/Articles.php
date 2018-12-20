@@ -8,6 +8,19 @@ class Articles extends Model {
 
     protected $table = 'articles';
     
+    //RELACION UN ARTÍCULO A UN USUARIO
+    public function user() {
+
+        return $this->belongsTo(User::class);
+    }
+
+    //RELACIÓN UN ARTÍCULO A UNA SECCIÓN
+    public function section() {
+
+        return $this->belongsTo(Sections::class);
+    }
+    
+    //ARTÍCULOS QUE SE VAN A MOSTRAR EN LA HOMEPAGE
     public function scopeArticlesHome($query) {
         
         return $query->select('id','title','article_desc','photo','section_id','video')
@@ -16,6 +29,7 @@ class Articles extends Model {
         ->limit(15);      
     }
     
+    //ARTÍCULO QUE SE VA A MOSTRAR SEGÚN EL ID
     public function scopeShowArticle($query, $id) {
         
         $query->whereId($id)->where('status','PUBLISHED'); 
@@ -24,6 +38,7 @@ class Articles extends Model {
         return $query;
     }
     
+    //RESTO DE LOS ARTÍCULOS QUE SE VAN A MOSTRAR
     public function scopeMoreArticles($query, $id) {
         
         return $query->select('id', 'title', 'photo')
@@ -32,17 +47,8 @@ class Articles extends Model {
         ->orderBy('id','DESC')
         ->limit(8);      
     }
-
-    public function user() {
-
-        return $this->belongsTo(User::class);
-    }
-
-    public function section() {
-
-        return $this->belongsTo(Sections::class);
-    }
-
+    
+    //BÚSQUEDA DE ARTÍCULOS
     public function scopeSearch($query, $busqueda) {
         
         return $query->whereRaw("MATCH (title,article_desc,article_body) AGAINST (? IN BOOLEAN MODE)", array($busqueda))

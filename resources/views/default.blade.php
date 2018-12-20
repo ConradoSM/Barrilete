@@ -7,7 +7,7 @@
 @forelse ($articlesIndex as $article)
 @php ($i++) @endphp
 <article class="pubIndex">
-    <div class="seccion" onclick="location.href ='{{route('section',['seccion'=>str_slug($article->section->section)])}}'">{{$article->section->section}}</div>
+    <div class="seccion" onclick="location.href ='{{route('section',['seccion'=>str_slug($article->section->name)])}}'">{{$article->section->name}}</div>
     @if ($article->video == 1)<img src="img/play-button.png" class="video" />
     @endif
     @if ($i == 1)
@@ -15,7 +15,7 @@
     @else
     <img src="{{route('imgFirst',['image'=>$article->photo])}}" title="{{$article->title}}" alt="{{$article->title}}" />
     @endif
-    <a href="{{route('article',['id'=>$article->id,'section'=>str_slug($article->section->section),'title'=>str_slug($article->title,'-')])}}">{{$article->title}}</a>
+    <a href="{{route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')])}}">{{$article->title}}</a>
     <p>{{$article->article_desc}}</p>
 </article>
 @empty

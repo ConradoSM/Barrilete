@@ -10,22 +10,30 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $table = 'users';
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    //RELACIONA LOS ARTÍCULOS CARGADOS POR UN USUARIO
+    public function articles() {
+        
+       return $this->hasMany(Articles::class);
+    }
+    
+    //RELACIONA LAS GALERÍAS CARGADAS POR UN USUARIO
+    public function gallery() {
+        
+       return $this->hasMany(Gallery::class);
+    }
+    
+    //RELACIONA LAS ENCUESTAS CARGADAS POR UN USUARIO
+    public function poll() {
+        
+       return $this->hasMany(Poll::class);
+    }
 }

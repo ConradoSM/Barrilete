@@ -8,6 +8,7 @@ class Sections extends Model
 {
     protected $table = 'sections';
     
+    //RELACIONA LOS ARTÍCULOS VINCULADOS A UNA SECCIÓN
     public function articles() {
         
         return $this->hasMany(Articles::class, 'section_id')
@@ -15,10 +16,11 @@ class Sections extends Model
         ->orderBy('id','DESC')
         ->limit(15);
     }
-        
+    
+    //BUSCA LA SECCIÓN POR SU NOMBRE
     public function scopeSearchSection($query, $name) {
         
-        return $query->where('section',$name);
+        return $query->where('name',$name);
   
     }
 }

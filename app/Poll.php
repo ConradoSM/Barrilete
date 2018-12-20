@@ -8,6 +8,38 @@ class Poll extends Model {
 
     protected $table = 'poll';
     
+    //UNA ENCUESTA PERTENECE A UN USUARIO
+    public function user() {
+
+        return $this->belongsTo(User::class);
+    }
+    
+    //UNA ENCUESTA PERTENECE A UNA SECCIÓN
+    public function section() {
+
+        return $this->belongsTo(Sections::class);
+    }
+    
+    //UNA ENCUESTA TIENE MUCHAS OPCIONES
+    public function option() {
+
+        return $this->hasMany(PollOptions::class);
+    }
+    
+    //UNA ENCUESTA TIENE MUCHAS IP
+    public function ip() {
+
+        return $this->hasMany(PollIp::class);
+    }
+    
+    //BUSCA LAS OPCIONES SEGÚN EL ID DE LA ENCUESTA
+    public function scopeSearchOptions($query, $id) {
+        
+        return $query->where('id',$id);
+  
+    } 
+    
+    //LAS ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
     public function scopePollHome($query) {
         
         return $query->select('id', 'title', 'date')
@@ -16,6 +48,7 @@ class Poll extends Model {
         ->limit(3);      
     }
     
+    //BUSCA LA ENCUESTA POR EL ID, LA MUESTRA Y ACTUALIZA LAS VISITAS
     public function scopePoll($query, $id) {
         
         $query->whereId($id)->where('status','PUBLISHED'); 
@@ -23,18 +56,8 @@ class Poll extends Model {
         
         return $query;
     }
-    
-    public function option() {
 
-        return $this->hasMany(PollOptions::class, 'poll_id');
-    }
-    
-    public function scopeSearchOptions($query, $id) {
-        
-        return $query->where('id',$id);
-  
-    }
-    
+    //MUESTRA EL RESTO DE LAS ENCUESTAS
     public function scopeMorePolls($query, $id) {
         
         return $query->select('id', 'title')
@@ -44,16 +67,7 @@ class Poll extends Model {
         ->limit(8);      
     }
     
-    public function user() {
-
-        return $this->belongsTo(User::class);
-    }
-
-    public function section() {
-
-        return $this->belongsTo(Sections::class);
-    }
-    
+    //BÚSQUEDA DE ENCUESTAS
     public function scopeSearch($query, $busqueda) {
 
         return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))

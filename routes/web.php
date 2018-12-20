@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', 'contenidoController@home')->name('default');
-
+Route::get('/categories', 'contenidoController@categories')->name('categories');
 Route::get('/article/{id}/{section}/{title}', 'contenidoController@showArticle')->name('article');
 Route::get('/sec/{name}', 'contenidoController@searchSection')->name('section');
 Route::get('/galleries', 'contenidoController@gallery')->name('galleries');

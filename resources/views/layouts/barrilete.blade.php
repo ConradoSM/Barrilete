@@ -31,22 +31,22 @@
                         <li><a href="{{ route('section', ['seccion' => 'economia']) }}" title="Economía">ECONOMIA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'internacionales']) }}" title="Mundo">MUNDO</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'deportes']) }}" title="Deportes">DEPORTES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'cultura']) }}"title="Cultura">CULTURA</a></li>
+                        <li><a href="{{ route('section', ['seccion' => 'cultura']) }}" title="Cultura">CULTURA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'tecno']) }}" title="Tecnología">TECNOLOGIA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'editoriales']) }}" title="Editoriales">EDITORIALES</a></li>
                         <li><a href="{{ route('galleries') }}">GALERIAS</a>
-                    </ul>
+                    </ul> 
                 </nav>
-            <img id="search-btn" class="search-btn" src="{{asset('svg/search.svg')}}" />
-            <a id="menu-btn" class="menu-btn" title="Menú">
-                <div class="menu-btn-block top"></div>
-                <div class="menu-btn-block middle"></div>
-                <div class="menu-btn-block bottom"></div>
-            </a>
+                <img id="search-btn" class="search-btn" src="{{asset('svg/search.svg')}}" />
+                <a id="menu-btn" class="menu-btn" title="Menú">
+                    <div class="menu-btn-block top"></div>
+                    <div class="menu-btn-block middle"></div>
+                    <div class="menu-btn-block bottom"></div>
+                </a>                
             </div>
             <div id="glass" class="hide"></div>
         </header>
-        <section class="mainSection">
+        <section    class="mainSection">
             @yield('content')
         </section>
         <footer>
