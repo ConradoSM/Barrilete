@@ -1,9 +1,10 @@
 @extends('layouts.barrilete')
-@section('title', 'Error 404')
+@section('title','Error: sección no encontrada')
 @section('content')
 <article class="pub">
-    <h1>Error 404 - File not found</h1>
-    <h3>El servidor no encuentra nada en la ubicación solicitada por el cliente. Esto puede deberse a que:</h3>
+    <h1>Sección no encontrada</h1>
+    <h3>El servidor no pudo encontrar la sección solicitada, ésto puede ser debido a que:</h3>
+    <hr />
     <ol>
         <li>El cliente escribió mal la URL.</li>
         <li>La estructura de enlaces permanentes del sitio ha sido cambiada, por ejemplo, cuando un sitio ha sido trasladado a otro servidor web y el DNS todavía apunta a la ubicación anterior.</li>

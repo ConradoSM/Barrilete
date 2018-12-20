@@ -1,5 +1,5 @@
 @extends('layouts.barrilete')
-@section('title','Error: artículo no encontrado')
+@section('title','Error: la búsqueda produjo un error')
 @section('content')
 <article class="pub">
     <h1>Error en la búsqueda</h1>
@@ -14,5 +14,5 @@
     <br />
     <a href="{{ route('default') }}">Volver al inicio</a>
 </article>
-<img class="errorIMG" src="img/error.gif" />
+<img class="errorIMG" src="{{asset('img/error.gif')}}" />
 @endsection

@@ -9,6 +9,7 @@ use barrilete\GalleryPhotos;
 use barrilete\Poll;
 use barrilete\PollOptions;
 use barrilete\PollIp;
+use barrilete\Sections;
 
 class contenidoController extends Controller {
     
@@ -16,25 +17,9 @@ class contenidoController extends Controller {
 
     public function home() {
         
-        $articlesIndex = Articles::select('id','title','article_desc','photo','section_id','video')
-        ->with('section')
-        ->where('status','PUBLISHED')
-        ->orderBy('id','DESC')
-        ->limit(15)
-        ->get();
-
-        $galleryIndex = Gallery::select('gallery.id', 'gallery.title', 'gallery_photos.photo')
-        ->join('gallery_photos','gallery.id','gallery_photos.gallery_id')
-        ->where('gallery.status','PUBLISHED')
-        ->groupBy('gallery.id')
-        ->orderBy('gallery.id','DESC')
-        ->first();
-
-        $pollsIndex = Poll::select('id', 'title', 'date')
-        ->where('status','PUBLISHED')
-        ->orderBy('id','DESC')
-        ->limit(3)
-        ->get();
+        $articlesIndex = Articles::articlesHome()->get();
+        $galleryIndex = Gallery::galleryHome()->first();
+        $pollsIndex = Poll::pollHome()->get();
 
         return view('default')
         ->with(compact('articlesIndex'))
@@ -46,24 +31,19 @@ class contenidoController extends Controller {
 
     public function search(Request $request) {
 
-        $busqueda = $request->input('query');
         $seccion = $request->input('sec');
+        $busqueda = $request->input('query');
 
         if ($seccion == 'articulos') {
-            $resultado = Articles::whereRaw("MATCH (title,article_desc,article_body) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
+            $resultado = Articles::search($busqueda);
+            
         } elseif ($seccion == 'galerias') {
-            $resultado = Gallery::whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
+            $resultado = Gallery::search($busqueda);
+            
         } elseif ($seccion == 'encuestas') {
-            $resultado = Poll::whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
-        } else {
-            return view('errors.search-error');
-        }
+            $resultado = Poll::search($busqueda);
+            
+        } else return view('errors.search-error');
 
         $resultado->appends(['query' => $busqueda, 'sec' => $seccion]);
 
@@ -72,50 +52,41 @@ class contenidoController extends Controller {
 
     /**VER ARTÍCULO SEGÚN  ID Y SECCIÓN**/
 
-    public function showArticle($id, $seccion) {
+    public function showArticle($id) {
 
-        $article = Articles::whereId($id)
-        ->where('status','PUBLISHED')
-        ->with('user')
-        ->with('section');
+        $article = Articles::showArticle($id);
 
         if ($article->exists()) {
 
             $article = $article->first();
-            Articles::whereId($id)
-            ->update(['views' => $article->views + 1]);
-
-            $moreArticles = Articles::select('id', 'title', 'photo')
-            ->where('id', '!=', $id)
-            ->where('status', 'PUBLISHED')
-            ->with('section')
-            ->orderBy('id', 'DESC')
-            ->limit(8)
-            ->get();
+            
+            $moreArticles = Articles::moreArticles($id)->get();
 
             return view('article')
             ->with(compact('article'))
             ->with(compact('moreArticles'));
-        } else {
-            return view('errors.article-error');
-        }
+            
+        } else return view('errors.article-error');
     }
 
     /**VER SECCIONES**/
 
-    public function section($seccion) {
-        $section = Articles::select('id', 'titulo', 'copete', 'foto', 'video', 'seccion')
-        ->where([['seccion', $seccion], ['publicar', 1],])
-        ->orderBy('id', 'DESC')
-        ->limit(15);
-
+    public function searchSection($name) {
+        
+        $section = Sections::searchSection($name);
+        
         if ($section->exists()) {
+            
+            $section = $section->first();
+            $articles = $section->articles;
 
-            $section = $section->get();
-            return view('section', compact('section'));
-        } else {
-            return view('errors.article-error');
-        }
+        if ($articles) {
+
+               return view('section', compact('articles'));
+            
+        } else return view('errors.article-error');
+        
+        } else return view('errors.section-error');
     }
 
     /**VER GALERÍAS DE FOTOS**/
@@ -165,48 +136,42 @@ class contenidoController extends Controller {
 
     public function poll($id) {
         
-        $poll = Poll::whereId($id)
-        ->where('publicar', 1)
-        ->limit(1); 
+        $poll = Poll::poll($id);        
         
-        $options = PollOptions::where('id_encuesta', $id);
-        
-        $morePolls = Poll::select('id', 'titulo', 'fecha')
-        ->where('id', '!=', $id)
-        ->where('publicar', 1)
-        ->orderBy('id', 'DESC')
-        ->limit(4);
+        $morePolls = Poll::morePolls($id);
 
         if ($poll->exists()) {
 
-            $ip = Request()->ip();
-            $ipAddr = PollIp::where('id_encuesta', $id)
-            ->where('ip', $ip)
-            ->first();
+            $ip = PollIp::ip($id)->first();
 
-            if (!$ipAddr) {
+            if (!$ip) {
 
                 $poll = $poll->first();
-                $options = $options->get();
+                
+                $options = Poll::searchOptions($id)->first();
+                $poll_options = $options->option;
+                
                 $morePolls = $morePolls->get();
-                Poll::whereId($id)->update(['visitas' => $poll->visitas + 1]);
 
                 return view('poll')
                 ->with('status', false)
                 ->with(compact('poll'))
-                ->with(compact('options'))
+                ->with(compact('poll_options'))
                 ->with(compact('morePolls'));
             } else {
                 
                 $poll = $poll->first();
-                $options = $options->get();
-                $totalPollOptions = $options->sum('votos');
+                
+                $options = Poll::searchOptions($id)->first();
+                $poll_options = $options->option;
+                
+                $totalVotos = $poll_options->sum('votes');
                 $morePolls = $morePolls->get();
                 
                 return view('poll')
                 ->with('status', 'Ya has votado!')
                 ->with(compact('poll'))
-                ->with(compact('options'))
+                ->with(compact('poll_options'))
                 ->with(compact('totalVotos'))
                 ->with(compact('morePolls'));
             }

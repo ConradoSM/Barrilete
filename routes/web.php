@@ -3,7 +3,7 @@
 Route::get('/', 'contenidoController@home')->name('default');
 
 Route::get('/article/{id}/{section}/{title}', 'contenidoController@showArticle')->name('article');
-Route::get('/sec/{seccion}', 'contenidoController@sec')->name('section');
+Route::get('/sec/{name}', 'contenidoController@searchSection')->name('section');
 Route::get('/galleries', 'contenidoController@gallery')->name('galleries');
 Route::get('/gallery/{id}/{titulo}', 'contenidoController@showGallery')->name('gallery');
 Route::get('/poll/{id}/{titulo}', 'contenidoController@poll')->name('poll');

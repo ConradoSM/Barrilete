@@ -14,15 +14,15 @@ $query = Request::get('query')
     @forelse ($resultado as $pub)
 
     <article class="searchResult">
-        <p class="searchDate">{{$pub->fecha}}</p>
+        <p class="searchDate">{{$pub->date}}</p>
         @if (Request::get('sec') == 'articulos')
-        <a class="searchTitle" href="{{route('article',['id'=>$pub->id,'seccion'=>str_slug($pub->seccion),'titulo'=>str_slug($pub->titulo,'-')])}}">{{$pub->titulo}}</a>
+        <a class="searchTitle" href="{{route('article',['id'=>$pub->id,'section'=>str_slug($pub->section->section),'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
         @elseif (Request::get('sec') == 'galerias')
-        <a class="searchTitle" href="{{route('gallery',['id'=>$pub->id,'titulo'=>str_slug($pub->titulo,'-')])}}">{{$pub->titulo}}</a>
+        <a class="searchTitle" href="{{route('gallery',['id'=>$pub->id,'section'=>str_slug($pub->section->section),'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
         @elseif (Request::get('sec') == 'encuestas')
-        <a class="searchTitle" href="{{route('poll',['id'=>$pub->id,'titulo'=>str_slug($pub->titulo,'-')])}}">{{$pub->titulo}}</a>
+        <a class="searchTitle" href="{{route('poll',['id'=>$pub->id,'section'=>str_slug($pub->section->section),'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
         @endif
-        <p class="searchCopete">{{$pub->copete}}</p>
+        <p class="searchCopete">{{$pub->article_desc}}</p>
     </article>
     @empty
     <hr />

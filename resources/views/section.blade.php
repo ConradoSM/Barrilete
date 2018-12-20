@@ -2,18 +2,18 @@
 @section('title', 'Barrilete')
 @section('content')
 @php ($i=0) @endphp
-@forelse ($section as $sec)
+@forelse ($articles as $sec)
 @php ($i++) @endphp
     <article class="pubIndex">
-        <div class="seccion" onclick="location.href ='{{ route('section', ['seccion' => str_slug($sec -> seccion)]) }}'">{{ $sec -> seccion }}</div>
+        <div class="seccion" onclick="location.href ='{{ route('section', ['section' => $sec -> section -> section ]) }}'">{{ $sec -> section -> section }}</div>
         @if ($sec -> video == 1)<img src="{{ asset('img/play-button.png') }}" class="video" />@endif
         @if ($i == 1)
-        <img src="{{ asset('img/articles/'.$sec -> foto) }}" title="{{ $sec -> titulo  }}" alt="{{ $sec -> titulo  }}" />
+        <img src="{{ asset('img/articles/'.$sec -> photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" />
         @else
-        <img src="{{ route('imgFirst', ['image'=>$sec->foto]) }}" title="{{ $sec -> titulo  }}" alt="{{ $sec -> titulo  }}" />
+        <img src="{{ route('imgFirst', ['image'=>$sec->photo]) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" />
         @endif
-        <a href="{{ route('article', ['id' => $sec -> id, 'seccion' => str_slug($sec -> seccion, '-') ,'titulo' => str_slug($sec -> titulo, '-')]) }}">{{ $sec -> titulo  }}</a>
-        <p>{{ $sec -> copete }}</p>
+        <a href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> section ,'title' => str_slug($sec -> title, '-')]) }}">{{ $sec -> title  }}</a>
+        <p>{{ $sec -> articles_desc }}</p>
     </article>
 @empty
     <h1>No hay artículos para mostrar</h1>
