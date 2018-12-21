@@ -32,13 +32,6 @@ class Poll extends Model {
         return $this->hasMany(PollIp::class);
     }
     
-    //BUSCA LAS OPCIONES SEGÚN EL ID DE LA ENCUESTA
-    public function scopeSearchOptions($query, $id) {
-        
-        return $query->where('id',$id);
-  
-    } 
-    
     //LAS ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
     public function scopePollHome($query) {
         

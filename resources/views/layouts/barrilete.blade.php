@@ -34,7 +34,7 @@
                         <li><a href="{{ route('section', ['seccion' => 'cultura']) }}" title="Cultura">CULTURA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'tecno']) }}" title="Tecnología">TECNOLOGIA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'editoriales']) }}" title="Editoriales">EDITORIALES</a></li>
-                        <li><a href="{{ route('galleries') }}">GALERIAS</a>
+                        <li><a href="{{ route('section', ['seccion' => 'galerias']) }}">GALERIAS</a>
                     </ul> 
                 </nav>
                 <img id="search-btn" class="search-btn" src="{{asset('svg/search.svg')}}" />
@@ -62,7 +62,7 @@
                         <li><a href="{{ route('section', ['seccion' => 'cultura']) }}" title="Cultura">CULTURA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'tecno']) }}" title="Tecnología">TECNOLOGIA</a></li>
                         <li><a href="{{ route('section', ['seccion' => 'editoriales']) }}" title="Editoriales">EDITORIALES</a></li>
-                        <li><a href="{{ route('galleries') }}">GALERIAS</a>
+                        <li><a href="{{ route('section', ['seccion' => 'galerias']) }}">GALERIAS</a>
                     </ul>   
                 </div>
                 <div>

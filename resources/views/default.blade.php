@@ -26,7 +26,7 @@
     <h1>Galerías de fotos</h1>
     @if ($galleryIndex)
         <article class="galeriaIndex">
-            <img src="{{route('imgSecond',['image'=>$galleryIndex->photo])}}" title="{{$galleryIndex->title}}" alt="{{$galleryIndex->title}}" />
+            <img src="{{route('imgSecond',['image'=>$galleryIndex->photos->first()->photo])}}" title="{{$galleryIndex->title}}" alt="{{$galleryIndex->title}}" />
             <a href="{{route('gallery',['id'=>$galleryIndex->id,'titulo'=>str_slug($galleryIndex->title,'-')])}}">{{$galleryIndex->title}}</a>       
         </article>
     @else

@@ -15,11 +15,11 @@
             <h2>{{$status}}</h2>
             @forelse ($poll_options as $option)
             <p class="options">{{$option->option}} ({{$option->votes}})</p>
-            <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotos}}%">{{round(($option->votes * 100) / $totalVotos )}}%</p>           
+            <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes}}%">{{round(($option->votes * 100) / $totalVotes )}}%</p>           
             @empty
             <h1>No hay opciones</h1>
             @endforelse
-            <p>Votos: {{$totalVotos}}</p>
+            <p>Votos: {{$totalVotes}}</p>
             @else
             <form action="{{route('poll-vote')}}" method="post">            
                 @forelse ($poll_options as $option)

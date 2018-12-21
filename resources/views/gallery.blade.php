@@ -1,22 +1,21 @@
 @extends('layouts.barrilete')
-@section('title', $gallery->titulo)
+@section('title', $gallery->title)
 @section('content')
 <div class="pubContainer">
 <article class="pub_galeria">
-    <p class="info"><img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $gallery->fecha }}</p>
-    <h2>{{ $gallery->titulo }}</h2>
-    <p class="copete">{{ $gallery->copete }}</p>
+    <p class="info"><img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->date}}</p>
+    <h2>{{$gallery->title}}</h2>
+    <p class="copete">{{$gallery->article_desc}}</p>
     <p class="info">
-    <img class="svg" src="{{ asset('svg/user_black.svg') }}" /> {{ $gallery->autor }}
-    <img class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $gallery->visitas }} lecturas
+    <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
+    <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}} lecturas
     </p>
     <hr />
 </article>
-@forelse ($fotos as $foto)
+@forelse ($photos as $photo)
 <article class="fotos">
-    <p>{{ $foto->titulo_foto }}</p>
-    <img src="{{ asset('img/articles/'.$foto->foto) }}" />
-    <p>{{ $foto->descripcion_foto }}</p>
+    <img src="{{ asset('img/articles/'.$photo->photo)}}" />
+    <p>{{$photo->title}}</p>
 </article>
 @empty
     <h1>No hay fotos</h1>

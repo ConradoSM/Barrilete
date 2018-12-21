@@ -12,7 +12,6 @@ $query = Request::get('query')
     </p>
     <p class="searchInfo">Se encontraron {{$resultado->total()}} resultados para la búsqueda: <b>{{$query}}</b></p>
     @forelse ($resultado as $pub)
-
     <article class="searchResult">
         <p class="searchDate">{{$pub->date}}</p>
         @if (Request::get('sec') == 'articulos')

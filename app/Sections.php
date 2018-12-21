@@ -17,6 +17,15 @@ class Sections extends Model
         ->limit(15);
     }
     
+    //RELACIONA LAS GALERIAS VINCULADAS A UNA SECCIÓN
+    public function galleries() {
+        
+        return $this->hasMany(Gallery::class, 'section_id')
+        ->where('status','PUBLISHED')
+        ->orderBy('id','DESC')
+        ->limit(15);
+    }
+    
     //BUSCA LA SECCIÓN POR SU NOMBRE
     public function scopeSearchSection($query, $name) {
         

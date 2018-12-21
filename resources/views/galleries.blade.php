@@ -1,6 +1,6 @@
 @extends('layouts.barrilete')
 @section('title', 'Barrilete')
-@section('description', $galeria -> copete)
+@section('description', 'Galerías de fotos')
 @section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
 @section('content')
 @php ($i=0) @endphp
@@ -8,12 +8,12 @@
 @php ($i++) @endphp
     <article class="pubIndex">
         @if ($i == 1)
-        <img src="{{ asset('img/articles/'.$galeria -> foto) }}" title="{{ $galeria -> titulo  }}" alt="{{ $galeria -> titulo  }}" />
+        <img src="{{asset('img/articles/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
         @else
-        <img src="{{ route('imgFirst', ['image'=>$galeria->foto]) }}" title="{{ $galeria -> titulo  }}" alt="{{ $galeria -> titulo  }}" />
+        <img src="{{route('imgFirst',['image'=>$galeria->photos->first()->photo])}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
         @endif
-        <a href="{{ route('gallery', ['id' => $galeria -> id, 'titulo' => str_slug($galeria -> titulo, '-')]) }}">{{ $galeria -> titulo  }}</a>
-        <p>{{ $galeria -> copete }}</p>
+        <a href="{{route('gallery',['id'=>$galeria->id,'titulo'=>str_slug($galeria->title,'-')])}}">{{$galeria->title}}</a>
+        <p>{{$galeria -> article_desc}}</p>
     </article>
 @empty
     <h1>No hay artículos para mostrar</h1>

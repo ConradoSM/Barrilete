@@ -21,15 +21,24 @@ class Gallery extends Model {
     }
 
     //RELACIONA LA GALERÍA CON LAS FOTOS CARGADAS
-    public function galleryPhotos() {
+    public function photos() {
 
         return $this->hasMany(GalleryPhotos::class);
     }
 
-    //BUSCA LA ÚLTIMA GALERÍA QUE SE VA A MOSTRAR EN LA HOMEPAGE
+    //BUSCA LA GALERÍA QUE SE VA A MOSTRAR EN LA HOMEPAGE
     public function scopeGalleryHome($query) {
         
         return $query->where('status','PUBLISHED');      
+    }
+    
+    //BUSCA LA GALERÍA POR ID
+    public function scopeGallery($query, $id) {
+        
+        $query->whereId($id)->where('status','PUBLISHED');
+        $query->increment('views',1);
+        
+        return $query;
     }
 
     //BUSQUEDA DE GALERÍAS

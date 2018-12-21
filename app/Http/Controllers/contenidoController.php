@@ -13,15 +13,6 @@ use barrilete\Sections;
 
 class contenidoController extends Controller {
 
-    // SECCIONES
-
-    public function categories() {
-        
-        $categories = Sections::all();
-        return view('layouts.secciones', compact('categories'));
-        
-    }
-
     /*     * TITULARES INDEX* */
 
     public function home() {
@@ -30,10 +21,7 @@ class contenidoController extends Controller {
         $galleryIndex = Gallery::galleryHome()->first();
         $pollsIndex = Poll::pollHome()->get();
 
-        return view('default')
-                        ->with(compact('articlesIndex'))
-                        ->with(compact('galleryIndex'))
-                        ->with(compact('pollsIndex'));
+        return view('default', compact('articlesIndex','galleryIndex','pollsIndex'));
     }
 
     /*     * BUSCADOR DE CONTENIDO* */
@@ -69,10 +57,10 @@ class contenidoController extends Controller {
 
             $moreArticles = Articles::moreArticles($id)->get();
 
-            return view('article')
-                            ->with(compact('article'))
-                            ->with(compact('moreArticles'));
+            return view('article', compact('article','moreArticles'));
+            
         } else
+            
             return view('errors.article-error');
     }
 
@@ -81,62 +69,56 @@ class contenidoController extends Controller {
     public function searchSection($name) {
 
         $section = Sections::searchSection($name);
-
+        
         if ($section->exists()) {
-
+            
             $section = $section->first();
-            $articles = $section->articles;
+            
+            if ($section->name == 'galerias') {
+                
+                $galleries = Gallery::galleryHome()->get();
+                
+                if ($galleries) {
+                    
+                    return view('galleries', compact('galleries'));
+                    
+                } else 
+                    
+                    return view('errors.section-error');
+                
+            } else
+
+                $articles = $section->articles;
 
             if ($articles) {
 
                 return view('section', compact('articles'));
+                
             } else
+                
                 return view('errors.article-error');
+            
         } else
-            return view('errors.section-error');
-    }
-
-    /*     * VER GALERÍAS DE FOTOS* */
-
-    public function gallery() {
-        $galleries = Gallery::select('momentos.id', 'momentos.titulo', 'momentos.copete', 'fotos.foto')
-                ->join('fotos', 'momentos.id', 'fotos.idmomento')
-                ->where('momentos.publicar', 1)
-                ->limit(15)
-                ->groupBy('momentos.id')
-                ->orderBy('momentos.id', 'DESC');
-
-        if ($galleries->exists()) {
-
-            $galleries = $galleries->get();
-            return view('galleries', compact('galleries'));
-        } else {
-            return view('errors.article-error');
-        }
+            
+                return view('errors.section-error');
     }
 
     /*     * MOSTRAR GALERÍA SEGÚN ID* */
 
-    public function showgGallery($id) {
-        $gallery = Gallery::whereId($id)
-                ->where('publicar', 1)
-                ->limit(1);
+    public function showGallery($id) {
+        
+        $gallery = Gallery::gallery($id);
 
         if ($gallery->exists()) {
 
             $gallery = $gallery->first();
-            Gallery::whereId($id)
-                    ->update(['visitas' => $gallery->visitas + 1]);
+            $photos = $gallery->photos;
 
-            $fotos = Fotos::where('idmomento', $id)
-                    ->get();
-
-            return view('gallery')
-                            ->with(compact('gallery'))
-                            ->with(compact('fotos'));
-        } else {
+            return view('gallery', compact('gallery','photos'));
+            
+        } else
+            
             return view('errors.article-error');
-        }
     }
 
     /*     * MOSTRAR ENCUESTA* */
@@ -153,29 +135,20 @@ class contenidoController extends Controller {
             if (!$ip) {
 
                 $poll = $poll->first();
-                $options = Poll::searchOptions($id)->first();
-                $poll_options = $options->option;
+                $poll_options = $poll->option;
                 $morePolls = $morePolls->get();
 
-                return view('poll')
-                                ->with('status', false)
-                                ->with(compact('poll'))
-                                ->with(compact('poll_options'))
-                                ->with(compact('morePolls'));
+                view('poll', compact('poll','poll_options','morePolls'))
+                        ->with('status', false);
             } else {
 
                 $poll = $poll->first();
-                $options = Poll::searchOptions($id)->first();
-                $poll_options = $options->option;
-                $totalVotos = $poll_options->sum('votes');
+                $poll_options = $poll->option;
+                $totalVotes = $poll_options->sum('votes');
                 $morePolls = $morePolls->get();
 
-                return view('poll')
-                                ->with('status', 'Ya has votado!')
-                                ->with(compact('poll'))
-                                ->with(compact('poll_options'))
-                                ->with(compact('totalVotos'))
-                                ->with(compact('morePolls'));
+                return view('poll', compact('poll','poll_options','totalVotes','morePolls'))
+                        ->with('status', 'Ya has votado!');
             }
         } else {
             return view('errors.article-error');
@@ -203,9 +176,9 @@ class contenidoController extends Controller {
             ]);
 
             return redirect('poll/' . $poll_id . '/' . $pollTitle);
-        } else {
+            
+        } else
+            
             return view('errors.article-error');
-        }
     }
-
 }
