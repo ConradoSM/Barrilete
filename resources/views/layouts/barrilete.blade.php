@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{asset('css/contenido.css')}}" />
         <link rel="stylesheet" href="{{asset('css/titularesIndex.css')}}" />
         <link rel="stylesheet" href="{{asset('css/forms.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" />
         <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/scripts.js')}}"></script>
     </head>
@@ -47,7 +48,7 @@
             <div id="glass" class="hide"></div>
         </header>
         <section    class="mainSection">
-            @yield('content')
+        @yield('content')
         </section>
         <footer>
             <div class="footerContainer">

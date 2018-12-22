@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     $(window).scroll(function () {
         var scroll = $(window).scrollTop();
-        if (scroll >= 20) {
+        if (scroll >= 200) {
             header.removeClass('relative').addClass('fixed');
             logo.removeClass('logo').addClass('logoSmall');
             btn.removeClass('menu-btn').addClass('menu-btn-small');

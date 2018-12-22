@@ -976,16 +976,15 @@ li {
         width: auto;
         height: 37px;
         padding: 7px;
-        opacity: 0.8;
-        background-color: #009933;
+        background-color: rgba(85,172,238,1.00);
+        box-shadow: inset 0px 0px 5px 0px #1b90e8; 
         border-radius: 0px 5px 5px 0px;
         cursor: pointer;
     }
     div#search img:hover {
         opacity: 1;
-        background-color: #00bc3e;
+        background-color: #1b90e8;
         transition: 0.3s;
-
     }
     /***********************
     ****DIV GLASS***********
@@ -1204,7 +1203,6 @@ li {
         opacity: 1;
         background-color: #1b90e8;
         transition: 0.3s;
-
     }
     /***********************
     ****DIV GLASS***********

@@ -1,19 +1,18 @@
 <?php
 
-Route::get('/', 'contenidoController@home')->name('default');
-Route::get('/categories', 'contenidoController@categories')->name('categories');
-Route::get('/article/{id}/{section}/{title}', 'contenidoController@showArticle')->name('article');
-Route::get('/sec/{name}', 'contenidoController@searchSection')->name('section');
-Route::get('/galleries', 'contenidoController@galleries')->name('galleries');
-Route::get('/gallery/{id}/{titulo}', 'contenidoController@showGallery')->name('gallery');
-Route::get('/poll/{id}/{titulo}', 'contenidoController@poll')->name('poll');
-Route::post('/poll-vote', 'contenidoController@pollVote')->name('poll-vote');
+Route::get('/', 'IndexController@home')->name('default');
+
+Route::get('/sec/{name}', 'SectionsController@searchSection')->name('section');
+Route::get('search', 'SearchController@search')->name('search');
+Route::get('/article/{id}/{section}/{title}', 'ArticlesController@showArticle')->name('article');
+Route::get('/galleries', 'GalleriesController@galleries')->name('galleries');
+Route::get('/gallery/{id}/{titulo}', 'GalleriesController@showGallery')->name('gallery');
+Route::get('/poll/{id}/{titulo}', 'PollsController@poll')->name('poll');
+Route::post('/poll-vote', 'PollsController@pollVote')->name('poll-vote');
 
 Route::get('resizeImgFirst/{image}', 'ImageController@showImageArticulosIndexFirst')->name('imgFirst');
 Route::get('resizeImgSecond/{image}', 'ImageController@showImageArticulosIndexSecond')->name('imgSecond');
 
-Route::get('search', 'contenidoController@search')->name('search');
-
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');

@@ -17,9 +17,9 @@ $query = Request::get('query')
         @if (Request::get('sec') == 'articulos')
         <a class="searchTitle" href="{{route('article',['id'=>$pub->id,'section'=>str_slug($pub->section->name),'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
         @elseif (Request::get('sec') == 'galerias')
-        <a class="searchTitle" href="{{route('gallery',['id'=>$pub->id,'section'=>str_slug($pub->section->name),'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
+        <a class="searchTitle" href="{{route('gallery',['id'=>$pub->id,'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
         @elseif (Request::get('sec') == 'encuestas')
-        <a class="searchTitle" href="{{route('poll',['id'=>$pub->id,'section'=>str_slug($pub->section->name),'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
+        <a class="searchTitle" href="{{route('poll',['id'=>$pub->id,'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
         @endif
         <p class="searchCopete">{{$pub->article_desc}}</p>
     </article>
