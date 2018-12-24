@@ -42,6 +42,11 @@ $(document).ready(function () {
         $('div#glass').removeClass('show');
         });
     });
+    
+    $('div.user-options').on('click', function () {
+        $('div#user-nav-options').slideToggle();
+    });
+
 });
 
 

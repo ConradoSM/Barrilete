@@ -16,3 +16,8 @@ Route::get('resizeImgSecond/{image}', 'ImageController@showImageArticulosIndexSe
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');
+Route::get('/dashboard/view/articles/{id}', 'DashboardController@userArticles')->middleware('auth')->name('viewArticles');
+Route::get('/dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->middleware('auth')->name('viewGalleries');
+Route::get('/dashboard/view/polls/{id}', 'DashboardController@userPolls')->middleware('auth')->name('viewPolls');
+
+Route::get('/dashboard/forms/articles','DashboardController@formArticle')->middleware('auth')->name('formArticle');

@@ -567,6 +567,7 @@
     }   
 }
 @media (min-width: 1200px) {
+    /*DIV CONTENEDOR*/
     div.dashboard-container {
         display: flex;
         flex-flow: column nowrap;
@@ -577,6 +578,7 @@
         background-image: url('/img/background-login-00.jpg');
         background-size: 100% 100%;
     }
+    /*DIV LOGIN*/
     div.dashboard-login {
         display: flex;
         flex-flow: column nowrap;
@@ -643,7 +645,6 @@
         margin: 10px 0px;
         border-radius: 5px;
     }
-    /* Customize the label (the container) */
     div.dashboard-login .check-container {
         display: block;
         position: relative;
@@ -653,8 +654,6 @@
         font-size: 1em;
         user-select: none;
     }
-
-    /* Hide the browser's default checkbox */
     div.dashboard-login .check-container input {
         position: absolute;
         opacity: 0;
@@ -662,8 +661,6 @@
         height: 0;
         width: 0;
     }
-
-    /* Create a custom checkbox */
     div.dashboard-login .check-mark {
         position: absolute;
         top: 0;
@@ -674,32 +671,22 @@
         box-shadow: 0px 0px 3px #999;
         border-radius: 3px;
     }
-
-    /* On mouse-over, add a grey background color */
     div.dashboard-login .check-container:hover input ~ .check-mark {
         background-color: #ccc;
         box-shadow: none;
         transition: 0.3s;
     }
-
-    /* When the checkbox is checked, add a blue background */
     div.dashboard-login .check-container input:checked ~ .check-mark {
         background-color: #2196F3;
     }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
     div.dashboard-login .check-mark:after {
         content: "";
         position: absolute;
         display: none;
     }
-
-    /* Show the checkmark when checked */
     div.dashboard-login .check-container input:checked ~ .check-mark:after {
         display: block;
     }
-
-    /* Style the checkmark/indicator */
     div.dashboard-login .check-container .check-mark:after {
         left: 9px;
         top: 5px;
@@ -709,37 +696,154 @@
         border-width: 0 3px 3px 0;
         transform: rotate(45deg);
     } 
-    div.dashboard-main-container {
+    /*DIV DASHBOARD MAIN CONTAINER*/
+    div.dashboard {
         display: flex;
+        flex-flow: row wrap;
         width: 100%;
-        height: auto;
-        min-height: 600px;
-        flex-flow: row nowrap;
     }
-    div.dashboard-main-container div.user-bar {
+    div#loader {
+        width: 75%;
+        height: auto;
+        display: none;
+    }
+    div#loader img {
+        width: 128px;
+        height: 128px;
+    }
+    /*DIV USER BAR*/
+    div#user-nav-options {
+        display: none;
+    }
+    div.dashboard div.tools {
+        position: relative;
         width: 100%;
-        height: auto;
-        background-color: #006699;
+        height: 78px;
+        background-color: #69b8f6;
     }
-    div.dashboard-main-container div.user-bar div.menu-user {
+    div.dashboard-title {
+        width: 25%;
+        height: 78px;
+        padding: 10px;
+        background-color: #0b78d0;
+    }
+    div.dashboard-title h1 {
+        margin: 0px 0px 0px 10px;
+        font-size: 2.2em;
+        color: #fff;
+        text-shadow: 0px 0px 1px #333;
+    }
+    div.dashboard div.tools div.user-options {
+        position: absolute;
         display: block;
+        right: 0;
+        top: 0;
         width: auto;
         height: auto;
         padding: 20px;
-        background-color: #ccc;
+        cursor: pointer;
+        background-color: #69b8f6;
+        border-radius: 5px;
     }
-    div.dashboard-main-container div.user-bar div.menu-user p {
+    div.dashboard div.tools div.user-options p {
         font-size: 1.6em;
         font-weight: bold;
     }
-    div.dashboard-main-container div.user-bar div.menu-user img {
+    div.dashboard div.tools div.user-options p:hover {
+        opacity: 0.6;
+    }
+    div.dashboard div.tools div.user-options img {
         height: 1.1em;
         width: auto;
         margin-left: 10px;
         margin-top: -3px;
         vertical-align: middle;
     }
-    div.dashboard-main-container div.user-bar div.menu-user nav {
-        display: none;
+    /*NAV BAR USER OPTIONS*/
+    div#user-nav-options {
+        margin-top: 10px;
     }
+    div.dashboard div.tools div.user-options a {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        color: #000;
+        font-size: 1.5em; 
+        font-weight: bold;
+    }
+    div.dashboard div.tools div.user-options a:visited {
+        color: #000;
+    }
+    div.dashboard div.tools div.user-options a:hover {
+        opacity: 0.6;
+    }
+    div.dashboard div.tools div.user-options a img {
+        height: 1.2em;
+        width: auto;
+        margin-right: 10px;
+        margin-left: 0px;
+        vertical-align: middle;
+    }
+    div.dashboard div.tools-bar {
+        width: 25%;
+        background-color: #f2f9fe;
+        padding: 10px 20px 0px 20px;
+    }
+    div.dashboard div.tools-bar h2 {
+        color: #000;
+        font-size: 1.7em;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+    div.dashboard div.tools-bar a {
+        display: block;
+        width: auto;
+        color: #000;
+        padding: 5px 10px 10px 10px;
+        margin-bottom: 20px;
+        font-size: 1.5em;
+    }
+    div.dashboard div.tools-bar a.selected {
+        background-color: #2196F3;
+        border-radius: 3px;
+        cursor: default;
+    }
+    div.dashboard div.tools-bar a.selected:hover {
+        opacity: 1;
+        text-decoration: none;
+    }
+    div.dashboard div.tools-bar a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+        transition: 0.3s;
+    }
+    div.dashboard div.tools-bar a img {
+        height: 1em;
+        width: auto;
+        margin-right: 20px;
+        vertical-align: middle;
+    }
+    div#user-content {
+        width: 75%;
+        height: auto;
+        padding-left: 10px;
+    }
+    article.user-article {
+        background-color: #f2f3f4;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px 0px #999;
+        margin-top: 10px;
+    }
+    article.user-article p.date {
+        font-size: 1.2em;
+    }
+    article.user-article a {
+        font-size: 2em;
+    }
+    article.user-article p.desc {
+        font-size: 1.4em;
+        color: #666;
+    }    
 }

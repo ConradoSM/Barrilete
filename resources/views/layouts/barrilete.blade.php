@@ -47,7 +47,7 @@
             </div>
             <div id="glass" class="hide"></div>
         </header>
-        <section    class="mainSection">
+        <section class="mainSection">
         @yield('content')
         </section>
         <footer>
