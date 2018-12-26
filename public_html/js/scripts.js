@@ -43,7 +43,7 @@ $(document).ready(function () {
         });
     });
     
-    $('div.user-options').on('click', function () {
+    $('div.user-options').hover(function () {
         $('div#user-nav-options').slideToggle();
     });
 

@@ -5,7 +5,7 @@
 @section('content')
 <div class="pubContainer">
 <article class="pub">
-    <img src="{{ asset('img/articles/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" />
+    <img src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" />
     <p class="info"><img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->date }}</p>
     <h2>{{ $article -> title }}</h2>
     <p class="copete">{{ $article->article_desc }}</p>
@@ -29,8 +29,8 @@
 <aside class="pubSeccion">
     @forelse ($moreArticles as $more)
     <article class="pubArticle">
-        <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($more -> section -> section), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
-        <img src="{{ route('imgSecond', ['image' => $more -> photo]) }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" />   
+        <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
+        <img src="img/articles/images/thumbnail/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" />   
     </article> 
     @empty
     @endforelse

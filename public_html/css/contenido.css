@@ -187,46 +187,46 @@
     div.searchResultContainer article.searchResult p.searchCopete {
         font-size: 1.5em;
     }
-    div.searchResultContainer ul.pagination {
+    ul.pagination {
         display: flex;
         flex-flow: row nowrap;
         width: auto;
         list-style: none;
     }
-    div.searchResultContainer ul.pagination li.page-item {
+    ul.pagination li.page-item {
         margin: 0px;
         padding: 5px 0px 5px 0px;      
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link {
+    ul.pagination li.page-item a.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+    ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
         transition: 0.3s;
     }
-    div.searchResultContainer ul.pagination li.disabled span.page-link {
+    ul.pagination li.disabled span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
     }
-    div.searchResultContainer ul.pagination li.active span.page-link {
+    ul.pagination li.active span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;       
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
     }
@@ -462,46 +462,46 @@
     div.searchResultContainer article.searchResult p.searchCopete {
         font-size: 1.5em;
     }
-    div.searchResultContainer ul.pagination {
+    ul.pagination {
         display: flex;
         flex-flow: row nowrap;
         width: auto;
         list-style: none;
     }
-    div.searchResultContainer ul.pagination li.page-item {
+    ul.pagination li.page-item {
         margin: 0px;
         padding: 5px 0px 5px 0px;      
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link {
+    ul.pagination li.page-item a.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+    ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
         transition: 0.3s;
     }
-    div.searchResultContainer ul.pagination li.disabled span.page-link {
+    ul.pagination li.disabled span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
     }
-    div.searchResultContainer ul.pagination li.active span.page-link {
+    ul.pagination li.active span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;       
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
     }
@@ -740,46 +740,46 @@
     div.searchResultContainer article.searchResult p.searchCopete {
         font-size: 1.5em;
     }
-    div.searchResultContainer ul.pagination {
+    ul.pagination {
         display: flex;
         flex-flow: row nowrap;
         width: auto;
         list-style: none;
     }
-    div.searchResultContainer ul.pagination li.page-item {
+    ul.pagination li.page-item {
         margin: 0px;
         padding: 5px 0px 5px 0px;      
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link {
+    ul.pagination li.page-item a.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+    ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
         transition: 0.3s;
     }
-    div.searchResultContainer ul.pagination li.disabled span.page-link {
+    ul.pagination li.disabled span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
     }
-    div.searchResultContainer ul.pagination li.active span.page-link {
+    ul.pagination li.active span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;       
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
     }
@@ -1011,46 +1011,46 @@
     div.searchResultContainer article.searchResult p.searchCopete {
         font-size: 1.5em;
     }
-    div.searchResultContainer ul.pagination {
+    ul.pagination {
         display: flex;
         flex-flow: row nowrap;
         width: auto;
         list-style: none;
     }
-    div.searchResultContainer ul.pagination li.page-item {
+    ul.pagination li.page-item {
         margin: 0px;
         padding: 5px 0px 5px 0px;      
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link {
+    ul.pagination li.page-item a.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+    ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
         transition: 0.3s;
     }
-    div.searchResultContainer ul.pagination li.disabled span.page-link {
+    ul.pagination li.disabled span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #ccc;
         font-size: 2em;
         color: #666;
     }
-    div.searchResultContainer ul.pagination li.active span.page-link {
+    ul.pagination li.active span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;       
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
+    ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;      
     }
@@ -1109,30 +1109,30 @@
         width: 70%;
         padding-right: 10px;
     }
-    article.pub_galeria {
+    article.pub_galeria, article.pub-preview {
         width: 100%;
         height: auto;
     }
-    article.pub img {
+    article.pub img, article.pub-preview img {
         width: 100% !important;
         height: auto !important;
         margin-bottom: 10px;
     }
-    article.pub p.info, article.pub_galeria p.info {
+    article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
         font-size: 1.3em;
         margin-top:0px;
     }
-    article p.info img.svg, article.pub_galeria p.info img.svg {
+    article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-preview img.svg, article.pub-preview p.info img.svg {
         position: relative;
         width: auto !important;
         height: 1.3em !important;
         vertical-align: middle;
         margin-left: 20px;
     }
-    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
+    article.pub p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child, article.pub-preview p.info img.svg:first-child {
         margin-left: 0px;
     }
-    article.pub h2, article.pub_galeria h2 {
+    article.pub h2, article.pub_galeria h2, article.pub-preview h2 {
         font-size: 3.75em;
         font-weight: bold;
         margin-bottom: 30px;
@@ -1140,11 +1140,11 @@
         line-height: 65px;
         color: black;
     }
-    article.pub p, article.pub_galeria p {
+    article.pub p, article.pub_galeria p, article.pub-preview p {
         margin-top: 30px;
         font-size: 1.9em;
     }
-    article.pub p.copete, article.pub_galeria p.copete {
+    article.pub p.copete, article.pub_galeria p.copete, article.pub-preview p.copete {
         margin-bottom: 30px;
         color: #a0a0a6;
     }
@@ -1156,8 +1156,8 @@
         width: 100%;
         height: auto;
         margin-bottom: 10px;
-        background-color: #e6e6e6;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        background-color: #f2f3f4;
+        box-shadow: 0px 0px 3px 0px #999;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
     }
@@ -1253,77 +1253,80 @@
         color: #007600;
         border-bottom: 5px solid #007600;
     }
-    div.searchResultContainer p.searchInfo {
+    p.searchInfo {
         margin: 20px 0px 20px 0px;
         color: #666;
         font-size: 1.7em;
     }
-    div.searchResultContainer article.searchResult{
+    article.searchResult{
         width: 100%;
         height: auto;
         padding: 10px;
         margin-bottom: 10px;
-        box-shadow: 0px 0px 3px #666;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        margin-top: 10px;
+        box-shadow: 0px 0px 2px #999;
+        background-color: #f2f3f4;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
     }
-    div.searchResultContainer article.searchResult p.searchDate {
+    article.searchResult p.searchDate {
         font-size: 1em;
         color: #666;
     }
-    div.searchResultContainer article.searchResult a.searchTitle {
+    article.searchResult a.searchTitle {
         font-size: 2.5em;
         color: #006699;
     }
-    div.searchResultContainer article.searchResult a.searchTitle:hover {
+    article.searchResult a.searchTitle:hover {
         color: #0084c6;
         text-decoration: underline;
     }
-    div.searchResultContainer article.searchResult p.searchCopete {
+    article.searchResult p.searchCopete {
         font-size: 1.5em;
     }
-    div.searchResultContainer ul.pagination {
+    ul.pagination {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
         width: auto;
         list-style: none;
     }
-    div.searchResultContainer ul.pagination li.page-item {
+    ul.pagination li.page-item {
         margin: 0px;
         padding: 5px 0px 5px 0px;      
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link {
+    ul.pagination li.page-item a.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #0086b3;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item a.page-link:hover {
+    ul.pagination li.page-item a.page-link:hover {
         background-color: #00abe5;
         transition: 0.3s;
     }
-    div.searchResultContainer ul.pagination li.disabled span.page-link {
+    ul.pagination li.disabled span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
-        background-color: #ccc;
+        background-color: #f2f3f4;
         font-size: 2em;
         color: #666;
+        box-shadow: inset 0px 0px 2px 0px #999;
     }
-    div.searchResultContainer ul.pagination li.active span.page-link {
+    ul.pagination li.active span.page-link {
         margin: 0px;
         padding: 5px 15px 5px 15px;
         background-color: #005b7a;
         font-size: 2em;
         color: #fff;
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:first-child .page-link {
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;       
+    ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;       
     }
-    div.searchResultContainer ul.pagination li.page-item, div.searchResultContainer ul.pagination li.page-item:last-child .page-link {
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;      
+    ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;      
     }
     /*****************
     ***VER ENCUESTA***

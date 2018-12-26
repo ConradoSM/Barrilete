@@ -69,25 +69,11 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showImageArticulosIndexFirst($image)
+    public function showImage($image)
     {
-        if(isset($image)){
-            $img = Image::make(public_path('img/articles/'.$image));
-            $img->resize(null,300, function($c) {
-            $c->aspectRatio();
-            });
-            return $img->response('jpg');
-        }
-    }
-        public function showImageArticulosIndexSecond($image)
-    {
-        if(isset($image)){
-            $img = Image::make(public_path('img/articles/'.$image));
-            $img->resize(null,450, function($c) {
-            $c->aspectRatio();
-            });
-            return $img->response('jpg');
-        }
+        $file = Storage::disk('public_html/img')->get($image);
+        
+        return $file->response('jpg');       
     }
 
     /**

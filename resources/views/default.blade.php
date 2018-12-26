@@ -11,9 +11,9 @@
     @if ($article->video == 1)<img src="img/play-button.png" class="video" />
     @endif
     @if ($i == 1)
-    <img src="img/articles/{{$article->photo}}" title="{{$article->title}}" alt="{{$article->title}}" />
+    <img src="img/articles/images/{{$article->photo}}" title="{{$article->title}}" alt="{{$article->title}}" />
     @else
-    <img src="{{route('imgFirst',['image'=>$article->photo])}}" title="{{$article->title}}" alt="{{$article->title}}" />
+    <img src="img/articles/images/thumbnail/{{$article->photo}}" title="{{$article->title}}" alt="{{$article->title}}" />
     @endif
     <a href="{{route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')])}}">{{$article->title}}</a>
     <p>{{$article->article_desc}}</p>
@@ -26,7 +26,7 @@
     <h1>Galerías de fotos</h1>
     @if ($galleryIndex)
         <article class="galeriaIndex">
-            <img src="{{route('imgSecond',['image'=>$galleryIndex->photos->first()->photo])}}" title="{{$galleryIndex->title}}" alt="{{$galleryIndex->title}}" />
+            <img src="img/articles/images/{{$galleryIndex->photos->first()->photo}}" title="{{$galleryIndex->title}}" alt="{{$galleryIndex->title}}" />
             <a href="{{route('gallery',['id'=>$galleryIndex->id,'titulo'=>str_slug($galleryIndex->title,'-')])}}">{{$galleryIndex->title}}</a>       
         </article>
     @else

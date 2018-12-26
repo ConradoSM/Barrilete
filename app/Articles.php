@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Articles extends Model {
 
     protected $table = 'articles';
+    protected $fillable = [
+        'user_id', 'title', 'date', 'section_id', 'author', 'article_desc', 'photo', 'video', 'article_body',
+    ];
     
     //RELACION UN ARTÍCULO A UN USUARIO
     public function user() {
@@ -39,10 +42,11 @@ class Articles extends Model {
     }
     
     //RESTO DE LOS ARTÍCULOS QUE SE VAN A MOSTRAR
-    public function scopeMoreArticles($query, $id) {
+    public function scopeMoreArticles($query, $id, $section) {
         
         return $query->select('id', 'title', 'photo')
         ->where('id','!=',$id)
+        ->where('section_id',$section)
         ->where('status','PUBLISHED')
         ->orderBy('id','DESC')
         ->limit(8);      

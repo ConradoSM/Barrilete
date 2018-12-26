@@ -8,9 +8,9 @@
 @php ($i++) @endphp
     <article class="pubIndex">
         @if ($i == 1)
-        <img src="{{asset('img/articles/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
+        <img src="{{asset('img/articles/images'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
         @else
-        <img src="{{route('imgFirst',['image'=>$galeria->photos->first()->photo])}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
+        <img src="{{asset('img/articles/images'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
         @endif
         <a href="{{route('gallery',['id'=>$galeria->id,'titulo'=>str_slug($galeria->title,'-')])}}">{{$galeria->title}}</a>
         <p>{{$galeria -> article_desc}}</p>
