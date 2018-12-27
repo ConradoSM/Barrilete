@@ -71,6 +71,6 @@ class ArticlesController extends Controller {
 
             return view('auth.articles.previewArticle', compact('article'));
         } else {
-        return view('auth.articles.article-preview-error'); }
+        return view('auth.articles.previewArticleError'); }
     }
 }

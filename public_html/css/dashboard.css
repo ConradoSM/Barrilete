@@ -611,10 +611,15 @@
         border-radius: 5px;
     } 
     /*DIV DASHBOARD MAIN CONTAINER*/
-    div.dashboard {
+    section.dashboard {
+        position: relative;
         display: flex;
         flex-flow: row wrap;
         width: 100%;
+        max-width: 1200px;
+        height: auto;
+        background-color: #fff;
+        box-shadow: 0px 0px 3px 0px rgba(189,189,217,0.7);
     }
     div#loader {
         width: 75%;
@@ -629,7 +634,7 @@
     div#user-nav-options {
         display: none;
     }
-    div.dashboard div.tools {
+    section.dashboard div.tools {
         position: relative;
         width: 100%;
         height: 78px;
@@ -640,15 +645,18 @@
         width: 25%;
         height: 78px;
         padding: 10px;
-        background-color: #0b78d0;
+        background-color: #d0e4f5;
     }
-    div.dashboard-title h1 {
-        margin: 0px 0px 0px 10px;
-        font-size: 2.2em;
-        color: #fff;
-        text-shadow: 0px 0px 1px #333;
+    div.dashboard-title img {
+        width: auto;
+        height: 55px;
+        filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
+        cursor: pointer;
     }
-    div.dashboard div.tools div.user-options {
+    div.dashboard-title img:hover {
+        opacity: 0.8;
+    }
+    section.dashboard div.tools div.user-options {
         position: absolute;
         display: block;
         right: 10px;
@@ -660,16 +668,16 @@
         background-color: #d0e4f5;
         transition: 0.3s;
     }
-    div.dashboard div.tools div.user-options:hover {
+    section.dashboard div.tools div.user-options:hover {
         background-color: #f2f3f4;
-        box-shadow: 0px 0px 3px 0px #999;       
+        box-shadow: 0px 0px 3px 0px #999;
     }     
-    div.dashboard div.tools div.user-options p {
+    section.dashboard div.tools div.user-options p {
         font-size: 1.6em;
         font-weight: bold;
         cursor: default;
     }
-    div.dashboard div.tools div.user-options img {
+    section.dashboard div.tools div.user-options img {
         height: 1.1em;
         width: auto;
         margin-left: 10px;
@@ -680,7 +688,7 @@
     div#user-nav-options {
         margin-top: 10px;
     }
-    div.dashboard div.tools div.user-options a {
+    section.dashboard div.tools div.user-options a {
         display: block;
         width: 100%;
         height: auto;
@@ -689,32 +697,32 @@
         font-size: 1.3em; 
         font-weight: bold;
     }
-    div.dashboard div.tools div.user-options a:visited {
+    section.dashboard div.tools div.user-options a:visited {
         color: #000;
     }
-    div.dashboard div.tools div.user-options a:hover {
+    section.dashboard div.tools div.user-options a:hover {
         opacity: 0.6;
     }
-    div.dashboard div.tools div.user-options a img {
+    section.dashboard div.tools div.user-options a img {
         height: 1.2em;
         width: auto;
         margin-right: 10px;
         margin-left: 0px;
         vertical-align: middle;
     }
-    div.dashboard div.tools-bar {
+    section.dashboard div.tools-bar {
         width: 25%;
         background-color: #f2f9fe;
         padding: 10px 20px 0px 20px;
         box-shadow: inset 0px 0px 3px 0px #d0e4f5;
     }
-    div.dashboard div.tools-bar h2 {
+    section.dashboard div.tools-bar h2 {
         color: #000;
         font-size: 1.7em;
         margin-top: 0px;
         margin-bottom: 20px;
     }
-    div.dashboard div.tools-bar a {
+    section.dashboard div.tools-bar a {
         display: block;
         width: auto;
         color: #000;
@@ -722,22 +730,22 @@
         margin-bottom: 20px;
         font-size: 1.5em;
     }
-    div.dashboard div.tools-bar a.selected {
+    section.dashboard div.tools-bar a.selected {
         background-color: #f2f3f4;
         box-shadow: 0px 0px 3px 0px #999;   
         border-radius: 3px;
         cursor: default;
     }
-    div.dashboard div.tools-bar a.selected:hover {
+    section.dashboard div.tools-bar a.selected:hover {
         opacity: 1;
         text-decoration: none;
     }
-    div.dashboard div.tools-bar a:hover {
+    section.dashboard div.tools-bar a:hover {
         opacity: 0.8;
         text-decoration: underline;
         transition: 0.3s;
     }
-    div.dashboard div.tools-bar a img {
+    section.dashboard div.tools-bar a img {
         height: 1em;
         width: auto;
         margin-right: 20px;
@@ -747,5 +755,6 @@
         width: 75%;
         height: auto;
         padding-left: 10px;
+        padding-right: 10px;
     } 
 }

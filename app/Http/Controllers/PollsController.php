@@ -9,7 +9,7 @@ use barrilete\PollIp;
 
 class PollsController extends Controller {
 
-    /*     * MOSTRAR ENCUESTA* */
+    /** MOSTRAR ENCUESTA**/
 
     public function poll($id) {
 
@@ -43,7 +43,7 @@ class PollsController extends Controller {
         }
     }
 
-    /*     * VOTOS DE LA ENCUESTA* */
+    /** VOTOS DE LA ENCUESTA**/
 
     public function pollVote(Request $request) {
 
@@ -68,5 +68,23 @@ class PollsController extends Controller {
         } else
             
             return view('errors.article-error');
+    }
+    
+    /** MOSTRAR ENCUESTA**/
+
+    public function previewPoll($id) {
+
+        $poll = Poll::poll($id);
+
+        if ($poll->exists()) {
+
+                $poll = $poll->first();
+                $poll_options = $poll->option;
+
+                return view('auth.polls.previewPoll', compact('poll','poll_options'));
+                
+        } else {
+                return view('auth.articles.previewArticleError');
+        }
     }
 }

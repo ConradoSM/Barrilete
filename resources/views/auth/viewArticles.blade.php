@@ -3,7 +3,14 @@
     <p>Se encontraron {{ $Articles->total() }} {{ $status }}:</p>
     @forelse ($Articles as $article)
     <article class="searchResult">
-        <p class="searchDate">{{ $article->date }}</p>
+        <p class="searchDate">
+            @if ($article->status == 'DRAFT')
+            <img src="{{ asset('svg/forbidden.svg') }}" title="No publicado" />
+            @else
+            <img src="{{ asset('svg/checked.svg') }}" title="Publicado" />
+            @endif
+            {{ $article->date }}
+        </p>
         @if ($status == 'artículos')
         <a class="searchTitle" href="{{ route('previewArticle', ['id'=>$article->id]) }}">{{ $article->title }}</a>
         @elseif ($status == 'galerías')

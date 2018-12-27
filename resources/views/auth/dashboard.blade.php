@@ -1,9 +1,8 @@
-@extends('layouts.barrilete')
+@extends('layouts.dashboard')
 @section('title', 'Dashboard')
 @section('content')
-<div class="dashboard">
     <div class="tools">
-        <div class="dashboard-title"><h1>Administración</h1></div>
+        <div class="dashboard-title"><img src="{{ asset('svg/logo_barrilete.svg') }}" onclick="location.href ='{{ route('default') }}'" title="Home" alt="Home" /></div>
         <div class="user-options">
             <p>{{ Auth::user()->name }}<img src="{{ asset('svg/arrow-down.svg') }}" /></p>
             <div id="user-nav-options">
@@ -20,16 +19,17 @@
         <a href="{{ route('viewPolls',['id' => Auth::user() -> id]) }}"><img src="{{ asset('svg/analytics.svg') }}" />Encuestas</a>
         <h2>Cargar publicaciones</h2>
         <a href="{{ route('formArticle') }}"><img src="{{ asset('svg/add-file.svg') }}" />Artículos</a>
-        <a href="#"><img src="{{ asset('svg/image.svg') }}" />Galerías</a>
-        <a href="#"><img src="{{ asset('svg/note.svg') }}" />Encuestas</a>
+        <a href="{{ route('formGallery') }}"><img src="{{ asset('svg/image.svg') }}" />Galerías</a>
+        <a href="{{ route('formPoll') }}"><img src="{{ asset('svg/note.svg') }}" />Encuestas</a>
     </div>
     <div id="loader"><center><img src="{{ asset('img/loader.gif') }}" /></center></div>
     <div id="user-content"></div>
-</div>
+@endsection
+@section('scripts')
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#user-content').load('{{ route('viewArticles',['id' => Auth::user() -> id]) }}').prepend('<div id="loader"><center><img src="{{ asset('img / loader.gif') }}" /></center></div>').hide().fadeIn('normal');
+        $('#user-content').load('{{ route('viewArticles',['id' => Auth::user() -> id]) }}').prepend('<div id="loader"><center><img src="{{ asset("img/loader.gif") }}" /></center></div>').hide().fadeIn('normal');
 
         $('div.tools-bar a').each(function () {
 

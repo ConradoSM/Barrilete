@@ -1161,9 +1161,6 @@
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
     }
-    article.fotos:last-child {
-        margin-bottom: 0px;
-    }
     article.fotos img {
         width: 100%;
         height: auto;
@@ -1180,9 +1177,8 @@
     }
     article.fotos p:last-child {
         display: block;
-        margin-top: 10px;
-        margin: 10px;
-        font-size: 1em;
+        padding: 10px;
+        font-size: 1.6em;
     }    
     /************************ 
     ***ASIDE PUBLICACIONES***
@@ -1270,8 +1266,14 @@
         border-bottom-right-radius: 3px;
     }
     article.searchResult p.searchDate {
-        font-size: 1em;
+        font-size: 1.1em;
         color: #666;
+        padding: 0px;
+        margin: 0px;
+    }
+    article.searchResult p.searchDate img {
+        height: 1.2em;
+        margin-right: 10px;
     }
     article.searchResult a.searchTitle {
         font-size: 2.5em;

@@ -38,6 +38,10 @@ fieldset {
     border-bottom-right-radius: 3px;
     box-shadow: 0px 0px 2px 0px #999;
 }
+fieldset img {
+    width: 100%;
+    height: auto;
+}
 legend {
     font-size: 2em;
     background-color: #e6e8e9;

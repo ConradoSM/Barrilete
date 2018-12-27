@@ -260,7 +260,7 @@
     };
 
     $.fn.jfilestyle.defaults = {
-        'buttonText': 'Selecciona Archivo',
+        'buttonText': 'Examinar...',
         'input': true,
         'disabled': false,
         'buttonBefore': false,

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model {
 
     protected $table = 'gallery';
+    protected $fillable = [
+        'user_id', 'title', 'date', 'section_id', 'author', 'article_desc',
+    ];
     
     //RELACIONA LA GALERÍA CON EL USUARIO QUE LA CARGÓ
     public function user() {

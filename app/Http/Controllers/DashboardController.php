@@ -25,7 +25,7 @@ class DashboardController extends Controller
             return view('auth.viewArticles', compact('Articles'))
             ->with('status','artículos');
             
-        } else { echo 'Error: ésta no es una petición Ajax!'; }      
+        } else return 'Error: ésta no es una petición Ajax!';     
     }
     
     //GALERÍAS DE LOS USUARIOS
@@ -39,7 +39,7 @@ class DashboardController extends Controller
             return view('auth.viewArticles', compact('Articles'))
             ->with('status','galerías');
             
-        } else { echo 'Error: ésta no es una petición Ajax!'; }      
+        } else return 'Error: ésta no es una petición Ajax!';     
     }
     
     //ENCUESTAS DE LOS USUARIOS
@@ -53,7 +53,7 @@ class DashboardController extends Controller
             return view('auth.viewArticles', compact('Articles'))
             ->with('status','encuestas');
             
-        } else { echo 'Error: ésta no es una petición Ajax!'; }      
+        } else return 'Error: ésta no es una petición Ajax!';     
     }
     
     //FORMULARIO CARGAR ARTÍCULO
@@ -64,6 +64,17 @@ class DashboardController extends Controller
         $sections = Sections::select('id','name')->get();
         return view('auth.articles.formArticles', compact('sections'));
         
-        }
+        } else return 'Error: ésta no es una petición Ajax!';
+    }
+    
+    //FORMULARIO CARGAR GALERÍA
+    public function formGallery(Request $request) {
+        
+        if ($request->ajax()) {
+            
+        $section = Sections::where('name','galerias')->first();    
+        return view('auth.galleries.formGalleries', compact('section'));  
+        
+        } else return 'Error: ésta no es una petición Ajax!';
     }
 }

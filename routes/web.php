@@ -24,6 +24,13 @@ Route::get('/dashboard/view/polls/{id}', 'DashboardController@userPolls')->middl
 //DASHBOARD CREATE ARTICLE
 Route::get('/dashboard/forms/articles','DashboardController@formArticle')->middleware('auth')->name('formArticle');
 Route::post('/dashboard/forms/articles/create','ArticlesController@createArticle')->middleware('auth')->name('createArticle');
+//DASHBOARD CREATE GALLERY
+Route::get('/dashboard/forms/galleries','DashboardController@formGallery')->middleware('auth')->name('formGallery');
+Route::post('/dashboard/forms/galleries/create','GalleriesController@createGallery')->middleware('auth')->name('createGallery');
+Route::post('/dashboard/forms/galleries/photos','GalleriesController@createPhotos')->middleware('auth')->name('createPhotos');
+//DASHBOARD CREATE POLL
+Route::get('/dashboard/forms/polls','DashboardController@formPoll')->middleware('auth')->name('formPoll');
+Route::post('/dashboard/forms/polls/create','PollsController@createPoll')->middleware('auth')->name('createPoll');
 //PREVIEWS
 Route::get('/dashboard/forms/articles/preview/{id}','ArticlesController@previewArticle')->middleware('auth')->name('previewArticle');
 Route::get('/dashboard/forms/gallery/preview/{id}','GalleriesController@previewGallery')->middleware('auth')->name('previewGallery');
