@@ -37,14 +37,13 @@ $(document).ready(function () {
             <p><b>Autor</b>: {{ Auth::user()->name }}</p>
             <p><b>Fecha de publicación</b>: {{ date('Y-m-d h:i') }}</p> 
         </fieldset>
-        <br />
         <fieldset>
             <legend>Título y Copete</legend>
             <input type="text" name="title" value="" placeholder="Título: éste es el principal título del articulo (*)" required />            
             <textarea name="article_desc" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required></textarea>
+            <input type="submit" value="SIGUIENTE >>" id="enviar" />
         </fieldset>
         @csrf
-        <input type="submit" value="SIGUIENTE >>" id="enviar" />
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
         <input type="hidden" name="date" value="{{ date('Y-m-d h:i') }}" />
         <input type="hidden" name="author" value="{{ Auth::user()->name }}" />

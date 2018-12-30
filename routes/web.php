@@ -22,16 +22,26 @@ Route::get('/dashboard/view/articles/{id}', 'DashboardController@userArticles')-
 Route::get('/dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->middleware('auth')->name('viewGalleries');
 Route::get('/dashboard/view/polls/{id}', 'DashboardController@userPolls')->middleware('auth')->name('viewPolls');
 //DASHBOARD CREATE ARTICLE
-Route::get('/dashboard/forms/articles','DashboardController@formArticle')->middleware('auth')->name('formArticle');
+Route::get('/dashboard/forms/articles','DashboardController@formArticle')->middleware('auth')->name('formCreateArticle');
 Route::post('/dashboard/forms/articles/create','ArticlesController@createArticle')->middleware('auth')->name('createArticle');
+//DASHBOARD DELETE ARTICLE
+Route::get('/dashboard/delete/articles/{id}','ArticlesController@deleteArticle')->middleware('auth')->name('deleteArticle');
+//DASHBOARD UPDATE ARTICLE
+Route::get('/dashboard/forms/articles/update/{id}','DashboardController@formArticle')->middleware('auth')->name('formUpdateArticle');
+Route::post('/dashboard/update/articles/{id}','ArticlesController@updateArticle')->middleware('auth')->name('updateArticle');
 //DASHBOARD CREATE GALLERY
 Route::get('/dashboard/forms/galleries','DashboardController@formGallery')->middleware('auth')->name('formGallery');
 Route::post('/dashboard/forms/galleries/create','GalleriesController@createGallery')->middleware('auth')->name('createGallery');
 Route::post('/dashboard/forms/galleries/photos','GalleriesController@createPhotos')->middleware('auth')->name('createPhotos');
+//DASHBOARD DELETE GALLERY
+Route::get('/dashboard/delete/gallery/{id}','GalleriesController@deleteGallery')->middleware('auth')->name('deleteGallery');
 //DASHBOARD CREATE POLL
 Route::get('/dashboard/forms/polls','DashboardController@formPoll')->middleware('auth')->name('formPoll');
 Route::post('/dashboard/forms/polls/create','PollsController@createPoll')->middleware('auth')->name('createPoll');
-//PREVIEWS
+Route::post('/dashboard/forms/polls/options','PollsController@createOptions')->middleware('auth')->name('createOptions');
+//DASHBOARD DELETE POLL
+Route::get('/dashboard/delete/poll/{id}','PollsController@deletePoll')->middleware('auth')->name('deletePoll');
+//DASHBOARD PREVIEWS
 Route::get('/dashboard/forms/articles/preview/{id}','ArticlesController@previewArticle')->middleware('auth')->name('previewArticle');
 Route::get('/dashboard/forms/gallery/preview/{id}','GalleriesController@previewGallery')->middleware('auth')->name('previewGallery');
 Route::get('/dashboard/forms/poll/preview/{id}','PollsController@previewPoll')->middleware('auth')->name('previewPoll');

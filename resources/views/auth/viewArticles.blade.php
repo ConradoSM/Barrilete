@@ -1,6 +1,6 @@
 <div id="user-articles-list">
     <h1>Mis {{ $status }}</h1>
-    <p>Se encontraron {{ $Articles->total() }} {{ $status }}:</p>
+    <p>Se encontraron {{ $Articles->total() }} {{ $status }}</p>
     @forelse ($Articles as $article)
     <article class="searchResult">
         <p class="searchDate">

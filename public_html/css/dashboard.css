@@ -575,7 +575,7 @@
         justify-content: center;
         width: 100%;
         min-height: 650px;
-        background-image: url('/img/background-login-00.jpg');
+        background-image: url('/img/background-login-04.jpg');
         background-size: 100% 100%;
     }
     /*DIV LOGIN*/
@@ -584,7 +584,7 @@
         flex-flow: column nowrap;
         width: 60%;
         height: auto;
-        background-color: rgba(255,255,255,0.6);
+        background-color: rgba(242,243,244,0.6);
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0px 0px 3px #000;
@@ -600,15 +600,25 @@
     }
     div.dashboard-login p img {
         width: auto;
-        height: 1.2em;
+        height: 1.3em;
         vertical-align: middle; 
+        margin-right: 10px;
     }
-    div.dashboard-login p.invalid-feedback {
+    p.alert-success{
+        background-color: #82e0aa;
+        padding: 10px;
+        color:  #1d8348;
+        margin: 10px 0px;
+        border-radius: 3px; 
+        font-size: 1.3em;
+    }
+    p.invalid-feedback {
         background-color: #f9bfbf;
         padding: 10px;
         color: #c71a1a;
         margin: 10px 0px;
-        border-radius: 5px;
+        border-radius: 3px;
+        font-size: 1.3em;
     } 
     /*DIV DASHBOARD MAIN CONTAINER*/
     section.dashboard {
@@ -757,4 +767,42 @@
         padding-left: 10px;
         padding-right: 10px;
     } 
+    div.article-admin {
+        width: auto;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    a.delete {
+        padding: 0px 20px 3px 25px;
+        background-color: #cb4335;
+        color: #fff;
+        border-radius: 3px;
+        box-shadow: inset 0px 0px 2px 0px #641e16; 
+        text-shadow:  1px 1px 0px #000;
+    }
+    a.delete:hover {
+        background-color: #b03a2e;
+        transition: 0.3s;
+    }
+    a.edit {
+        padding: 0px 20px 3px 25px;
+        background-color: #28b463;
+        color: #fff;
+        border-radius: 3px;
+        box-shadow: inset 0px 0px 2px 0px #186a3b;
+        text-shadow: 1px 1px 0px #000; 
+    }
+    a.edit:hover {
+        background-color: #239b56;
+        transition: 0.3s;
+    }
+    a.disabled {
+        padding: 0px 20px 3px 25px;
+        background-color: #d5d8dc;
+        color: #333;
+        border-radius: 3px;
+        box-shadow: inset 0px 0px 2px 0px #abb2b9;
+        text-shadow: 1px 1px 0px #fff;
+        cursor: default;
+    }
 }

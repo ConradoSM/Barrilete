@@ -3,30 +3,26 @@
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/ckeditor4.11.1/ckeditor.js') }}"></script>
 <script type="text/javascript">
-// esperamos que el DOM cargue
 $(document).ready(function () {
-// definimos las opciones del plugin AJAX FORM
     var opciones = {
         beforeSerialize: getckeditor,
-        beforeSubmit: mostrarLoader, //funcion que se ejecuta antes de enviar el form
-        success: mostrarRespuesta, //funcion que se ejecuta una vez enviado el formulario
+        beforeSubmit: mostrarLoader,
+        success: mostrarRespuesta,
+        error: mostrarError,
         data: $('#createArticle').serialize(),
         datatype: 'json'
     };
-    //asignamos el plugin ajaxForm al formulario myForm y le pasamos las opciones
+
     $('#createArticle').ajaxForm(opciones);
-    //lugar donde defino las funciones que utilizo dentro de "opciones"
 
     function getckeditor() {
         var section_notes_data = CKEDITOR.instances.article_body.getData();
         $('#article_body').val(section_notes_data);
-
     };
     function mostrarLoader() {
 
         $('#loader').fadeIn('slow');
         $('#Article_Form').css('display', 'none');
-
     };
     function mostrarRespuesta(responseText) {
 
@@ -35,45 +31,60 @@ $(document).ready(function () {
             $('#user-content').html(responseText).fadeIn('normal');
         });
     };
-    
-$(':file').jfilestyle({placeholder: 'Imagen principal (*)'});
-
-CKEDITOR.replace('article_body');
+    function mostrarError(xhr) {
+        
+        var errors = xhr.responseJSON.errors;
+        
+        $('#loader').fadeOut('slow', function () {
+            
+            $('#Article_Form').fadeIn('slow');
+            $.each(errors, function(key,value) {
+                $('#errors').append('<p class="invalid-feedback">'+value+'</p>');       
+            });
+        });
+        console.log(errors);
+    };   
+    $('#enviar').on('click', function() {
+        $('p.invalid-feedback').hide();
+    });
+    $(':file').jfilestyle({placeholder: 'Imagen principal (*)'
+    });
+    CKEDITOR.replace('article_body');
 });
 </script>
 <h1>Cargar artículo</h1>
-    <form method="post" enctype="multipart/form-data" id="createArticle" action="{{ route('createArticle') }}">
+    <form method="post" enctype="multipart/form-data" id="createArticle" action="{{ isset($article) ? route('updateArticle', ['id' => $article->id]) : route('createArticle') }}">
         <fieldset>
             <legend>Información</legend>
-            <p><b>Autor</b>: {{ Auth::user()->name }}</p>
-            <p><b>Fecha de publicación</b>: {{ date('Y-m-d h:i') }}</p>
+            <div id="errors"></div>
+            <p><b>Autor</b>: {{ isset($article) ? $article->author : Auth::user()->name }}</p>
+            <p><b>Fecha de publicación</b>: {{ isset($article) ? $article->date : date('Y-m-d h:i') }}</p>
             <select name="section_id" size="1" id="seccion" required>
-                <option value="" selected>Seleccionar Sección</option>
+                <option value="{{ isset($article) ? $article->section->id : '' }}" selected>{{ isset($article) ? $article->section->name : 'Seleccionar Sección' }}</option>
                 @foreach ($sections as $section)
                 <option value="{{ $section->id }}">{{ $section->name }}</option>
                 @endforeach
             </select>   
-            <input type="file" class="jfilestyle" data-placeholder="Imagen Principal" id="foto" name="photo" accept="image/*" required />
+            <input type="file" class="jfilestyle" data-placeholder="Imagen Principal" id="foto" name="photo" accept="image/*" {{ isset($article) ? '' : 'required' }} />
             <label class="check-container" for="video">La publicación contiene video de Youtube u otras fuentes
-                <input type="checkbox" name="video" id="video" value="1" />
+                <input type="checkbox" name="video" id="video" value="1" {{ isset($article) && $article->video == true  ? 'checked' : '' }} />
                 <span class="check-mark"></span>
             </label>  
         </fieldset>
-        <br />
         <fieldset>
             <legend>Título y Copete</legend>
-            <input type="text" name="title" value="" placeholder="Título: éste es el principal título del articulo (*)" required />            
-            <textarea name="article_desc" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required></textarea>
+            <input type="text" name="title" value="{{ isset($article) ? $article->title : '' }}" placeholder="Título: éste es el principal título del articulo (*)" required />            
+            <textarea name="article_desc" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ isset($article) ? $article->article_desc : '' }}</textarea>
         </fieldset>
-        <br />
         <fieldset>
             <legend>Contenido</legend>
-            <textarea name="article_body" id="article_body"></textarea>
+            <textarea name="article_body" id="article_body">{{ isset($article) ? $article->article_body : '' }}</textarea>
+            <input type="submit" value="ENVIAR PUBLICACION" id="enviar" />
         </fieldset>   
         @csrf
-        <input type="submit" value="ENVIAR PUBLICACION" id="enviar" />
-        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
-        <input type="hidden" name="date" value="{{ date('Y-m-d h:i') }}" />
-        <input type="hidden" name="author" value="{{ Auth::user()->name }}" />
+        <input type="hidden" name="user_id" value="{{ isset($article) ? $article->user->id : Auth::user()->id }}" />
+        <input type="hidden" name="date" value="{{ isset($article) ? $article->date : date('Y-m-d h:i') }}" />
+        <input type="hidden" name="author" value="{{ isset($article) ? $article->author : Auth::user()->name }}" />
+        <input type="hidden" name="id" value="{{ isset($article) ? $article->id : '' }}" />
     </form>
 </div>

@@ -3,20 +3,20 @@
 namespace barrilete\Http\Controllers;
 
 use Illuminate\Http\Request;
+use barrilete\Http\Requests\pollRequest;
 use barrilete\Poll;
 use barrilete\PollOptions;
 use barrilete\PollIp;
 
 class PollsController extends Controller {
 
-    /** MOSTRAR ENCUESTA**/
-
+    //MOSTRAR ENCUESTA
     public function poll($id) {
 
         $poll = Poll::poll($id);
         $morePolls = Poll::morePolls($id);
 
-        if ($poll->exists()) {
+        if ($poll) {
 
             $ip = PollIp::ip($id)->first();
 
@@ -26,9 +26,10 @@ class PollsController extends Controller {
                 $poll_options = $poll->option;
                 $morePolls = $morePolls->get();
 
-                view('poll', compact('poll','poll_options','morePolls'))
-                        ->with('status', false);
-            } else {
+                return view('poll', compact('poll','poll_options','morePolls'))
+                ->with('status', false);
+
+            } else
 
                 $poll = $poll->first();
                 $poll_options = $poll->option;
@@ -36,15 +37,15 @@ class PollsController extends Controller {
                 $morePolls = $morePolls->get();
 
                 return view('poll', compact('poll','poll_options','totalVotes','morePolls'))
-                        ->with('status', 'Ya has votado!');
-            }
-        } else {
+                ->with('status', 'Ya has votado!');
+            
+        } else 
+
             return view('errors.article-error');
-        }
+        
     }
 
-    /** VOTOS DE LA ENCUESTA**/
-
+    //VOTOS DE LA ENCUESTA
     public function pollVote(Request $request) {
 
         $idOpcion = $request->input('id_opcion');
@@ -54,7 +55,7 @@ class PollsController extends Controller {
 
         $optionPoll = PollOptions::options($idOpcion);
 
-        if ($optionPoll->exists()) {
+        if ($optionPoll) {
 
             $optionPoll->increment('votes', 1);
 
@@ -63,28 +64,88 @@ class PollsController extends Controller {
                 'ip' => $ip
             ]);
 
-            return redirect('poll/' . $poll_id . '/' . $pollTitle);
+            return redirect('poll/'.$poll_id.'/'. $pollTitle);
             
         } else
             
             return view('errors.article-error');
     }
     
-    /** MOSTRAR ENCUESTA**/
-
+    //MOSTRAR ENCUESTA
     public function previewPoll($id) {
 
-        $poll = Poll::poll($id);
+        $poll = Poll::find($id);
 
-        if ($poll->exists()) {
+        if ($poll) {
 
-                $poll = $poll->first();
                 $poll_options = $poll->option;
 
                 return view('auth.polls.previewPoll', compact('poll','poll_options'));
                 
-        } else {
-                return view('auth.articles.previewArticleError');
-        }
+        } else
+
+            return view('auth.polls.pollStatus')
+            ->with('status','error_find');
     }
+    
+    //CREAR ENCUESTA
+    public function createPoll(pollRequest $request) {
+            
+        $article = new Poll;
+        $article -> user_id = $request['user_id'];
+        $article -> title = $request['title'];
+        $article -> date = $request['date'];
+        $article -> section_id = $request['section_id'];
+        $article -> author = $request['author'];
+        $article -> article_desc = $request['article_desc'];
+        $article -> save();
+        $poll = Poll::find($article->id);
+
+        return view('auth.polls.formOptionsPolls', compact('poll'));       
+    }
+    
+    //GUARDAR OPCIONES
+    public function createOptions(Request $request) {
+                
+        $poll_id = $request['poll_id'];
+        $inputOptions = $request->get('option');
+                  
+            foreach ($inputOptions as $key => $val) {            
+                
+                /**GUARDAR EN BASE DE DATOS**/
+                $PollOption = new PollOptions;
+                $PollOption->poll_id = $poll_id;
+                $PollOption->option = $inputOptions[$key];
+                $PollOption->save();
+            }
+        
+        $poll = Poll::find($poll_id);
+        $poll_options = $poll->option;
+        
+        return view('auth.polls.previewPoll', compact('poll', 'poll_options'));      
+    }
+
+    //BORRAR ENCUESTA
+    public function deletePoll(Request $request, $id) {
+
+        if ($request->ajax()) {
+
+            $poll = poll::find($id);
+
+            if ($poll) {
+
+                    $poll->delete();
+                
+                    return view('auth.polls.pollStatus')
+                    ->with('status','success');
+
+                } else  
+
+                    return view('auth.polls.pollStatus')
+                    ->with('status','error_find'); 
+
+            } else 
+
+                return 'Debe ser petición AJAX';
+    }       
 }

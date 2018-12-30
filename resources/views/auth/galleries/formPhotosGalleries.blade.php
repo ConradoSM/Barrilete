@@ -77,4 +77,5 @@ $(document).ready(function () {
         <input type="hidden" name="gallery_id" value="{{ $gallery->id }}" />
         @csrf
     </form>
+    <br />
 </div>

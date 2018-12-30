@@ -18,7 +18,6 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('slug')->unique();
             $table->string('title')->unique();
             $table->datetime('date');          
             $table->integer('section_id')->unsigned();

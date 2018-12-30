@@ -5,12 +5,13 @@ namespace barrilete\Http\Controllers;
 use Illuminate\Http\Request;
 use barrilete\User;
 use barrilete\Sections;
+use barrilete\Articles;
 
 class DashboardController extends Controller
 {
 
-    public function index()
-    {
+    public function index() {
+        
         return view('auth.dashboard');
     }
     
@@ -20,7 +21,7 @@ class DashboardController extends Controller
         if ($request->ajax()) {
             
             $User = User::find($id);
-            $Articles = $User->articles()->paginate(10);
+            $Articles = $User->articles()->orderBy('id','DESC')->paginate(10);
             
             return view('auth.viewArticles', compact('Articles'))
             ->with('status','artículos');
@@ -34,7 +35,7 @@ class DashboardController extends Controller
         if ($request->ajax()) {
             
             $User = User::find($id);
-            $Articles = $User->gallery()->paginate(10);
+            $Articles = $User->gallery()->orderBy('id','DESC')->paginate(10);
             
             return view('auth.viewArticles', compact('Articles'))
             ->with('status','galerías');
@@ -48,7 +49,7 @@ class DashboardController extends Controller
         if ($request->ajax()) {
             
             $User = User::find($id);
-            $Articles = $User->poll()->paginate(10);
+            $Articles = $User->poll()->orderBy('id','DESC')->paginate(10);
             
             return view('auth.viewArticles', compact('Articles'))
             ->with('status','encuestas');
@@ -61,8 +62,16 @@ class DashboardController extends Controller
         
         if ($request->ajax()) {
             
-        $sections = Sections::select('id','name')->get();
-        return view('auth.articles.formArticles', compact('sections'));
+            if ($request->id) {
+                
+                $article = Articles::find($request->id);
+                $sections = Sections::select('id','name')->where('name', '!=', $article->section->name)->get();
+                return view('auth.articles.formArticles', compact('article','sections'));
+                
+            } else
+                
+                $sections = Sections::select('id','name')->get();
+                return view('auth.articles.formArticles', compact('sections'));
         
         } else return 'Error: ésta no es una petición Ajax!';
     }
@@ -72,8 +81,19 @@ class DashboardController extends Controller
         
         if ($request->ajax()) {
             
-        $section = Sections::where('name','galerias')->first();    
-        return view('auth.galleries.formGalleries', compact('section'));  
+            $section = Sections::where('name','galerias')->first();    
+            return view('auth.galleries.formGalleries', compact('section'));  
+        
+        } else return 'Error: ésta no es una petición Ajax!';
+    }
+    
+    //FORMULARIO CARGAR ENCUESTA
+    public function formPoll(Request $request) {
+        
+        if ($request->ajax()) {
+            
+            $section = Sections::where('name','encuestas')->first();
+            return view('auth.polls.formPoll', compact('section'));  
         
         } else return 'Error: ésta no es una petición Ajax!';
     }
