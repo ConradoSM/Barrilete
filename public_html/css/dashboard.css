@@ -805,4 +805,48 @@
         text-shadow: 1px 1px 0px #fff;
         cursor: default;
     }
+    img.delete-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: auto;
+        height: 49px;
+        padding: 10px;
+        border-radius: 0px 0px 0px 3px;
+        cursor: pointer;
+        background-color: #c71a1a;
+    }
+    img.delete-button:hover {
+        background-color: #e53838;
+        transition: 0.3s;
+    }
+    img.update-button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        height: 49px;
+        width: auto;
+        background-color: #2ecc71;
+        padding: 7px;
+        border-radius: 0px 3px 3px 0px;
+        cursor: pointer;
+    }
+    img.update-button:hover {
+        background-color: #82e0aa;
+        transition: 0.3s;
+    }
+    div.title-photo {
+        display: none;
+    }
+    p.photo-title {
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 1.2em;
+    }
+    p.photo-title:hover {
+        background-color: #caced2;
+        transition: 0.3s;
+        border-radius: 3px;
+        cursor: pointer;
+    }
 }

@@ -10,4 +10,10 @@ class GalleryPhotos extends Model {
     protected $fillable = [
         'gallery_id', 'title', 'photo',
     ];
+    
+    //RELACIONA LA FOTO CON LA GALERÍA
+    public function gallery() {
+
+        return $this->belongsTo(Gallery::class);
+    }
 }

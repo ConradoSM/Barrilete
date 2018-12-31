@@ -13,7 +13,7 @@
     @if ($i == 1)
     <img src="img/articles/images/{{$article->photo}}" title="{{$article->title}}" alt="{{$article->title}}" />
     @else
-    <img src="img/articles/images/thumbnail/{{$article->photo}}" title="{{$article->title}}" alt="{{$article->title}}" />
+    <img src="img/articles/.thumbs/images/{{$article->photo}}" title="{{$article->title}}" alt="{{$article->title}}" />
     @endif
     <a href="{{route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')])}}">{{$article->title}}</a>
     <p>{{$article->article_desc}}</p>

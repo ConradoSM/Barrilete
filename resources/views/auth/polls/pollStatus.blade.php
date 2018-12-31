@@ -5,4 +5,6 @@
 	<p class="invalid-feedback">Ha ocurrido un error al borrar la encuesta.</p>
 @elseif ($status == 'error_find')
 	<p class="invalid-feedback">La encuesta no existe.</p>
+@elseif ($status == 'error_publish')
+	<p class="invalid-feedback">Debes ser administrador del sitio para publicar contenido.</p>
 @endif

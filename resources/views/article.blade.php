@@ -30,7 +30,7 @@
     @forelse ($moreArticles as $more)
     <article class="pubArticle">
         <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
-        <img src="img/articles/images/thumbnail/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" />   
+        <img src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" />   
     </article> 
     @empty
     @endforelse

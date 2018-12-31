@@ -5,6 +5,7 @@ namespace barrilete\Http\Controllers;
 use Illuminate\Http\Request;
 use barrilete\Http\Requests\articleRequest;
 use barrilete\Articles;
+use Auth;
 use Image;
 use File;
 
@@ -171,7 +172,7 @@ class ArticlesController extends Controller {
             } else 
 
                 return view('auth.articles.articleStatus')
-                ->with('status','error');
+                ->with('status','error_find');
             
         } else return 'Error: ésta no es una petición Ajax!';
     }
@@ -191,9 +192,28 @@ class ArticlesController extends Controller {
 
             } else 
 
-                return view('auth.articles.previewArticleError');
+                return view('auth.articles.articleStatus')
+                ->with('status','error_find');
             
-        } else return 'Error: ésta no es una petición Ajax!';
+        } else return 'Error: ésta no es una petición Ajax!';           
+    }
+    
+    //PUBLICAR ARTÍCULO
+    public function publishArticle(Request $request, $id) {
+        
+        if ($request->ajax()) {
             
+            if (Auth::user()->is_admin) {
+                
+                $article = Articles::find($id);
+                $article->status = 'PUBLISHED';
+                $article->save();
+                
+                return view('auth.articles.previewArticle', compact('article'));
+                
+            } else return view('auth.articles.articleStatus')
+                ->with('status','error_publish');
+            
+        } else return 'Error: ésta no es una petición Ajax!';       
     }
 }

@@ -3,7 +3,7 @@
     <div class="article-admin">
         @if (Auth::user()->is_admin)
             @if ($article->status == "DRAFT")
-                <a href="#" class="edit" id="publish">Publicar</a>
+                <a href="{{ route('publishArticle',['id'=>$article->id]) }}" class="edit" id="publish">Publicar</a>
             @else
                 <a href="#" class="disabled">Publicado</a>
                 <a href="{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>

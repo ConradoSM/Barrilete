@@ -3,22 +3,22 @@
     <div class="article-admin">
         @if (Auth::user()->is_admin)
             @if ($gallery->status == "DRAFT")
-                <a href="#" class="edit" id="publish">Publicar</a>
+                <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="edit" id="publish">Publicar</a>
             @else
                 <a href="#" class="disabled">Publicado</a>
                 <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>
             @endif      
-            <a href="#" class="edit" id="edit">Editar</a>
+            <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="edit" id="edit">Editar</a>
             <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="delete" id="delete">Eliminar</a>
         @else
             @if ($gallery->status == "PUBLISHED")
                 <a href="#" class="disabled">Publicado</a>
                 <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>
-                <a href="#" class="edit" id="edit">Editar</a>
+                <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="edit" id="edit">Editar</a>
                 <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="delete" id="delete">Eliminar</a>
             @else
                 <a href="#" class="disabled">No publicado</a>
-                <a href="#" class="edit" id="edit">Editar</a>
+                <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="edit" id="edit">Editar</a>
                 <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="delete" id="delete">Eliminar</a>
             @endif
         @endif
@@ -39,7 +39,7 @@
         <p>{{$photo->title}}</p>
     </article>
     @empty
-        <h1>No hay fotos</h1>
+        <p>No hay fotos</p>
     @endforelse
     <script type="text/javascript">
         $(document).ready(function () {
@@ -56,8 +56,8 @@
 
                         $('#loader').fadeIn('fast', 'linear');
                         $('#Article-container').hide(0, function () {
-                            $('#user-content').load(href, function () {
-                                $('#loader').fadeOut('fast', 'linear', function () {
+                            $('#loader').fadeOut('fast', 'linear', function () {
+                                $('#user-content').load(href, function () {                               
                                     $('#user-content').fadeIn('slow', 'linear');
                                 });
                             });
@@ -78,8 +78,8 @@
 
                         $('#loader').fadeIn('fast', 'linear');
                         $('#Article-container').hide(0, function () {
-                            $('#user-content').load(href, function () {
-                                $('#loader').fadeOut('fast', 'linear', function () {
+                            $('#loader').fadeOut('fast', 'linear', function () {
+                                $('#user-content').load(href, function () {                                
                                     $('#user-content').fadeIn('slow', 'linear');
                                 });
                             });
@@ -98,8 +98,8 @@
 
                     $('#loader').fadeIn('fast', 'linear');
                     $('#Article-container').hide(0, function () {
-                        $('#user-content').load(href, function () {
-                            $('#loader').fadeOut('fast', 'linear', function () {
+                        $('#loader').fadeOut('fast', 'linear', function () {
+                            $('#user-content').load(href, function () {                            
                                 $('#user-content').fadeIn('slow', 'linear');
                             });
                         });

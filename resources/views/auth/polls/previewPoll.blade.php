@@ -3,7 +3,7 @@
     <div class="article-admin">
         @if (Auth::user()->is_admin)
             @if ($poll->status == "DRAFT")
-                <a href="#" class="edit" id="publish">Publicar</a>
+                <a href="{{ route('publishPoll',['id'=>$poll->id]) }}" class="edit" id="publish">Publicar</a>
             @else
                 <a href="#" class="disabled">Publicado</a>
                 <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>
@@ -61,8 +61,8 @@
 
                         $('#loader').fadeIn('fast', 'linear');
                         $('#Article-container').hide(0, function () {
-                            $('#user-content').load(href, function () {
-                                $('#loader').fadeOut('fast', 'linear', function () {
+                            $('#loader').fadeOut('fast', 'linear', function () {
+                                $('#user-content').load(href, function () {                                
                                     $('#user-content').fadeIn('slow', 'linear');
                                 });
                             });
@@ -83,8 +83,8 @@
 
                         $('#loader').fadeIn('fast', 'linear');
                         $('#Article-container').hide(0, function () {
-                            $('#user-content').load(href, function () {
-                                $('#loader').fadeOut('fast', 'linear', function () {
+                            $('#loader').fadeOut('fast', 'linear', function () {
+                                $('#user-content').load(href, function () {                               
                                     $('#user-content').fadeIn('slow', 'linear');
                                 });
                             });
@@ -103,8 +103,8 @@
 
                     $('#loader').fadeIn('fast', 'linear');
                     $('#Article-container').hide(0, function () {
-                        $('#user-content').load(href, function () {
-                            $('#loader').fadeOut('fast', 'linear', function () {
+                        $('#loader').fadeOut('fast', 'linear', function () {
+                            $('#user-content').load(href, function () {                           
                                 $('#user-content').fadeIn('slow', 'linear');
                             });
                         });

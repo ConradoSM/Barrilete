@@ -25,7 +25,7 @@ class galleryRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
-            'title' => 'required|min:30|max:191|unique:gallery',
+            'title' => 'required|min:30|max:191|unique:gallery,title,'.$this->input('id'),
             'date' => 'required',
             'section_id' => 'required',
             'author' => 'required',          

@@ -4,6 +4,7 @@ namespace barrilete\Http\Controllers;
 
 use Illuminate\Http\Request;
 use barrilete\Http\Requests\pollRequest;
+use Auth;
 use barrilete\Poll;
 use barrilete\PollOptions;
 use barrilete\PollIp;
@@ -78,9 +79,9 @@ class PollsController extends Controller {
 
         if ($poll) {
 
-                $poll_options = $poll->option;
+            $poll_options = $poll->option;
 
-                return view('auth.polls.previewPoll', compact('poll','poll_options'));
+            return view('auth.polls.previewPoll', compact('poll','poll_options'));
                 
         } else
 
@@ -147,5 +148,25 @@ class PollsController extends Controller {
             } else 
 
                 return 'Debe ser petición AJAX';
-    }       
+    } 
+    
+    //PUBLICAR ENCUESTA
+    public function publishPoll(Request $request, $id) {
+        
+        if ($request->ajax()) {
+            
+            if (Auth::user()->is_admin) {
+                
+                $poll = Poll::find($id);
+                $poll->status = 'PUBLISHED';
+                $poll->save();
+                $poll_options = $poll->option;
+                
+                return view('auth.articles.previewArticle', compact('poll','poll_options'));
+                
+            } else return view('auth.polls.pollStatus')
+                ->with('status','error_publish');
+            
+        } else return 'Error: ésta no es una petición Ajax!';       
+    }
 }

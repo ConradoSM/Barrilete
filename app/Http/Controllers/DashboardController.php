@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use barrilete\User;
 use barrilete\Sections;
 use barrilete\Articles;
+use barrilete\Gallery;
 
 class DashboardController extends Controller
 {
@@ -83,6 +84,19 @@ class DashboardController extends Controller
             
             $section = Sections::where('name','galerias')->first();    
             return view('auth.galleries.formGalleries', compact('section'));  
+        
+        } else return 'Error: ésta no es una petición Ajax!';
+    }
+    
+    //FORMULARIO ACTUALIZAR GALERÍA
+    public function formUpdateGallery(Request $request, $id) {
+        
+        if ($request->ajax()) {
+           
+            $gallery = Gallery::find($id);
+            $photos = $gallery->photos;
+            
+            return view('auth.galleries.formGalleryUpdate', compact('gallery','photos'));
         
         } else return 'Error: ésta no es una petición Ajax!';
     }
