@@ -16,8 +16,8 @@ class ArticlesController extends Controller {
 
         $article = Articles::showArticle($id);
 
-        if ($article) {
-
+        if ($article->exists()) {
+            
             $article = $article->first();
             $section = $article->section_id;
 
@@ -54,8 +54,9 @@ class ArticlesController extends Controller {
         $article -> photo = $filename;
         $article -> video = $request['video'];
         $article -> article_body = $request['article_body']; 
+        $article -> status = 'DRAFT';
+        $article -> views = 0;        
         $article -> save();
-        $article = Articles::find($article->id);
             
         return view('auth.articles.previewArticle', compact('article'));           
     }
@@ -182,11 +183,9 @@ class ArticlesController extends Controller {
         
         if ($request->ajax()) {
         
-            $article = Articles::whereId($id);
+            $article = Articles::find($id);
 
-            if ($article->exists()) {
-
-                $article = $article->first();
+            if ($article) {
 
                 return view('auth.articles.previewArticle', compact('article'));
 

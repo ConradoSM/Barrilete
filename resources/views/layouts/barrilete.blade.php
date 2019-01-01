@@ -19,7 +19,7 @@
             <div class="navContainer">
                 <div id="search">
                     <form action="{{ route('search') }}" method="get" id="formSearch">
-                        <input id="inputText" type="search" value="" name="query" placeholder="Buscar..." />
+                        <input id="inputText" type="search" value="" name="query" placeholder="Buscar en el sitio" />
                         <img src="{{asset('svg/search.svg')}}" title="Buscar" onClick="document.getElementById('formSearch').submit();" />
                         <input type="hidden" value="articulos" name="sec" />
                     </form>
@@ -27,16 +27,11 @@
                 <img id="logo" class="logo" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
                 <nav class="none">
                     <ul>
-                        <li><a href="{{ route('section', ['seccion' => 'sociedad']) }}" title="Sociedad">SOCIEDAD</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'politica']) }}" title="Política">POLITICA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'economia']) }}" title="Economía">ECONOMIA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'internacionales']) }}" title="Mundo">MUNDO</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'deportes']) }}" title="Deportes">DEPORTES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'cultura']) }}" title="Cultura">CULTURA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'tecno']) }}" title="Tecnología">TECNOLOGIA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'editoriales']) }}" title="Editoriales">EDITORIALES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'galerias']) }}">GALERIAS</a>
-                    </ul> 
+                        @forelse ($sections as $section)
+                        <li><a href="{{route('section',['seccion'=>$section->name])}}" title="{{$section->name}}">{{$section->name}}</a></li>
+                        @empty
+                        @endforelse 
+                    </ul>
                 </nav>
                 <img id="search-btn" class="search-btn" src="{{asset('svg/search.svg')}}" />
                 <a id="menu-btn" class="menu-btn" title="Menú">
@@ -48,22 +43,17 @@
             <div id="glass" class="hide"></div>
         </header>
         <section class="mainSection">
-        @yield('content')
+            @yield('content')
         </section>
         <footer>
             <div class="footerContainer">
                 <div>
                     <h2>Secciones</h2>
                     <ul>
-                        <li><a href="{{ route('section', ['seccion' => 'sociedad']) }}" title="Sociedad">SOCIEDAD</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'politica']) }}" title="Política">POLITICA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'economia']) }}" title="Economía">ECONOMIA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'internacionales']) }}" title="Mundo">MUNDO</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'deportes']) }}" title="Deportes">DEPORTES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'cultura']) }}" title="Cultura">CULTURA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'tecno']) }}" title="Tecnología">TECNOLOGIA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'editoriales']) }}" title="Editoriales">EDITORIALES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'galerias']) }}">GALERIAS</a>
+                        @forelse ($sections as $section)
+                        <li><a href="{{route('section',['seccion'=>$section->name])}}" title="{{$section->name}}">{{$section->name}}</a></li>
+                        @empty
+                        @endforelse 
                     </ul>   
                 </div>
                 <div>

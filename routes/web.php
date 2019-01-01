@@ -1,6 +1,12 @@
 <?php
+use barrilete\Sections;
 //HOME INDEX
     Route::get('/', 'IndexController@home')->name('default');
+//VIEW SECTIONS
+    View::composer(['layouts.barrilete'], function($view) {
+        $sections = Sections::all();
+        $view->with('sections', $sections);
+    });
 //SECTIONS
     Route::get('/sec/{name}', 'SectionsController@searchSection')->name('section');
 //SEARCH

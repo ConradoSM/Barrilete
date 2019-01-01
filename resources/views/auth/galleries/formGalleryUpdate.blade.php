@@ -35,11 +35,11 @@
         <input type="hidden" name="title" value="{{ $gallery->title }}" />
         <fieldset>
             <div id="container-gallery-copete">
-                <p onclick="verInputCopeteGallery()" id="copete" title="Editar título" class="photo-title">{{ $gallery->article_desc }}</p>
+                <p onclick="verInputCopeteGallery()" id="copete" title="Editar copete" class="photo-title">{{ $gallery->article_desc }}</p>
             </div>
-            <div id="container-gallery-copete-input" class="title-photo">
-                <img class="update-button" src="/svg/update.svg" onclick="actualizarCopeteGaleria({{$gallery->id}})" title="Actualizar título" />                            
+            <div id="container-gallery-copete-input" class="title-photo">                                            
                 <textarea name="article_desc" id="copete" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $gallery->article_desc }}</textarea>
+                <a class="edit" href="#" onclick="actualizarCopeteGaleria({{$gallery->id}})" title="Actualizar copete">Actualizar</a>
             </div> 
         </fieldset>
     </form>
@@ -47,7 +47,7 @@
         <fieldset id="{{$photo->id}}">
             <img class="delete-button" src="/svg/delete.svg" onclick="eliminarFoto({{$photo->id}})" title="Eliminar foto" />
             <div id="errors"></div>
-            <img src="/img/galleries/{{ $photo->photo }}" />
+            <img class="photo-gallery" src="/img/galleries/{{ $photo->photo }}" />
             <div id="title-{{$photo->id}}">
                 <p onclick="verInputTitleFoto({{$photo->id}})" id="p-{{$photo->id}}" title="Editar título" class="photo-title">{{ $photo->title }}</p>
             </div>

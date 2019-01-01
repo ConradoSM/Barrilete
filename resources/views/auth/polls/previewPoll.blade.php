@@ -23,9 +23,11 @@
             @endif
         @endif
     </div>
+    <hr />
     <article class="pub_galeria">
     <p class="info"><img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->date}}</p>
     <h2>{{ $poll->title }}</h2>
+    <p class="copete">{{ $poll->article_desc }}</p>
     <p class="info">
         <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$poll->user->name}}
         <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$poll->views}} lecturas

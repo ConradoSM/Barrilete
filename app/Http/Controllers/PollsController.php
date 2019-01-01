@@ -162,7 +162,7 @@ class PollsController extends Controller {
                 $poll->save();
                 $poll_options = $poll->option;
                 
-                return view('auth.articles.previewArticle', compact('poll','poll_options'));
+                return view('auth.polls.previewPoll', compact('poll','poll_options'));
                 
             } else return view('auth.polls.pollStatus')
                 ->with('status','error_publish');
