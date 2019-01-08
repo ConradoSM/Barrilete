@@ -4,179 +4,277 @@
             <legend>Información</legend>
             <p><b>Autor</b>: {{ $gallery->user->name }}</p>
             <p><b>Fecha de publicación</b>: {{ $gallery->date }}</p> 
-        </fieldset>
-    <form id="titulo">
-        @csrf
-        <input type="hidden" name="user_id" value="{{ $gallery->user->id }}" />
-        <input type="hidden" name="date" value="{{ $gallery->date }}" />
-        <input type="hidden" name="author" value="{{ $gallery->author }}" />
-        <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />
-        <input type="hidden" name="id" value="{{ $gallery->id }}" />
-        <input type="hidden" name="article_desc" value="{{ $gallery->article_desc }}" />
+        </fieldset>   
         <fieldset>
-            <legend>Título y Copete</legend>
-            <div id="errors"></div>
-            <div id="container-gallery-title">
-                <p onclick="verInputTitleGallery()" id="gallery-title" title="Editar título" class="photo-title">{{ $gallery->title }}</p>
-            </div>
-            <div id="container-gallery-title-input" class="title-photo">
-                <img class="update-button" src="/svg/update.svg" onclick="actualizarTituloGaleria({{$gallery->id}})" title="Actualizar título" />                            
-                <input type="text" name="title" id="title" value="{{ $gallery->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
-            </div>           
-        </fieldset>
-    </form>
-    <form id="copete">
-        @csrf
-        <input type="hidden" name="user_id" value="{{ $gallery->user->id }}" />
-        <input type="hidden" name="date" value="{{ $gallery->date }}" />
-        <input type="hidden" name="author" value="{{ $gallery->author }}" />
-        <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />
-        <input type="hidden" name="id" value="{{ $gallery->id }}" />
-        <input type="hidden" name="title" value="{{ $gallery->title }}" />
+            <legend>Título</legend>           
+                <div class="status"></div>
+                <div class="data">
+                    <p title="Editar">{{ $gallery->title }}</p>
+                    <form action="{{ route('updateGallery') }}" method="post">
+                        @csrf
+                        <input type="text" class="input" name="title" value="{{ $gallery->title }}" placeholder="Título: éste es el principal título de la foto (*)" required /> 
+                        <input type="submit" class="actualizar-datos" value="Actualizar" />
+                        <input type="hidden" name="user_id" value="{{ $gallery->user->id }}" />
+                        <input type="hidden" name="date" value="{{ $gallery->date }}" />
+                        <input type="hidden" name="author" value="{{ $gallery->author }}" />
+                        <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />
+                        <input type="hidden" name="id" value="{{ $gallery->id }}" />
+                        <input type="hidden" name="article_desc" value="{{ $gallery->article_desc }}" />
+                    </form>
+                </div>
+        </fieldset> 
         <fieldset>
-            <div id="container-gallery-copete">
-                <p onclick="verInputCopeteGallery()" id="copete" title="Editar copete" class="photo-title">{{ $gallery->article_desc }}</p>
-            </div>
-            <div id="container-gallery-copete-input" class="title-photo">                                            
-                <textarea name="article_desc" id="copete" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $gallery->article_desc }}</textarea>
-                <a class="edit" href="#" onclick="actualizarCopeteGaleria({{$gallery->id}})" title="Actualizar copete">Actualizar</a>
-            </div> 
+            <legend>Copete</legend>           
+                <div class="status"></div>
+                <div class="data">
+                    <p title="Editar">{{ $gallery->article_desc }}</p>
+                    <form action="{{ route('updateGallery') }}" method="post">
+                        @csrf
+                        <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $gallery->article_desc }}</textarea>
+                        <input type="submit" class="actualizar-datos" value="Actualizar" />
+                        <input type="hidden" name="user_id" value="{{ $gallery->user->id }}" />
+                        <input type="hidden" name="date" value="{{ $gallery->date }}" />
+                        <input type="hidden" name="author" value="{{ $gallery->author }}" />
+                        <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />
+                        <input type="hidden" name="id" value="{{ $gallery->id }}" />
+                        <input type="hidden" name="title" value="{{ $gallery->title }}" />
+                    </form>
+                </div>
         </fieldset>
-    </form>
+        <fieldset id="cargar">
+            <legend>Cargar más imagenes</legend>
+            <input type="submit" value="SIGUIENTE >>" id="enviar" />
+        </fieldset>
         @forelse ($photos as $photo)
-        <fieldset id="{{$photo->id}}">
-            <img class="delete-button" src="/svg/delete.svg" onclick="eliminarFoto({{$photo->id}})" title="Eliminar foto" />
-            <div id="errors"></div>
-            <img class="photo-gallery" src="/img/galleries/{{ $photo->photo }}" />
-            <div id="title-{{$photo->id}}">
-                <p onclick="verInputTitleFoto({{$photo->id}})" id="p-{{$photo->id}}" title="Editar título" class="photo-title">{{ $photo->title }}</p>
-            </div>
-            <div id="input-{{$photo->id}}" class="title-photo">
-                <img class="update-button" src="/svg/update.svg" onclick="actualizarTituloFoto({{$photo->id}})" title="Actualizar título" />                            
-                <input type="text" name="title" id="input-title-{{$photo->id}}" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
-            </div>            
+        <fieldset data-id="{{ $photo->id }}">
+            <div class="status"></div>           
+            <div class="photo-gallery-container">
+                <form action="{{ route('updatePhoto') }}" method="post" enctype="multipart/form-data">
+                    @csrf                    
+                    <input type="file" class="jfilestyle" data-placeholder="Seleccionar imagen" name="photo" accept="image/*" required />
+                    <input type="submit" class="actualizar-foto" value="Actualizar" />
+                    <input type="hidden" name="id" value="{{ $photo->id }}" />
+                    <input type="hidden" name="actual_photo" value="{{ $photo->photo }}" />
+                </form>
+                <img class="update-image-button" src="{{ asset('svg/update.svg') }}" title="Actualizar imagen" />
+                <img class="delete-image-button" src="{{ asset('svg/delete.svg') }}" title="Borrar imagen" />
+                <img class="photo-gallery" src="{{ asset('img/galleries/'.$photo->photo) }}" />
+            </div> 
+            <div class="status"></div>
+            <div class="data">
+                <p title="Editar">{{ $photo->title }}</p>
+                <form action="{{ route('updateTitlePhotoGallery') }}" method="post">
+                    @csrf                           
+                    <input type="text" name="title" class="input" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
+                    <input type="submit" class="actualizar-datos" value="Actualizar" /> 
+                    <input type="hidden" name="id" value="{{ $photo->id }}" />
+                </form>
+            </div>                   
         </fieldset>
         @empty
         <p>No hay fotos</p>
         @endforelse
-    <script type="text/javascript">
-        //MOSTRAR INPUT TITULO
-        function verInputTitleGallery() {
-            $('div#container-gallery-title').fadeOut('fast', function(){
-                $('div#container-gallery-title-input').fadeIn('fast', function(){ 
-                   $('input#title').focus();
-                });    
-            });
-            
-            $('input#title').focusout(function(){
-                $('div#container-gallery-title-input').fadeOut('fast', function(){ 
-                   $('div#container-gallery-title').fadeIn();
-                });               
-            });
-        } 
-        //MOSTRAR TEXTAREA COPETE
-        function verInputCopeteGallery(id) {
-            $('div#container-gallery-copete').fadeOut('fast', function(){
-                $('div#container-gallery-copete-input').fadeIn('fast', function(){ 
-                   $('textarea#copete').focus(); 
-                });    
-            });
-            
-            $('textarea#copete').focusout(function(){
-                $('div#container-gallery-copete-input').fadeOut('fast', function(){ 
-                   $('div#container-gallery-copete').fadeIn();
-                });               
-            });
-        }
-        //MOSTRAR INPUT FOTOS
-        function verInputTitleFoto(id) {
-            $('div#title-'+id).fadeOut('fast', function(){
-                $('div#input-'+id).fadeIn('fast', function(){ 
-                   $('input#input-title-'+id).focus(); 
-                });    
-            });
-            
-            $('input#input-title-'+id).focusout(function(){
-                $('div#input-'+id).fadeOut('fast', function(){ 
-                   $('div#title-'+id).fadeIn();
-                });               
-            });
-        }
-        //ACTUALIZAR TITULO GALERIA
-        function actualizarTituloGaleria(id) {
-            $.ajax({
-                url: '/dashboard/update/gallery/title/'+id,
-                type: 'post',
-                data: $('form#titulo').serialize(),
-                error: function (xhr) {
-                        var errors = xhr.responseJSON.errors;
-                        $.each(errors, function(key,value) {
-                            $('#errors').append('<p class="invalid-feedback">'+value+'</p>');       
-                        });
-                    console.log(errors);
-                },
-                success: function(response) {
-                    $('p#gallery-title').remove();
-                    $('div#container-gallery-title-input').fadeOut('fast', function() {                       
-                        $('div#container-gallery-title').append('<p onclick="verInputTitleGallery()" id="gallery-title" title="Editar título" class="photo-title">'+response+'</p>').show();    
-                        }); 
-                    console.log(response);
-                }
-            });
-            $('p.invalid-feedback').hide();
-        }
-        //ACTUALIZAR COPETE GALERIA
-        function actualizarCopeteGaleria(id) {
-            $.ajax({
-                url: '/dashboard/update/gallery/article_desc/'+id,
-                type: 'post',
-                data: $('form#copete').serialize(),
-                error: function (xhr) {
-                        var errors = xhr.responseJSON.errors;
-                        $.each(errors, function(key,value) {
-                            $('#errors').append('<p class="invalid-feedback">'+value+'</p>');       
-                        });
-                    console.log(errors);
-                },
-                success: function(response) {
-                    $('p#copete').remove();
-                    $('div#container-gallery-copete-input').fadeOut('fast', function() {                       
-                        $('div#container-gallery-copete').append('<p onclick="verInputCopeteGallery()" id="copete" title="Editar copete" class="photo-title">'+response+'</p>').show();    
-                        }); 
-                    console.log(response);
-                }
-            });
-            $('p.invalid-feedback').hide();
-        }
-        //ACTUALIZAR TITULO FOTOS
-        function actualizarTituloFoto(id) {
-            $.ajax({
-                url: '/dashboard/update/gallery/photo/title/'+id,
-                headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
-                type: 'post',
-                data: $('#input-title-'+id).serialize(),
-                success: function(response) {
-                    $('p#p-'+id).remove();
-                    $('div#input-'+id).fadeOut('fast', function() {                       
-                        $('div#title-'+id).append('<p onclick="verInputTitleFoto('+id+')" id="p-'+id+'" title="Editar título" class="photo-title">'+response+'</p>').show();    
-                        }); 
-                    console.log(response);
-                }
-            });
-        }        
-        //ELIMINAR FOTO Y TITULO
-        function eliminarFoto(id) {
-            if (confirm("¿Estás seguro que quieres eliminar la foto?")) {
-                $.ajax({
-                   url: '/dashboard/delete/gallery/photo/' + id,
-                   headers: {'X-CSRF-TOKEN': "{{ csrf_token() }}"},
-                   type: 'post',
-                   success: function(response) {
-                       $('fieldset#'+id).slideUp('slow');
-                       console.log(response);
-                   }
+    <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
+    <script type="text/javascript">       
+        $(document).ready(function () {                                            
+           
+            //MOSTRAR FORMULARIOS
+            $('div.data p').click(function(){
+                
+                var parrafo = $(this);
+                var form = $(this).parent('div').children('form');
+                var input = $(form).children('.input');
+
+                $(this).fadeOut('fast', function(){                       
+                    $(form).fadeIn('fast', function(){                           
+                        $(input).focus();                               
+                    });
                 });
-            } return false;
-        }
+
+                $(form).on('focusout', function(){                                   
+                    $(form).fadeOut('fast', function(){                                        
+                        $(parrafo).fadeIn('fast');                               
+                    });
+                });
+            });
+
+            //MOSTRAR FORM ACTUALIZAR FOTO
+            $('img.update-image-button').on('click', function(){
+
+                var form = $(this).parent('div').children('form');
+                $(form).toggle('linear');
+            });
+
+            //ACTUALIZAR DATOS
+            $('input[type=submit].actualizar-datos').on('click', function(event){
+                event.stopPropagation();
+                event.preventDefault();
+                
+                var div = $(this).parents('div.data');
+                var parrafo = $(div).children('p');
+                var form = $(div).children('form');
+                var inputName = $(form).children('.input').attr('name');
+                var divStatus = $(div).prev('div.status');
+                
+                $.ajax({
+                    success: mostrarRespuesta,
+                    error: mostrarError,
+                    data: $(form).serialize(),
+                    url: $(form).prop('action'),
+                    type: $(form).prop('method'),
+                    datatype: 'json',
+                    async: true
+                });
+                
+                function mostrarRespuesta(data){ 
+
+                    var content = data[inputName];
+                    if(data['Error']){
+
+                        $(divStatus).hide().append('<p class="invalid-feedback">'+data['Error']+'</p>').fadeIn('fast'); 
+
+                    } else {
+
+                        $(divStatus).hide().append('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow'); 
+                        $(form).hide(0, function(){
+                            $(form).children('.input').focusout();                         
+                            $(parrafo).text(content);                           
+                        });                      
+                        setTimeout(function(){
+                            $('p.alert-success').fadeOut('slow', function(){
+                                $('p.alert-success').remove();
+                            });
+                        }, 2000);                        
+                    } console.log(data);
+                };
+                
+                function mostrarError(xhr){
+
+                    var errors = xhr.responseJSON.errors;                   
+                    $.each(errors, function(key,value){
+                        $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
+                    }); 
+                    console.log(errors);
+                };               
+                $('p.invalid-feedback').remove();
+            });
+
+            //ACTUALIZAR FOTO
+            $('input[type=submit].actualizar-foto').click(function(event){
+                event.stopPropagation();
+                event.preventDefault();
+                
+                var div = $(this).parents('div.photo-gallery-container');
+                var form = $(div).children('form');
+                var formData = new FormData(form[0]);
+                var divStatus = $(div).prev('div.status');
+                var fotoActual =  $(div).children('img.photo-gallery'); 
+                
+                $.ajax({
+                    success: mostrarRespuesta,
+                    error: mostrarError,
+                    data: formData,
+                    url: $(form).prop('action'),
+                    type: $(form).prop('method'),
+                    datatype: 'json',
+                    processData: false,
+                    contentType: false,
+                    async: true
+                });
+                
+                function mostrarRespuesta(data){ 
+
+                    if(data['Error']){
+
+                        $(divStatus).hide().append('<p class="invalid-feedback">'+data['Error']+'</p>').fadeIn('fast'); 
+
+                    } else {
+
+                        $(divStatus).hide().append('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow'); 
+                        $(form).hide(0, function(){
+                            $(fotoActual).remove();
+                            $(form).children('input[name=actual_photo]').attr('value', data['Imagen']);
+                            $(div).prepend('<img class="photo-gallery" src="img/galleries/'+data['Imagen']+'" />');
+                        });                      
+                        setTimeout(function(){
+                            $('p.alert-success').fadeOut('slow', function(){
+                                $('p.alert-success').remove();
+                            });
+                        }, 2000);                        
+                    } console.log(data);
+                };
+                
+                function mostrarError(xhr){
+
+                    var errors = xhr.responseJSON.errors;                   
+                    $.each(errors, function(key,value){
+                        $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
+                    }); 
+                    console.log(errors);
+                };               
+                $('p.invalid-feedback').remove();
+            });  
+
+            //ELIMINAR FOTO
+            $('img.delete-image-button').click(function(){
+                
+                $('p.invalid-feedback').remove();
+
+                var fieldset = $(this).parents('fieldset');
+                var id = $(fieldset).data('id');
+
+                if (confirm("¿Estás seguro que quieres eliminar la imagen?")) {
+
+                    $.ajax({
+                        url: '{!! route('deletePhotoGallery') !!}',
+                        type: 'POST',
+                        data: { 'id': id, '_token': '{!! csrf_token() !!}' },
+                        success: function(data){
+                            if(data['Error']){
+
+                                $('<p class="invalid-feedback">'+data['Error']+'</p>').prependTo(fieldset).hide().fadeIn('slow');
+
+                            } else {
+
+                                $(fieldset).fadeOut('slow', function(){
+                                    $(fieldset).before('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow');
+                                    $(fieldset).remove();                               
+                                });
+                                setTimeout(function(){
+                                    $('p.alert-success').fadeOut('slow', function(){
+                                        $('p.alert-success').remove();
+                                    });
+                                }, 2000);
+                            }
+                        },
+                        error: function(data){
+                            $('<p class="invalid-feedback">'+data['Error']+'</p>').prependTo(fieldset).hide().fadeIn('slow');
+                        }
+                    });
+
+                } return false;
+            });
+            
+            //CARGAR MAS FOTOS
+            $('input#enviar').click(function(){
+                
+                $('p.invalid-feedback').remove();
+                $.ajax({
+                    url: '{!! route('morePhotos') !!}',
+                    type: 'POST',
+                    data: { 'id': '{!! $gallery->id !!}', '_token': '{!! csrf_token() !!}' },                  
+                    success: function(data){
+                        if(data['Error']){
+                            $('<p class="invalid-feedback">'+data['Error']+'</p>').prependTo('fieldset#cargar').hide().fadeIn('slow');
+                        } else {
+                            $('div#Article-container').html(data);
+                        }
+                    },
+                    error: function(data){
+                        $('<p class="invalid-feedback">'+data['Error']+'</p>').prependTo('fieldset#cargar').hide().fadeIn('slow');
+                    }
+                });
+            });
+        });
     </script>
 </div>

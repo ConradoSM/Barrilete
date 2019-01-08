@@ -1,4 +1,7 @@
 <div id="Article-container">
+    @if (isset($Exito))
+    <p class="alert-success">{{ $Exito }}</p>
+    @endif
     <h1>Administra el artículo</h1>
     <div class="article-admin">
         @if (Auth::user()->is_admin)
@@ -35,71 +38,5 @@
         <hr />
         {!! $article->article_body !!}
     </article>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            
-            //BOTÓN PUBLICAR ARTÍCULO
-            $('div.article-admin a#publish').each(function () {
-
-                var href = $(this).attr('href');
-                $(this).attr({href: '#'});
-
-                $(this).on('click', function () {
-                    
-                    if (confirm("¿Estás seguro que quieres publicar el artículo?")) {
-
-                        $('#loader').fadeIn('fast', 'linear');
-                        $('#Article-container').hide(0, function () {
-                            $('#loader').fadeOut('fast', 'linear', function () {
-                                $('#user-content').load(href, function () {                               
-                                    $('#user-content').fadeIn('slow', 'linear');
-                                });
-                            });
-                        });
-                    } return false;
-                });
-            });
-
-            //BOTÓN BORRAR ARTÍCULO
-            $('div.article-admin a#delete').each(function () {
-
-                var href = $(this).attr('href');
-                $(this).attr({href: '#'});
-
-                $(this).click(function () {
-                    
-                    if (confirm("¿Estás seguro que quieres eliminar el artículo?")) {
-
-                        $('#loader').fadeIn('fast', 'linear');
-                        $('#Article-container').hide(0, function () {
-                            $('#loader').fadeOut('fast', 'linear', function () {
-                                $('#user-content').load(href, function () {
-                                    $('#user-content').fadeIn('slow', 'linear');
-                                });
-                            });
-                        });
-                    } return false;
-                });
-            });
-
-            //BOTÓN EDITAR ARTÍCULO
-            $('div.article-admin a#edit').each(function () {
-
-                var href = $(this).attr('href');
-                $(this).attr({href: '#'});
-
-                $(this).click(function () {
-
-                    $('#loader').fadeIn('fast', 'linear');
-                    $('#Article-container').hide(0, function () {
-                        $('#loader').fadeOut('fast', 'linear', function () {                           
-                            $('#user-content').load(href, function () {                           
-                                $('#user-content').fadeIn('slow', 'linear');
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    </script>
+<script type="text/javascript" src="{{ asset('js/admin-links.js') }}"></script>
 </div>

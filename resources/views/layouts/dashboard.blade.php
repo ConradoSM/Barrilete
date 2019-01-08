@@ -21,29 +21,6 @@
         <footer>
             <div class="footerContainer">
                 <div>
-                    <h2>Secciones</h2>
-                    <ul>
-                        <li><a href="{{ route('section', ['seccion' => 'sociedad']) }}" title="Sociedad">SOCIEDAD</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'politica']) }}" title="Política">POLITICA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'economia']) }}" title="Economía">ECONOMIA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'internacionales']) }}" title="Mundo">MUNDO</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'deportes']) }}" title="Deportes">DEPORTES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'cultura']) }}" title="Cultura">CULTURA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'tecno']) }}" title="Tecnología">TECNOLOGIA</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'editoriales']) }}" title="Editoriales">EDITORIALES</a></li>
-                        <li><a href="{{ route('section', ['seccion' => 'galerias']) }}">GALERIAS</a>
-                    </ul>   
-                </div>
-                <div>
-                    <h2>Ingreso al sistema</h2>
-                    <ul>@guest
-                        <li><a href="{{ route('login') }}">LOGIN</a></li>
-                        <li><a href="{{ route('register') }}">REGISTRO</a></li>
-                        <li><a href="{{ route('password.request') }}">OLVIDÉ MI CONTRASEÑA</a></li>
-                        @else
-                        <li><a href="{{ route('dashboard') }}">PANEL DE CONTROL</a></li>
-                        @endguest
-                    </ul>
                     <h2>Contacto</h2>
                     <ul>
                         <li><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></li>

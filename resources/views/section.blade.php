@@ -13,7 +13,7 @@
         <img src="{{ asset('/img/articles/.thumbs/images/'.$sec->photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" />
         @endif
         <a href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}">{{ $sec -> title  }}</a>
-        <p>{{ $sec -> articles_desc }}</p>
+        <p>{{ $sec -> article_desc }}</p>
     </article>
 @empty
     <h1>No hay artículos para mostrar</h1>

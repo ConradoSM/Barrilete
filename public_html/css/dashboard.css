@@ -1,862 +1,318 @@
-@media (max-width: 575.98px) {
-    div.dashboard-container {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-        height: auto;
-    }
-    div.dashboard-login {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-        height: auto;
-        background-color: rgba(235,235,235,1);
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 3px #000;
-    }
-    div.dashboard-login p {
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
-    div.dashboard-login p img {
-        width: auto;
-        height: 1.2em;
-        vertical-align: middle; 
-    }
-    div.dashboard-login input[type=password], input[type=email]{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        -webkit-appearance: none;
-        box-shadow: 0px 0px 3px #999;
-        font-size: 1.2em;
-    }
-    div.dashboard-login input[type=password].is-invalid, input[type=email].is-invalid{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #c71a1a;     
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit] {
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin: 10px 0px;
-        background-color: #006699;
-        color: #fff;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #999;
-        cursor: pointer;
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit]:hover {
-        background-color: #2196F3;
-        transition: 0.3s;
-    }
-    div.dashboard-login p.invalid-feedback {
-        background-color: #f9bfbf;
-        padding: 10px;
-        color: #c71a1a;
-        margin: 10px 0px;
-        border-radius: 5px;
-    }
-    /* Customize the label (the container) */
-    div.dashboard-login .check-container {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 1em;
-        user-select: none;
-    }
-
-    /* Hide the browser's default checkbox */
-    div.dashboard-login .check-container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    /* Create a custom checkbox */
-    div.dashboard-login .check-mark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px #999;
-        border-radius: 3px;
-    }
-
-    /* On mouse-over, add a grey background color */
-    div.dashboard-login .check-container:hover input ~ .check-mark {
-        background-color: #ccc;
-        box-shadow: none;
-        transition: 0.3s;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    div.dashboard-login .check-container input:checked ~ .check-mark {
-        background-color: #2196F3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    div.dashboard-login .check-mark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    /* Show the checkmark when checked */
-    div.dashboard-login .check-container input:checked ~ .check-mark:after {
-        display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    div.dashboard-login .check-container .check-mark:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        transform: rotate(45deg);
-    }   
+/*DIV CONTENEDOR*/
+div.dashboard-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 500px;
+    background-image: url('/img/background-login-04.jpg');
+    background-size: 100% 100%;
 }
-@media (min-width: 576px) and (max-width: 767.98px) {
-    div.dashboard-container {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-        height: auto;
-    }
-    div.dashboard-login {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-        height: auto;
-        background-color: rgba(235,235,235,1);
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 3px #000;
-    }
-    div.dashboard-login p {
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
-    div.dashboard-login p img {
-        width: auto;
-        height: 1.2em;
-        vertical-align: middle; 
-    }
-    div.dashboard-login input[type=password], input[type=email]{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        -webkit-appearance: none;
-        box-shadow: 0px 0px 3px #999;
-        font-size: 1.2em;
-    }
-    div.dashboard-login input[type=password].is-invalid, input[type=email].is-invalid{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #c71a1a;
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit] {
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin: 10px 0px;
-        background-color: #006699;
-        color: #fff;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #999;
-        cursor: pointer;
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit]:hover {
-        background-color: #2196F3;
-        transition: 0.3s;
-    }
-    div.dashboard-login p.invalid-feedback {
-        background-color: #f9bfbf;
-        padding: 10px;
-        color: #c71a1a;
-        margin: 10px 0px;
-        border-radius: 5px;
-    }
-    /* Customize the label (the container) */
-    div.dashboard-login .check-container {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 1em;
-        user-select: none;
-    }
-
-    /* Hide the browser's default checkbox */
-    div.dashboard-login .check-container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    /* Create a custom checkbox */
-    div.dashboard-login .check-mark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px #999;
-        border-radius: 3px;
-    }
-
-    /* On mouse-over, add a grey background color */
-    div.dashboard-login .check-container:hover input ~ .check-mark {
-        background-color: #ccc;
-        box-shadow: none;
-        transition: 0.3s;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    div.dashboard-login .check-container input:checked ~ .check-mark {
-        background-color: #2196F3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    div.dashboard-login .check-mark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    /* Show the checkmark when checked */
-    div.dashboard-login .check-container input:checked ~ .check-mark:after {
-        display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    div.dashboard-login .check-container .check-mark:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        transform: rotate(45deg);
-    }   
+/*DIV LOGIN*/
+div.dashboard-login {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 60%;
+    height: auto;
+    background-color: rgba(242,243,244,0.6);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px #000;
 }
-@media (min-width: 768px) and (max-width: 991.98px) {
-    div.dashboard-container {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-        height: auto;
-    }
-    div.dashboard-login {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-        height: auto;
-        background-color: rgba(235,235,235,1);
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 3px #000;
-    }
-    div.dashboard-login p {
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
-    div.dashboard-login p img {
-        width: auto;
-        height: 1.2em;
-        vertical-align: middle; 
-    }
-    div.dashboard-login input[type=password], input[type=email]{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        -webkit-appearance: none;
-        box-shadow: 0px 0px 3px #999;
-        font-size: 1.2em;
-    }
-    div.dashboard-login input[type=password].is-invalid, input[type=email].is-invalid{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #c71a1a;
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit] {
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin: 10px 0px;
-        background-color: #006699;
-        color: #fff;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #999;
-        cursor: pointer;
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit]:hover {
-        background-color: #2196F3;
-        transition: 0.3s;
-    }
-    div.dashboard-login p.invalid-feedback {
-        background-color: #f9bfbf;
-        padding: 10px;
-        color: #c71a1a;
-        margin: 10px 0px;
-        border-radius: 5px;
-    }
-    /* Customize the label (the container) */
-    div.dashboard-login .check-container {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 1em;
-        user-select: none;
-    }
-
-    /* Hide the browser's default checkbox */
-    div.dashboard-login .check-container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    /* Create a custom checkbox */
-    div.dashboard-login .check-mark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px #999;
-        border-radius: 3px;
-    }
-
-    /* On mouse-over, add a grey background color */
-    div.dashboard-login .check-container:hover input ~ .check-mark {
-        background-color: #ccc;
-        box-shadow: none;
-        transition: 0.3s;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    div.dashboard-login .check-container input:checked ~ .check-mark {
-        background-color: #2196F3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    div.dashboard-login .check-mark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    /* Show the checkmark when checked */
-    div.dashboard-login .check-container input:checked ~ .check-mark:after {
-        display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    div.dashboard-login .check-container .check-mark:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        transform: rotate(45deg);
-    }   
+div.dashboard-login p {
+    font-size: 2em;
+    margin-bottom: 20px;
 }
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    div.dashboard-container {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 650px;
-        background-image: url('/img/background-login-00.jpg');
-        background-size: 100% 100%;
-    }
-    div.dashboard-login {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 60%;
-        height: auto;
-        background-color: rgba(255,255,255,0.6);
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 3px #000;
-    }
-    div.dashboard-login p {
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
-    div.dashboard-login p img {
-        width: auto;
-        height: 1.2em;
-        vertical-align: middle; 
-    }
-    div.dashboard-login input[type=password], input[type=email]{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        -webkit-appearance: none;
-        box-shadow: 0px 0px 3px #999;
-        font-size: 1.2em;
-    }
-    div.dashboard-login input[type=password].is-invalid, input[type=email].is-invalid{
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #c71a1a;
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit] {
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 10px;
-        margin: 10px 0px;
-        background-color: #006699;
-        color: #fff;
-        border: 0px; 
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px #999;
-        cursor: pointer;
-        font-size: 1.2em;
-    }
-    div.dashboard-login button[type=submit]:hover {
-        background-color: #2196F3;
-        transition: 0.3s;
-    }
-    div.dashboard-login p.invalid-feedback {
-        background-color: #f9bfbf;
-        padding: 10px;
-        color: #c71a1a;
-        margin: 10px 0px;
-        border-radius: 5px;
-    }
-    /* Customize the label (the container) */
-    div.dashboard-login .check-container {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 1em;
-        user-select: none;
-    }
-
-    /* Hide the browser's default checkbox */
-    div.dashboard-login .check-container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-
-    /* Create a custom checkbox */
-    div.dashboard-login .check-mark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px #999;
-        border-radius: 3px;
-    }
-
-    /* On mouse-over, add a grey background color */
-    div.dashboard-login .check-container:hover input ~ .check-mark {
-        background-color: #ccc;
-        box-shadow: none;
-        transition: 0.3s;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    div.dashboard-login .check-container input:checked ~ .check-mark {
-        background-color: #2196F3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    div.dashboard-login .check-mark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-    /* Show the checkmark when checked */
-    div.dashboard-login .check-container input:checked ~ .check-mark:after {
-        display: block;
-    }
-
-    /* Style the checkmark/indicator */
-    div.dashboard-login .check-container .check-mark:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        transform: rotate(45deg);
-    }   
+div.dashboard-login a {
+    display: block;
+    font-size: 1em;
+    margin-top: 10px;
 }
-@media (min-width: 1200px) {
-    /*DIV CONTENEDOR*/
-    div.dashboard-container {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 650px;
-        background-image: url('/img/background-login-04.jpg');
-        background-size: 100% 100%;
-    }
-    /*DIV LOGIN*/
-    div.dashboard-login {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 60%;
-        height: auto;
-        background-color: rgba(242,243,244,0.6);
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 3px #000;
-    }
-    div.dashboard-login p {
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
-    div.dashboard-login a {
-        display: block;
-        font-size: 1em;
-        margin-top: 10px;
-    }
-    div.dashboard-login p img {
-        width: auto;
-        height: 1.3em;
-        vertical-align: middle; 
-        margin-right: 10px;
-    }
-    p.alert-success {
-        background-color: #82e0aa;
-        padding: 10px;
-        color:  #1d8348;
-        margin: 10px 0px;
-        border-radius: 3px; 
-        font-size: 1.3em;
-    }
-    p.invalid-feedback {
-        background-color: #f9bfbf;
-        padding: 10px;
-        color: #c71a1a;
-        margin: 10px 0px;
-        border-radius: 3px;
-        font-size: 1.3em;
-    } 
-    /*DIV DASHBOARD MAIN CONTAINER*/
-    section.dashboard {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        width: 100%;
-        max-width: 1300px;
-        height: auto;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px 0px rgba(189,189,217,0.7);
-    }
-    div#loader {
-        width: 75%;
-        height: auto;
-        display: none;
-    }
-    div#loader img {
-        width: 128px;
-        height: 128px;
-    }
-    /*DIV USER BAR*/
-    div#user-nav-options {
-        display: none;
-    }
-    section.dashboard div.tools {
-        position: relative;
-        width: 100%;
-        height: 78px;
-        background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-    }
-    div.dashboard-title {
-        width: 25%;
-        height: 78px;
-        padding: 10px;
-    }
-    div.dashboard-title img {
-        width: auto;
-        height: 55px;
-        filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
-        cursor: pointer;
-    }
-    div.dashboard-title img:hover {
-        opacity: 0.8;
-    }
-    section.dashboard div.tools div.user-options {
-        position: absolute;
-        display: block;
-        right: 10px;
-        top: 10px;
-        width: auto;
-        height: auto;
-        padding: 10px;
-        background-color: rgba(85,172,238,1.00);
-        border-radius: 3px;
-        transition: 0.3s;
-    }
-    section.dashboard div.tools div.user-options:hover {
-        background-color: #f2f3f4;
-        box-shadow: 0px 0px 3px 0px #999;
-    }     
-    section.dashboard div.tools div.user-options p {
-        font-size: 1.6em;
-        font-weight: bold;
-        cursor: default;
-        margin: 0px;
-    }
-    section.dashboard div.tools div.user-options img {
-        height: 1.1em;
-        width: auto;
-        margin-left: 10px;
-        margin-top: -3px;
-        vertical-align: middle;
-    }
-    /*NAV BAR USER OPTIONS*/
-    div#user-nav-options {
-        margin-top: 10px;
-    }
-    section.dashboard div.tools div.user-options a {
-        display: block;
-        width: 100%;
-        height: auto;
-        padding: 5px;
-        color: #000;
-        font-size: 1.3em; 
-        font-weight: bold;
-    }
-    section.dashboard div.tools div.user-options a:visited {
-        color: #000;
-    }
-    section.dashboard div.tools div.user-options a:hover {
-        opacity: 0.6;
-    }
-    section.dashboard div.tools div.user-options a img {
-        height: 1.2em;
-        width: auto;
-        margin-right: 10px;
-        margin-left: 0px;
-        vertical-align: middle;
-    }
-    section.dashboard div.tools-bar {
-        width: 25%;
-        background-color: #f2f9fe;
-        padding: 10px 20px 0px 20px;
-        box-shadow: inset 0px 0px 3px 0px #d0e4f5;
-    }
-    section.dashboard div.tools-bar h2 {
-        color: #000;
-        font-size: 1.7em;
-        margin-top: 0px;
-        margin-bottom: 20px;
-    }
-    section.dashboard div.tools-bar a {
-        display: block;
-        width: auto;
-        color: #000;
-        padding: 5px 10px 10px 10px;
-        margin-bottom: 20px;
-        font-size: 1.5em;
-    }
-    section.dashboard div.tools-bar a.selected {
-        background-color: #f2f3f4;
-        box-shadow: 0px 0px 3px 0px #999;   
-        border-radius: 3px;
-        cursor: default;
-    }
-    section.dashboard div.tools-bar a.selected:hover {
-        opacity: 1;
-        text-decoration: none;
-    }
-    section.dashboard div.tools-bar a:hover {
-        opacity: 0.8;
-        text-decoration: underline;
-        transition: 0.3s;
-    }
-    section.dashboard div.tools-bar a img {
-        height: 1em;
-        width: auto;
-        margin-right: 20px;
-        vertical-align: middle;
-    }
-    div#user-content {
-        width: 75%;
-        height: auto;
-        padding-left: 10px;
-        padding-right: 10px;
-    } 
-    div.article-admin {
-        width: auto;
-        height: auto;
-        margin-bottom: 10px;
-    }
-    a.delete {
-        padding: 0px 20px 3px 25px;
-        background-color: #cb4335;
-        color: #fff;
-        border-radius: 3px;
-        box-shadow: inset 0px 0px 2px 0px #641e16; 
-        text-shadow:  1px 1px 0px #000;
-    }
-    a.delete:hover {
-        background-color: #b03a2e;
-        transition: 0.3s;
-    }
-    a.edit {
-        padding: 0px 20px 3px 25px;
-        background-color: #28b463;
-        color: #fff;
-        border-radius: 3px;
-        box-shadow: inset 0px 0px 2px 0px #186a3b;
-        text-shadow: 1px 1px 0px #000; 
-    }
-    a.edit:hover {
-        background-color: #239b56;
-        transition: 0.3s;
-    }
-    a.disabled {
-        padding: 0px 20px 3px 25px;
-        background-color: #d5d8dc;
-        color: #333;
-        border-radius: 3px;
-        box-shadow: inset 0px 0px 2px 0px #abb2b9;
-        text-shadow: 1px 1px 0px #fff;
-        cursor: default;
-    }
-    img.delete-button {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        width: 49px;
-        height: 49px;
-        padding: 10px;
-        border-radius: 3px;
-        cursor: pointer;
-        background-color: #c71a1a;
-        z-index: 2;
-    }
-    img.delete-button:hover {
-        background-color: #e53838;
-        transition: 0.3s;
-    }
-    img.update-button {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        height: 49px;
-        width: auto;
-        background-color: #2ecc71;
-        padding: 7px;
-        border-radius: 0px 3px 3px 0px;
-        cursor: pointer;
-    }
-    img.update-button:hover {
-        background-color: #82e0aa;
-        transition: 0.3s;
-    }
-    div.title-photo {
-        display: none;
-    }
-    p.photo-title {
-        padding: 10px;
-        margin-top: 10px;
-        margin-bottom: 0px;
-        font-size: 1.2em;
-    }
-    p.photo-title:hover {
-        background-color: #caced2;
-        transition: 0.3s;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-    textarea#copete {
-        margin-bottom: 10px;
-    }
-    img.photo-gallery {
-        width: 100%;
-        height: auto;
-        margin: 0px;
-        z-index: 1;
-    }
+div.dashboard-login p img {
+    width: auto;
+    height: 1.3em;
+    vertical-align: middle; 
+    margin-right: 10px;
+}
+p.alert-success {
+    background-color: #82e0aa;
+    padding: 10px;
+    color:  #1d8348;
+    margin: 10px 0px;
+    border-radius: 3px; 
+    font-size: 1.3em;
+}
+p.invalid-feedback {
+    background-color: #f9bfbf;
+    padding: 10px;
+    color: #c71a1a;
+    margin: 10px 0px;
+    border-radius: 3px;
+    font-size: 1.3em;
+} 
+/*DIV DASHBOARD MAIN CONTAINER*/
+section.dashboard {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 3px 0px rgba(189,189,217,0.7);
+}
+div#loader {
+    width: 75%;
+    height: auto;
+    display: none;
+}
+div#loader img {
+    width: 128px;
+    height: 128px;
+}
+/*DIV USER BAR*/
+div#user-nav-options {
+    display: none;
+}
+section.dashboard div.tools {
+    position: relative;
+    width: 100%;
+    height: 78px;
+    background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
+}
+div.dashboard-title {
+    width: 25%;
+    height: 78px;
+    padding: 10px;
+}
+div.dashboard-title img {
+    width: auto;
+    height: 55px;
+    filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
+    cursor: pointer;
+}
+div.dashboard-title img:hover {
+    opacity: 0.8;
+}
+section.dashboard div.tools div.user-options {
+    position: absolute;
+    display: block;
+    right: 10px;
+    top: 10px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    background-color: rgba(85,172,238,1.00);
+    border-radius: 3px;
+    transition: 0.3s;
+}
+section.dashboard div.tools div.user-options:hover {
+    background-color: #f2f3f4;
+    box-shadow: 0px 0px 3px 0px #999;
+}     
+section.dashboard div.tools div.user-options p {
+    font-size: 1.6em;
+    font-weight: bold;
+    cursor: default;
+    margin: 0px;
+}
+section.dashboard div.tools div.user-options img {
+    height: 1.1em;
+    width: auto;
+    margin-left: 10px;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+/*NAV BAR USER OPTIONS*/
+div#user-nav-options {
+    margin-top: 10px;
+}
+section.dashboard div.tools div.user-options a {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    color: #000;
+    font-size: 1.3em; 
+    font-weight: bold;
+}
+section.dashboard div.tools div.user-options a:visited {
+    color: #000;
+}
+section.dashboard div.tools div.user-options a:hover {
+    opacity: 0.6;
+}
+section.dashboard div.tools div.user-options a img {
+    height: 1.2em;
+    width: auto;
+    margin-right: 10px;
+    margin-left: 0px;
+    vertical-align: middle;
+}
+section.dashboard div.tools-bar {
+    width: 25%;
+    background-color: #f2f9fe;
+    padding: 10px 20px 0px 20px;
+    box-shadow: inset 0px 0px 3px 0px #d0e4f5;
+}
+section.dashboard div.tools-bar h2 {
+    color: #000;
+    font-size: 1.7em;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+section.dashboard div.tools-bar a {
+    display: block;
+    width: auto;
+    color: #000;
+    padding: 5px 10px 10px 10px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+section.dashboard div.tools-bar a.selected {
+    background-color: #f2f3f4;
+    box-shadow: 0px 0px 3px 0px #999;   
+    border-radius: 3px;
+    cursor: default;
+}
+section.dashboard div.tools-bar a.selected:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+section.dashboard div.tools-bar a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+    transition: 0.3s;
+}
+section.dashboard div.tools-bar a img {
+    height: 1em;
+    width: auto;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+div#user-content {
+    width: 75%;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+} 
+div.article-admin {
+    width: auto;
+    height: auto;
+    margin-bottom: 10px;
+}
+a.delete {
+    padding: 0px 20px 3px 25px;
+    background-color: #cb4335;
+    color: #fff;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 2px 0px #641e16; 
+    text-shadow:  1px 1px 0px #000;
+}
+a.delete:hover {
+    background-color: #b03a2e;
+    transition: 0.3s;
+}
+a.edit {
+    padding: 0px 20px 3px 25px;
+    background-color: #28b463;
+    color: #fff;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 2px 0px #186a3b;
+    text-shadow: 1px 1px 0px #000; 
+}
+a.edit:hover {
+    background-color: #239b56;
+    transition: 0.3s;
+}
+a.disabled {
+    padding: 0px 20px 3px 25px;
+    background-color: #d5d8dc;
+    color: #333;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 2px 0px #abb2b9;
+    text-shadow: 1px 1px 0px #fff;
+    cursor: default;
+}
+/*EDITAR FOTO*/
+div.container-photo-update-form {
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    top: 20px;
+    right: 89px;
+}
+div.photo-gallery-container {
+    position: relative;
+}
+div.photo-gallery-container form {
+    position: absolute;
+    display: none;
+    top: 30px;
+    right: 148px;
+    background-color: #f2f3f4;
+    padding: 10px;
+    border-radius: 3px;
+}
+div.photo-gallery-container .jfilestyle {
+    margin-top: 0px;
+}
+img.photo-gallery {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    z-index: 1;
+}
+img.delete-image-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 49px;
+    height: 49px;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #c71a1a;
+    z-index: 2;
+}
+img.delete-image-button:hover {
+    background-color: #e53838;
+    transition: 0.3s;
+}
+img.update-image-button {
+    position: absolute;
+    top: 30px;
+    right: 89px;
+    width: 49px;
+    height: 49px;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #28b463;
+    z-index: 2;
+}
+img.update-image-button:hover {
+    background-color: #2ecc71;
+    transition: 0.3s;
+}
+/*FORMULARIO EDITAR GALERÍA*/
+div.data form {
+    display: none;
+}
+div.data p {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 1.2em;
+}
+div.data p:hover {
+    background-color: #caced2;
+    transition: 0.3s;
+    border-radius: 3px;
+    cursor: pointer;
+}
+textarea#copete {
+    margin-bottom: 10px;
 }

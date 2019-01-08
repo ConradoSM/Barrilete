@@ -40,9 +40,7 @@ class PollsController extends Controller {
                 return view('poll', compact('poll','poll_options','totalVotes','morePolls'))
                 ->with('status', 'Ya has votado!');
             
-        } else 
-
-            return view('errors.article-error');
+        } else return view('errors.article-error');
         
     }
 
@@ -67,9 +65,7 @@ class PollsController extends Controller {
 
             return redirect('poll/'.$poll_id.'/'. $pollTitle);
             
-        } else
-            
-            return view('errors.article-error');
+        } else return view('errors.article-error');
     }
     
     //MOSTRAR ENCUESTA
@@ -80,13 +76,9 @@ class PollsController extends Controller {
         if ($poll) {
 
             $poll_options = $poll->option;
-
             return view('auth.polls.previewPoll', compact('poll','poll_options'));
                 
-        } else
-
-            return view('auth.polls.pollStatus')
-            ->with('status','error_find');
+        } else return response()->json(['Error' => 'La encuesta no existe.']);
     }
     
     //CREAR ENCUESTA
@@ -123,7 +115,8 @@ class PollsController extends Controller {
         $poll = Poll::find($poll_id);
         $poll_options = $poll->option;
         
-        return view('auth.polls.previewPoll', compact('poll', 'poll_options'));      
+        return view('auth.polls.previewPoll', compact('poll', 'poll_options'))
+        ->with(['Exito' => 'La encuesta se ha creado correctamente.']);      
     }
 
     //BORRAR ENCUESTA
@@ -131,23 +124,16 @@ class PollsController extends Controller {
 
         if ($request->ajax()) {
 
-            $poll = poll::find($id);
+            $poll = Poll::find($id)->first();
 
             if ($poll) {
 
-                    $poll->delete();
-                
-                    return view('auth.polls.pollStatus')
-                    ->with('status','success');
+                $poll->delete();
+                return response()->json(['Exito' => 'La encuesta se ha eliminado correctamente del sistema.']);
 
-                } else  
+            } else return response()->json(['Error' => 'La encuesta no existe.']);
 
-                    return view('auth.polls.pollStatus')
-                    ->with('status','error_find'); 
-
-            } else 
-
-                return 'Debe ser petición AJAX';
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     } 
     
     //PUBLICAR ENCUESTA
@@ -162,11 +148,23 @@ class PollsController extends Controller {
                 $poll->save();
                 $poll_options = $poll->option;
                 
-                return view('auth.polls.previewPoll', compact('poll','poll_options'));
+                return view('auth.polls.previewPoll', compact('poll','poll_options'))
+                ->with(['Exito' => 'La encuesta se ha publicado correctamente.']);
                 
-            } else return view('auth.polls.pollStatus')
-                ->with('status','error_publish');
+            } else return response()->json(['Error' => 'Debes ser administrador del sitio para publicar contenido.']);
             
-        } else return 'Error: ésta no es una petición Ajax!';       
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);       
+    }
+    
+    //FORMULARIO ACTUALIZAR ENCUESTA
+    public function formUpdatePoll($id) {
+        
+        $poll = Poll::find($id);
+        
+        if ($poll) {
+            
+            return view('auth.polls.formPollUpdate', compact('poll'));
+            
+        } else return response()->json(['Error' => 'La encuesta no existe.']);
     }
 }

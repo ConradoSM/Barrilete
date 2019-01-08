@@ -25,24 +25,20 @@ class ArticlesController extends Controller {
 
             return view('article', compact('article', 'moreArticles'));
 
-        } else
-
-            return view('errors.article-error');
+        } else return view('errors.article-error');
     }
     
     //CARGAR ARTÍCULO
     public function createArticle(articleRequest $request) {
-        
-        $file = $request->file('photo');            
-        $filename = time().'-'.$file->getClientOriginalName();
+                    
+        $filename = time().'-'.$request->file('photo')->getClientOriginalName();
         $upload = public_path('img/articles/images/'.$filename); 
         $uploadThumbnail = public_path('img/articles/.thumbs/images/'.$filename);
-        $image = Image::make($file->getRealPath());
-        $thumbnail = Image::make($file)->resize(450, NULL, function($constraint) {
-        $constraint->aspectRatio(); });
-            
-        $thumbnail->save($uploadThumbnail);           
-        $image->save($upload);
+
+        //SUBE FOTO Y MINIATURA AL SERVER
+        Image::make($request->file('photo')->getRealPath())->save($upload);
+        Image::make($request->file('photo')->getRealPath())->resize(450, NULL, function($constraint) {
+        $constraint->aspectRatio(); })->save($uploadThumbnail);
            
         $article = new Articles;
         $article -> user_id = $request['user_id'];
@@ -57,50 +53,22 @@ class ArticlesController extends Controller {
         $article -> status = 'DRAFT';
         $article -> views = 0;        
         $article -> save();
-            
-        return view('auth.articles.previewArticle', compact('article'));           
+        
+        if ($article) {           
+            return view('auth.articles.previewArticle', compact('article'))
+            ->with(['Exito' => 'El artículo se ha creado correctamente.']);
+        
+        } else return response()->json(['Error' => 'Ha ocurrido un error al cargar el artículo.']);
     }
     
     //ACTUALIZAR ARTÍCULO
     public function updateArticle(articleRequest $request, $id) {
         
         $article = Articles::find($id);
-        $filename = $request->file('photo');
         
-        if (empty($filename)) {
-            
-            $article -> user_id = $request['user_id'];
-            $article -> title = $request['title'];
-            $article -> date = $request['date'];
-            $article -> section_id = $request['section_id'];
-            $article -> author = $request['author'];
-            $article -> article_desc = $request['article_desc'];
-            $article -> video = $request['video'];
-            $article -> article_body = $request['article_body'];
-            $article -> status = 'DRAFT';
-            $article -> save(); 
-            
-            return view('auth.articles.previewArticle', compact('article'));
-            
-        } else
-            
-            $image_path = public_path('img/articles/images/'.$article->photo);
-            $image_path_thumb = public_path('img/articles/.thumbs/images/'.$article->photo);
-            
-            if (File::exists($image_path) && File::exists($image_path_thumb)) {
-                
-                File::delete($image_path);
-                File::delete($image_path_thumb);
+        if($article) {
         
-                $file = $request->file('photo');
-                $newFile = time().'-'.$file->getClientOriginalName();
-                $upload = public_path('img/articles/images/'.$newFile); 
-                $uploadThumbnail = public_path('img/articles/.thumbs/images/'.$newFile);
-                $image = Image::make($file->getRealPath());
-                $thumbnail = Image::make($file)->resize(450, NULL, function($constraint) {
-                $constraint->aspectRatio(); });           
-                $thumbnail->save($uploadThumbnail);           
-                $image->save($upload);
+            if (empty($request->file('photo'))) {
 
                 $article -> user_id = $request['user_id'];
                 $article -> title = $request['title'];
@@ -108,39 +76,74 @@ class ArticlesController extends Controller {
                 $article -> section_id = $request['section_id'];
                 $article -> author = $request['author'];
                 $article -> article_desc = $request['article_desc'];
-                $article -> photo = $newFile;
-                $article -> video = $request['video'];
-                $article -> article_body = $request['article_body']; 
-                $article -> status = 'DRAFT';
-                $article -> save();
-                
-                return view('auth.articles.previewArticle', compact('article'));
-                
-            } else
-                
-                $file = $request->file('photo');
-                $newFile = time().'-'.$file->getClientOriginalName();
-                $upload = public_path('img/articles/images/'.$newFile); 
-                $uploadThumbnail = public_path('img/articles/.thumbs/images/'.$filename);
-                $image = Image::make($file->getRealPath());
-                $thumbnail = Image::make($file)->resize(450, NULL, function($constraint) {
-                $constraint->aspectRatio(); });           
-                $thumbnail->save($uploadThumbnail);           
-                $image->save($upload);
-
-                $article -> user_id = $request['user_id'];
-                $article -> title = $request['title'];
-                $article -> date = $request['date'];
-                $article -> section_id = $request['section_id'];
-                $article -> author = $request['author'];
-                $article -> article_desc = $request['article_desc'];
-                $article -> photo = $newFile;
                 $article -> video = $request['video'];
                 $article -> article_body = $request['article_body'];
                 $article -> status = 'DRAFT';
-                $article -> save();
-                
-                return view('auth.articles.previewArticle', compact('article'));       
+                $article -> save(); 
+
+                return view('auth.articles.previewArticle', compact('article'))
+                ->with(['Exito' => 'El artículo se ha actualizado correctamente.']);
+
+            } else
+
+                $image_path = public_path('img/articles/images/'.$article->photo);
+                $image_path_thumb = public_path('img/articles/.thumbs/images/'.$article->photo);
+
+                if (File::exists($image_path) && File::exists($image_path_thumb)) {
+
+                    File::delete($image_path);
+                    File::delete($image_path_thumb);
+
+                    $newFile = time().'-'.$request->file('photo')->getClientOriginalName();
+                    $upload = public_path('img/articles/images/'.$newFile); 
+                    $uploadThumbnail = public_path('img/articles/.thumbs/images/'.$newFile);
+
+                    Image::make($request->file('photo')->getRealPath())->save($upload);
+                    Image::make($request->file('photo')->getRealPath())->resize(450, NULL, function($constraint) {
+                    $constraint->aspectRatio(); })->save($uploadThumbnail);           
+
+                    $article -> user_id = $request['user_id'];
+                    $article -> title = $request['title'];
+                    $article -> date = $request['date'];
+                    $article -> section_id = $request['section_id'];
+                    $article -> author = $request['author'];
+                    $article -> article_desc = $request['article_desc'];
+                    $article -> photo = $newFile;
+                    $article -> video = $request['video'];
+                    $article -> article_body = $request['article_body']; 
+                    $article -> status = 'DRAFT';
+                    $article -> save();
+
+                    return view('auth.articles.previewArticle', compact('article'))
+                    ->with(['Exito' => 'El artículo se ha actualizado correctamente.']);
+
+                } else
+
+                    $newFile = time().'-'.$request->file('photo')->getClientOriginalName();
+                    $upload = public_path('img/articles/images/'.$newFile); 
+                    $uploadThumbnail = public_path('img/articles/.thumbs/images/'.$newFile);
+
+                    Image::make($request->file('photo')->getRealPath())->save($upload);
+                    Image::make($request->file('photo')->getRealPath())->resize(450, NULL, function($constraint) {
+                    $constraint->aspectRatio(); })->save($uploadThumbnail);           
+
+                    $article -> user_id = $request['user_id'];
+                    $article -> title = $request['title'];
+                    $article -> date = $request['date'];
+                    $article -> section_id = $request['section_id'];
+                    $article -> author = $request['author'];
+                    $article -> article_desc = $request['article_desc'];
+                    $article -> photo = $newFile;
+                    $article -> video = $request['video'];
+                    $article -> article_body = $request['article_body'];
+                    $article -> status = 'DRAFT';
+                    $article -> save();
+
+                    return view('auth.articles.previewArticle', compact('article'))
+                    ->with(['Exito' => 'El artículo se ha actualizado correctamente.']);       
+        
+                    
+        } else return resource()->json(['Error' => 'El artículo no existe.']);
     }
     
     //BORRAR ARTÍCULO
@@ -149,10 +152,11 @@ class ArticlesController extends Controller {
         if ($request->ajax()) {
 
             $article = Articles::find($id);
-            $image_path = public_path('img/articles/images/'.$article->photo);
-            $image_path_thumb = public_path('img/articles/.thumbs/images/'.$article->photo);
 
             if ($article) {
+
+                $image_path = public_path('img/articles/images/'.$article->photo);
+                $image_path_thumb = public_path('img/articles/.thumbs/images/'.$article->photo);
 
                 if (File::exists($image_path) && File::exists($image_path_thumb)) {
 
@@ -160,22 +164,16 @@ class ArticlesController extends Controller {
                     File::delete($image_path_thumb);
                     $article->delete();
                     
-                    return view('auth.articles.articleStatus')
-                    ->with('status','success');
+                    return response()->json(['Exito' => 'El artículo se ha borrado del sistema.']);
 
                 } else 
 
-                    $article->delete();
-                
-                    return view('auth.articles.articleStatus')
-                    ->with('status','success');   
+                    $article->delete();                
+                    return response()->json(['Exito' => 'La imagen del artículo no existe, pero el artículo igual se ha borrado del sistema.']);   
 
-            } else 
-
-                return view('auth.articles.articleStatus')
-                ->with('status','error_find');
+            } else return response()->json(['Error' => 'El artículo no existe.']);
             
-        } else return 'Error: ésta no es una petición Ajax!';
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     }
     
     //PREVIEW ARTÍCULO
@@ -189,12 +187,9 @@ class ArticlesController extends Controller {
 
                 return view('auth.articles.previewArticle', compact('article'));
 
-            } else 
-
-                return view('auth.articles.articleStatus')
-                ->with('status','error_find');
+            } else return response()->json(['Error' => 'El artículo no existe.']);
             
-        } else return 'Error: ésta no es una petición Ajax!';           
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);          
     }
     
     //PUBLICAR ARTÍCULO
@@ -208,11 +203,11 @@ class ArticlesController extends Controller {
                 $article->status = 'PUBLISHED';
                 $article->save();
                 
-                return view('auth.articles.previewArticle', compact('article'));
+                return view('auth.articles.previewArticle', compact('article'))
+                ->with(['Exito' => 'El artículo se ha publicado correctamente.']);
                 
-            } else return view('auth.articles.articleStatus')
-                ->with('status','error_publish');
+            } else return response()->json(['Error' => 'Tu no eres administrador del sistema.']);
             
-        } else return 'Error: ésta no es una petición Ajax!';       
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);       
     }
 }

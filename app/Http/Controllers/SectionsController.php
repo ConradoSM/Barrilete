@@ -19,7 +19,7 @@ class SectionsController extends Controller {
             
             $section = $section->first();
             
-            if ($section->name == 'galerias') {
+            if ($section->name == 'galerías') {
                 
                 $galleries = Gallery::galleryHome()->get();
                 

@@ -47,12 +47,13 @@ use barrilete\Sections;
     //DASHBOARD DELETE GALLERY
         Route::get('/dashboard/delete/gallery/{id}','GalleriesController@deleteGallery')->middleware('auth')->name('deleteGallery');
     //DASHBOARD DELETE PHOTO GALLERY
-        Route::post('/dashboard/delete/gallery/photo/{id}','GalleryPhotosController@deletePhotoGallery')->middleware('auth')->name('deletePhotoGallery');
+        Route::post('/dashboard/delete/gallery/photo','GalleryPhotosController@deletePhotoGallery')->middleware('auth')->name('deletePhotoGallery');
     //DASHBOARD UPDATE GALLERY
         Route::get('/dashboard/forms/gallery/update/{id}','DashboardController@formUpdateGallery')->middleware('auth')->name('formUpdateGallery');
-        Route::post('/dashboard/update/gallery/title/{id}','GalleriesController@updateTitleGallery')->middleware('auth')->name('updateTitleGallery');
-        Route::post('/dashboard/update/gallery/article_desc/{id}','GalleriesController@updateArticleDescGallery')->middleware('auth')->name('updateArticleDescGallery');
-        Route::post('/dashboard/update/gallery/photo/title/{id}','GalleryPhotosController@updateTitlePhotoGallery')->middleware('auth')->name('updateTitlePhotoGallery');     
+        Route::post('/dashboard/update/gallery/title','GalleriesController@updateGallery')->middleware('auth')->name('updateGallery');
+        Route::post('/dashboard/update/gallery/photo/title','GalleryPhotosController@updateTitlePhotoGallery')->middleware('auth')->name('updateTitlePhotoGallery');
+        Route::post('/dashboard/update/gallery/photo','GalleryPhotosController@updatePhoto')->middleware('auth')->name('updatePhoto');
+        Route::post('/dashboard/update/gallery/more/photos','GalleriesController@morePhotos')->middleware('auth')->name('morePhotos');       
 
 //DASHBOARD ADMIN POLLS
     //DASHBOARD CREATE POLL
@@ -61,6 +62,8 @@ use barrilete\Sections;
         Route::post('/dashboard/forms/polls/options','PollsController@createOptions')->middleware('auth')->name('createOptions');
     //DASHBOARD DELETE POLL
         Route::get('/dashboard/delete/poll/{id}','PollsController@deletePoll')->middleware('auth')->name('deletePoll');
+    //DASHBOARD UPDATE POLL
+        Route::get('/dashboard/forms/polls/update/{id}','PollsController@formUpdatePoll')->middleware('auth')->name('formUpdatePoll');
 
 //DASHBOARD PREVIEWS
     Route::get('/dashboard/forms/articles/preview/{id}','ArticlesController@previewArticle')->middleware('auth')->name('previewArticle');

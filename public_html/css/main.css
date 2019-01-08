@@ -53,6 +53,7 @@ h3 {
 }
 p {
     font-size: 1.6em;
+    margin: 10px 0px;
 } 
 @media (max-width: 575.98px) { 
     /*********
@@ -286,6 +287,7 @@ p {
         color: #000;
         font-size: 1em; 
         font-weight: bold;
+        text-transform: uppercase; 
     }
     nav.active ul li a:visited {
         color: #000;
@@ -577,6 +579,7 @@ p {
         color: #000;
         font-size: 1em; 
         font-weight: bold;
+        text-transform: uppercase;
     }
     nav.active ul li a:visited {
         color: #000;
@@ -867,6 +870,7 @@ p {
         color: #000;
         font-size: 1.5em; 
         font-weight: bold;
+        text-transform: uppercase;
     }
     nav.active ul li a:visited {
         color: #000;
@@ -1032,6 +1036,7 @@ p {
         border-top: 1px solid rgba(85,172,238,0);
         border-left: 1px solid rgba(85,172,238,0);
         border-right: 1px solid rgba(85,172,238,0);
+        text-transform: uppercase;
     }
     nav ul li a:visited {
         color: #000;
@@ -1077,6 +1082,7 @@ p {
         width: 100%;
         max-width: 992px;
         height: auto;
+        min-height: 500px;
         background-color: rgba(255,255,255,1.00);
         box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
         padding: 10px 10px 10px 10px;
@@ -1116,9 +1122,11 @@ p {
         margin-bottom: 10px;
         font-size: 1.25em;
         list-style: none;
+        margin: 0px;
     }
     footer div.footerContainer div a {
         color: #000000;
+        text-transform: uppercase;
     }
     footer div.footerContainer div a:hover {
         color: #666666;
@@ -1245,8 +1253,9 @@ p {
     nav ul li a {
         padding: 5px 15px 5px 15px;
         color: #000;
-        font-size: 1.6em; 
+        font-size: 1.45em; 
         font-weight: bold;
+        text-transform: uppercase;
         border-top: 1px solid rgba(85,172,238,0);
         border-left: 1px solid rgba(85,172,238,0);
         border-right: 1px solid rgba(85,172,238,0);
@@ -1295,6 +1304,7 @@ p {
         width: 100%;
         max-width: 1200px;
         height: auto;
+        min-height: 500px;
         background-color: rgba(255,255,255,1.00);
         box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
         padding: 10px 10px 10px 10px;
@@ -1334,9 +1344,11 @@ p {
         margin-bottom: 10px;
         font-size: 1.25em;
         list-style: none;
+        margin: 0px;
     }
     footer div.footerContainer div a {
         color: #000000;
+        text-transform: uppercase;
     }
     footer div.footerContainer div a:hover {
         color: #666666;

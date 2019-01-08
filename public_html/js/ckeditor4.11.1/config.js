@@ -9,8 +9,8 @@ CKEDITOR.editorConfig = function (config) {
     config.height = 500;
     config.extraPlugins = 'chart';
     config.filebrowserUploadMethod = 'form';
-    config.filebrowserImageBrowseUrl = 'js/kcfinder/browse.php?opener=ckeditor&type=images&lang=es';
-    config.filebrowserImageUploadUrl = 'js/kcfinder/upload.php?opener=ckeditor&type=images&lang=es';
+    config.filebrowserImageBrowseUrl = '/js/kcfinder/browse.php?opener=ckeditor&type=images&lang=es';
+    config.filebrowserImageUploadUrl = '/js/kcfinder/upload.php?opener=ckeditor&type=images&lang=es';
 
     // The toolbar groups arrangement, optimized for two toolbar rows.
     config.toolbarGroups = [

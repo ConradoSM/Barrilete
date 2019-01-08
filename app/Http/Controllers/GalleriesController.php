@@ -4,7 +4,7 @@ namespace barrilete\Http\Controllers;
 
 use Illuminate\Http\Request;
 use barrilete\Http\Requests\galleryRequest;
-use Illuminate\Support\Facades\Storage;
+use barrilete\Http\Requests\galleryPhotosRequest;
 use barrilete\Gallery;
 use barrilete\GalleryPhotos;
 use barrilete\Sections;
@@ -26,12 +26,10 @@ class GalleriesController extends Controller {
 
             return view('gallery', compact('gallery', 'photos'));
             
-        } else 
-
-            return view('errors.article-error');
+        } else return view('errors.article-error');
     }
 
-    //PREVIEW ARTÍCULO
+    //PREVIEW GALERÍA
     public function previewGallery($id) {
 
         $gallery = Gallery::whereId($id);
@@ -43,9 +41,7 @@ class GalleriesController extends Controller {
 
             return view('auth.galleries.previewGallery', compact('gallery', 'photos'));
             
-        } else 
-
-            return view('auth.articles.article-preview-error');
+        } else return response()->json(['Error' => 'La galería no existe.']);
     }
 
     //CREAR GALERÍA
@@ -64,7 +60,7 @@ class GalleriesController extends Controller {
     }
     
     //GUARDAR FOTOS
-    public function createPhotos(Request $request) {
+    public function createPhotos(galleryPhotosRequest $request) {
                 
         $gallery_id = $request['gallery_id'];
         $titles = $request->get('title');
@@ -75,26 +71,30 @@ class GalleriesController extends Controller {
             
             foreach ($photos as $key => $val) {            
                 
-                /**SUBIR FOTOS AL SERVIDOR**/
+                //SUBIR FOTOS AL SERVIDOR
                 $file = $photos[$key];
                 $filename = date('his').'-'.$file->getClientOriginalName();           
-                $upload = public_path('img/galleries/'.$filename);            
-                $image = Image::make($file->getRealPath());         
-                $image->save($upload);
+                $upload = public_path('img/galleries/'.$filename);
+                $uploadThumb = public_path('img/galleries/.thumbs/'.$filename);
+
+                Image::make($file->getRealPath())->save($upload);
+                Image::make($file->getRealPath())->resize(450, NULL, function($constraint) {
+                $constraint->aspectRatio(); })->save($uploadThumb);
                 
-                /**GUARDAR EN BASE DE DATOS**/
+                //GUARDAR EN BASE DE DATOS
                 $GalleryPhotos = new GalleryPhotos;
                 $GalleryPhotos->gallery_id = $gallery_id;
                 $GalleryPhotos->title = $titles[$key];
                 $GalleryPhotos->photo = $filename;
                 $GalleryPhotos->save();
             }
-        }
+        } else return response()->json(['Error' => 'Error al leer el formato de la imagen.']);
         
         $gallery = Gallery::find($gallery_id);
         $photos = $gallery->photos;
         
-        return view('auth.galleries.previewGallery', compact('gallery', 'photos'));      
+        return view('auth.galleries.previewGallery', compact('gallery', 'photos'))
+        ->with(['Exito' => 'La galería de fotos se ha creado correctamente.']);      
     }
 
     //BORRAR GALERÍA
@@ -102,7 +102,7 @@ class GalleriesController extends Controller {
 
         if ($request->ajax()) {
 
-            $gallery = Gallery::find($id);
+            $gallery = Gallery::find($id)->first();
             $photos = $gallery->photos;
 
             foreach ($photos as $photo) {
@@ -119,15 +119,11 @@ class GalleriesController extends Controller {
 
             if ($gallery) {
 
-                return view('auth.galleries.galleryStatus')
-                ->with('status','success_delete');
+                return response()->json(['Exito' => 'La galería se ha borrado del sistema.']);
 
-            } else 
-                
-                return view('auth.galleries.galleryStatus')
-                ->with('status','error_find');
+            } else return response()->json(['Error' => 'La galería no existe.']);
             
-        } else return 'Error: ésta no es una petición Ajax!';
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     }
     
     //PUBLICAR GALERÍA
@@ -143,43 +139,45 @@ class GalleriesController extends Controller {
                 $photos = $gallery->photos;
                 
                 
-                return view('auth.galleries.previewGallery', compact('gallery','photos'));
+                return view('auth.galleries.previewGallery', compact('gallery','photos'))
+                ->with(['Exito' => 'La galería de fotos se ha publicado correctamente.']);
                 
-            } else return view('auth.galleries.galleryStatus')
-                ->with('status','error_publish');
+            } else return response()->json(['Error' => 'Tu no eres administrador del sistema.']);
             
-        } else return 'Error: ésta no es una petición Ajax!';       
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);       
     }
     
-    //ACTUALIZAR TITULO GALERIA
-    public function updateTitleGallery(galleryRequest $request, $id) {
+    //ACTUALIZAR GALERIA
+    public function updateGallery(galleryRequest $request) {
             
-        $gallery = Gallery::find($id);
+        $gallery = Gallery::find($request->id);
         
         if ($gallery) {
             
             $gallery->title = $request->title;
-            $gallery->status = 'DRAFT';
-            $gallery->save();
-
-            return response()->json($gallery->title);
-
-        } else return response()->json(['Error' => 'La galería no existe.']);
-    }
-
-    //ACTUALIZAR COPETE GALERIA
-    public function updateArticleDescGallery(galleryRequest $request, $id) {
-            
-        $gallery = Gallery::find($id);
-        
-        if ($gallery) {
-            
             $gallery->article_desc = $request->article_desc;
             $gallery->status = 'DRAFT';
             $gallery->save();
 
-            return response()->json($gallery->article_desc);
+            return response()->json([
+                
+                'Exito' => 'Se ha actuaizado correctamente.',
+                'title' => $gallery->title,
+                'article_desc' => $gallery->article_desc
+            ]);
 
+        } else return response()->json(['Error' => 'La galería no existe.']);
+    }
+    
+    //MAS FOTOS
+    public function morePhotos(Request $request) {
+        
+        $gallery = Gallery::find($request->id);
+        
+        if ($gallery) {
+            
+            return view('auth.galleries.formMorePhotosGalleries', compact('gallery'));
+            
         } else return response()->json(['Error' => 'La galería no existe.']);
     }
 }

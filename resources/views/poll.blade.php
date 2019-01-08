@@ -56,8 +56,8 @@
     <aside class="pubSeccion">
         @forelse ($morePolls as $more)
         <article class="morePolls">
-            <p>{{$more->fecha}}</p>
-            <a href="{{route('poll',['id'=>$more->id,'titulo'=>str_slug($more->titulo,'-')])}}">{{$more->titulo}}</a>   
+            <p>{{$more->date}}</p>
+            <a href="{{route('poll',['id'=>$more->id,'title'=>str_slug($more->title,'-')])}}">{{$more->title}}</a>   
         </article> 
         @empty
         @endforelse

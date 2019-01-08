@@ -1,5 +1,5 @@
 <div id="Article_Form">
-<h1>Cargar galería</h1>
+<h1>Cargar más imagenes</h1>
     <form method="post" enctype="multipart/form-data" id="createArticle" action="{{ route('createPhotos') }}">
         <fieldset>
             <legend>Información</legend>
@@ -47,7 +47,7 @@ $(document).ready(function () {
             } else {
                 var objeto_url = navegador.createObjectURL(archivos[x]);
                 $('#vista-previa').append('<fieldset><img src="'+objeto_url+'"><input name="title[]" type="text" required value="" placeholder="Título: éste es el principal título de la foto (*)" /></fieldset>');
-                $('input#submit').removeAttr('disabled');
+                $('input#submit').removeAttr('disabled'); 
             }
         }
     });
