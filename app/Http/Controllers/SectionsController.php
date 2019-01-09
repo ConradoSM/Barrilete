@@ -19,7 +19,7 @@ class SectionsController extends Controller {
             
             $section = $section->first();
             
-            if ($section->name == 'galerías') {
+            if ($section->name == 'galerias') {
                 
                 $galleries = Gallery::galleryHome()->get();
                 
@@ -27,24 +27,16 @@ class SectionsController extends Controller {
                     
                     return view('galleries', compact('galleries'));
                     
-                } else 
-                    
-                    return view('errors.section-error');
+                } else return view('errors.section-error');
                 
-            } else
-
-                $articles = $section->articles;
+            } else $articles = $section->articles;
 
             if ($articles) {
 
                 return view('section', compact('articles'));
                 
-            } else
-                
-                return view('errors.article-error');
+            } else return view('errors.article-error');
             
-        } else
-            
-                return view('errors.section-error');
+        } else return view('errors.section-error');
     }
 }

@@ -119,12 +119,24 @@ class PollsController extends Controller {
         ->with(['Exito' => 'La encuesta se ha creado correctamente.']);      
     }
 
+    //FORMULARIO AGREGAR MAS OPCIONES
+    public function addMorePollOption(Request $request) {
+
+        $poll = Poll::find($request->id);
+
+        if ($poll) {
+
+            return view('auth.polls.formOptionsPolls', compact('poll'));
+
+        } else return response()->json(['Error' => 'La encuesta no existe.']);
+    }
+
     //BORRAR ENCUESTA
     public function deletePoll(Request $request, $id) {
 
         if ($request->ajax()) {
 
-            $poll = Poll::find($id)->first();
+            $poll = Poll::find($id);
 
             if ($poll) {
 
@@ -163,8 +175,69 @@ class PollsController extends Controller {
         
         if ($poll) {
             
-            return view('auth.polls.formPollUpdate', compact('poll'));
+            $options = $poll->option;
+            return view('auth.polls.formPollUpdate', compact('poll','options'));
             
         } else return response()->json(['Error' => 'La encuesta no existe.']);
     }
+    
+    //ACTUALIZAR ENCUESTA
+    public function updatePoll(pollRequest $request) {
+        
+        $poll = Poll::find($request->id);
+        
+        if ($poll) {
+            
+            $poll->title = $request->title;
+            $poll->article_desc = $request->article_desc;
+            $poll->date = $request->date;
+            $poll->section_id = $request->section_id;
+            $poll->author = $request->author;
+            $poll->status = 'DRAFT';
+            $poll->save();
+            
+            return response()->json([
+                
+                'Exito' => 'La encuesta se actualizó correctamente.',
+                'title' => $poll->title,
+                'article_desc' => $poll->article_desc
+            ]);
+        } else return response()->json(['Error' => 'La encuesta no existe.']);        
+    }
+    
+    //ACTUALIZAR OPCIONES DE LA ENCUESTA
+    public function updatePollOption(Request $request) {
+        
+        $pollOption = PollOptions::find($request->id);
+        
+        if ($pollOption) {
+            
+            $pollOption->option = $request->option;
+            $pollOption->save();
+            
+            return response()->json([
+                'Exito' => 'La opción de la encuesta se actualizó correctamente.',
+                'option' => $pollOption->option
+            ]);
+            
+        } else return response()->json(['Error' => 'La opción de la encuesta no existe.']);
+    }
+
+    //BORAR OPCIONES DE LA ENCUESTA
+    public function deletePollOption(Request $request) {
+        
+        $pollOption = PollOptions::find($request->id);
+        
+        if ($pollOption) {
+            
+            $pollOption->option = $request->option;
+            $pollOption->delete();
+            
+            return response()->json([
+                'Exito' => 'La opción de la encuesta se borró correctamente.',
+                'option' => $pollOption->option
+            ]);
+            
+        } else return response()->json(['Error' => 'La opción de la encuesta no existe.']);
+    } 
 }

@@ -1,46 +1,27 @@
 <div id="Article-container">
     <h1>Actualizar galería de fotos</h1>
-        <fieldset>
-            <legend>Información</legend>
-            <p><b>Autor</b>: {{ $gallery->user->name }}</p>
-            <p><b>Fecha de publicación</b>: {{ $gallery->date }}</p> 
-        </fieldset>   
-        <fieldset>
-            <legend>Título</legend>           
-                <div class="status"></div>
-                <div class="data">
-                    <p title="Editar">{{ $gallery->title }}</p>
-                    <form action="{{ route('updateGallery') }}" method="post">
-                        @csrf
-                        <input type="text" class="input" name="title" value="{{ $gallery->title }}" placeholder="Título: éste es el principal título de la foto (*)" required /> 
-                        <input type="submit" class="actualizar-datos" value="Actualizar" />
-                        <input type="hidden" name="user_id" value="{{ $gallery->user->id }}" />
-                        <input type="hidden" name="date" value="{{ $gallery->date }}" />
-                        <input type="hidden" name="author" value="{{ $gallery->author }}" />
-                        <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />
-                        <input type="hidden" name="id" value="{{ $gallery->id }}" />
-                        <input type="hidden" name="article_desc" value="{{ $gallery->article_desc }}" />
-                    </form>
-                </div>
-        </fieldset> 
-        <fieldset>
-            <legend>Copete</legend>           
-                <div class="status"></div>
-                <div class="data">
-                    <p title="Editar">{{ $gallery->article_desc }}</p>
-                    <form action="{{ route('updateGallery') }}" method="post">
-                        @csrf
-                        <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $gallery->article_desc }}</textarea>
-                        <input type="submit" class="actualizar-datos" value="Actualizar" />
-                        <input type="hidden" name="user_id" value="{{ $gallery->user->id }}" />
-                        <input type="hidden" name="date" value="{{ $gallery->date }}" />
-                        <input type="hidden" name="author" value="{{ $gallery->author }}" />
-                        <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />
-                        <input type="hidden" name="id" value="{{ $gallery->id }}" />
-                        <input type="hidden" name="title" value="{{ $gallery->title }}" />
-                    </form>
-                </div>
-        </fieldset>
+    <fieldset>
+        <legend>Información</legend>
+        <p><b>Autor</b>: {{ $gallery->author }}</p>
+        <p><b>Fecha de publicación</b>: {{ $gallery->date }}</p> 
+    </fieldset>
+    <fieldset>
+        <legend>Título y Copete</legend>
+        <div class="status"></div>
+            <form method="post" class="data" action="{{ route('updateGallery') }}">
+                <p title="Editar">{{ $gallery->title }}</p>
+                <input type="text" class="input" name="title" value="{{ $gallery->title }}" placeholder="Título: éste es el principal título del articulo (*)" required />
+                <p title="Editar">{{ $gallery->article_desc }}</p>
+                <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $gallery->article_desc }}</textarea>
+                <input type="submit" value="ACTUALIZAR" />
+                @csrf
+                <input type="hidden" name="id" value="{{ $gallery->id }}" />
+                <input type="hidden" name="user_id" value="{{ $gallery->user_id }}" />
+                <input type="hidden" name="date" value="{{ $gallery->date }}" />
+                <input type="hidden" name="author" value="{{ $gallery->author }}" />
+                <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />   
+            </form>
+    </fieldset>   
         <fieldset id="cargar">
             <legend>Cargar más imagenes</legend>
             <input type="submit" value="SIGUIENTE >>" id="enviar" />
@@ -60,16 +41,14 @@
                 <img class="delete-image-button" src="{{ asset('svg/delete.svg') }}" title="Borrar imagen" />
                 <img class="photo-gallery" src="{{ asset('img/galleries/'.$photo->photo) }}" />
             </div> 
-            <div class="status"></div>
-            <div class="data">
-                <p title="Editar">{{ $photo->title }}</p>
-                <form action="{{ route('updateTitlePhotoGallery') }}" method="post">
-                    @csrf                           
-                    <input type="text" name="title" class="input" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
-                    <input type="submit" class="actualizar-datos" value="Actualizar" /> 
-                    <input type="hidden" name="id" value="{{ $photo->id }}" />
-                </form>
-            </div>                   
+            <div class="status"></div>               
+            <form method="post" class="data" action="{{ route('updateTitlePhotoGallery') }}">
+                <p title="Editar">{{ $photo->title }}</p>                                              
+                <input type="text" name="title" class="input" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
+                <input type="submit" class="actualizar-datos" value="Actualizar" /> 
+                <input type="hidden" name="id" value="{{ $photo->id }}" />
+                @csrf
+            </form>                  
         </fieldset>
         @empty
         <p>No hay fotos</p>
@@ -79,20 +58,26 @@
         $(document).ready(function () {                                            
            
             //MOSTRAR FORMULARIOS
-            $('div.data p').click(function(){
-                
-                var parrafo = $(this);
-                var form = $(this).parent('div').children('form');
-                var input = $(form).children('.input');
+            $('fieldset form p').click(function(){
 
-                $(this).fadeOut('fast', function(){                       
-                    $(form).fadeIn('fast', function(){                           
-                        $(input).focus();                               
+                var parrafo = $(this);
+                var input = $(parrafo).next();
+                var submit = $(parrafo).parent('form.data').children('input[type=submit]').css('display','none');
+
+                $(this).fadeOut('fast', function(){
+                    $(submit).fadeIn('fast');
+                    $(input).fadeIn('fast', function(){                           
+                        $(input).focus();
+                        $(input).on('keyup', function(){
+                            var valor = $(this).val();
+                            $(parrafo).text(valor);
+                        });
                     });
                 });
 
-                $(form).on('focusout', function(){                                   
-                    $(form).fadeOut('fast', function(){                                        
+                $(input).on('focusout', function(){
+                    $(submit).fadeOut('fast');
+                    $(input).fadeOut('fast', function(){ 
                         $(parrafo).fadeIn('fast');                               
                     });
                 });
@@ -106,15 +91,15 @@
             });
 
             //ACTUALIZAR DATOS
-            $('input[type=submit].actualizar-datos').on('click', function(event){
+            $('input[type=submit]').on('click', function(event){
                 event.stopPropagation();
                 event.preventDefault();
-                
-                var div = $(this).parents('div.data');
-                var parrafo = $(div).children('p');
-                var form = $(div).children('form');
-                var inputName = $(form).children('.input').attr('name');
-                var divStatus = $(div).prev('div.status');
+                               
+                var form = $(this).parent('form');
+                var input = $(form).children('.input');
+                var parrafoTitle = $(form).children('p');
+                var parrafoArticleDesc = $(parrafoTitle).next().next();
+                var divStatus = $(form).prev('div.status');
                 
                 $.ajax({
                     success: mostrarRespuesta,
@@ -128,24 +113,37 @@
                 
                 function mostrarRespuesta(data){ 
 
-                    var content = data[inputName];
                     if(data['Error']){
 
                         $(divStatus).hide().append('<p class="invalid-feedback">'+data['Error']+'</p>').fadeIn('fast'); 
 
-                    } else {
+                    } else if(data['article_desc']) {
 
                         $(divStatus).hide().append('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow'); 
-                        $(form).hide(0, function(){
-                            $(form).children('.input').focusout();                         
-                            $(parrafo).text(content);                           
+                        $(input).hide(0, function(){
+                            $(this).focusout();
+                            $(parrafoTitle).text(data['title']);
+                            $(parrafoArticleDesc).text(data['article_desc']); 
                         });                      
                         setTimeout(function(){
                             $('p.alert-success').fadeOut('slow', function(){
                                 $('p.alert-success').remove();
                             });
-                        }, 2000);                        
-                    } console.log(data);
+                        }, 2000);  
+                        
+                    } else {
+                        $(divStatus).hide().append('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow'); 
+                        $(input).hide(0, function(){
+                            $(this).focusout();                         
+                            $(parrafoTitle).text(data['title']);
+                        });                      
+                        setTimeout(function(){
+                            $('p.alert-success').fadeOut('slow', function(){
+                                $('p.alert-success').remove();
+                            });
+                        }, 2000);
+                    }
+                    console.log(data);
                 };
                 
                 function mostrarError(xhr){

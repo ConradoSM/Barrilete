@@ -1288,11 +1288,12 @@
     }
     ul.pagination {
         display: flex;
-        flex-flow: row wrap;
-        width: auto;
+        flex-flow: row nowrap;
         list-style: none;
+        padding-left: 0px;
     }
     ul.pagination li.page-item {
+        border: none;
         margin: 0px;
         padding: 5px 0px 5px 0px;      
     }

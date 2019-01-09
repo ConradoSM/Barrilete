@@ -5,7 +5,7 @@ div.dashboard-container {
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 500px;
+    min-height: 100vh;
     background-image: url('/img/background-login-04.jpg');
     background-size: 100% 100%;
 }
@@ -298,16 +298,16 @@ img.update-image-button:hover {
     transition: 0.3s;
 }
 /*FORMULARIO EDITAR GALERÍA*/
-div.data form {
+form.data input, form.data textarea {
     display: none;
 }
-div.data p {
+form.data p {
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 0px;
     font-size: 1.2em;
 }
-div.data p:hover {
+form.data p:hover {
     background-color: #caced2;
     transition: 0.3s;
     border-radius: 3px;

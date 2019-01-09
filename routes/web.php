@@ -50,7 +50,7 @@ use barrilete\Sections;
         Route::post('/dashboard/delete/gallery/photo','GalleryPhotosController@deletePhotoGallery')->middleware('auth')->name('deletePhotoGallery');
     //DASHBOARD UPDATE GALLERY
         Route::get('/dashboard/forms/gallery/update/{id}','DashboardController@formUpdateGallery')->middleware('auth')->name('formUpdateGallery');
-        Route::post('/dashboard/update/gallery/title','GalleriesController@updateGallery')->middleware('auth')->name('updateGallery');
+        Route::post('/dashboard/update/gallery','GalleriesController@updateGallery')->middleware('auth')->name('updateGallery');
         Route::post('/dashboard/update/gallery/photo/title','GalleryPhotosController@updateTitlePhotoGallery')->middleware('auth')->name('updateTitlePhotoGallery');
         Route::post('/dashboard/update/gallery/photo','GalleryPhotosController@updatePhoto')->middleware('auth')->name('updatePhoto');
         Route::post('/dashboard/update/gallery/more/photos','GalleriesController@morePhotos')->middleware('auth')->name('morePhotos');       
@@ -64,6 +64,10 @@ use barrilete\Sections;
         Route::get('/dashboard/delete/poll/{id}','PollsController@deletePoll')->middleware('auth')->name('deletePoll');
     //DASHBOARD UPDATE POLL
         Route::get('/dashboard/forms/polls/update/{id}','PollsController@formUpdatePoll')->middleware('auth')->name('formUpdatePoll');
+        Route::post('/dashboard/update/polls','PollsController@updatePoll')->middleware('auth')->name('updatePoll');
+        Route::post('/dashboard/update/polls/options','PollsController@updatePollOption')->middleware('auth')->name('updatePollOption');
+        Route::post('/dashboard/delete/polls/options','PollsController@deletePollOption')->middleware('auth')->name('deletePollOption');
+        Route::post('/dashboard/more/polls/options','PollsController@addMorePollOption')->middleware('auth')->name('addMorePollOption');
 
 //DASHBOARD PREVIEWS
     Route::get('/dashboard/forms/articles/preview/{id}','ArticlesController@previewArticle')->middleware('auth')->name('previewArticle');
