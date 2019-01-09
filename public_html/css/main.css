@@ -55,56 +55,240 @@ p {
     font-size: 1.6em;
     margin: 10px 0px;
 } 
+/*********
+**HEADER**
+*********/
+header.relative {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap; 
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: rgba(85,172,238,1.00);
+}
+header.fixed {
+    position: fixed;
+    display: flex;
+    flex-flow: row wrap; 
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: rgba(85,172,238,0.9);
+    box-shadow: 0px 0px 10px #000; 
+    z-index: 1;
+    transition: 0.5s;
+}
+/***********************
+****DIV SEARCH**********
+***********************/
+div#search {
+    position:relative;
+    float: right;
+    width: 300px;
+    height: auto;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+div#search input[type=search]{
+    width: 100%;
+    height: 37px;
+    margin: 0px;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1em;
+    box-shadow: inset 0px 0px 5px #ccc;
+}
+div#search img {
+    position: absolute;
+    top:0;
+    right: 0;
+    width: auto;
+    height: 37px;
+    padding: 7px;
+    background-color: rgba(85,172,238,1.00);
+    box-shadow: inset 0px 0px 5px 0px #1b90e8; 
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+}
+div#search img:hover {
+    opacity: 1;
+    background-color: #1b90e8;
+    transition: 0.3s;
+}
+/***********************
+****DIV GLASS***********
+***********************/
+div#glass {
+    display: none;
+}
+/**********
+****NAV****
+**********/
+img#search-btn, a.menu-btn {
+    display: none;
+}
+div.navContainer {
+    max-width: 1200px;
+    width: 100%;
+    height: auto;
+    padding: 10px 10px 0px 10px;
+    background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
+}
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+nav ul li {
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+}
+nav ul li a {
+    padding: 5px 15px 5px 15px;
+    color: #000;
+    font-size: 1.45em; 
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(85,172,238,0);
+    border-left: 1px solid rgba(85,172,238,0);
+    border-right: 1px solid rgba(85,172,238,0);
+}
+nav ul li a:visited {
+    color: #000;
+}
+nav ul li a:hover {
+    color: #fff;
+    background-image: linear-gradient(180deg,rgba(42,152,229,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
+    text-decoration: none;
+    transition: color 0.3s;
+    border-radius: 5px;
+    border-top: 1px solid rgba(85,172,238,1);
+    border-left: 1px solid rgba(85,172,238,1);
+    border-right: 1px solid rgba(85,172,238,1);
+}
+/*********
+***LOGO***
+*********/
+img.logo {
+    width: 400px;
+    height: auto;
+    cursor: pointer;
+    transition: 0.5s;
+    filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
+}
+img.logoSmall {
+    width: 250px;
+    height: auto;
+    cursor: pointer;
+    transition: 0.5s;
+    filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
+}
+img.logo:hover, img.logoSmall:hover {
+    opacity: 0.8;
+}
+/********************
+**SECCION PRINCIPAL**
+********************/
+section.mainSection {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    min-height: 500px;
+    background-color: rgba(255,255,255,1.00);
+    box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
+    padding: 10px 10px 10px 10px;
+    z-index: 0;
+}
+/*********
+**FOOTER**
+*********/
+footer {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: rgba(216,219,227,1.00);
+}
+footer div.footerContainer {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    padding: 30px;
+    background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
+}
+footer div.footerContainer div {
+    position: relative;
+    width: 33.33333333%;
+}
+footer div.footerContainer h2 {
+    color: #000000;
+    font-size: 2.5em;
+}
+footer div.footerContainer div li {
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 1.25em;
+    list-style: none;
+    margin: 0px;
+}
+footer div.footerContainer div a {
+    color: #000000;
+    text-transform: uppercase;
+}
+footer div.footerContainer div a:hover {
+    color: #666666;
+}
+footer div.footerContainer p.footerCopyright {
+    font-size: 1em;
+    color: rgba(87,87,87,1.00);
+}
+footer div.footerContainer div.footerSocialContainer {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    height: auto;
+    width: auto;
+    opacity: 0.5;
+}
+footer div.footerContainer div.footerSocialContainer img {
+    width: auto;
+    height: 60px;   
+}
+.errorIMG {
+    width: 30%;
+    height: auto;
+}
 @media (max-width: 575.98px) { 
-    /*********
-    **HEADER**
-    *********/
-    header.relative {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;  
-        width: 100%;
-        height: 70px;
-        background-color: rgba(85,172,238,1.00);
-        z-index: 1;
-    }
-    header.fixed {
-        position: fixed;
-        display: flex;
-        flex-flow: row wrap;  
-        width: 100%;
-        height: 50px;
-        background-color: rgba(85,172,238,1.00);
-        box-shadow: 0px 0px 10px 0px #000;
-        transition: 0.5s;
-        z-index: 1;
-    }
-    /********************
-    ****NAV CONTAINER****
-    ********************/
-    div.navContainer {
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-    }
     /*********
     ***LOGO***
     *********/
     img.logo {
         width: 200px;
         height: 50px;
-        cursor: pointer;
-        transition: 0.5s ease;
     }
     img.logoSmall {
         width: auto;
         height: 30px;
-        cursor: pointer;
-        transition: 0.5s ease;
-    }
-    img.logo:hover {
-        opacity: 0.7;
     }
     /*****************
     ****BOTON MENU****
@@ -296,37 +480,12 @@ p {
     **SECCION PRINCIPAL**
     ********************/
     section.mainSection {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        width: 100%;
-        height: auto;
         max-width: 575.98px;
-        background-color: rgba(255,255,255,1.00);
-        box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
-        padding: 10px 10px 10px 10px;
     }
     /*********
     **FOOTER**
     *********/
-    footer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        height: auto;
-        background-color: rgba(216,219,227,1.00);
-    }
-    footer div.footerContainer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        height: auto;
-        padding: 30px;
-        background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
-    }
+
     footer div.footerContainer div {
         display: none;
     }
@@ -345,58 +504,17 @@ p {
         height: 60px;   
     }
 }
-
-
 @media (min-width: 576px) and (max-width: 767.98px) { 
-    /*********
-    **HEADER**
-    *********/
-    header.relative {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;  
-        width: 100%;
-        height: 70px;
-        background-color: rgba(85,172,238,1.00);
-        z-index: 1;
-    }
-    header.fixed {
-        position: fixed;
-        display: flex;
-        flex-flow: row wrap;  
-        width: 100%;
-        height: 50px;
-        background-color: rgba(85,172,238,1.00);
-        box-shadow: 0px 0px 10px 0px #000;
-        transition: 0.5s;
-        z-index: 1;
-    }
-    /********************
-    ****NAV CONTAINER****
-    ********************/
-    div.navContainer {
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-    }
     /*********
     ***LOGO***
     *********/
     img.logo {
         width: 200px;
         height: 50px;
-        cursor: pointer;
-        transition: 0.5s ease;
     }
     img.logoSmall {
         width: auto;
         height: 30px;
-        cursor: pointer;
-        transition: 0.5s ease;
-    }
-    img.logo:hover {
-        opacity: 0.7;
     }
     /*****************
     ****BOTON MENU****
@@ -421,7 +539,6 @@ p {
         transform-origin: 0 50%;
         transition: transform 0.3s ease;
     }
-
     a.menu-btn div.menu-btn-block.middle {
         margin: 9px 0;
     }
@@ -584,41 +701,9 @@ p {
     nav.active ul li a:visited {
         color: #000;
     }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 767.98px;
-        height: auto;
-        background-color: rgba(255,255,255,1.00);
-        box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
-        padding: 10px 10px 10px 10px;
-    }
     /*********
     **FOOTER**
     *********/
-    footer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        height: auto;
-        background-color: rgba(216,219,227,1.00);
-    }
-    footer div.footerContainer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        height: auto;
-        padding: 30px;
-        background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
-    }
     footer div.footerContainer div {
         display: none;
     }
@@ -639,54 +724,15 @@ p {
 }
 @media (min-width: 768px) and (max-width: 991.98px) { 
     /*********
-    **HEADER**
-    *********/
-    header.relative {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;  
-        width: 100%;
-        height: 70px;
-        background-color: rgba(85,172,238,1.00);
-        z-index: 1;
-    }
-    header.fixed {
-        position: fixed;
-        display: flex;
-        flex-flow: row wrap;  
-        width: 100%;
-        height: 50px;
-        background-color: rgba(85,172,238,1.00);
-        box-shadow: 0px 0px 10px 0px #000;
-        transition: 0.5s;
-        z-index: 1;
-    }
-    /********************
-    ****NAV CONTAINER****
-    ********************/
-    div.navContainer {
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-    }
-    /*********
     ***LOGO***
     *********/
     img.logo {
         width: 200px;
         height: 50px;
-        cursor: pointer;
-        transition: 0.5s ease;
     }
     img.logoSmall {
         width: auto;
         height: 30px;
-        cursor: pointer;
-        transition: 0.5s ease;
-    }
-    img.logo:hover {
-        opacity: 0.7;
     }
     /*****************
     ****BOTON MENU****
@@ -875,41 +921,9 @@ p {
     nav.active ul li a:visited {
         color: #000;
     }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 991.98px;
-        height: auto;
-        background-color: rgba(255,255,255,1.00);
-        box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
-        padding: 10px 10px 10px 10px;
-    }
     /*********
     **FOOTER**
     *********/
-    footer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        height: auto;
-        background-color: rgba(216,219,227,1.00);
-    }
-    footer div.footerContainer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        height: auto;
-        padding: 30px;
-        background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
-    }
     footer div.footerContainer div {
         display: none;
     }
@@ -928,452 +942,8 @@ p {
         height: 60px;   
     }
 }
-
-
 @media (min-width: 992px) and (max-width: 1199.98px) { 
-    /*********
-    **HEADER**
-    *********/
-    header.relative {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        background-color: rgba(85,172,238,1.00);
-    }
-    header.fixed {
-        position: fixed;
-        display: flex;
-        flex-flow: row wrap; 
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        background-color: rgba(85,172,238,0.9);
-        box-shadow: 0px 0px 10px #000; 
-        z-index: 1;
-        transition: 0.5s;
-    }
-    /***********************
-    ****DIV SEARCH**********
-    ***********************/
-    div#search {
-        position:relative;
-        float: right;
-        width: 300px;
-        height: auto;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
-    div#search input[type=search]{
-        width: 100%;
-        height: 37px;
-        margin: 0px;
-        border: 0px;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 1em;
-        box-shadow: inset 0px 0px 5px #ccc;
-    }
-    div#search img {
-        position: absolute;
-        top:0;
-        right: 0;
-        width: auto;
-        height: 37px;
-        padding: 7px;
-        background-color: rgba(85,172,238,1.00);
-        box-shadow: inset 0px 0px 5px 0px #1b90e8; 
-        border-radius: 0px 5px 5px 0px;
-        cursor: pointer;
-    }
-    div#search img:hover {
-        opacity: 1;
-        background-color: #1b90e8;
-        transition: 0.3s;
-    }
-    /***********************
-    ****DIV GLASS***********
-    ***********************/
-    div#glass {
-        display: none;
-    }
-    /**********
-    ****NAV****
-    **********/
-    img#search-btn, a.menu-btn {
-        display: none;
-    }
-    /**********
-    ****NAV****
-    **********/
-    div.navContainer {
-        width: 100%;
-        max-width: 992px;
-        height: auto;
-        padding: 10px 10px 0px 10px;
-        background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-    }
-    nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    nav ul {
-        display: flex;
-        list-style: none;
-    }
-    nav ul li {
-        margin: 10px 0px 10px 0px;
-        padding: 0px;
-    }
     nav ul li a {
-        padding: 5px 15px 5px 15px;
-        color: #000;
         font-size: 1.25em; 
-        font-weight: bold;
-        border-top: 1px solid rgba(85,172,238,0);
-        border-left: 1px solid rgba(85,172,238,0);
-        border-right: 1px solid rgba(85,172,238,0);
-        text-transform: uppercase;
-    }
-    nav ul li a:visited {
-        color: #000;
-    }
-    nav ul li a:hover {
-        color: #fff;
-        background-image: linear-gradient(180deg,rgba(42,152,229,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-        text-decoration: none;
-        transition: color 0.3s;
-        border-radius: 5px;
-        border-top: 1px solid rgba(85,172,238,1);
-        border-left: 1px solid rgba(85,172,238,1);
-        border-right: 1px solid rgba(85,172,238,1);
-    }
-    /*********
-    ***LOGO***
-    *********/
-    img.logo {
-        width: 400px;
-        height: auto;
-        cursor: pointer;
-        filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
-        transition: 0.5s;
-    }
-    img.logoSmall {
-        width: 250px;
-        height: auto;
-        cursor: pointer;
-        filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
-        transition: 0.5s;
-    }
-    img.logo:hover, img.logoSmall:hover {
-        opacity: 0.8;
-    }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 992px;
-        height: auto;
-        min-height: 500px;
-        background-color: rgba(255,255,255,1.00);
-        box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
-        padding: 10px 10px 10px 10px;
-    }
-    /*********
-    **FOOTER**
-    *********/
-    footer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        background-color: rgba(216,219,227,1.00);
-    }
-    footer div.footerContainer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        max-width: 992px;
-        height: auto;
-        padding: 30px;
-        background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
-    }
-    footer div.footerContainer div {
-        position: relative;
-        width: 33.33333333%;
-    }
-    footer div.footerContainer h2 {
-        color: #000000;
-        font-size: 2.5em;
-    }
-    footer div.footerContainer div li {
-        margin-left: 30px;
-        margin-bottom: 10px;
-        font-size: 1.25em;
-        list-style: none;
-        margin: 0px;
-    }
-    footer div.footerContainer div a {
-        color: #000000;
-        text-transform: uppercase;
-    }
-    footer div.footerContainer div a:hover {
-        color: #666666;
-    }
-    footer div.footerContainer p.footerCopyright {
-        font-size: 1em;
-        color: rgba(87,87,87,1.00);
-    }
-    footer div.footerContainer div.footerSocialContainer {
-        position: absolute;
-        display: block;
-        bottom: 0;
-        right: 0;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        height: auto;
-        width: auto;
-        opacity: 0.5;
-    }
-    footer div.footerContainer div.footerSocialContainer img {
-        width: auto;
-        height: 60px;   
-    }
-}
-
-
-@media (min-width: 1200px) {  
-    /*********
-    **HEADER**
-    *********/
-    header.relative {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap; 
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        background-color: rgba(85,172,238,1.00);
-    }
-    header.fixed {
-        position: fixed;
-        display: flex;
-        flex-flow: row wrap; 
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        background-color: rgba(85,172,238,0.9);
-        box-shadow: 0px 0px 10px #000; 
-        z-index: 1;
-        transition: 0.5s;
-    }
-    /***********************
-    ****DIV SEARCH**********
-    ***********************/
-    div#search {
-        position:relative;
-        float: right;
-        width: 300px;
-        height: auto;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
-    div#search input[type=search]{
-        width: 100%;
-        height: 37px;
-        margin: 0px;
-        border: 0px;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 1em;
-        box-shadow: inset 0px 0px 5px #ccc;
-    }
-    div#search img {
-        position: absolute;
-        top:0;
-        right: 0;
-        width: auto;
-        height: 37px;
-        padding: 7px;
-        background-color: rgba(85,172,238,1.00);
-        box-shadow: inset 0px 0px 5px 0px #1b90e8; 
-        border-radius: 0px 5px 5px 0px;
-        cursor: pointer;
-    }
-    div#search img:hover {
-        opacity: 1;
-        background-color: #1b90e8;
-        transition: 0.3s;
-    }
-    /***********************
-    ****DIV GLASS***********
-    ***********************/
-    div#glass {
-        display: none;
-    }
-    /**********
-    ****NAV****
-    **********/
-    img#search-btn, a.menu-btn {
-        display: none;
-    }
-    div.navContainer {
-        max-width: 1200px;
-        width: 100%;
-        height: auto;
-        padding: 10px 10px 0px 10px;
-        background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-    }
-    nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    nav ul {
-        display: flex;
-        list-style: none;
-        margin: 0px;
-        padding: 0px;
-    }
-    nav ul li {
-        margin: 10px 0px 10px 0px;
-        padding: 0px;
-    }
-    nav ul li a {
-        padding: 5px 15px 5px 15px;
-        color: #000;
-        font-size: 1.45em; 
-        font-weight: bold;
-        text-transform: uppercase;
-        border-top: 1px solid rgba(85,172,238,0);
-        border-left: 1px solid rgba(85,172,238,0);
-        border-right: 1px solid rgba(85,172,238,0);
-    }
-    nav ul li a:visited {
-        color: #000;
-    }
-    nav ul li a:hover {
-        color: #fff;
-        background-image: linear-gradient(180deg,rgba(42,152,229,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
-        text-decoration: none;
-        transition: color 0.3s;
-        border-radius: 5px;
-        border-top: 1px solid rgba(85,172,238,1);
-        border-left: 1px solid rgba(85,172,238,1);
-        border-right: 1px solid rgba(85,172,238,1);
-    }
-    /*********
-    ***LOGO***
-    *********/
-    img.logo {
-        width: 400px;
-        height: auto;
-        cursor: pointer;
-        transition: 0.5s;
-        filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
-    }
-    img.logoSmall {
-        width: 250px;
-        height: auto;
-        cursor: pointer;
-        transition: 0.5s;
-        filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
-    }
-    img.logo:hover, img.logoSmall:hover {
-        opacity: 0.8;
-    }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 1200px;
-        height: auto;
-        min-height: 500px;
-        background-color: rgba(255,255,255,1.00);
-        box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
-        padding: 10px 10px 10px 10px;
-    }
-    /*********
-    **FOOTER**
-    *********/
-    footer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        background-color: rgba(216,219,227,1.00);
-    }
-    footer div.footerContainer {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        max-width: 1200px;
-        height: auto;
-        padding: 30px;
-        background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
-    }
-    footer div.footerContainer div {
-        position: relative;
-        width: 33.33333333%;
-    }
-    footer div.footerContainer h2 {
-        color: #000000;
-        font-size: 2.5em;
-    }
-    footer div.footerContainer div li {
-        margin-left: 30px;
-        margin-bottom: 10px;
-        font-size: 1.25em;
-        list-style: none;
-        margin: 0px;
-    }
-    footer div.footerContainer div a {
-        color: #000000;
-        text-transform: uppercase;
-    }
-    footer div.footerContainer div a:hover {
-        color: #666666;
-    }
-    footer div.footerContainer p.footerCopyright {
-        font-size: 1em;
-        color: rgba(87,87,87,1.00);
-    }
-    footer div.footerContainer div.footerSocialContainer {
-        position: absolute;
-        display: block;
-        bottom: 0;
-        right: 0;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        height: auto;
-        width: auto;
-        opacity: 0.5;
-    }
-    footer div.footerContainer div.footerSocialContainer img {
-        width: auto;
-        height: 60px;   
-    }
-    .errorIMG {
-        width: 30%;
-        height: auto;
     }
 }

@@ -31,7 +31,6 @@ $(document).ready(function () {
                 $('#errors').append('<p class="invalid-feedback">'+value+'</p>');       
             });
         });
-        console.log(errors);
     };   
     $('#enviar').on('click', function() {
         $('p.invalid-feedback').hide();
