@@ -25,8 +25,8 @@ class galleryPhotosRequest extends FormRequest
     {
         return [
             'gallery_id' => 'required',
-            'title' => 'required|min:30|max:191|unique:gallery_photos',
-            'photo' => 'required'
+            'title[*]' => 'required|min:20|max:191|unique:gallery_photos',
+            'photo[*]' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 }

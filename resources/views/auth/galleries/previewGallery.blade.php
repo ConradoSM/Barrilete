@@ -31,7 +31,7 @@
         <h2>{{$gallery->title}}</h2>        
         <p class="copete">{{$gallery->article_desc}}</p>
         <p class="info">
-        <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->date}}
+        <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}
         <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
         <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}} lecturas
         </p>

@@ -87,7 +87,6 @@ class PollsController extends Controller {
         $article = new Poll;
         $article -> user_id = $request['user_id'];
         $article -> title = $request['title'];
-        $article -> date = $request['date'];
         $article -> section_id = $request['section_id'];
         $article -> author = $request['author'];
         $article -> article_desc = $request['article_desc'];
@@ -190,7 +189,6 @@ class PollsController extends Controller {
             
             $poll->title = $request->title;
             $poll->article_desc = $request->article_desc;
-            $poll->date = $request->date;
             $poll->section_id = $request->section_id;
             $poll->author = $request->author;
             $poll->status = 'DRAFT';

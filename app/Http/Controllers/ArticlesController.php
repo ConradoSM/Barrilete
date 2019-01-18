@@ -43,7 +43,6 @@ class ArticlesController extends Controller {
         $article = new Articles;
         $article -> user_id = $request['user_id'];
         $article -> title = $request['title'];
-        $article -> date = $request['date'];
         $article -> section_id = $request['section_id'];
         $article -> author = $request['author'];
         $article -> article_desc = $request['article_desc'];
@@ -72,7 +71,6 @@ class ArticlesController extends Controller {
 
                 $article -> user_id = $request['user_id'];
                 $article -> title = $request['title'];
-                $article -> date = $request['date'];
                 $article -> section_id = $request['section_id'];
                 $article -> author = $request['author'];
                 $article -> article_desc = $request['article_desc'];
@@ -104,7 +102,6 @@ class ArticlesController extends Controller {
 
                     $article -> user_id = $request['user_id'];
                     $article -> title = $request['title'];
-                    $article -> date = $request['date'];
                     $article -> section_id = $request['section_id'];
                     $article -> author = $request['author'];
                     $article -> article_desc = $request['article_desc'];
@@ -129,7 +126,6 @@ class ArticlesController extends Controller {
 
                     $article -> user_id = $request['user_id'];
                     $article -> title = $request['title'];
-                    $article -> date = $request['date'];
                     $article -> section_id = $request['section_id'];
                     $article -> author = $request['author'];
                     $article -> article_desc = $request['article_desc'];

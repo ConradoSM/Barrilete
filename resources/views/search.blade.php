@@ -13,7 +13,7 @@ $query = Request::get('query')
     <p class="searchInfo">Se encontraron {{$resultado->total()}} resultados para la búsqueda: <b>{{$query}}</b></p>
     @forelse ($resultado as $pub)
     <article class="searchResult">
-        <p class="searchDate">{{$pub->date}}</p>
+        <p class="searchDate">{{$pub->created_at->diffForHumans()}}</p>
         @if (Request::get('sec') == 'articulos')
         <a class="searchTitle" href="{{route('article',['id'=>$pub->id,'section'=>str_slug($pub->section->name),'title'=>str_slug($pub->title,'-')])}}">{{$pub->title}}</a>
         @elseif (Request::get('sec') == 'galerias')

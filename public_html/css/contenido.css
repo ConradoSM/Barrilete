@@ -21,6 +21,7 @@ article.pub img, article.pub-preview img {
 article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
     font-size: 1.3em;
     margin-top:0px;
+    text-transform: capitalize;
 }
 article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-preview img.svg, article.pub-preview p.info img.svg {
     position: relative;
@@ -129,21 +130,21 @@ div.searchResultContainer {
     width: 100%;
     height: auto;
 }
-div.searchResultContainer p.searchFilter {
+p.searchFilter {
     margin: 10px 0px 10px 0px;
     padding-bottom: 2px;
     font-size: 1.7em;
     border-bottom: 1px solid #ccc;
 }
-div.searchResultContainer p.searchFilter a.searchFilterLink {
+a.searchFilterLink {
     font-size: 1.75em;
     margin: 10px 15px;
     color: #333;
 }
-div.searchResultContainer p.searchFilter a.searchFilterLink:hover {
+p.searchFilter a.searchFilterLink:hover {
     color: #000;
 }
-div.searchResultContainer p.searchFilter a.active {
+p.searchFilter a.active {
     font-size: 1.75em;
     margin: 10px 15px;
     color: #007600;

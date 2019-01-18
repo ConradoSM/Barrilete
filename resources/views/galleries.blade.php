@@ -10,7 +10,7 @@
         @if ($i == 1)
         <img src="{{asset('img/galleries/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
         @else
-        <img src="{{asset('img/galleries/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
+        <img src="{{asset('img/galleries/.thumbs/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" />
         @endif
         <a href="{{route('gallery',['id'=>$galeria->id,'titulo'=>str_slug($galeria->title,'-')])}}">{{$galeria->title}}</a>
         <p>{{$galeria -> article_desc}}</p>

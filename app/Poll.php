@@ -35,7 +35,7 @@ class Poll extends Model {
     //LAS ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
     public function scopePollHome($query) {
         
-        return $query->select('id', 'title', 'date')
+        return $query->select('id', 'title', 'created_at')
         ->where('status','PUBLISHED')
         ->orderBy('id','DESC')
         ->limit(3);      
@@ -65,6 +65,15 @@ class Poll extends Model {
 
         return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
         ->where('status','PUBLISHED')
+        ->orderBy('id', 'DESC')
+        ->paginate(10);
+    }
+
+    //BÚSQUEDA DE ENCUESTAS USUARIOS
+    public function scopeSearchAuth($query, $busqueda, $author) {
+        
+        return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+        ->where('user_id', $author)
         ->orderBy('id', 'DESC')
         ->paginate(10);
     }

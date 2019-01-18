@@ -8,7 +8,7 @@ class Articles extends Model {
 
     protected $table = 'articles';
     protected $fillable = [
-        'user_id', 'title', 'date', 'section_id', 'author', 'article_desc', 'photo', 'video', 'article_body',
+        'user_id', 'title', 'section_id', 'author', 'article_desc', 'photo', 'video', 'article_body',
     ];
     
     //RELACION UN ARTÍCULO A UN USUARIO
@@ -57,6 +57,15 @@ class Articles extends Model {
         
         return $query->whereRaw("MATCH (title,article_desc,article_body) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
         ->where('status','PUBLISHED')
+        ->orderBy('id', 'DESC')
+        ->paginate(10);
+    }
+    
+    //BÚSQUEDA DE ARTÍCULOS USUARIOS
+    public function scopeSearchAuth($query, $busqueda, $author) {
+        
+        return $query->whereRaw("MATCH (title,article_desc,article_body) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+        ->where('user_id', $author)
         ->orderBy('id', 'DESC')
         ->paginate(10);
     }

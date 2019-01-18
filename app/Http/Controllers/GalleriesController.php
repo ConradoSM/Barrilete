@@ -50,7 +50,6 @@ class GalleriesController extends Controller {
         $gallery = new Gallery;
         $gallery -> user_id = $request['user_id'];
         $gallery -> title = $request['title'];
-        $gallery -> date = $request['date'];
         $gallery -> section_id = $request['section_id'];
         $gallery -> author = $request['author'];
         $gallery -> article_desc = $request['article_desc'];
@@ -63,7 +62,7 @@ class GalleriesController extends Controller {
     public function createPhotos(galleryPhotosRequest $request) {
                 
         $gallery_id = $request['gallery_id'];
-        $titles = $request->get('title');
+        $titles = $request->post('title');
         
         if ($request->hasFile('photo')) {    
             
@@ -78,7 +77,7 @@ class GalleriesController extends Controller {
                 $uploadThumb = public_path('img/galleries/.thumbs/'.$filename);
 
                 Image::make($file->getRealPath())->save($upload);
-                Image::make($file->getRealPath())->resize(450, NULL, function($constraint) {
+                Image::make($file->getRealPath())->resize(700, NULL, function($constraint) {
                 $constraint->aspectRatio(); })->save($uploadThumb);
                 
                 //GUARDAR EN BASE DE DATOS
@@ -91,6 +90,8 @@ class GalleriesController extends Controller {
         } else return response()->json(['Error' => 'Error al leer el formato de la imagen.']);
         
         $gallery = Gallery::find($gallery_id);
+        $gallery->status = 'DRAFT';
+        $gallery->save();
         $photos = $gallery->photos;
         
         return view('auth.galleries.previewGallery', compact('gallery', 'photos'))
@@ -102,26 +103,35 @@ class GalleriesController extends Controller {
 
         if ($request->ajax()) {
 
-            $gallery = Gallery::find($id)->first();
-            $photos = $gallery->photos;
-
-            foreach ($photos as $photo) {
-
-                $image_path = public_path('img/galleries/'.$photo->photo);
-
-                if (File::exists($image_path)) {
-                    
-                    File::delete($image_path);
-                } 
-            }
-
-            $gallery->delete();
-
+            $gallery = Gallery::find($id);
+            
             if ($gallery) {
+                
+                $photos = $gallery->photos;
+                
+                if ($photos) {
 
+                    foreach ($photos as $photo) {
+
+                        $image_path = public_path('img/galleries/'.$photo->photo);
+                        $thumb_path = public_path('img/galleries/.thumbs/'.$photo->photo);
+
+                        if (File::exists($image_path) && File::exists($thumb_path)) {
+
+                            File::delete($image_path);
+                            File::delete($thumb_path);
+                        } 
+                    }
+
+                    $gallery->delete();
+                    return response()->json(['Exito' => 'La galería se ha borrado del sistema.']);
+                    
+                } else
+
+                $gallery->delete();
                 return response()->json(['Exito' => 'La galería se ha borrado del sistema.']);
 
-            } else return response()->json(['Error' => 'La galería no existe.']);
+            } else return response()->json(['Error' => 'La galería de fotos no existe.']);
             
         } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     }
@@ -176,7 +186,7 @@ class GalleriesController extends Controller {
         
         if ($gallery) {
             
-            return view('auth.galleries.formMorePhotosGalleries', compact('gallery'));
+            return view('auth.galleries.formPhotosGalleries', compact('gallery'));
             
         } else return response()->json(['Error' => 'La galería no existe.']);
     }

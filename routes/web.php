@@ -1,7 +1,13 @@
 <?php
 use barrilete\Sections;
+use Spatie\Sitemap\SitemapGenerator;
 //HOME INDEX
     Route::get('/', 'IndexController@home')->name('default');
+//SITEMAP
+Route::get('/sitemap', function(){
+    SitemapGenerator::create('https://barrilete.com.ar/')->writeToFile('sitemap.xml');
+    return redirect('sitemap.xml');;
+});
 //VIEW SECTIONS
     View::composer(['layouts.barrilete'], function($view) {
         $sections = Sections::all();
@@ -28,6 +34,8 @@ use barrilete\Sections;
     Route::get('/dashboard/view/articles/{id}', 'DashboardController@userArticles')->middleware('auth')->name('viewArticles');
     Route::get('/dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->middleware('auth')->name('viewGalleries');
     Route::get('/dashboard/view/polls/{id}', 'DashboardController@userPolls')->middleware('auth')->name('viewPolls');
+//DASHBOARD SEARCH
+    Route::get('search-auth', 'SearchController@searchAuth')->name('searchAuth');
 
 //DASHBOARD ADMIN ARTICLES
     //DASHBOARD CREATE ARTICLE

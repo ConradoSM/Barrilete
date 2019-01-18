@@ -9,7 +9,7 @@
             @else
             <img src="{{ asset('svg/checked.svg') }}" title="Publicado" />
             @endif
-            {{ $article->date }}
+            {{ $article->created_at->diffForHumans() }}
         </p>
         @if ($status == 'artículos')
         <a class="searchTitle" href="{{ route('previewArticle', ['id'=>$article->id]) }}">{{ $article->title }}</a>

@@ -1,9 +1,20 @@
 @extends('layouts.barrilete')
 @section('title', $gallery->title)
+@section('description', $gallery->article_desc)
+@section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
+@section('article_title', $gallery->title)
+@section('article_type', 'gallery')
+@section('article_desc', $gallery->article_desc)
+@section('article_url', route('gallery', ['id' => $gallery->id, 'title' => str_slug($gallery->title, '-')]))
+@section('article_photo', 'https://barrilete.com.ar/img/galleries/.thumbs/'.$photos->first()->photo)
+@section('site_name', 'Barrilete')
+@section('created_at', $gallery->created_at)
+@section('updated_at', $gallery->updated_at)
+@section('article_section', $gallery->section->name)
 @section('content')
 <div class="pubContainer">
 <article class="pub_galeria">
-    <p class="info"><img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->date}}</p>
+    <p class="info"><img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}</p>
     <h2>{{$gallery->title}}</h2>
     <p class="copete">{{$gallery->article_desc}}</p>
     <p class="info">

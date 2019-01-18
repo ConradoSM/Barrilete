@@ -3,21 +3,20 @@
     <fieldset>
         <legend>Información</legend>
         <p><b>Autor</b>: {{ $poll->author }}</p>
-        <p><b>Fecha de publicación</b>: {{ $poll->date }}</p> 
+        <p><b>Fecha de publicación</b>: {{ $poll->created_at->diffForHumans() }}</p> 
     </fieldset>
     <fieldset>
         <legend>Título y Copete</legend>
         <div class="status"></div>
             <form method="post" class="data" enctype="multipart/form-data" action="{{ route('updatePoll') }}">
                 <p title="Editar">{{ $poll->title }}</p>
-                <input type="text" class="input" name="title" value="{{ $poll->title }}" placeholder="Título: éste es el principal título del articulo (*)" required />
+                <input type="text" class="input" name="title" value="{{ $poll->title }}" placeholder="Título: éste es el principal título de la encuesta (*) Mínimo 20 caracteres" required />
                 <p title="Editar">{{ $poll->article_desc }}</p>
-                <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $poll->article_desc }}</textarea>
+                <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu encuesta (*) Mínimo 50 caracteres" required>{{ $poll->article_desc }}</textarea>
                 <input type="submit" value="ACTUALIZAR" />
                 @csrf
                 <input type="hidden" name="id" value="{{ $poll->id }}" />
                 <input type="hidden" name="user_id" value="{{ $poll->user_id }}" />
-                <input type="hidden" name="date" value="{{ $poll->date }}" />
                 <input type="hidden" name="author" value="{{ $poll->author }}" />
                 <input type="hidden" name="section_id" value="{{ $poll->section_id }}" />   
             </form>
@@ -111,9 +110,7 @@ $(document).ready(function () {
                             $('p.alert-success').remove();
                         });
                     }, 2000);  
-
                 }
-                console.log(data);
             };
 
             function mostrarError(xhr){
@@ -121,8 +118,7 @@ $(document).ready(function () {
                 var errors = xhr.responseJSON.errors;                   
                 $.each(errors, function(key,value){
                     $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
-                }); 
-                console.log(errors);
+                });
             }; 
             $('p.invalid-feedback').remove();                      
         } return false;
@@ -182,7 +178,6 @@ $(document).ready(function () {
                     });
                 }, 2000);
             }
-            console.log(data);
         };
 
         function mostrarError(xhr){
@@ -190,8 +185,7 @@ $(document).ready(function () {
             var errors = xhr.responseJSON.errors;                   
             $.each(errors, function(key,value){
                 $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
-            }); 
-            console.log(errors);
+            });
         };               
         $('p.invalid-feedback').remove();
     });
@@ -230,7 +224,6 @@ $(document).ready(function () {
                     $('#user-content').html(data).fadeIn('fast'); 
                 });              
             }
-            console.log(data);
         };
 
         function mostrarError(xhr){
@@ -238,8 +231,7 @@ $(document).ready(function () {
             var errors = xhr.responseJSON.errors;                   
             $.each(errors, function(key,value){
                 $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
-            }); 
-            console.log(errors);
+            });
         };               
         $('p.invalid-feedback').remove();
     });

@@ -8,7 +8,7 @@ class Gallery extends Model {
 
     protected $table = 'gallery';
     protected $fillable = [
-        'user_id', 'title', 'date', 'section_id', 'author', 'article_desc',
+        'user_id', 'title', 'section_id', 'author', 'article_desc',
     ];
     
     //RELACIONA LA GALERÍA CON EL USUARIO QUE LA CARGÓ
@@ -32,7 +32,7 @@ class Gallery extends Model {
     //BUSCA LA GALERÍA QUE SE VA A MOSTRAR EN LA HOMEPAGE
     public function scopeGalleryHome($query) {
         
-        return $query->where('status','PUBLISHED');      
+        return $query->where('status','PUBLISHED')->orderBy('id','DESC');      
     }
     
     //BUSCA LA GALERÍA POR ID
@@ -49,6 +49,15 @@ class Gallery extends Model {
 
         return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
         ->where('status','PUBLISHED')
+        ->orderBy('id', 'DESC')
+        ->paginate(10);
+    }
+    
+    //BÚSQUEDA DE GALERIAS USUARIOS
+    public function scopeSearchAuth($query, $busqueda, $author) {
+        
+        return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
+        ->where('user_id', $author)
         ->orderBy('id', 'DESC')
         ->paginate(10);
     }

@@ -3,7 +3,7 @@
     <fieldset>
         <legend>Información</legend>
         <p><b>Autor</b>: {{ $gallery->author }}</p>
-        <p><b>Fecha de publicación</b>: {{ $gallery->date }}</p> 
+        <p><b>Fecha de publicación</b>: {{ $gallery->created_at->diffForHumans() }}</p> 
     </fieldset>
     <fieldset>
         <legend>Título y Copete</legend>
@@ -17,42 +17,38 @@
                 @csrf
                 <input type="hidden" name="id" value="{{ $gallery->id }}" />
                 <input type="hidden" name="user_id" value="{{ $gallery->user_id }}" />
-                <input type="hidden" name="date" value="{{ $gallery->date }}" />
                 <input type="hidden" name="author" value="{{ $gallery->author }}" />
                 <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />   
             </form>
-    </fieldset>   
-        <fieldset id="cargar">
-            <legend>Cargar más imagenes</legend>
-            <input type="submit" value="SIGUIENTE >>" id="enviar" />
-        </fieldset>
-        @forelse ($photos as $photo)
-        <fieldset data-id="{{ $photo->id }}">
-            <div class="status"></div>           
-            <div class="photo-gallery-container">
-                <form action="{{ route('updatePhoto') }}" method="post" enctype="multipart/form-data">
-                    @csrf                    
-                    <input type="file" class="jfilestyle" data-placeholder="Seleccionar imagen" name="photo" accept="image/*" required />
-                    <input type="submit" class="actualizar-foto" value="Actualizar" />
-                    <input type="hidden" name="id" value="{{ $photo->id }}" />
-                    <input type="hidden" name="actual_photo" value="{{ $photo->photo }}" />
-                </form>
-                <img class="update-image-button" src="{{ asset('svg/update.svg') }}" title="Actualizar imagen" />
-                <img class="delete-image-button" src="{{ asset('svg/delete.svg') }}" title="Borrar imagen" />
-                <img class="photo-gallery" src="{{ asset('img/galleries/'.$photo->photo) }}" />
-            </div> 
-            <div class="status"></div>               
-            <form method="post" class="data" action="{{ route('updateTitlePhotoGallery') }}">
-                <p title="Editar">{{ $photo->title }}</p>                                              
-                <input type="text" name="title" class="input" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
-                <input type="submit" class="actualizar-datos" value="Actualizar" /> 
+    </fieldset>  
+    <input type="button" value="+ AGREGAR IMAGENES" id="enviar" />
+    @forelse ($photos as $photo)
+    <fieldset data-id="{{ $photo->id }}">
+        <div class="status"></div>                  
+        <div class="photo-gallery-container">           
+            <form action="{{ route('updatePhoto') }}" method="post" enctype="multipart/form-data">
+                @csrf                    
+                <input type="file" class="jfilestyle" data-placeholder="Seleccionar imagen" name="photo" accept="image/*" required />
+                <input type="submit" class="actualizar-foto" value="ACTUALIZAR" />
                 <input type="hidden" name="id" value="{{ $photo->id }}" />
-                @csrf
-            </form>                  
-        </fieldset>
-        @empty
-        <p>No hay fotos</p>
-        @endforelse
+                <input type="hidden" name="actual_photo" value="{{ $photo->photo }}" />
+            </form>
+            <img class="update-image-button" src="{{ asset('svg/update.svg') }}" title="Actualizar imagen" />
+            <img class="delete-image-button" src="{{ asset('svg/delete.svg') }}" title="Borrar imagen" />
+            <img class="photo-gallery" src="{{ asset('img/galleries/'.$photo->photo) }}" />
+        </div> 
+        <div class="status"></div>               
+        <form method="post" class="data" action="{{ route('updateTitlePhotoGallery') }}">
+            <p title="Editar">{{ $photo->title }}</p>                                              
+            <input type="text" name="title" class="input" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
+            <input type="submit" class="actualizar-datos" value="Actualizar" /> 
+            <input type="hidden" name="id" value="{{ $photo->id }}" />
+            @csrf
+        </form>                  
+    </fieldset>
+    @empty
+    <p>No hay fotos</p>
+    @endforelse
     <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
     <script type="text/javascript">       
         $(document).ready(function () {                                            
@@ -158,9 +154,7 @@
             });
 
             //ACTUALIZAR FOTO
-            $('input[type=submit].actualizar-foto').click(function(event){
-                event.stopPropagation();
-                event.preventDefault();
+            $('input[type=submit].actualizar-foto').click(function(){
                 
                 var div = $(this).parents('div.photo-gallery-container');
                 var form = $(div).children('form');
@@ -174,7 +168,6 @@
                     data: formData,
                     url: $(form).prop('action'),
                     type: $(form).prop('method'),
-                    datatype: 'json',
                     processData: false,
                     contentType: false,
                     async: true
@@ -258,6 +251,11 @@
                 
                 $('p.invalid-feedback').remove();
                 $.ajax({
+                    beforeSend: function(){
+
+                        $('#Article-container').hide(0);
+                        $('#loader').fadeIn('slow');
+                    },
                     url: '{!! route('morePhotos') !!}',
                     type: 'POST',
                     data: { 'id': '{!! $gallery->id !!}', '_token': '{!! csrf_token() !!}' },                  
@@ -265,7 +263,9 @@
                         if(data['Error']){
                             $('<p class="invalid-feedback">'+data['Error']+'</p>').prependTo('fieldset#cargar').hide().fadeIn('slow');
                         } else {
-                            $('div#Article-container').html(data);
+                            $('#loader').fadeOut('slow', function () {                        
+                                $('#user-content').html(data);
+                            });
                         }
                     },
                     error: function(data){

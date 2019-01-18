@@ -28,7 +28,7 @@
     </div>
     <article class="pub-preview">
         <img src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" />
-        <p class="info"><img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->date }}</p>
+        <p class="info"><img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->created_at->diffForHumans() }}</p>
         <h2>{{ $article -> title }}</h2>
         <p class="copete">{{ $article->article_desc }}</p>
         <p class="info">

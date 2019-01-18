@@ -18,20 +18,21 @@ $(document).ready(function () {
             sbtn.removeClass('search-btn-small').addClass('search-btn');
         }
     });
-});
-
-$(document).ready(function () {
+    
+    //BOTON MENU VERSION MOVIL
     $('a#menu-btn').on('click', function () {
         $('div.menu-btn-block').toggleClass('active');
         $('nav.none').toggleClass('active');
         $('div#glass.hide').toggleClass('show');
 
         $('div#glass').on('click', function () {
-        $('div#glass').removeClass('show');
-        $('nav.none').removeClass('active');
-        $('div.menu-btn-block').removeClass('active');
+            $('div#glass').removeClass('show');
+            $('nav.none').removeClass('active');
+            $('div.menu-btn-block').removeClass('active');
+        });
     });
-});
+    
+    // BUSCADOR CONTENIDO USUARIOS
     $('img#search-btn').on('click', function () {
         $('div#search').slideDown('fast', 'linear');
         $("#inputText").focus();
@@ -43,10 +44,22 @@ $(document).ready(function () {
         });
     });
     
-    $('div.user-options').hover(function () {
-        $('div#user-nav-options').slideToggle();
+    // DROPDOWN MENU USUARIO
+    $('div#user-menu').click(function(){
+
+        $(this).find('div#user-options').slideToggle('fast');
+        $(this).addClass('focus');
+
     });
 
+    $(document).on('click', function(event){
+
+        var trigger = $('div#user-menu');
+
+        if(trigger !== event.target && !trigger.has(event.target).length){
+
+            $('div#user-options').slideUp('fast');
+            $(trigger).removeClass('focus');
+        }            
+    });
 });
-
-

@@ -25,12 +25,11 @@ class articleRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
-            'title' => 'required|min:30|max:191|unique:articles,title,'.$this->input('id'),
-            'date' => 'required',
+            'title' => 'required|min:20|max:191|unique:articles,title,'.$this->input('id'),
             'section_id' => 'required',
             'author' => 'required',          
             'article_desc' => 'required|min:50',
-            'photo' => request()->has('id') ? '' : 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo' => request()->has('id') ? 'image|mimes:jpeg,png,jpg|max:2048' : 'required|image|mimes:jpeg,png,jpg|max:2048',
             'article_body' => 'required'
         ];
     }

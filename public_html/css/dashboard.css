@@ -70,12 +70,11 @@ div#loader img {
     width: 128px;
     height: 128px;
 }
-/*DIV USER BAR*/
-div#user-nav-options {
-    display: none;
-}
+
 section.dashboard div.tools {
     position: relative;
+    display: flex;
+    flex-flow: row nowrap;
     width: 100%;
     height: 78px;
     background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
@@ -94,7 +93,44 @@ div.dashboard-title img {
 div.dashboard-title img:hover {
     opacity: 0.8;
 }
-section.dashboard div.tools div.user-options {
+/*SEARCH*/
+div#MainSearch {
+    position:relative;
+    width: 400px;
+    height: auto;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+div#MainSearch input[type=search]{
+    width: 100%;
+    height: 45px;
+    margin: 0px;
+    border: 0px;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 1.3em;
+    box-shadow: none;
+}
+div#MainSearch button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    padding: 7px;
+    background-color: rgba(85,172,238,1.00);
+    box-shadow: inset 0px 0px 5px 0px #1b90e8;
+    border-radius: 0px 3px 3px 0px;
+    border: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+div#MainSearch button:hover {
+    background-color: #1b90e8;
+    transition: 0.3s;
+}
+/*DIV USER MENU*/
+div#user-menu {
     position: absolute;
     display: block;
     right: 10px;
@@ -105,18 +141,21 @@ section.dashboard div.tools div.user-options {
     background-color: rgba(85,172,238,1.00);
     border-radius: 3px;
     transition: 0.3s;
+    cursor: pointer;
 }
-section.dashboard div.tools div.user-options:hover {
+div#user-menu.focus {
     background-color: #f2f3f4;
     box-shadow: 0px 0px 3px 0px #999;
 }     
-section.dashboard div.tools div.user-options p {
+div#user-menu p {
     font-size: 1.6em;
     font-weight: bold;
-    cursor: default;
     margin: 0px;
 }
-section.dashboard div.tools div.user-options img {
+div#user-menu p:hover {
+    opacity: 0.8;
+}
+div#user-menu img {
     height: 1.1em;
     width: auto;
     margin-left: 10px;
@@ -124,10 +163,11 @@ section.dashboard div.tools div.user-options img {
     vertical-align: middle;
 }
 /*NAV BAR USER OPTIONS*/
-div#user-nav-options {
+div#user-options {
+    display: none;
     margin-top: 10px;
 }
-section.dashboard div.tools div.user-options a {
+div#user-menu a {
     display: block;
     width: 100%;
     height: auto;
@@ -136,13 +176,13 @@ section.dashboard div.tools div.user-options a {
     font-size: 1.3em; 
     font-weight: bold;
 }
-section.dashboard div.tools div.user-options a:visited {
+div#user-menu a:visited {
     color: #000;
 }
-section.dashboard div.tools div.user-options a:hover {
+div#user-menu a:hover {
     opacity: 0.6;
 }
-section.dashboard div.tools div.user-options a img {
+div#user-menu a img {
     height: 1.2em;
     width: auto;
     margin-right: 10px;
@@ -153,7 +193,7 @@ section.dashboard div.tools-bar {
     width: 25%;
     min-height: 100vh;
     background-color: #f2f9fe;
-    padding: 10px 20px 0px 20px;
+    padding: 20px 20px 0px 20px;
     box-shadow: inset 0px 0px 3px 0px #d0e4f5;
 }
 section.dashboard div.tools-bar h2 {
@@ -171,8 +211,7 @@ section.dashboard div.tools-bar a {
     font-size: 1.5em;
 }
 section.dashboard div.tools-bar a.selected {
-    background-color: #f2f3f4;
-    box-shadow: 0px 0px 3px 0px #999;   
+    background-color: #a9cce3;  
     border-radius: 3px;
     cursor: default;
 }
@@ -315,4 +354,27 @@ form.data p:hover {
 }
 textarea#copete {
     margin-bottom: 10px;
+}
+/*PROGRESS BAR*/
+div#progressBar-Container {
+    display: none;
+    margin-top: 10px;
+}
+div.progress{
+    position: relative;
+    margin-top: 5px;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 2px 0px #d5dbdb;
+    background-color: #f4f6f6;
+}
+div.bar {
+    position: relative;
+    background-color: #58d68d;
+    height: 40px;
+    border-radius: 3px;
+}
+div.percent {
+    position: absolute;
+    top: 8px;
+    left: 50%;
 }

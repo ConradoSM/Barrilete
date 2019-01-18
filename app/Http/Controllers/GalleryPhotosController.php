@@ -58,8 +58,8 @@ class GalleryPhotosController extends Controller
 
         $photo = GalleryPhotos::find($request->id); 
 
-        if ($photo) {     
-        
+        if ($photo) { 
+            
             if ($request->hasFile('photo')) {
                 
                 //FOTO ACTUAL
@@ -77,7 +77,7 @@ class GalleryPhotosController extends Controller
                     File::delete($actualThumb);
 
                     Image::make($request->file('photo')->getRealPath())->save($upload);         
-                    Image::make($request->file('photo')->getRealPath())->resize(450, NULL, function($constraint) {
+                    Image::make($request->file('photo')->getRealPath())->resize(700, NULL, function($constraint) {
                     $constraint->aspectRatio(); })->save($uploadThumb);
                     
                     $photo->photo = $filename;
@@ -86,12 +86,11 @@ class GalleryPhotosController extends Controller
                     return response()->json([
                         'Imagen' => $photo->photo,
                         'Exito' => 'La imagen se ha actualizado con éxito.'
-                    ]);
-                    
+                    ]);                   
                 } else 
 
                     Image::make($request->file('photo')->getRealPath())->save($upload);         
-                    Image::make($request->file('photo')->getRealPath())->resize(450, NULL, function($constraint) {
+                    Image::make($request->file('photo')->getRealPath())->resize(700, NULL, function($constraint) {
                     $constraint->aspectRatio(); })->save($uploadThumb);
                     
                     $photo->photo = $filename;
@@ -100,10 +99,8 @@ class GalleryPhotosController extends Controller
                     return response()->json([
                         'Imagen' => $photo->photo,
                         'Exito' => 'La foto actual no existe, pero se actualizó con la nueva.'
-                    ]);      
-                    
+                    ]);                         
             } else return response()->json(['Error' => 'La foto no es un archivo válido.']);
-
-        } else return response()->json(['Error' => 'La imagen no existe.']);
+        } else return response()->json(['Error' => 'La imagen no existe en la base de datos.']);
     }
 }

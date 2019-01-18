@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
-    //BOTÓN PUBLICAR GALERÍA
-    $('div.article-admin a#publish').on('click', function () {
+    //BOTÓN PUBLICAR
+    $('div.article-admin a#publish').on('click', function(event){
+        event.stopPropagation();
+        event.preventDefault();
 
         var href = $(this).attr('href');
         $(this).attr({href: '#'});
@@ -23,7 +25,7 @@ $(document).ready(function () {
         } return false;
     });
 
-    //BOTÓN BORRAR GALERÍA
+    //BOTÓN BORRAR
     $('div.article-admin a#delete').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
@@ -50,8 +52,10 @@ $(document).ready(function () {
         } return false;
     });
 
-    //BOTÓN EDITAR GALERÍA
-    $('div.article-admin a#edit').on('click', function () {
+    //BOTÓN EDITAR
+    $('div.article-admin a#edit').on('click', function(event){
+        event.stopPropagation();
+        event.preventDefault();
 
         var href = $(this).attr('href');
         $(this).attr({href: '#'});
