@@ -22,6 +22,7 @@ article.pubIndex div.seccion {
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
+    z-index: 1;
 }
 article.pubIndex div.seccion:hover {
     text-decoration: none;
@@ -30,19 +31,26 @@ article.pubIndex div.seccion:hover {
 }
 article.pubIndex img.video {
     position: absolute;
-    width: 70px;
+    width: 50px;
     height: auto;
     left: 50%;
-    top: 22%;
+    top: 20%;
     transform: translate(-50%, -22%);
     box-shadow: 0px 0px 50px 0px rgba(255,255,255,0.2);
     border-radius: 50%;
+    z-index: 1;
 }
 article.pubIndex img {
     display: block;
     width: 100%;
     height: 250px;
     margin-bottom: 10px;
+    z-index: 0;
+    cursor: pointer;
+}
+article.pubIndex img:hover {
+    opacity: 0.8;
+    transition: 0.3s;
 }
 article.pubIndex a {
     color: rgba(0,0,0,1.00);
@@ -138,7 +146,7 @@ article.pollIndex p {
 }
 article.pollIndex a {
     font-size: 1.5em;
-    line-height: 35px;
+    line-height: 1.2em;
 }
 @media (max-width: 575.98px) {
     /*****************
@@ -147,25 +155,27 @@ article.pollIndex a {
     article.pubIndex {
         width: 100%;
         box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
-        background-color: #fff;
+        background-color: #f2f3f4;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
     }
     article.pubIndex img.video {
-        top: 20%;
+        top: 18%;
     }
     article.pubIndex img {
         height: auto;
     }
     article.pubIndex a {
         display: block;
-        font-size: 2.5em;
-        line-height: 45px;
-        padding: 10px;
+        font-size: 1.8em;
+        line-height: 1.2em;
+        margin: 10px 0px 10px 0px;
+        padding: 0px 10px 0px 10px;
     }
     article.pubIndex p {
         position: relative;
-        padding: 10px;
+        padding: 0px 10px 0px 10px;
+        margin: 0px 0px 10px 0px;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
@@ -173,6 +183,7 @@ article.pollIndex a {
     div.galeriasContainerIndex {
         flex-flow: row wrap;
         width: 100%;
+        height: auto;
         background-color: #fff;
         box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
     }
@@ -188,6 +199,10 @@ article.pollIndex a {
     }
     div.galeriasContainerIndex h1, div.pollsContainerIndex h1 {
         font-size: 2em;
+    }
+    article.galeriaIndex img {
+        width: 100%;
+        height: auto;
     }
     /*************************
     *****ENCUESTAS INDEX******
@@ -213,20 +228,20 @@ article.pollIndex a {
         border-bottom-right-radius: 5px;
     }
     article.pubIndex img.video {
-        top: 20%;
+        top: 18%;
     }
     article.pubIndex img {
         height: auto;
     }
     article.pubIndex a {
         display: block;
-        font-size: 2.5em;
-        line-height: 45px;
-        padding: 10px;
+        font-size: 1.5em;
+        line-height: 1em;
+        padding: 5px;
     }
     article.pubIndex p {
         position: relative;
-        padding: 10px;
+        padding: 5px;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
@@ -274,14 +289,14 @@ article.pollIndex a {
         border-bottom-right-radius: 5px;
     }
     article.pubIndex img.video {
-        top: 20%;
+        top: 18%;
     }
     article.pubIndex img {
         height: auto;
     }
     article.pubIndex a {
         display: block;
-        font-size: 2.5em;
+        font-size: 2em;
         line-height: 45px;
         padding: 10px;
     }
@@ -385,20 +400,21 @@ article.pollIndex a {
     **1° ARTÍCULO**
     **************/
     article.pubIndex:nth-child(1) {
-        width: 100%;
-        height: 700px;
+        width: 730px;
+        height: 510px;
+        margin-right: 10px;
     }
     article.pubIndex:nth-child(1) div.seccion {
         font-size: 35px;
     }
     article.pubIndex:nth-child(1) img.video {
-        width: 150px;
+        width: 100px;
         height: auto; 
         top: 35%;
     }
     article.pubIndex:nth-child(1) img {
         width: 100%;
-        height: 700px;
+        height: 510px;
     }
     article.pubIndex:nth-child(1) a {
         position: absolute;
@@ -409,40 +425,37 @@ article.pollIndex a {
         margin-bottom: 0px;
         color: white;
         text-decoration: none;
-        font-size: 60px;
-        line-height: 60px;
-        padding: 20px;
+        font-size: 2.5em;
+        line-height: 1.2em;
+        padding: 10px;
         background-color: rgba(0,0,0,0.5);
         text-shadow: 1px 1px 3px #000000;
     }
     article.pubIndex:nth-child(1) a:hover {
-        background-color: rgba(0,153,216,0.5);
+        background-color: rgba(41,128,185,0.5);
         transition: background-color 0.3s ease-out;
     }
     article.pubIndex:nth-child(1) p {
         display: none;
     }
-    /******************
-    **2°y 3° ARTÍCULO**
-    *******************/
-    article.pubIndex:nth-child(2), article.pubIndex:nth-child(3) {
-        width: 585px;
-        height: 350px;
+    /**************
+    **2° ARTÍCULO**
+    **************/
+    article.pubIndex:nth-child(2){
+        width: 440px;
+        height: 250px;
         overflow: hidden;
     }
-    article.pubIndex:nth-child(2) div.seccion, article.pubIndex:nth-child(3) div.seccion {
-        font-size: 25px;
-    }
-    article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video {
-        width: 100px;
+    article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video{
+        width: 50px;
         height: auto; 
         top: 40%;
     }
-    article.pubIndex:nth-child(2) img, article.pubIndex:nth-child(3) img {
+    article.pubIndex:nth-child(2) img, article.pubIndex:nth-child(3) img{
         width: 100%;
-        height: 350px;
+        height: 250px;
     }
-    article.pubIndex:nth-child(2) a, article.pubIndex:nth-child(3) a {
+    article.pubIndex:nth-child(2) a, article.pubIndex:nth-child(3) a{
         position: absolute;
         display: block;
         width: 100%;
@@ -451,16 +464,28 @@ article.pollIndex a {
         margin-bottom: 0px;
         color: white;
         text-decoration: none;
-        font-size: 30px;
+        font-size: 1.5em;
+        line-height: 1em;
         padding: 10px;
         background-color: rgba(0,0,0,0.5);
         text-shadow: 1px 1px 3px #000000;
     }
-    article.pubIndex:nth-child(2) a:hover, article.pubIndex:nth-child(3) a:hover {
-        background-color: rgba(0,153,216,0.5);
+    article.pubIndex:nth-child(2) a:hover, article.pubIndex:nth-child(3) a:hover{
+        background-color: rgba(41,128,185,0.5);
         transition: background-color 0.3s ease-out;
     }
-    article.pubIndex:nth-child(2) p, article.pubIndex:nth-child(3) p {
+    article.pubIndex:nth-child(2) p, article.pubIndex:nth-child(3) p{
         display: none;
+    }
+    /**************
+    **3° ARTÍCULO**
+    **************/
+    article.pubIndex:nth-child(3) {
+        position: absolute;
+        right: 10px;
+        top: 270px;
+        width: 440px;
+        height: 250px;
+        overflow: hidden;
     }
 }

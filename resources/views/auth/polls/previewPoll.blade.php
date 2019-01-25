@@ -6,23 +6,23 @@
     <div class="article-admin">
         @if (Auth::user()->is_admin)
             @if ($poll->status == "DRAFT")
-                <a href="{{ route('publishPoll',['id'=>$poll->id]) }}" class="edit" id="publish">Publicar</a>
+                <a href="{{ route('publishPoll',['id'=>$poll->id]) }}" class="success" id="publish">Publicar</a>
             @else
                 <a href="#" class="disabled">Publicado</a>
-                <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>
+                <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
             @endif      
-            <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="edit" id="edit">Editar</a>
-            <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="delete" id="delete">Eliminar</a>
+            <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="success" id="edit">Editar</a>
+            <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="danger" id="delete">Eliminar</a>
         @else
             @if ($poll->status == "PUBLISHED")
                 <a href="#" class="disabled">Publicado</a>
-                <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>
-                <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="edit" id="edit">Editar</a>
-                <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="delete" id="delete">Eliminar</a>
+                <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
+                <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="success" id="edit">Editar</a>
+                <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="danger" id="delete">Eliminar</a>
             @else
                 <a href="#" class="disabled">No publicado</a>
-                <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="edit" id="edit">Editar</a>
-                <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="delete" id="delete">Eliminar</a>
+                <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="success" id="edit">Editar</a>
+                <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="danger" id="delete">Eliminar</a>
             @endif
         @endif
     </div>
@@ -51,5 +51,5 @@
         </form>
     </article>
 <br />
-<script type="text/javascript" src="{{ asset('js/admin-links.js') }}"></script>
 </div>
+<script type="text/javascript" src="{{ asset('js/dashboard-admin-links.js') }}"></script>

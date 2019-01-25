@@ -9,7 +9,7 @@ use barrilete\Sections;
 
 class SectionsController extends Controller {
     
-    /*     * VER SECCIONES* */
+    //VER SECCIONES
 
     public function searchSection($name) {
 
@@ -19,7 +19,7 @@ class SectionsController extends Controller {
             
             $section = $section->first();
             
-            if ($section->name == 'galerias') {
+            if ($section->name == 'Galerias') {
                 
                 $galleries = Gallery::galleryHome()->get();
                 

@@ -4,6 +4,7 @@
         <div class="bar"></div >
         <div class="percent">0%</div >
     </div>
+    <p>Por favor no actualizar ni cerrar ésta ventana mientras dure el proceso de carga.</p>
 </div>
 <div id="status">
 <h1>{{ isset($article) ? 'Actualizar artículo' : 'Cargar artículo' }}</h1>
@@ -33,7 +34,7 @@
         <fieldset>
             <legend>Contenido</legend>
             <textarea name="article_body" id="article_body">{{ isset($article) ? $article->article_body : '' }}</textarea>
-            <input type="submit" value="GUARDAR" id="enviar" />
+            <input type="submit" value="GUARDAR" id="enviar" class="primary" />
         </fieldset>   
         @csrf
         <input type="hidden" name="user_id" value="{{ isset($article) ? $article->user->id : Auth::user()->id }}" />
@@ -44,4 +45,4 @@
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/ckeditor4.11.1/ckeditor.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/formSubmitArticles.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-form-articles.js')}}"></script>

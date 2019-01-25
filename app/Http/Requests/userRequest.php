@@ -4,7 +4,7 @@ namespace barrilete\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class galleryPhotosRequest extends FormRequest
+class userRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class galleryPhotosRequest extends FormRequest
     public function rules()
     {
         return [
-            'gallery_id' => 'required',
-            'title[*]' => 'required|min:20|max:191|unique:gallery_photos',
-            'photo[*]' => 'required|image|mimes:jpeg,png,jpg|max:1024'
+            'name' => 'required|unique:users,name,'.$this->input('id'),
+            'email' => 'required|email|unique:users,email,'.$this->input('id'),
+            'birthday' => 'date',          
+            'phone' => 'max:20',
+            'photo' => request()->has('id') ? '' : 'image|mimes:jpeg,png,jpg|max:1024'
         ];
     }
 }

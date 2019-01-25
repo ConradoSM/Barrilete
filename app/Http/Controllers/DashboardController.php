@@ -65,11 +65,11 @@ class DashboardController extends Controller
             
             if ($request->id) {               
                 $article = Articles::find($request->id);
-                $sections = Sections::select('id','name')->where('name', '!=', $article->section->name)->get();
+                $sections = Sections::select('id','name')->where('name', '!=', $article->section->name)->where('name','!=','Encuestas')->get();
                 return view('auth.articles.formArticles', compact('article','sections'));
                 
             } else               
-                $sections = Sections::select('id','name')->get();
+                $sections = Sections::select('id','name')->where('name','!=','Encuestas')->get();
                 return view('auth.articles.formArticles', compact('sections'));
         
         } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);

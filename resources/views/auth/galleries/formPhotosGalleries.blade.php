@@ -2,8 +2,9 @@
     <img src="{{ asset('img/loading.gif') }}" /> Cargando galería de fotos...
     <div class="progress">
         <div class="bar"></div >
-        <div class="percent">0%</div >
+        <div class="percent">0%</div >  
     </div>
+    <p>Por favor no actualizar ni cerrar ésta ventana mientras dure el proceso de carga.</p>
 </div>
 <div id="status">
 <h1>Cargar imágenes</h1>
@@ -19,7 +20,7 @@
         </fieldset>
         <div id="error"></div>
         <div id="vista-previa"></div>
-        <input type="submit" id="submit" value="GUARDAR" disabled />
+        <input type="submit" id="submit" value="GUARDAR" class="disabled" disabled />
         <input type="hidden" name="gallery_id" value="{{ $gallery->id }}" />
         @csrf
     </form>
@@ -27,7 +28,7 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/formSubmitGalleries.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-form-galleries.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function () { 
     $(':file').jfilestyle({ buttonText: 'EXAMINAR...'});		
@@ -52,7 +53,7 @@ $(document).ready(function () {
             } else {
                 var objeto_url = navegador.createObjectURL(archivos[x]);
                 $('#vista-previa').append('<fieldset><img src="'+objeto_url+'"><input name="title[]" type="text" required value="" placeholder="Título: éste es el principal título de la foto (*) Mínimo 20 caracteres" /></fieldset>');
-                $('input#submit').removeAttr('disabled');
+                $('input#submit').removeAttr('disabled').removeClass('disabled').addClass('primary');              
             }
         }
     });

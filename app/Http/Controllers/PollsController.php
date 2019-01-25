@@ -100,22 +100,28 @@ class PollsController extends Controller {
     public function createOptions(Request $request) {
                 
         $poll_id = $request['poll_id'];
-        $inputOptions = $request->get('option');
-                  
-            foreach ($inputOptions as $key => $val) {            
-                
-                /**GUARDAR EN BASE DE DATOS**/
-                $PollOption = new PollOptions;
-                $PollOption->poll_id = $poll_id;
-                $PollOption->option = $inputOptions[$key];
-                $PollOption->save();
-            }
-        
         $poll = Poll::find($poll_id);
-        $poll_options = $poll->option;
         
-        return view('auth.polls.previewPoll', compact('poll', 'poll_options'))
-        ->with(['Exito' => 'La encuesta se ha creado correctamente.']);      
+        if ($poll) {
+            
+            $inputOptions = $request['option'];
+
+                foreach ($inputOptions as $key => $val) {            
+
+                    /**GUARDAR EN BASE DE DATOS**/
+                    $PollOption = new PollOptions;
+                    $PollOption->poll_id = $poll_id;
+                    $PollOption->option = $inputOptions[$key];
+                    $PollOption->save();
+                }
+                
+            $poll_options = $poll->option;
+
+            return view('auth.polls.previewPoll', compact('poll', 'poll_options'))
+            ->with(['Exito' => 'La encuesta se ha creado correctamente.']); 
+            
+        } else return response()->json(['Error' => 'La encuesta no existe.']);
+        
     }
 
     //FORMULARIO AGREGAR MAS OPCIONES

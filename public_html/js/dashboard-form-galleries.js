@@ -16,7 +16,7 @@ $(document).ready(function () {
     function mostrarLoader() {
 
         var percentVal = '0%';
-        
+        $('p.invalid-feedback').hide();
         $(document).scrollTop(0);
         status.fadeOut('fast', function(){
             progress.fadeIn('fast', function(){
@@ -47,7 +47,4 @@ $(document).ready(function () {
             });
         });
     };   
-    $('#enviar').on('click', function() {
-        $('p.invalid-feedback').hide();
-    });
 });

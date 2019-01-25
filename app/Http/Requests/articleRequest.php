@@ -29,7 +29,7 @@ class articleRequest extends FormRequest
             'section_id' => 'required',
             'author' => 'required',          
             'article_desc' => 'required|min:50',
-            'photo' => request()->has('id') ? 'image|mimes:jpeg,png,jpg|max:2048' : 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'photo' => request()->has('id') ? '' : 'required|image|mimes:jpeg,png,jpg|max:1024',
             'article_body' => 'required'
         ];
     }

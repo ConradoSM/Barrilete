@@ -1,7 +1,6 @@
 @extends('layouts.barrilete')
 @section('title', $gallery->title)
 @section('description', $gallery->article_desc)
-@section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
 @section('article_title', $gallery->title)
 @section('article_type', 'gallery')
 @section('article_desc', $gallery->article_desc)
@@ -14,18 +13,18 @@
 @section('content')
 <div class="pubContainer">
 <article class="pub_galeria">
-    <p class="info"><img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}</p>
     <h2>{{$gallery->title}}</h2>
     <p class="copete">{{$gallery->article_desc}}</p>
     <p class="info">
-    <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
-    <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}} lecturas
+        <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}
+        <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
+        <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}} lecturas
     </p>
     <hr />
 </article>
 @forelse ($photos as $photo)
 <article class="fotos">
-    <img src="{{ asset('img/galleries/'.$photo->photo)}}" />
+    <img data-src="{{ asset('img/galleries/'.$photo->photo)}}" class="lazy" title="{{$photo->title}}" />
     <p>{{$photo->title}}</p>
 </article>
 @empty

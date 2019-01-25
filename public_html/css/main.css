@@ -9,9 +9,11 @@ html, body {
     flex-flow: row wrap;
     justify-content: center;
     width: 100%;
-    background-color: rgba(219,219,234,0.3);
+    background-color: #eaecee;
     margin: 0px;
     padding: 0px;
+    color: #1b2631;
+    font-size: 1em;
 }
 a {
     color: #000;
@@ -26,18 +28,18 @@ a:hover {
 }
 hr {
     width: 100%;
-    border-top-width: 2px;
+    border-top-width: 1px;
     border-right-width: 0px;
     border-bottom-width: 0px;
     border-left-width: 0px;
-    border-top-style: dotted;
+    border-top-style: solid;
     border-right-style: none;
     border-bottom-style: none;
     border-left-style: none;
-    border-top-color: rgba(204,204,204,1);
+    border-top-color: #d6dbdf;
     margin: 10px 0px 10px 0px;
 }
-h1, h2, h3 {
+h1, h2 {
     color: #000;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -52,9 +54,10 @@ h3 {
     font-size: 2em;
 }
 p {
-    font-size: 1.6em;
+    font-size: 1.7em;
     margin: 10px 0px;
 } 
+
 /*********
 **HEADER**
 *********/
@@ -85,13 +88,24 @@ header.fixed {
 div#search {
     position:relative;
     float: right;
-    width: 300px;
+    width: auto;
     height: auto;
     margin-top: 10px;
     margin-right: 10px;
 }
-div#search input[type=search]{
-    width: 100%;
+div#search input[type=search].big{
+    width: 400px;
+    height: 50px;
+    margin: 0px;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.5em;
+    box-shadow: inset 0px 0px 5px #ccc;
+    transition: 0.3s;
+}
+div#search input[type=search].small{
+    width: 300px;
     height: 37px;
     margin: 0px;
     border: 0px;
@@ -99,8 +113,22 @@ div#search input[type=search]{
     padding: 10px;
     font-size: 1em;
     box-shadow: inset 0px 0px 5px #ccc;
+    transition: 0.3s;
 }
-div#search img {
+div#search img.big {
+    position: absolute;
+    top:0;
+    right: 0;
+    width: auto;
+    height: 50px;
+    padding: 7px;
+    background-color: rgba(85,172,238,1.00);
+    box-shadow: inset 0px 0px 5px 0px #1b90e8; 
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+div#search img.small {
     position: absolute;
     top:0;
     right: 0;
@@ -111,6 +139,7 @@ div#search img {
     box-shadow: inset 0px 0px 5px 0px #1b90e8; 
     border-radius: 0px 5px 5px 0px;
     cursor: pointer;
+    transition: 0.3s;
 }
 div#search img:hover {
     opacity: 1;
@@ -126,7 +155,7 @@ div#glass {
 /**********
 ****NAV****
 **********/
-img#search-btn, a.menu-btn {
+img#search-btn, a#menu-btn.big {
     display: none;
 }
 div.navContainer {
@@ -154,7 +183,7 @@ nav ul li {
 nav ul li a {
     padding: 5px 15px 5px 15px;
     color: #000;
-    font-size: 1.45em; 
+    font-size: 1.7em; 
     font-weight: bold;
     text-transform: uppercase;
     border-top: 1px solid rgba(85,172,238,0);
@@ -177,21 +206,21 @@ nav ul li a:hover {
 /*********
 ***LOGO***
 *********/
-img.logo {
+img#logo.big {
     width: 400px;
     height: auto;
     cursor: pointer;
     transition: 0.5s;
     filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
 }
-img.logoSmall {
+img#logo.small {
     width: 250px;
     height: auto;
     cursor: pointer;
     transition: 0.5s;
     filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.5));
 }
-img.logo:hover, img.logoSmall:hover {
+img#logo:hover, img.logoSmall:hover {
     opacity: 0.8;
 }
 /********************
@@ -210,6 +239,59 @@ section.mainSection {
     box-shadow: 0px 0px 4px 0px rgba(189,189,217,0.7);       
     padding: 10px 10px 10px 10px;
     z-index: 0;
+}
+/*DIV CONTENEDOR*/
+div.dashboard-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 550px;
+    background-image: url('/img/background-login-04.jpg');
+    background-size: 100% 100%;
+}
+/*DIV LOGIN*/
+div.dashboard-login {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 60%;
+    height: auto;
+    background-color: rgba(242,243,244,0.6);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px #000;
+}
+div.dashboard-login p {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+div.dashboard-login a {
+    display: block;
+    font-size: 1em;
+    margin-top: 10px;
+}
+div.dashboard-login p img {
+    width: auto;
+    height: 1.3em;
+    vertical-align: middle; 
+    margin-right: 10px;
+}
+p.alert-success {
+    background-color: #82e0aa;
+    padding: 10px;
+    color:  #1d8348;
+    margin: 10px 0px;
+    border-radius: 3px; 
+    font-size: 1.3em;
+}
+p.invalid-feedback {
+    background-color: #f9bfbf;
+    padding: 10px;
+    color: #c71a1a;
+    margin: 10px 0px;
+    border-radius: 3px;
+    font-size: 1.3em;
 }
 /*********
 **FOOTER**
@@ -275,25 +357,30 @@ footer div.footerContainer div.footerSocialContainer img {
     height: 60px;   
 }
 .errorIMG {
-    width: 30%;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 50%;
     height: auto;
+    z-index: 0;
+    opacity: 0.6;
 }
 @media (max-width: 575.98px) { 
     /*********
     ***LOGO***
     *********/
-    img.logo {
+    img#logo.big {
         width: 200px;
         height: 50px;
     }
-    img.logoSmall {
+    img#logo.small {
         width: auto;
         height: 30px;
     }
     /*****************
     ****BOTON MENU****
     *****************/
-    a.menu-btn {
+    a#menu-btn.big {
         position: absolute;
         display: block;
         top: 0;
@@ -305,7 +392,7 @@ footer div.footerContainer div.footerSocialContainer img {
         z-index: 4;
         transition: 0.5s ease;
     }
-    a.menu-btn div.menu-btn-block {
+    a#menu-btn div.menu-btn-block {
         width: 100%;
         height: 6px;
         background-color: rgba(0,0,0,1);
@@ -314,23 +401,59 @@ footer div.footerContainer div.footerSocialContainer img {
         transition: transform 0.3s ease;
     }
 
-    a.menu-btn div.menu-btn-block.middle {
+    a#menu-btn div.menu-btn-block.middle {
         margin: 9px 0;
     }
-    a.menu-btn div.menu-btn-block.top.active {
+    a#menu-btn div.menu-btn-block.top.active {
         transform: rotate(42deg);
     }
-    a.menu-btn div.menu-btn-block.middle.active {
+    a#menu-btn div.menu-btn-block.middle.active {
         transform: scale(0);
     }
-    a.menu-btn div.menu-btn-block.bottom.active {
+    a#menu-btn div.menu-btn-block.bottom.active {
         transform: rotate(-42deg);
+    }
+    /***********************
+    ****BOTON MENU SMALL****
+    ***********************/
+    a#menu-btn.small {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: 20px;
+        width: 35px;
+        height: auto;
+        z-index: 4;
+        transition: width 0.5s ease;
+    }
+    a#menu-btn.small div.menu-btn-block {
+        width: 100%;
+        height: 5px;
+        background-color: rgba(0,0,0,1);
+        border-radius: 2px;
+        transform-origin: 0 50%;
+        transition: transform 0.3s ease;
+    }
+    a#menu-btn.small div.menu-btn-block.middle {
+        margin: 6px 0;
+    }
+    a#menu-btn.small div.menu-btn-block.top.active {
+        transform: rotate(39deg);
+    }
+    a#menu-btn.small div.menu-btn-block.middle.active {
+        transform: scale(0);
+    }
+    a#menu-btn.small div.menu-btn-block.bottom.active {
+        transform: rotate(-39deg);
     }
     /***************
     **BOTON BUSCAR**
     ***************/
-    img.search-btn {
+    img#search-btn {
         position: absolute;
+        display: block;
         right: 0;
         top: 0;
         margin-right: 80px;
@@ -339,7 +462,7 @@ footer div.footerContainer div.footerSocialContainer img {
         height: 40px;
         transition: all 0.5s ease;
     }
-    img.search-btn-small {
+    img#search-btn.small {
         position: absolute;
         right: 0;
         top: 0;
@@ -355,94 +478,61 @@ footer div.footerContainer div.footerSocialContainer img {
     div#search {
         position:fixed;
         display: none;
-        flex-flow: column wrap;
         background-color: #fff;
         width: 100%;
-        height: 70px;
-        top:0;
-        left: 0;
-        box-shadow: 0px 0px 10px 0px #000;
+        height: auto;
+        top: -10px;
+        left: 0px;
         z-index: 5;
+        box-shadow: 0px 0px 10px 0px #000;
     }
-    div#search input[type=search]{
+    div#search input[type=search].big, div#search input[type=search].small{
         width: 100%;
         height: 70px;
         border: 0px;
         border-radius: 0px;
         padding: 20px;
         font-size: 1.5em;
+        box-shadow: none;
     }
-    div#search img {
+    div#search img.big, div#search img.small {
         position: absolute;
         top:0;
         right: 0;
-        margin-top: 15px;
+        margin-top: 10px;
         margin-right: 20px;
         width: auto;
-        height: 40px;
-        opacity: 0.7;
+        height: 50px;
+        background-color: #fff;
+        box-shadow: none;
     }
     /***********************
     ****DIV GLASS***********
     ***********************/
     div#glass.hide {
         position: fixed;
+        display: block;
         right: -100%;
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(0,0,0,0.3);
         z-index: 2;
     }
     div#glass.show {   
         right: 0%;    
-    }
-    /***********************
-    ****BOTON MENU SMALL****
-    ***********************/
-    a.menu-btn-small {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;
-        margin-top: 10px;
-        margin-right: 20px;
-        width: 35px;
-        height: auto;
-        z-index: 4;
-        transition: width 0.5s ease;
-    }
-    a.menu-btn-small div.menu-btn-block {
-        width: 100%;
-        height: 5px;
-        background-color: rgba(0,0,0,1);
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-
-    a.menu-btn-small div.menu-btn-block.middle {
-        margin: 6px 0;
-    }
-    a.menu-btn-small div.menu-btn-block.top.active {
-        transform: rotate(39deg);
-    }
-    a.menu-btn-small div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a.menu-btn-small div.menu-btn-block.bottom.active {
-        transform: rotate(-39deg);
     }
     /**********************
     ****NAV NONE-ACTIVE****
     **********************/
     nav.none {
         position: fixed;
-        right: -55%;
+        right: -60%;
         top: 0;
         width: 50%;
         height: 100%;
         padding-top: 50px;
+        padding-left: 0px;
         background-color: #f4f4f4;
         box-shadow: 0px 0px 10px 0px #000;
         z-index: 3;
@@ -451,7 +541,7 @@ footer div.footerContainer div.footerSocialContainer img {
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: -ms-autohiding-scrollbar;
         &::-webkit-scrollbar {
-            display: none;
+        display: none;
         }
     }
     nav.active {
@@ -459,19 +549,32 @@ footer div.footerContainer div.footerSocialContainer img {
     }
     nav.none ul, nav.active ul {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: column nowrap;
         list-style: none;
+        padding: 0px;
+        margin: 0px;
     }
     nav.none ul li, nav.active ul li {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         padding: 0px;
     }
     nav.none ul li a, nav.active ul li a {
         padding: 5px 5px 5px 5px;
         color: #000;
-        font-size: 1em; 
+        font-size: 1.5em; 
         font-weight: bold;
-        text-transform: uppercase; 
+        text-transform: uppercase;
+        border: none;
+    }
+    nav.active ul li a:focus {
+        color: #999;
+        background-image: none;
+
+    }
+    nav.active ul li a:hover {
+        color: #999;
+        background-image: none;
+        border: none;
     }
     nav.active ul li a:visited {
         color: #000;
@@ -501,25 +604,26 @@ footer div.footerContainer div.footerSocialContainer img {
         position: relative;
         align-self: center;
         width: auto;
-        height: 60px;   
+        height: 60px;
+        margin-right: 10px;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) { 
     /*********
     ***LOGO***
     *********/
-    img.logo {
+    img#logo.big {
         width: 200px;
         height: 50px;
     }
-    img.logoSmall {
+    img#logo.small {
         width: auto;
         height: 30px;
     }
     /*****************
     ****BOTON MENU****
     *****************/
-    a.menu-btn {
+    a#menu-btn.big {
         position: absolute;
         display: block;
         top: 0;
@@ -531,7 +635,7 @@ footer div.footerContainer div.footerSocialContainer img {
         z-index: 4;
         transition: 0.5s ease;
     }
-    a.menu-btn div.menu-btn-block {
+    a#menu-btn div.menu-btn-block {
         width: 100%;
         height: 6px;
         background-color: rgba(0,0,0,1);
@@ -539,23 +643,60 @@ footer div.footerContainer div.footerSocialContainer img {
         transform-origin: 0 50%;
         transition: transform 0.3s ease;
     }
-    a.menu-btn div.menu-btn-block.middle {
+
+    a#menu-btn div.menu-btn-block.middle {
         margin: 9px 0;
     }
-    a.menu-btn div.menu-btn-block.top.active {
+    a#menu-btn div.menu-btn-block.top.active {
         transform: rotate(42deg);
     }
-    a.menu-btn div.menu-btn-block.middle.active {
+    a#menu-btn div.menu-btn-block.middle.active {
         transform: scale(0);
     }
-    a.menu-btn div.menu-btn-block.bottom.active {
+    a#menu-btn div.menu-btn-block.bottom.active {
         transform: rotate(-42deg);
+    }
+    /***********************
+    ****BOTON MENU SMALL****
+    ***********************/
+    a#menu-btn.small {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: 20px;
+        width: 35px;
+        height: auto;
+        z-index: 4;
+        transition: width 0.5s ease;
+    }
+    a#menu-btn.small div.menu-btn-block {
+        width: 100%;
+        height: 5px;
+        background-color: rgba(0,0,0,1);
+        border-radius: 2px;
+        transform-origin: 0 50%;
+        transition: transform 0.3s ease;
+    }
+    a#menu-btn.small div.menu-btn-block.middle {
+        margin: 6px 0;
+    }
+    a#menu-btn.small div.menu-btn-block.top.active {
+        transform: rotate(39deg);
+    }
+    a#menu-btn.small div.menu-btn-block.middle.active {
+        transform: scale(0);
+    }
+    a#menu-btn.small div.menu-btn-block.bottom.active {
+        transform: rotate(-39deg);
     }
     /***************
     **BOTON BUSCAR**
     ***************/
-    img.search-btn {
+    img#search-btn {
         position: absolute;
+        display: block;
         right: 0;
         top: 0;
         margin-right: 80px;
@@ -564,7 +705,7 @@ footer div.footerContainer div.footerSocialContainer img {
         height: 40px;
         transition: all 0.5s ease;
     }
-    img.search-btn-small {
+    img#search-btn.small {
         position: absolute;
         right: 0;
         top: 0;
@@ -580,94 +721,61 @@ footer div.footerContainer div.footerSocialContainer img {
     div#search {
         position:fixed;
         display: none;
-        flex-flow: column wrap;
         background-color: #fff;
         width: 100%;
-        height: 70px;
-        top:0;
-        left: 0;
-        box-shadow: 0px 0px 10px 0px #000;
+        height: auto;
+        top: -10px;
+        left: 0px;
         z-index: 5;
+        box-shadow: 0px 0px 10px 0px #000;
     }
-    div#search input[type=search]{
+    div#search input[type=search].big, div#search input[type=search].small{
         width: 100%;
         height: 70px;
         border: 0px;
         border-radius: 0px;
         padding: 20px;
         font-size: 1.5em;
+        box-shadow: none;
     }
-    div#search img {
+    div#search img.big, div#search img.small {
         position: absolute;
         top:0;
         right: 0;
-        margin-top: 15px;
+        margin-top: 10px;
         margin-right: 20px;
         width: auto;
-        height: 40px;
-        opacity: 0.7;
+        height: 50px;
+        background-color: #fff;
+        box-shadow: none;
     }
     /***********************
     ****DIV GLASS***********
     ***********************/
     div#glass.hide {
         position: fixed;
+        display: block;
         right: -100%;
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(0,0,0,0.3);
         z-index: 2;
     }
     div#glass.show {   
         right: 0%;    
-    }
-    /***********************
-    ****BOTON MENU SMALL****
-    ***********************/
-    a.menu-btn-small {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;
-        margin-top: 10px;
-        margin-right: 20px;
-        width: 35px;
-        height: auto;
-        z-index: 4;
-        transition: width 0.5s ease;
-    }
-    a.menu-btn-small div.menu-btn-block {
-        width: 100%;
-        height: 5px;
-        background-color: rgba(0,0,0,1);
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-
-    a.menu-btn-small div.menu-btn-block.middle {
-        margin: 6px 0;
-    }
-    a.menu-btn-small div.menu-btn-block.top.active {
-        transform: rotate(39deg);
-    }
-    a.menu-btn-small div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a.menu-btn-small div.menu-btn-block.bottom.active {
-        transform: rotate(-39deg);
     }
     /**********************
     ****NAV NONE-ACTIVE****
     **********************/
     nav.none {
         position: fixed;
-        right: -55%;
+        right: -60%;
         top: 0;
         width: 50%;
         height: 100%;
         padding-top: 50px;
+        padding-left: 0px;
         background-color: #f4f4f4;
         box-shadow: 0px 0px 10px 0px #000;
         z-index: 3;
@@ -676,7 +784,7 @@ footer div.footerContainer div.footerSocialContainer img {
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: -ms-autohiding-scrollbar;
         &::-webkit-scrollbar {
-            display: none;
+        display: none;
         }
     }
     nav.active {
@@ -684,231 +792,13 @@ footer div.footerContainer div.footerSocialContainer img {
     }
     nav.none ul, nav.active ul {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: column nowrap;
         list-style: none;
-    }
-    nav.none ul li, nav.active ul li {
-        margin-bottom: 20px;
         padding: 0px;
-    }
-    nav.none ul li a, nav.active ul li a {
-        padding: 5px 5px 5px 5px;
-        color: #000;
-        font-size: 1em; 
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-    nav.active ul li a:visited {
-        color: #000;
-    }
-    /*********
-    **FOOTER**
-    *********/
-    footer div.footerContainer div {
-        display: none;
-    }
-    footer div.footerContainer div.footerSocialContainer {
-        position: relative;
-        width: 100%;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        opacity: 0.5;
-    }
-    footer div.footerContainer div.footerSocialContainer img {
-        position: relative;
-        align-self: center;
-        width: auto;
-        height: 60px;   
-    }
-}
-@media (min-width: 768px) and (max-width: 991.98px) { 
-    /*********
-    ***LOGO***
-    *********/
-    img.logo {
-        width: 200px;
-        height: 50px;
-    }
-    img.logoSmall {
-        width: auto;
-        height: 30px;
-    }
-    /*****************
-    ****BOTON MENU****
-    *****************/
-    a.menu-btn {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;
-        margin-top: 17px;
-        margin-right: 20px;
-        width: 45px;
-        height: auto;
-        z-index: 4;
-        transition: 0.5s ease;
-    }
-    a.menu-btn div.menu-btn-block {
-        width: 100%;
-        height: 6px;
-        background-color: rgba(0,0,0,1);
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-
-    a.menu-btn div.menu-btn-block.middle {
-        margin: 9px 0;
-    }
-    a.menu-btn div.menu-btn-block.top.active {
-        transform: rotate(42deg);
-    }
-    a.menu-btn div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a.menu-btn div.menu-btn-block.bottom.active {
-        transform: rotate(-42deg);
-    }
-    /***************
-    **BOTON BUSCAR**
-    ***************/
-    img.search-btn {
-        position: absolute;
-        right: 0;
-        top: 0;
-        margin-right: 80px;
-        margin-top: 14px;
-        width: auto;
-        height: 40px;
-        transition: all 0.5s ease;
-    }
-    img.search-btn-small {
-        position: absolute;
-        right: 0;
-        top: 0;
-        margin-right: 65px;
-        margin-top: 8px;
-        width: auto;
-        height: 30px;
-        transition: all 0.5s ease;
-    }
-    /***********************
-    ****DIV SEARCH**********
-    ***********************/
-    div#search {
-        position:fixed;
-        display: none;
-        flex-flow: column wrap;
-        background-color: #fff;
-        width: 100%;
-        height: 70px;
-        top:0;
-        left: 0;
-        box-shadow: 0px 0px 10px 0px #000;
-        z-index: 5;
-    }
-    div#search input[type=search]{
-        width: 100%;
-        height: 70px;
-        border: 0px;
-        border-radius: 0px;
-        padding: 20px;
-        font-size: 1.5em;
-    }
-    div#search img {
-        position: absolute;
-        top:0;
-        right: 0;
-        margin-top: 15px;
-        margin-right: 20px;
-        width: auto;
-        height: 40px;
-        opacity: 0.7;
-    }
-    /***********************
-    ****DIV GLASS***********
-    ***********************/
-    div#glass.hide {
-        position: fixed;
-        right: -100%;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255,255,255,0.5);
-        z-index: 2;
-    }
-    div#glass.show {   
-        right: 0%;    
-    }
-    /***********************
-    ****BOTON MENU SMALL****
-    ***********************/
-    a.menu-btn-small {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;
-        margin-top: 10px;
-        margin-right: 20px;
-        width: 35px;
-        height: auto;
-        z-index: 4;
-        transition: width 0.5s ease;
-    }
-    a.menu-btn-small div.menu-btn-block {
-        width: 100%;
-        height: 5px;
-        background-color: rgba(0,0,0,1);
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-
-    a.menu-btn-small div.menu-btn-block.middle {
-        margin: 6px 0;
-    }
-    a.menu-btn-small div.menu-btn-block.top.active {
-        transform: rotate(39deg);
-    }
-    a.menu-btn-small div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a.menu-btn-small div.menu-btn-block.bottom.active {
-        transform: rotate(-39deg);
-    }
-    /**********************
-    ****NAV NONE-ACTIVE****
-    **********************/
-    nav.none {
-        position: fixed;
-        
-        right: -55%;
-        top: 0;
-        width: 50%;
-        height: 100%;
-        padding-top: 50px;
-        background-color: #f4f4f4;
-        box-shadow: 0px 0px 10px 0px #000;
-        z-index: 3;
-        transition: all 0.3s linear;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
-    nav.active {
-        right: 0%;
-    }
-    nav.none ul, nav.active ul {
-        display: flex;
-        flex-flow: column wrap;
-        list-style: none;
+        margin: 0px;
     }
     nav.none ul li, nav.active ul li {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         padding: 0px;
     }
     nav.none ul li a, nav.active ul li a {
@@ -917,13 +807,31 @@ footer div.footerContainer div.footerSocialContainer img {
         font-size: 1.5em; 
         font-weight: bold;
         text-transform: uppercase;
+        border: none;
+    }
+    nav.active ul li a:focus {
+        color: #999;
+        background-image: none;
+
+    }
+    nav.active ul li a:hover {
+        color: #999;
+        background-image: none;
+        border: none;
     }
     nav.active ul li a:visited {
         color: #000;
     }
+    /********************
+    **SECCION PRINCIPAL**
+    ********************/
+    section.mainSection {
+        max-width: 767.98px;
+    }
     /*********
     **FOOTER**
     *********/
+
     footer div.footerContainer div {
         display: none;
     }
@@ -939,7 +847,251 @@ footer div.footerContainer div.footerSocialContainer img {
         position: relative;
         align-self: center;
         width: auto;
-        height: 60px;   
+        height: 60px;
+        margin-right: 10px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    /*********
+    ***LOGO***
+    *********/
+    img#logo.big {
+        width: 200px;
+        height: 50px;
+    }
+    img#logo.small {
+        width: auto;
+        height: 30px;
+    }
+    /*****************
+    ****BOTON MENU****
+    *****************/
+    a#menu-btn.big {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        margin-top: 17px;
+        margin-right: 20px;
+        width: 45px;
+        height: auto;
+        z-index: 4;
+        transition: 0.5s ease;
+    }
+    a#menu-btn div.menu-btn-block {
+        width: 100%;
+        height: 6px;
+        background-color: rgba(0,0,0,1);
+        border-radius: 2px;
+        transform-origin: 0 50%;
+        transition: transform 0.3s ease;
+    }
+
+    a#menu-btn div.menu-btn-block.middle {
+        margin: 9px 0;
+    }
+    a#menu-btn div.menu-btn-block.top.active {
+        transform: rotate(42deg);
+    }
+    a#menu-btn div.menu-btn-block.middle.active {
+        transform: scale(0);
+    }
+    a#menu-btn div.menu-btn-block.bottom.active {
+        transform: rotate(-42deg);
+    }
+    /***********************
+    ****BOTON MENU SMALL****
+    ***********************/
+    a#menu-btn.small {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: 20px;
+        width: 35px;
+        height: auto;
+        z-index: 4;
+        transition: width 0.5s ease;
+    }
+    a#menu-btn.small div.menu-btn-block {
+        width: 100%;
+        height: 5px;
+        background-color: rgba(0,0,0,1);
+        border-radius: 2px;
+        transform-origin: 0 50%;
+        transition: transform 0.3s ease;
+    }
+    a#menu-btn.small div.menu-btn-block.middle {
+        margin: 6px 0;
+    }
+    a#menu-btn.small div.menu-btn-block.top.active {
+        transform: rotate(39deg);
+    }
+    a#menu-btn.small div.menu-btn-block.middle.active {
+        transform: scale(0);
+    }
+    a#menu-btn.small div.menu-btn-block.bottom.active {
+        transform: rotate(-39deg);
+    }
+    /***************
+    **BOTON BUSCAR**
+    ***************/
+    img#search-btn {
+        position: absolute;
+        display: block;
+        right: 0;
+        top: 0;
+        margin-right: 80px;
+        margin-top: 14px;
+        width: auto;
+        height: 40px;
+        transition: all 0.5s ease;
+    }
+    img#search-btn.small {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 65px;
+        margin-top: 8px;
+        width: auto;
+        height: 30px;
+        transition: all 0.5s ease;
+    }
+    /***********************
+    ****DIV SEARCH**********
+    ***********************/
+    div#search {
+        position:fixed;
+        display: none;
+        background-color: #fff;
+        width: 100%;
+        height: auto;
+        top: -10px;
+        left: 0px;
+        z-index: 5;
+        box-shadow: 0px 0px 10px 0px #000;
+    }
+    div#search input[type=search].big, div#search input[type=search].small{
+        width: 100%;
+        height: 70px;
+        border: 0px;
+        border-radius: 0px;
+        padding: 20px;
+        font-size: 1.5em;
+        box-shadow: none;
+    }
+    div#search img.big, div#search img.small {
+        position: absolute;
+        top:0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: 20px;
+        width: auto;
+        height: 50px;
+        background-color: #fff;
+        box-shadow: none;
+    }
+    /***********************
+    ****DIV GLASS***********
+    ***********************/
+    div#glass.hide {
+        position: fixed;
+        display: block;
+        right: -100%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.3);
+        z-index: 2;
+    }
+    div#glass.show {   
+        right: 0%;    
+    }
+    /**********************
+    ****NAV NONE-ACTIVE****
+    **********************/
+    nav.none {
+        position: fixed;
+        right: -60%;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        padding-top: 50px;
+        padding-left: 0px;
+        background-color: #f4f4f4;
+        box-shadow: 0px 0px 10px 0px #000;
+        z-index: 3;
+        transition: all 0.3s linear;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        &::-webkit-scrollbar {
+        display: none;
+        }
+    }
+    nav.active {
+        right: 0%;
+    }
+    nav.none ul, nav.active ul {
+        display: flex;
+        flex-flow: column nowrap;
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+    }
+    nav.none ul li, nav.active ul li {
+        margin-bottom: 10px;
+        padding: 0px;
+    }
+    nav.none ul li a, nav.active ul li a {
+        padding: 5px 5px 5px 5px;
+        color: #000;
+        font-size: 1.5em; 
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+    }
+    nav.active ul li a:focus {
+        color: #999;
+        background-image: none;
+
+    }
+    nav.active ul li a:hover {
+        color: #999;
+        background-image: none;
+        border: none;
+    }
+    nav.active ul li a:visited {
+        color: #000;
+    }
+    /********************
+    **SECCION PRINCIPAL**
+    ********************/
+    section.mainSection {
+        max-width: 991.98px;
+    }
+    /*********
+    **FOOTER**
+    *********/
+
+    footer div.footerContainer div {
+        display: none;
+    }
+    footer div.footerContainer div.footerSocialContainer {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        opacity: 0.5;
+    }
+    footer div.footerContainer div.footerSocialContainer img {
+        position: relative;
+        align-self: center;
+        width: auto;
+        height: 60px;
+        margin-right: 10px;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) { 

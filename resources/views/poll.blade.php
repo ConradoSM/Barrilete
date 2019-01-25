@@ -1,7 +1,6 @@
 @extends('layouts.barrilete')
 @section('title', $poll->title)
 @section('description', $poll->article_desc)
-@section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
 @section('article_title', $poll->title)
 @section('article_type', 'poll')
 @section('article_desc', $poll->article_desc)
@@ -13,10 +12,10 @@
 @section('content')
 <div class="pubContainer">
     <article class="pub">
-        <p class="info"><img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->created_at->diffForHumans()}}</p>
         <h2>{{ $poll->title }}</h2>
         <p class="copete">{{ $poll->article_desc }}</p>
         <p class="info">
+            <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->created_at->diffForHumans()}}
             <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$poll->user->name}}
             <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$poll->views}} lecturas
         </p>

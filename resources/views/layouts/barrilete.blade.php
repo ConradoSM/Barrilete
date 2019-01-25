@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
     <head>
+        <meta charset="UTF-8" /> 
         <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="author" content="Conrado Maranguello" />
         <meta name="description" content="@yield('description')" />
-        <meta name="keywords" content="@yield('keywords')" />
         <meta name="copyright" content="Barrilete.com.ar">
         <!-- Open Graph data -->
         <meta property="og:title" content="@yield('article_title')" />
@@ -22,32 +22,28 @@
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/forms.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
-        <!-- Scripts js -->
-        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
     </head>
     <body>
         <header class="relative">
             <div class="navContainer">
                 <div id="search">
                     <form action="{{ route('search') }}" method="get" id="formSearch">
-                        <input id="inputText" type="search" value="" name="query" placeholder="Buscar en el sitio" />
-                        <img src="{{ asset('svg/search.svg') }}" title="Buscar" onClick="document.getElementById('formSearch').submit();" />
+                        <input id="inputText" type="search" value="" name="query" placeholder="Buscar en el sitio" class="big" />
+                        <img src="{{ asset('svg/search.svg') }}" title="Buscar" onClick="document.getElementById('formSearch').submit();" class="big" />
                         <input type="hidden" value="articulos" name="sec" />
                     </form>
                 </div>
-                <img id="logo" class="logo" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
+                <img id="logo" class="big" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
                 <nav class="none">
                     <ul>
                         @forelse ($sections as $section)
-                        <li><a href="{{ route('section',['seccion'=>$section->name]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
+                        <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
                         @empty
                         @endforelse 
                     </ul>
                 </nav>
-                <img id="search-btn" class="search-btn" src="{{ asset('svg/search.svg') }}" />
-                <a id="menu-btn" class="menu-btn" title="Menú">
+                <img id="search-btn" class="big" src="{{ asset('svg/search.svg') }}" />
+                <a id="menu-btn" class="big" title="Menú">
                     <div class="menu-btn-block top"></div>
                     <div class="menu-btn-block middle"></div>
                     <div class="menu-btn-block bottom"></div>
@@ -64,7 +60,7 @@
                     <h2>Secciones</h2>
                     <ul>
                         @forelse ($sections as $section)
-                        <li><a href="{{ route('section',['seccion'=>$section->name]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
+                        <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
                         @empty
                         @endforelse 
                     </ul>   
@@ -95,5 +91,9 @@
                 </div>
             </div>                
         </footer>
+        <!-- Scripts js --> 
+        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>       
+        <script src="{{ asset('js/jquery.lazy.min.js') }}"></script>
+        <script src="{{ asset('js/home-scripts.js') }}"></script>
     </body>
 </html>

@@ -16,7 +16,7 @@
             @endif
             <input placeholder="{{ __('Password') }}" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
             <input placeholder="{{ __('Confirm Password') }}" id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-            <input type="submit" value="{{ __('Reset Password') }}" />
+            <input type="submit" value="{{ __('Reset Password') }}" class="primary" />
             <input type="hidden" name="token" value="{{ $token }}">
         </form>
     </div>

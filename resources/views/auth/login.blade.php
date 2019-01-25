@@ -17,7 +17,7 @@
             @if (Route::has('password.request'))
             <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
             @endif
-            <input type="submit" value="Ingresar" />           
+            <input type="submit" value="Ingresar" class="primary" />           
             <label class="check-container" for="remember">{{ __('Remember Me') }}
                 <input type="checkbox" checked="checked" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                 <span class="check-mark"></span>

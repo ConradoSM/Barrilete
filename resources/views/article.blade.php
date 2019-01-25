@@ -1,7 +1,6 @@
 @extends('layouts.barrilete')
 @section('title', $article->title)
 @section('description', $article->article_desc)
-@section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
 @section('article_title', $article->title)
 @section('article_type', 'article')
 @section('article_desc', $article->article_desc)
@@ -14,13 +13,13 @@
 @section('content')
 <div class="pubContainer">
 <article class="pub">
-    <img src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" />
-    <p class="info"><img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->created_at->diffForHumans() }}</p>
+    <img data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" />
     <h2>{{ $article -> title }}</h2>
     <p class="copete">{{ $article->article_desc }}</p>
     <p class="info">
-    <img class="svg" src="{{ asset('svg/user_black.svg') }}" /> {{ $article->user->name }}
-    <img class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $article->views }} lecturas
+        <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->created_at->diffForHumans() }}
+        <img class="svg" src="{{ asset('svg/user_black.svg') }}" /> {{ $article->user->name }}
+        <img class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $article->views }} lecturas
     </p>
     <hr />
     {!! $article->article_body !!}
@@ -39,7 +38,7 @@
     @forelse ($moreArticles as $more)
     <article class="pubArticle">
         <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
-        <img src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" />   
+        <img data-src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}'" />   
     </article> 
     @empty
     @endforelse

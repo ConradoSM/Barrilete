@@ -6,23 +6,23 @@
     <div class="article-admin">
         @if (Auth::user()->is_admin)
             @if ($gallery->status == "DRAFT")
-                <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="edit" id="publish">Publicar</a>
+                <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="success" id="publish">Publicar</a>
             @else
                 <a href="#" class="disabled">Publicado</a>
-                <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>
+                <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
             @endif      
-            <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="edit" id="edit">Editar</a>
-            <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="delete" id="delete">Eliminar</a>
+            <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success" id="edit">Editar</a>
+            <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" id="delete">Eliminar</a>
         @else
             @if ($gallery->status == "PUBLISHED")
                 <a href="#" class="disabled">Publicado</a>
-                <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="edit">Ver artículo</a>
-                <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="edit" id="edit">Editar</a>
-                <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="delete" id="delete">Eliminar</a>
+                <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
+                <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success" id="edit">Editar</a>
+                <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" id="delete">Eliminar</a>
             @else
                 <a href="#" class="disabled">No publicado</a>
-                <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="edit" id="edit">Editar</a>
-                <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="delete" id="delete">Eliminar</a>
+                <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success" id="edit">Editar</a>
+                <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" id="delete">Eliminar</a>
             @endif
         @endif
     </div>
@@ -45,5 +45,5 @@
     @empty
         <p>No hay fotos</p>
     @endforelse
-    <script type="text/javascript" src="{{ asset('js/admin-links.js') }}"></script>
 </div>
+<script type="text/javascript" src="{{ asset('js/dashboard-admin-links.js') }}"></script>

@@ -11,7 +11,7 @@
         </fieldset>
         <input type="button" id="agregarCampo" value="+ AGREGAR OPCIÓN" />
         <div id="campos"></div>
-        <input type="submit" id="submit" value="GUARDAR" disabled />
+        <input type="submit" id="submit" value="GUARDAR" class="disabled" disabled  />
         <input type="hidden" name="poll_id" value="{{ $poll->id }}" />
         @csrf
     </form>
@@ -19,7 +19,7 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/formSubmit.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-form-submit.js') }}"></script>
 <script type="text/javascript">
 $(document).ready(function () {
     //AGREGAR OPCIONES
@@ -34,7 +34,7 @@ $(document).ready(function () {
         event.preventDefault;
             
         if (x > 2) {
-            $('input#submit').removeAttr('disabled');
+            $('input#submit').removeAttr('disabled').removeClass('disabled').addClass('primary');
         }
     
         if (x <= MaxInputs) {         

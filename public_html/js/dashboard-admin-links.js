@@ -1,5 +1,4 @@
-$(document).ready(function () {
-
+$(document).ready(function(){
     //BOTÓN PUBLICAR
     $('div.article-admin a#publish').on('click', function(event){
         event.stopPropagation();
@@ -73,8 +72,9 @@ $(document).ready(function () {
                 });
             });
     });
+       
     setTimeout(function(){
-        $('p.alert-success').fadeOut('slow', function(){
+        $('p.alert-success').fadeOut('fast', function(){
             $('p.alert-success').remove();
         });
     }, 2000);

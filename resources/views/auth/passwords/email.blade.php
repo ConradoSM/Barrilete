@@ -11,7 +11,7 @@
             <p class="invalid-feedback" role="alert">{{ $errors->first('email') }}</p>
             @endif
             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required>
-            <input type="submit" value="{{ __('Send Password Reset Link') }}" />
+            <input type="submit" value="{{ __('Send Password Reset Link') }}" class="primary" />
         </form>
     </div>
 </div>

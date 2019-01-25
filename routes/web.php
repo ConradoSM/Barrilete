@@ -1,42 +1,53 @@
 <?php
 use barrilete\Sections;
 use Spatie\Sitemap\SitemapGenerator;
+
 //HOME INDEX
     Route::get('/', 'IndexController@home')->name('default');
+    
 //SITEMAP
 Route::get('/sitemap', function(){
     SitemapGenerator::create('https://barrilete.com.ar/')->writeToFile('sitemap.xml');
     return redirect('sitemap.xml');;
 });
+
 //VIEW SECTIONS
     View::composer(['layouts.barrilete'], function($view) {
-        $sections = Sections::all();
+        $sections = Sections::where('name','!=','Encuestas')->get();
         $view->with('sections', $sections);
     });
+    
 //SECTIONS
     Route::get('/sec/{name}', 'SectionsController@searchSection')->name('section');
+    
 //SEARCH
     Route::get('search', 'SearchController@search')->name('search');
+    
 //VIEW ARTICLES
     Route::get('/article/{id}/{section}/{title}', 'ArticlesController@showArticle')->name('article');
+    
 //VIEW GALLERIES
     Route::get('/galleries', 'GalleriesController@galleries')->name('galleries');
     Route::get('/gallery/{id}/{titulo}', 'GalleriesController@showGallery')->name('gallery');
+    
 //VIEW POLLS
     Route::get('/poll/{id}/{titulo}', 'PollsController@poll')->name('poll');
     Route::post('/poll-vote', 'PollsController@pollVote')->name('poll-vote');
+    
 //AUTH ROUTES
     Auth::routes();
+    
 //DASHBOARD
     Route::get('/dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');
-
+    
 //DASHBOARD USER ARTICLES, GALLERIES, POLLS LIST
     Route::get('/dashboard/view/articles/{id}', 'DashboardController@userArticles')->middleware('auth')->name('viewArticles');
     Route::get('/dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->middleware('auth')->name('viewGalleries');
     Route::get('/dashboard/view/polls/{id}', 'DashboardController@userPolls')->middleware('auth')->name('viewPolls');
+    
 //DASHBOARD SEARCH
     Route::get('search-auth', 'SearchController@searchAuth')->name('searchAuth');
-
+    
 //DASHBOARD ADMIN ARTICLES
     //DASHBOARD CREATE ARTICLE
         Route::get('/dashboard/forms/articles','DashboardController@formArticle')->middleware('auth')->name('formCreateArticle');
@@ -64,6 +75,13 @@ Route::get('/sitemap', function(){
         Route::post('/dashboard/update/gallery/more/photos','GalleriesController@morePhotos')->middleware('auth')->name('morePhotos');       
 
 //DASHBOARD ADMIN POLLS
+    //DASHBOARD USERS ADMIN
+        Route::get('/dashboard/users/options','UsersController@options')->middleware('auth')->name('options');
+        Route::get('/dashboard/users/account/{id}','UsersController@account')->middleware('auth')->name('account');
+        Route::get('/dashboard/users/list','UsersController@users')->middleware('auth')->name('users');
+        Route::get('/dashboard/users/show/{id}','UsersController@show')->middleware('auth')->name('showUser');
+        Route::get('/dashboard/users/edit/{id}','UsersController@edit')->middleware('auth')->name('editUser');
+        Route::post('/dashboard/users/update','UsersController@update')->middleware('auth')->name('updateUser');
     //DASHBOARD CREATE POLL
         Route::get('/dashboard/forms/polls','DashboardController@formPoll')->middleware('auth')->name('formPoll');
         Route::post('/dashboard/forms/polls/create','PollsController@createPoll')->middleware('auth')->name('createPoll');

@@ -13,7 +13,7 @@
             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" required>
             @if ($errors->has('password'))<p class="invalid-feedback" role="alert">{{ $errors->first('password') }}</p>@endif
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
-            <input type="submit" value="{{ __('Register') }}" />
+            <input type="submit" value="{{ __('Register') }}" class="primary" />
         </form>
     </div>
 </div>
