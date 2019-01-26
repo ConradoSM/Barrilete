@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //BOTÓN PUBLICAR
-    $('div.article-admin a#publish').on('click', function(event){
+    $('div.article-admin').find('a#publish').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
     });
 
     //BOTÓN BORRAR
-    $('div.article-admin a#delete').on('click', function(event){
+    $('div.article-admin').find('a#delete').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
 
@@ -52,25 +52,25 @@ $(document).ready(function(){
     });
 
     //BOTÓN EDITAR
-    $('div.article-admin a#edit').on('click', function(event){
+    $('div.article-admin').find('a#edit').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
 
         var href = $(this).attr('href');
         $(this).attr({href: '#'});
 
-            $('#loader').fadeIn('fast', 'linear');
-            $('#Article-container').hide(0, function () {
-                $('#loader').fadeOut('fast', 'linear', function() {
-                    $.get(href, function(data) {                                
-                        if(data['Error']) {
-                            $('<p class="invalid-feedback">'+data['Error']+'</p>').prependTo('#user-content');
-                        } else {
-                            $('#user-content').load(href).fadeIn('slow');
-                        }
-                    });
+        $('#loader').fadeIn('fast', 'linear');
+        $('#Article-container').hide(0, function () {
+            $('#loader').fadeOut('fast', 'linear', function() {
+                $.get(href, function(data) {                                
+                    if(data['Error']) {
+                        $('<p class="invalid-feedback">'+data['Error']+'</p>').prependTo('#user-content');
+                    } else {
+                        $('#user-content').load(href).fadeIn('slow');
+                    }
                 });
             });
+        });
     });
        
     setTimeout(function(){

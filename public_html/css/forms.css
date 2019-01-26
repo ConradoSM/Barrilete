@@ -49,7 +49,7 @@ input[type=submit], input[type=button], input[type=reset] {
 }
 .primary:hover, .primary-small:hover {
     color: #fff;
-    background-color: #2471a3;
+    background-color: #1f618d;
     transition: 0.3s;
 }
 /*Boton danger*/
@@ -74,7 +74,7 @@ input[type=submit], input[type=button], input[type=reset] {
 }
 .danger:hover, .danger-small:hover {
     color: #fff;
-    background-color: #b03a2e;
+    background-color: #943126;
     transition: 0.3s;
 }
 /*Boton success*/
@@ -99,7 +99,7 @@ input[type=submit], input[type=button], input[type=reset] {
 }
 .success:hover, .success-small:hover {
     color: #fff;
-    background-color: #239b56;
+    background-color: #1d8348;
     transition: 0.3s;
 }
 .disabled {
@@ -318,7 +318,7 @@ div.jfilestyle label {
     margin-left: -3px;
     padding: 9px 20px 10px 20px;
     color: rgba(255,255,255,1.00);
-    background-color: #006699;
+    background-color: #2980b9;
     box-shadow: 0px 0px 3px #999;
     border: none;
     font-size: 1.3em;
@@ -351,7 +351,7 @@ div.jfilestyle label[disabled] {
     cursor: not-allowed;
 }
 div.jfilestyle label:hover {
-    background-color: #2196F3;
+    background-color: #1f618d;
     transition: 0.3s;
 }
 div.jfilestyle .count-jfilestyle {

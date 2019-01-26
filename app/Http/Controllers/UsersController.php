@@ -166,5 +166,92 @@ class UsersController extends Controller
                     ->with(['Exito' => 'El usuario se ha actualizado correctamente.']);
 
         } else return response()->json(['Error' => 'El usuario no existe']);
-    }    
+    }
+
+    //DELETE USER
+    public function delete(Request $request, $id) {
+            
+        $user = User::find($id);
+
+        if($user) {
+
+            $image_path = public_path('img/users/'.$user->photo);
+
+            if(File::exists($image_path)) {
+
+                File::delete($image_path);
+                $user->delete();
+
+                if($user->id == Auth::user()->id) {
+
+                    Auth::logout();
+                    return redirect()->route('login')->with('success','Tu cuenta ha sido eliminada.');
+
+                } else return redirect()->route('users')->with('success','El usuario ha sido eliminado.');            
+
+            } else
+
+                $user->delete();
+
+                if($user->id == Auth::user()->id) {
+
+                    Auth::logout();
+                    return redirect()->route('login')->with('success','Tu cuenta ha sido eliminada.');
+
+                } else return redirect()->route('users')->with('success','El usuario ha sido eliminado.');               
+
+        } else return redirect()->route('users')->with('error','El usuario no existe.');
+    }
+    
+    //MAKE ADMIN
+    public function makeAdmin(Request $request, $id) {
+        
+        if(Auth::user()->is_admin) {
+        
+            if($request->ajax()) {
+                
+                $user = User::find($id);
+                
+                if($user) {
+                    
+                    if(!$user->is_admin) {
+                        
+                        $user->is_admin = true;
+                        $user->save();
+                        return redirect()->route('users')->with('success','El usuario ahora es administrador del sitio.');
+                        
+                    } else return redirect()->route('users')->with('error','El usuario ya es administrador.');
+                    
+                } else return redirect()->route('users')->with('error','El usuario no existe.');
+                
+            } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
+            
+        } else return response()->json(['Error' => 'No eres administrador del sistema.']);      
+    }
+    
+    //DELETE ADMIN
+    public function deleteAdmin(Request $request, $id) {
+        
+        if(Auth::user()->is_admin) {
+        
+            if($request->ajax()) {
+                
+                $user = User::find($id);
+                
+                if($user) {
+                    
+                    if($user->is_admin) {
+                        
+                        $user->is_admin = false;
+                        $user->save();
+                        return redirect()->route('users')->with('success','Se quitaron todos los privilegios de administración al usuario.');
+                        
+                    } else return redirect()->route('users')->with('error','El usuario no es administrador.');
+                    
+                } else return redirect()->route('users')->with('error','El usuario no existe.');
+                
+            } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
+            
+        } else return response()->json(['Error' => 'No eres administrador del sistema.']);      
+    }
 }

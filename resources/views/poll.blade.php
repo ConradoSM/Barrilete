@@ -44,7 +44,7 @@
                 <input type="hidden" name="id_encuesta" value="{{$poll->id}}" />
                 <input type="hidden" name="ip" value="{{Request::ip()}}" />
                 <input type="hidden" name="titulo_encuesta" value="{{str_slug($poll->title,'-')}}" />
-                <input type="submit" name="submit" value="VOTAR" />
+                <input type="submit" name="submit" value="VOTAR" class="primary" />
             </form>
             @endif
         </article>

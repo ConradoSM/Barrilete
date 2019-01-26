@@ -82,6 +82,9 @@ Route::get('/sitemap', function(){
         Route::get('/dashboard/users/show/{id}','UsersController@show')->middleware('auth')->name('showUser');
         Route::get('/dashboard/users/edit/{id}','UsersController@edit')->middleware('auth')->name('editUser');
         Route::post('/dashboard/users/update','UsersController@update')->middleware('auth')->name('updateUser');
+        Route::get('/dashboard/users/delete/{id}','UsersController@delete')->middleware('auth')->name('deleteUser');
+        Route::get('/dashboard/users/make-admin/{id}','UsersController@makeAdmin')->middleware('auth')->name('makeAdmin');
+        Route::get('/dashboard/users/delete-admin/{id}','UsersController@deleteAdmin')->middleware('auth')->name('deleteAdmin');
     //DASHBOARD CREATE POLL
         Route::get('/dashboard/forms/polls','DashboardController@formPoll')->middleware('auth')->name('formPoll');
         Route::post('/dashboard/forms/polls/create','PollsController@createPoll')->middleware('auth')->name('createPoll');

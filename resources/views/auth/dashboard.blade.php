@@ -29,7 +29,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                 </div>
             </div>
-            <div id="user-notifications">
+            <div id="user-notifications" style="display:none;">
                <img src="{{ asset('svg/chat.svg') }}" />
                <img src="{{ asset('svg/notification.svg') }}" />
                <img src="{{ asset('svg/info.svg') }}" />

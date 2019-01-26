@@ -4,6 +4,9 @@
 <div class="dashboard-container">
     <div class="dashboard-login">
         <p><img src="{{asset('svg/log-in.svg')}}" />{{ __('Login') }}</p>
+        @if (session('success'))
+        <p class="alert-success">{{ session('success') }}</p>
+        @endif
         <form method="POST" action="{{ route('login') }}">
             @csrf
             @if ($errors->has('email'))

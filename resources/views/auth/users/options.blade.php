@@ -1,5 +1,5 @@
 <h1>Opciones</h1>
-<fieldset>
+<fieldset class="ajax">
     <img class="avatar" src="{{ asset('svg/admin.svg') }}" />
     <div class="user-info">
         <a href="{{ route('account', ['id' => Auth::user()->id]) }}">General</a>
@@ -7,14 +7,14 @@
     </div>
 </fieldset>
 @if (Auth::user()->is_admin)
-<fieldset>
+<fieldset class="ajax">
     <img class="avatar" src="{{ asset('svg/avatar.svg') }}" />
     <div class="user-info">
         <a href="{{ route('users') }}">Usuarios</a>
         <p>Ver todos los usuarios del sitio, administrar roles</p>
     </div>
 </fieldset>
-<fieldset>
+<fieldset class="ajax">
     <img class="avatar" src="{{ asset('svg/clipboard.svg') }}" />
     <div class="user-info">
         <a>Sitio</a>
@@ -25,13 +25,13 @@
 <fieldset>
     <img class="avatar" src="{{ asset('svg/delete-account.svg') }}" />
     <div class="user-info">
-        <a>Eliminar cuenta</a>
+        <a href="{{ route('deleteUser', ['id' => Auth::user()->id]) }}" onclick="return confirm('¿Estás seguro que quieres eliminar tu cuenta?')">Eliminar cuenta</a>
         <p>Dar de baja al perfil, ten en cuenta que tus artículos no se borraran</p>
     </div>
 </fieldset>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('fieldset').find('a').click(function(event){
+        $('fieldset.ajax').find('a').click(function(event){
             event.preventDefault();
             var href = $(this).attr('href');
             $(this).attr({href: '#'});
