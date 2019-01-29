@@ -21,8 +21,40 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, inp
 input[type=submit], input[type=button], input[type=reset] {
     -webkit-appearance: none;
     font-size: 1.6em;
-    cursor: pointer;
     margin-top: 10px;
+}
+/*Boton default*/
+.default {
+    padding: 0px 20px 3px 20px;
+    background-color: #839192;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 2px 0px #515a5a; 
+    text-shadow:  1px 1px 0px #000;
+    cursor: pointer;
+}
+.default:visited, default-small:visited {
+    color: #fff;
+}
+.primary:visited, .primary-small:visited, .danger:visited, .danger-small:visited, .success:visited, .success-small:visited {
+    color: #fff;
+}
+.default-small {
+    padding: 0px 10px 3px 10px;
+    background-color: #d5d8dc;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 2px 0px #515a5a; 
+    text-shadow:  1px 1px 0px #000;
+    font-size: 1em;
+    cursor: pointer;
+}
+.default:hover, .default-small:hover {
+    color: #fff;
+    background-color: #717d7e;
+    transition: 0.3s;
 }
 /*Boton primary*/
 .primary {
@@ -32,7 +64,8 @@ input[type=submit], input[type=button], input[type=reset] {
     border: none;
     border-radius: 3px;
     box-shadow: inset 0px 0px 2px 0px #1a5276; 
-    text-shadow:  1px 1px 0px #000;  
+    text-shadow:  1px 1px 0px #000;
+    cursor: pointer;
 }
 .primary:visited, .primary-small:visited, .danger:visited, .danger-small:visited, .success:visited, .success-small:visited {
     color: #fff;
@@ -46,6 +79,7 @@ input[type=submit], input[type=button], input[type=reset] {
     box-shadow: inset 0px 0px 2px 0px #1a5276; 
     text-shadow:  1px 1px 0px #000;
     font-size: 1em;
+    cursor: pointer;
 }
 .primary:hover, .primary-small:hover {
     color: #fff;
@@ -61,6 +95,7 @@ input[type=submit], input[type=button], input[type=reset] {
     border-radius: 3px;
     box-shadow: inset 0px 0px 2px 0px #641e16; 
     text-shadow:  1px 1px 0px #000;
+    cursor: pointer;
 }
 .danger-small {
     padding: 0px 10px 3px 10px;
@@ -71,6 +106,7 @@ input[type=submit], input[type=button], input[type=reset] {
     box-shadow: inset 0px 0px 2px 0px #641e16; 
     text-shadow:  1px 1px 0px #000;
     font-size: 1em;
+    cursor: pointer;
 }
 .danger:hover, .danger-small:hover {
     color: #fff;
@@ -85,7 +121,8 @@ input[type=submit], input[type=button], input[type=reset] {
     border: none;
     border-radius: 3px;
     box-shadow: inset 0px 0px 2px 0px #186a3b;
-    text-shadow: 1px 1px 0px #000; 
+    text-shadow: 1px 1px 0px #000;
+    cursor: pointer;
 }
 .success-small {
     padding: 0px 10px 3px 10px;
@@ -96,6 +133,7 @@ input[type=submit], input[type=button], input[type=reset] {
     box-shadow: inset 0px 0px 2px 0px #186a3b;
     text-shadow: 1px 1px 0px #000;
     font-size: 1em;
+    cursor: pointer;
 }
 .success:hover, .success-small:hover {
     color: #fff;
@@ -207,7 +245,7 @@ div.dashboard-login input[type=password].is-invalid, input[type=email].is-invali
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    background-color: #aeb6bf;
     border-radius: 50%;
 }
 .radio-container:hover input ~ .checkmark {

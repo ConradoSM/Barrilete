@@ -13,6 +13,10 @@ class PollIp extends Model {
     public function scopeIp($query, $id) {
         
         $ip = Request()->ip();
-        return $query->where('poll_id',$id)->where('ip',$ip);   
+        
+        return $query
+        ->where('poll_id',$id)
+        ->where('ip',$ip)
+        ->first();   
     }
 }

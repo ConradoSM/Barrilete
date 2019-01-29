@@ -8,7 +8,7 @@ use Spatie\Sitemap\SitemapGenerator;
 //SITEMAP
 Route::get('/sitemap', function(){
     SitemapGenerator::create('https://barrilete.com.ar/')->writeToFile('sitemap.xml');
-    return redirect('sitemap.xml');;
+    return redirect('sitemap.xml');
 });
 
 //VIEW SECTIONS
@@ -27,7 +27,6 @@ Route::get('/sitemap', function(){
     Route::get('/article/{id}/{section}/{title}', 'ArticlesController@showArticle')->name('article');
     
 //VIEW GALLERIES
-    Route::get('/galleries', 'GalleriesController@galleries')->name('galleries');
     Route::get('/gallery/{id}/{titulo}', 'GalleriesController@showGallery')->name('gallery');
     
 //VIEW POLLS
@@ -38,72 +37,93 @@ Route::get('/sitemap', function(){
     Auth::routes();
     
 //DASHBOARD
-    Route::get('/dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');
+Route::group(['middleware' => ['auth']], function(){
     
-//DASHBOARD USER ARTICLES, GALLERIES, POLLS LIST
-    Route::get('/dashboard/view/articles/{id}', 'DashboardController@userArticles')->middleware('auth')->name('viewArticles');
-    Route::get('/dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->middleware('auth')->name('viewGalleries');
-    Route::get('/dashboard/view/polls/{id}', 'DashboardController@userPolls')->middleware('auth')->name('viewPolls');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     
-//DASHBOARD SEARCH
-    Route::get('search-auth', 'SearchController@searchAuth')->name('searchAuth');
+    //DASHBOARD USER ARTICLES, GALLERIES, POLLS LIST
+        Route::get('/dashboard/view/articles/{id}', 'DashboardController@userArticles')->name('viewArticles');
+        Route::get('/dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->name('viewGalleries');
+        Route::get('/dashboard/view/polls/{id}', 'DashboardController@userPolls')->name('viewPolls');
     
-//DASHBOARD ADMIN ARTICLES
+    //DASHBOARD SEARCH
+        Route::get('search-auth', 'SearchController@searchAuth')->name('searchAuth');
+    
     //DASHBOARD CREATE ARTICLE
-        Route::get('/dashboard/forms/articles','DashboardController@formArticle')->middleware('auth')->name('formCreateArticle');
-        Route::post('/dashboard/forms/articles/create','ArticlesController@createArticle')->middleware('auth')->name('createArticle');
+        Route::get('/dashboard/forms/articles','DashboardController@formArticle')->name('formCreateArticle');
+        Route::post('/dashboard/forms/articles/create','ArticlesController@createArticle')->name('createArticle');
+        
     //DASHBOARD DELETE ARTICLE
-        Route::get('/dashboard/delete/articles/{id}','ArticlesController@deleteArticle')->middleware('auth')->name('deleteArticle');
+        Route::get('/dashboard/delete/articles/{id}','ArticlesController@deleteArticle')->name('deleteArticle');
+        
     //DASHBOARD UPDATE ARTICLE
-        Route::get('/dashboard/forms/articles/update/{id}','DashboardController@formArticle')->middleware('auth')->name('formUpdateArticle');
-        Route::post('/dashboard/update/articles/{id}','ArticlesController@updateArticle')->middleware('auth')->name('updateArticle');
+        Route::get('/dashboard/forms/articles/update/{id}','DashboardController@formArticle')->name('formUpdateArticle');
+        Route::post('/dashboard/update/articles/{id}','ArticlesController@updateArticle')->name('updateArticle');
 
-//DASHBOARD ADMIN GALLERIES
     //DASHBOARD CREATE GALLERY
-        Route::get('/dashboard/forms/galleries','DashboardController@formGallery')->middleware('auth')->name('formGallery');
-        Route::post('/dashboard/forms/galleries/create','GalleriesController@createGallery')->middleware('auth')->name('createGallery');
-        Route::post('/dashboard/forms/galleries/photos','GalleriesController@createPhotos')->middleware('auth')->name('createPhotos');
+        Route::get('/dashboard/forms/galleries','DashboardController@formGallery')->name('formGallery');
+        Route::post('/dashboard/forms/galleries/create','GalleriesController@createGallery')->name('createGallery');
+        Route::post('/dashboard/forms/galleries/photos','GalleriesController@createPhotos')->name('createPhotos');
+        
     //DASHBOARD DELETE GALLERY
-        Route::get('/dashboard/delete/gallery/{id}','GalleriesController@deleteGallery')->middleware('auth')->name('deleteGallery');
+        Route::get('/dashboard/delete/gallery/{id}','GalleriesController@deleteGallery')->name('deleteGallery');
+        
     //DASHBOARD DELETE PHOTO GALLERY
-        Route::post('/dashboard/delete/gallery/photo','GalleryPhotosController@deletePhotoGallery')->middleware('auth')->name('deletePhotoGallery');
+        Route::post('/dashboard/delete/gallery/photo','GalleryPhotosController@deletePhotoGallery')->name('deletePhotoGallery');
+        
     //DASHBOARD UPDATE GALLERY
-        Route::get('/dashboard/forms/gallery/update/{id}','DashboardController@formUpdateGallery')->middleware('auth')->name('formUpdateGallery');
-        Route::post('/dashboard/update/gallery','GalleriesController@updateGallery')->middleware('auth')->name('updateGallery');
-        Route::post('/dashboard/update/gallery/photo/title','GalleryPhotosController@updateTitlePhotoGallery')->middleware('auth')->name('updateTitlePhotoGallery');
-        Route::post('/dashboard/update/gallery/photo','GalleryPhotosController@updatePhoto')->middleware('auth')->name('updatePhoto');
-        Route::post('/dashboard/update/gallery/more/photos','GalleriesController@morePhotos')->middleware('auth')->name('morePhotos');       
+        Route::get('/dashboard/forms/gallery/update/{id}','DashboardController@formUpdateGallery')->name('formUpdateGallery');
+        Route::post('/dashboard/update/gallery','GalleriesController@updateGallery')->name('updateGallery');
+        Route::post('/dashboard/update/gallery/photo/title','GalleryPhotosController@updateTitlePhotoGallery')->name('updateTitlePhotoGallery');
+        Route::post('/dashboard/update/gallery/photo','GalleryPhotosController@updatePhoto')->name('updatePhoto');
+        Route::post('/dashboard/update/gallery/more/photos','GalleriesController@morePhotos')->name('morePhotos');  
+    
+    //SECTIONS ADMIN
+        Route::get('/dashboard/sections/list','SectionsController@index')->name('sectionsIndex');
+        Route::get('/dashboard/sections/edit/{id}','SectionsController@edit')->name('editSection');
+        Route::post('/dashboard/sections/update/{id}','SectionsController@update')->name('updateSection');
+        Route::get('/dashboard/sections/delete/{id}','SectionsController@delete')->name('deleteSection');
+        Route::get('/dashboard/sections/new','SectionsController@newSection')->name('newSection');
+        Route::post('/dashboard/sections/create','SectionsController@create')->name('createSection');
 
-//DASHBOARD ADMIN POLLS
     //DASHBOARD USERS ADMIN
-        Route::get('/dashboard/users/options','UsersController@options')->middleware('auth')->name('options');
-        Route::get('/dashboard/users/account/{id}','UsersController@account')->middleware('auth')->name('account');
-        Route::get('/dashboard/users/list','UsersController@users')->middleware('auth')->name('users');
-        Route::get('/dashboard/users/show/{id}','UsersController@show')->middleware('auth')->name('showUser');
-        Route::get('/dashboard/users/edit/{id}','UsersController@edit')->middleware('auth')->name('editUser');
-        Route::post('/dashboard/users/update','UsersController@update')->middleware('auth')->name('updateUser');
-        Route::get('/dashboard/users/delete/{id}','UsersController@delete')->middleware('auth')->name('deleteUser');
-        Route::get('/dashboard/users/make-admin/{id}','UsersController@makeAdmin')->middleware('auth')->name('makeAdmin');
-        Route::get('/dashboard/users/delete-admin/{id}','UsersController@deleteAdmin')->middleware('auth')->name('deleteAdmin');
+        Route::get('/dashboard/users/options','UsersController@options')->name('options');
+        Route::get('/dashboard/users/account/{id}','UsersController@account')->name('account');
+        Route::get('/dashboard/users/list','UsersController@users')->name('users');
+        Route::get('/dashboard/users/show/{id}','UsersController@show')->name('showUser');
+        Route::get('/dashboard/users/edit/{id}','UsersController@edit')->name('editUser');
+        Route::post('/dashboard/users/update','UsersController@update')->name('updateUser');
+        Route::get('/dashboard/users/delete/{id}','UsersController@delete')->name('deleteUser');
+        Route::get('/dashboard/users/make-admin/{id}','UsersController@makeAdmin')->name('makeAdmin');
+        Route::get('/dashboard/users/delete-admin/{id}','UsersController@deleteAdmin')->name('deleteAdmin');
+        
     //DASHBOARD CREATE POLL
-        Route::get('/dashboard/forms/polls','DashboardController@formPoll')->middleware('auth')->name('formPoll');
-        Route::post('/dashboard/forms/polls/create','PollsController@createPoll')->middleware('auth')->name('createPoll');
-        Route::post('/dashboard/forms/polls/options','PollsController@createOptions')->middleware('auth')->name('createOptions');
+        Route::get('/dashboard/forms/polls','DashboardController@formPoll')->name('formPoll');
+        Route::post('/dashboard/forms/polls/create','PollsController@createPoll')->name('createPoll');
+        Route::post('/dashboard/forms/polls/options','PollsController@createOptions')->name('createOptions');
+        
     //DASHBOARD DELETE POLL
-        Route::get('/dashboard/delete/poll/{id}','PollsController@deletePoll')->middleware('auth')->name('deletePoll');
+        Route::get('/dashboard/delete/poll/{id}','PollsController@deletePoll')->name('deletePoll');
+        
     //DASHBOARD UPDATE POLL
-        Route::get('/dashboard/forms/polls/update/{id}','PollsController@formUpdatePoll')->middleware('auth')->name('formUpdatePoll');
-        Route::post('/dashboard/update/polls','PollsController@updatePoll')->middleware('auth')->name('updatePoll');
-        Route::post('/dashboard/update/polls/options','PollsController@updatePollOption')->middleware('auth')->name('updatePollOption');
-        Route::post('/dashboard/delete/polls/options','PollsController@deletePollOption')->middleware('auth')->name('deletePollOption');
-        Route::post('/dashboard/more/polls/options','PollsController@addMorePollOption')->middleware('auth')->name('addMorePollOption');
+        Route::get('/dashboard/forms/polls/update/{id}','PollsController@formUpdatePoll')->name('formUpdatePoll');
+        Route::post('/dashboard/update/polls','PollsController@updatePoll')->name('updatePoll');
+        Route::post('/dashboard/update/polls/options','PollsController@updatePollOption')->name('updatePollOption');
+        Route::post('/dashboard/delete/polls/options','PollsController@deletePollOption')->name('deletePollOption');
+        Route::post('/dashboard/more/polls/options','PollsController@addMorePollOption')->name('addMorePollOption');
 
-//DASHBOARD PREVIEWS
-    Route::get('/dashboard/forms/articles/preview/{id}','ArticlesController@previewArticle')->middleware('auth')->name('previewArticle');
-    Route::get('/dashboard/forms/gallery/preview/{id}','GalleriesController@previewGallery')->middleware('auth')->name('previewGallery');
-    Route::get('/dashboard/forms/poll/preview/{id}','PollsController@previewPoll')->middleware('auth')->name('previewPoll');
+    //DASHBOARD PREVIEWS
+        Route::get('/dashboard/forms/articles/preview/{id}','ArticlesController@previewArticle')->name('previewArticle');
+        Route::get('/dashboard/forms/gallery/preview/{id}','GalleriesController@previewGallery')->name('previewGallery');
+        Route::get('/dashboard/forms/poll/preview/{id}','PollsController@previewPoll')->name('previewPoll');
 
-//DASHBOARD CONTENT PUBLISH
-    Route::get('/dashboard/publish/articles/{id}','ArticlesController@publishArticle')->middleware('auth')->name('publishArticle');
-    Route::get('/dashboard/publish/gallery/{id}','GalleriesController@publishGallery')->middleware('auth')->name('publishGallery');
-    Route::get('/dashboard/publish/poll/{id}','PollsController@publishPoll')->middleware('auth')->name('publishPoll');
+    //DASHBOARD CONTENT PUBLISH
+        Route::get('/dashboard/publish/articles/{id}','ArticlesController@publishArticle')->name('publishArticle');
+        Route::get('/dashboard/publish/gallery/{id}','GalleriesController@publishGallery')->name('publishGallery');
+        Route::get('/dashboard/publish/poll/{id}','PollsController@publishPoll')->name('publishPoll');
+
+    //DASHBOARD CONTENT UNPUBLISHED
+        Route::get('/dashboard/unpublished/articles','ArticlesController@unpublishedArticles')->name('unpublishedArticles');
+        Route::get('/dashboard/unpublished/galleries','GalleriesController@unpublishedGalleries')->name('unpublishedGalleries');
+        Route::get('/dashboard/unpublished/polls','PollsController@unpublishedPolls')->name('unpublishedPolls');
+});

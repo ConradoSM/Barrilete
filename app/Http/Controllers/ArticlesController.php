@@ -16,13 +16,9 @@ class ArticlesController extends Controller {
 
         $article = Articles::showArticle($id);
 
-        if ($article->exists()) {
+        if ($article) {
             
-            $article = $article->first();
-            $section = $article->section_id;
-
-            $moreArticles = Articles::moreArticles($id, $section)->get();
-
+            $moreArticles = Articles::moreArticles($id, $article->section_id);
             return view('article', compact('article', 'moreArticles'));
 
         } else return view('errors.article-error');
@@ -205,5 +201,21 @@ class ArticlesController extends Controller {
             } else return response()->json(['Error' => 'Tu no eres administrador del sistema.']);
             
         } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);       
+    }
+
+    //ARTÍCULOS SIN PUBLICAR
+    public function unpublishedArticles(Request $request) {
+
+        if ($request->ajax()) {
+
+            if (Auth::user()->is_admin) {
+
+                $Articles = Articles::unpublished();
+                return view('auth.viewArticles', compact('Articles'))
+                ->with('status','artículos');
+
+            } else return response()->json(['Error' => 'Tu no eres administrador del sistema.']);
+
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     }
 }

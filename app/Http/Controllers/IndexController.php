@@ -8,13 +8,13 @@ use barrilete\Gallery;
 use barrilete\Poll;
 
 class IndexController extends Controller {
-    /*     * TITULARES INDEX* */
-
+   
+    //TITULARES INDEX
     public function home() {
 
-        $articlesIndex = Articles::articlesHome()->get();
-        $galleryIndex = Gallery::galleryHome()->first();
-        $pollsIndex = Poll::pollHome()->get();
+        $articlesIndex = Articles::articlesHome();
+        $galleryIndex = Gallery::galleryHome();
+        $pollsIndex = Poll::pollsHome();
 
         return view('default', compact('articlesIndex','galleryIndex','pollsIndex'));
     }

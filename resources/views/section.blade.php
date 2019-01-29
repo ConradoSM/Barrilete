@@ -1,5 +1,5 @@
 @extends('layouts.barrilete')
-@section('title', 'Barrilete | '.$articles->first()->section->name)
+@section('title', 'Barrilete | '.ucfirst($articles->first()->section->name))
 @section('article_title', $articles->first()->title)
 @section('description', $articles->first()->article_desc)
 @section('article_type', 'article')

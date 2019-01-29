@@ -22,26 +22,36 @@ class Gallery extends Model {
 
         return $this->belongsTo(Sections::class);
     }
+    
+    //GALERÍA DE FORTOS DE LA HOMEPAGE
+    public function scopeGalleryHome($query) {
+        
+        return $query->where('status','PUBLISHED')
+        ->latest()
+        ->first();      
+    }    
+    
+    //BUSCA LA LISTA DE GALERÍAS
+    public function scopeGalleries($query) {
+        
+        return $query->where('status','PUBLISHED')
+        ->get()
+        ->sortByDesc('id');      
+    }
 
     //RELACIONA LA GALERÍA CON LAS FOTOS CARGADAS
     public function photos() {
 
         return $this->hasMany(GalleryPhotos::class);
     }
-
-    //BUSCA LA GALERÍA QUE SE VA A MOSTRAR EN LA HOMEPAGE
-    public function scopeGalleryHome($query) {
-        
-        return $query->where('status','PUBLISHED')->orderBy('id','DESC');      
-    }
     
     //BUSCA LA GALERÍA POR ID
     public function scopeGallery($query, $id) {
         
-        $query->whereId($id)->where('status','PUBLISHED');
+        $query->find($id)->where('status','PUBLISHED');
         $query->increment('views',1);
         
-        return $query;
+        return $query->first();
     }
 
     //BUSQUEDA DE GALERÍAS
@@ -60,5 +70,14 @@ class Gallery extends Model {
         ->where('user_id', $author)
         ->orderBy('id', 'DESC')
         ->paginate(10);
+    }
+
+    //GALERÍAS NO PUBLICADAS
+    public function scopeUnpublished($query) {
+
+        return $query->select('id','title','article_desc','views','status','created_at')
+        ->where('status','DRAFT')
+        ->orderBy('id','desc')
+        ->paginate(10);      
     }
 }

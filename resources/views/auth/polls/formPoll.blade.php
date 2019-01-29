@@ -11,7 +11,8 @@
             <div id="errors"></div>
             <input type="text" name="title" value="" placeholder="Título: éste es el principal título de la encuesta (*) Mínimo 20 caracteres" required />            
             <textarea name="article_desc" placeholder="Copete: puedes incluir el primer párrafo de tu encuesta (*) Mínimo 50 caracteres" required></textarea>
-            <input type="submit" value="SIGUIENTE >>" id="enviar" class="primary" />
+            <input type="submit" value="Siguiente »" id="enviar" class="primary" />
+            <input type="reset" class="default" value="Restablecer" />
         </fieldset>
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />

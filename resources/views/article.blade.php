@@ -14,7 +14,7 @@
 <div class="pubContainer">
 <article class="pub">
     <img data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" />
-    <h2>{{ $article -> title }}</h2>
+    <h1>{{ $article -> title }}</h1>
     <p class="copete">{{ $article->article_desc }}</p>
     <p class="info">
         <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->created_at->diffForHumans() }}

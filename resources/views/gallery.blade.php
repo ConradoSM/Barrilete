@@ -13,7 +13,7 @@
 @section('content')
 <div class="pubContainer">
 <article class="pub_galeria">
-    <h2>{{$gallery->title}}</h2>
+    <h1>{{$gallery->title}}</h1>
     <p class="copete">{{$gallery->article_desc}}</p>
     <p class="info">
         <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}

@@ -26,19 +26,20 @@ class Articles extends Model {
     //ARTÍCULOS QUE SE VAN A MOSTRAR EN LA HOMEPAGE
     public function scopeArticlesHome($query) {
         
-        return $query->select('id','title','article_desc','photo','section_id','video')
-        ->where('status','PUBLISHED')
-        ->orderBy('id','DESC')
-        ->limit(15);      
+        return $query->where('status','PUBLISHED')     
+        ->latest()
+        ->take(24)
+        ->get()
+        ->sortByDesc(function($post) { return sprintf('%-12s%s',$post->section->prio, $post->created_at); });      
     }
     
     //ARTÍCULO QUE SE VA A MOSTRAR SEGÚN EL ID
     public function scopeShowArticle($query, $id) {
         
-        $query->whereId($id)->where('status','PUBLISHED'); 
+        $query->find($id)->where('status','PUBLISHED'); 
         $query->increment('views',1);
         
-        return $query;
+        return $query->first();
     }
     
     //RESTO DE LOS ARTÍCULOS QUE SE VAN A MOSTRAR
@@ -49,7 +50,8 @@ class Articles extends Model {
         ->where('section_id',$section)
         ->where('status','PUBLISHED')
         ->orderBy('id','DESC')
-        ->limit(8);      
+        ->limit(8)
+        ->get();      
     }
     
     //BÚSQUEDA DE ARTÍCULOS
@@ -68,5 +70,14 @@ class Articles extends Model {
         ->where('user_id', $author)
         ->orderBy('id', 'DESC')
         ->paginate(10);
+    }
+
+    //ARTÍCULOS NO PUBLICADOS
+    public function scopeUnpublished($query) {
+
+        return $query->select('id','title','article_desc','views','status','created_at')
+        ->where('status','DRAFT')
+        ->orderBy('id','desc')
+        ->paginate(10);      
     }
 }

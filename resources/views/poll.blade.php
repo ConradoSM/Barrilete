@@ -12,7 +12,7 @@
 @section('content')
 <div class="pubContainer">
     <article class="pub">
-        <h2>{{ $poll->title }}</h2>
+        <h1>{{ $poll->title }}</h1>
         <p class="copete">{{ $poll->article_desc }}</p>
         <p class="info">
             <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->created_at->diffForHumans()}}
@@ -23,13 +23,17 @@
         <article class="pollOptions">
             @if ($status)
             <h2>{{$status}}</h2>
+            <hr />
             @forelse ($poll_options as $option)
             <p class="options">{{$option->option}} ({{$option->votes}})</p>
-            <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes}}%">{{round(($option->votes * 100) / $totalVotes )}}%</p>           
+            <div class="resultContainer">
+                <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes}}%">{{round(($option->votes * 100) / $totalVotes )}}%</p>
+            </div>
             @empty
             <h1>No hay opciones</h1>
             @endforelse
-            <p>Votos: {{$totalVotes}}</p>
+            <hr />
+            <p class="totalVotes">Votos: {{$totalVotes}}</p>
             @else
             <form action="{{route('poll-vote')}}" method="post">            
                 @forelse ($poll_options as $option)
@@ -39,7 +43,8 @@
                 </label>
                 @empty
                 <h1>No hay opciones</h1>
-                @endforelse           
+                @endforelse
+                <hr />
                 @csrf
                 <input type="hidden" name="id_encuesta" value="{{$poll->id}}" />
                 <input type="hidden" name="ip" value="{{Request::ip()}}" />

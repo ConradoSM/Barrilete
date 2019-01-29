@@ -11,7 +11,7 @@
       <th>Rol</th>
       <th>Nombre</th>
       <th>Correo electrónico</th>
-      <th>Acción</th>
+      <th width="23%">Acción</th>
     </tr>
   </thead>
   <tbody>

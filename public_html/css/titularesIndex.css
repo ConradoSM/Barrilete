@@ -33,9 +33,8 @@ article.pubIndex img.video {
     position: absolute;
     width: 50px;
     height: auto;
-    left: 50%;
-    top: 20%;
-    transform: translate(-50%, -22%);
+    left: 168px;
+    top: 100px;
     box-shadow: 0px 0px 50px 0px rgba(255,255,255,0.2);
     border-radius: 50%;
     z-index: 1;
@@ -160,10 +159,12 @@ article.pollIndex a {
         border-bottom-right-radius: 5px;
     }
     article.pubIndex img.video {
-        top: 18%;
+        left: 45%;
+        top: 100px;
     }
     article.pubIndex img {
-        height: auto;
+        width: auto;
+        height: 250px;
     }
     article.pubIndex a {
         display: block;
@@ -228,10 +229,12 @@ article.pollIndex a {
         border-bottom-right-radius: 5px;
     }
     article.pubIndex img.video {
-        top: 18%;
+        left: 45%;
+        top: 100px;
     }
     article.pubIndex img {
-        height: auto;
+        width: auto;
+        height: 250px;
     }
     article.pubIndex a {
         display: block;
@@ -289,10 +292,12 @@ article.pollIndex a {
         border-bottom-right-radius: 5px;
     }
     article.pubIndex img.video {
-        top: 18%;
+        left: 45%;
+        top: 100px;
     }
     article.pubIndex img {
-        height: auto;
+        width: auto;
+        height: 250px;
     }
     article.pubIndex a {
         display: block;
@@ -410,7 +415,8 @@ article.pollIndex a {
     article.pubIndex:nth-child(1) img.video {
         width: 100px;
         height: auto; 
-        top: 35%;
+        top: 205px;
+        left: 315px;
     }
     article.pubIndex:nth-child(1) img {
         width: 100%;
@@ -449,7 +455,8 @@ article.pollIndex a {
     article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video{
         width: 50px;
         height: auto; 
-        top: 40%;
+        top: 100px;
+        left: 195px;
     }
     article.pubIndex:nth-child(2) img, article.pubIndex:nth-child(3) img{
         width: 100%;

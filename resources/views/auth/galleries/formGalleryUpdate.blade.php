@@ -13,7 +13,7 @@
                 <input type="text" class="input" name="title" value="{{ $gallery->title }}" placeholder="Título: éste es el principal título del articulo (*)" required />
                 <p title="Editar">{{ $gallery->article_desc }}</p>
                 <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $gallery->article_desc }}</textarea>
-                <input type="submit" value="ACTUALIZAR" class="success" />
+                <input type="submit" value="Actualizar" class="success" />
                 @csrf
                 <input type="hidden" name="id" value="{{ $gallery->id }}" />
                 <input type="hidden" name="user_id" value="{{ $gallery->user_id }}" />
@@ -21,7 +21,7 @@
                 <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />   
             </form>
     </fieldset>  
-    <input type="button" value="+ AGREGAR IMAGENES" id="enviar" />
+    <input type="button" value="+ Agregar imágenes" id="enviar" class="primary" />
     @forelse ($photos as $photo)
     <fieldset data-id="{{ $photo->id }}">
         <div class="status"></div>                  
@@ -29,7 +29,7 @@
             <form action="{{ route('updatePhoto') }}" method="post" enctype="multipart/form-data">
                 @csrf                    
                 <input type="file" class="jfilestyle" data-placeholder="Seleccionar imagen" name="photo" accept="image/*" required />
-                <input type="submit" class="actualizar-foto" value="ACTUALIZAR" class="success" />
+                <input type="submit" class="actualizar-foto primary" value="Actualizar" />
                 <input type="hidden" name="id" value="{{ $photo->id }}" />
                 <input type="hidden" name="actual_photo" value="{{ $photo->photo }}" />
             </form>
@@ -41,7 +41,7 @@
         <form method="post" class="data" action="{{ route('updateTitlePhotoGallery') }}">
             <p title="Editar">{{ $photo->title }}</p>                                              
             <input type="text" name="title" class="input" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
-            <input type="submit" class="actualizar-datos" value="Actualizar" class="success" /> 
+            <input type="submit" class="actualizar-datos primary" value="Actualizar" /> 
             <input type="hidden" name="id" value="{{ $photo->id }}" />
             @csrf
         </form>                  
@@ -55,7 +55,7 @@
     $(document).ready(function () {                                            
 
         //MOSTRAR FORMULARIOS
-        $('fieldset form p').click(function(){
+        $('form').find('p').click(function(){
 
             var parrafo = $(this);
             var input = $(parrafo).next();

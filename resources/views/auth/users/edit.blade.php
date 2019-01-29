@@ -281,7 +281,7 @@
             <hr />
             <textarea name="description" placeholder="Acerca de mí">{{ $user->description }}</textarea>
             <input type="submit" class="success" value="Actualizar" />
-            <input type="reset" class="primary" value="Restablecer" />
+            <input type="reset" class="default" value="Restablecer" />
             <input type="hidden" name="id" value="{{ $user->id }}" />
             @csrf
         </form>

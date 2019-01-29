@@ -20,7 +20,7 @@
         </fieldset>
         <div id="error"></div>
         <div id="vista-previa"></div>
-        <input type="submit" id="submit" value="GUARDAR" class="disabled" disabled />
+        <input type="submit" id="submit" value="Guardar" class="disabled" disabled />
         <input type="hidden" name="gallery_id" value="{{ $gallery->id }}" />
         @csrf
     </form>

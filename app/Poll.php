@@ -23,7 +23,7 @@ class Poll extends Model {
     //UNA ENCUESTA TIENE MUCHAS OPCIONES
     public function option() {
 
-        return $this->hasMany(PollOptions::class);
+        return $this->hasMany(PollOptions::class)->orderBy('votes','desc');
     }
     
     //UNA ENCUESTA TIENE MUCHAS IP
@@ -32,22 +32,22 @@ class Poll extends Model {
         return $this->hasMany(PollIp::class);
     }
     
-    //LAS ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
-    public function scopePollHome($query) {
+    //ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
+    public function scopePollsHome($query) {
         
-        return $query->select('id', 'title', 'created_at')
-        ->where('status','PUBLISHED')
-        ->orderBy('id','DESC')
-        ->limit(3);      
-    }
+        return $query->where('status','PUBLISHED')
+        ->latest()
+        ->take(3)
+        ->get();
+    }       
     
     //BUSCA LA ENCUESTA POR EL ID, LA MUESTRA Y ACTUALIZA LAS VISITAS
     public function scopePoll($query, $id) {
         
-        $query->whereId($id)->where('status','PUBLISHED'); 
+        $query->find($id)->where('status','PUBLISHED'); 
         $query->increment('views',1);
         
-        return $query;
+        return $query->first();
     }
 
     //MUESTRA EL RESTO DE LAS ENCUESTAS
@@ -56,8 +56,9 @@ class Poll extends Model {
         return $query->select('id', 'title')
         ->where('id','!=',$id)
         ->where('status','PUBLISHED')
-        ->orderBy('id','DESC')
-        ->limit(8);      
+        ->latest()
+        ->take(8)
+        ->get();      
     }
     
     //BÚSQUEDA DE ENCUESTAS
@@ -76,5 +77,14 @@ class Poll extends Model {
         ->where('user_id', $author)
         ->orderBy('id', 'DESC')
         ->paginate(10);
+    }
+
+    //ENCUESTAS NO PUBLICADAS
+    public function scopeUnpublished($query) {
+
+        return $query->select('id','title','article_desc','views','status','created_at')
+        ->where('status','DRAFT')
+        ->orderBy('id','desc')
+        ->paginate(10);      
     }
 }

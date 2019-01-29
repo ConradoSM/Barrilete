@@ -517,3 +517,8 @@ span.info {
     color: #666;
     font-size: 0.85em;
 }
+#crear {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}

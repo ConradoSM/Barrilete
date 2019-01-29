@@ -13,7 +13,7 @@
                 <input type="text" class="input" name="title" value="{{ $poll->title }}" placeholder="Título: éste es el principal título de la encuesta (*) Mínimo 20 caracteres" required />
                 <p title="Editar">{{ $poll->article_desc }}</p>
                 <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu encuesta (*) Mínimo 50 caracteres" required>{{ $poll->article_desc }}</textarea>
-                <input type="submit" value="ACTUALIZAR" class="success" />
+                <input type="submit" value="Actualizar" class="success" />
                 @csrf
                 <input type="hidden" name="id" value="{{ $poll->id }}" />
                 <input type="hidden" name="user_id" value="{{ $poll->user_id }}" />
@@ -22,7 +22,7 @@
             </form>
     </fieldset>
     <div class="status"></div>
-    <input type="button" id="mas-opciones" data-id="{{ $poll->id }}" value="+ AGREGAR MAS OPCIONES" />
+    <input type="button" id="mas-opciones" data-id="{{ $poll->id }}" value="+ Agregar opciones" class="primary" />
     @forelse ($options as $option)
     <div class="status"></div>
     <fieldset>
@@ -30,8 +30,8 @@
         <form method="post" class="data" enctype="multipart/form-data" action="{{ route('updatePollOption') }}">
             <p title="Editar">{{ $option->option }}</p>
             <input type="text" class="input" name="option" value="{{ $option->option }}" placeholder="Opción de la encuesta" required />
-            <input type="submit" value="ACTUALIZAR" class="success" />
-            <input type="button" class="danger" data-id="{{ $option->id }}" value="BORRAR" />
+            <input type="submit" value="Actualizar" class="success" />
+            <input type="button" class="danger" data-id="{{ $option->id }}" value="Borrar" />
             @csrf
             <input type="hidden" name="poll_id" value="{{ $poll->id }}" /> 
             <input type="hidden" name="id" value="{{ $option->id }}" />

@@ -15,27 +15,24 @@ class PollsController extends Controller {
     public function poll($id) {
 
         $poll = Poll::poll($id);
-        $morePolls = Poll::morePolls($id);
 
         if ($poll) {
 
-            $ip = PollIp::ip($id)->first();
+            $ip = PollIp::ip($id);
 
             if (!$ip) {
 
-                $poll = $poll->first();
                 $poll_options = $poll->option;
-                $morePolls = $morePolls->get();
+                $morePolls = Poll::morePolls($id);
 
                 return view('poll', compact('poll','poll_options','morePolls'))
                 ->with('status', false);
 
             } else
 
-                $poll = $poll->first();
                 $poll_options = $poll->option;
                 $totalVotes = $poll_options->sum('votes');
-                $morePolls = $morePolls->get();
+                $morePolls = Poll::morePolls($id);
 
                 return view('poll', compact('poll','poll_options','totalVotes','morePolls'))
                 ->with('status', 'Ya has votado!');
@@ -84,13 +81,13 @@ class PollsController extends Controller {
     //CREAR ENCUESTA
     public function createPoll(pollRequest $request) {
             
-        $article = new Poll;
-        $article -> user_id = $request['user_id'];
-        $article -> title = $request['title'];
-        $article -> section_id = $request['section_id'];
-        $article -> author = $request['author'];
-        $article -> article_desc = $request['article_desc'];
-        $article -> save();
+        $article               = new Poll;
+        $article->user_id      = $request->user_id;
+        $article->title        = $request->title;
+        $article->section_id   = $request->section_id;
+        $article->author       = $request->author;
+        $article->article_desc = $request->article_desc;
+        $article->save();
         $poll = Poll::find($article->id);
 
         return view('auth.polls.formOptionsPolls', compact('poll'));       
@@ -99,12 +96,12 @@ class PollsController extends Controller {
     //GUARDAR OPCIONES
     public function createOptions(Request $request) {
                 
-        $poll_id = $request['poll_id'];
+        $poll_id = $request->poll_id;
         $poll = Poll::find($poll_id);
         
         if ($poll) {
             
-            $inputOptions = $request['option'];
+            $inputOptions = $request->option;
 
                 foreach ($inputOptions as $key => $val) {            
 
@@ -238,10 +235,26 @@ class PollsController extends Controller {
             $pollOption->delete();
             
             return response()->json([
-                'Exito' => 'La opción de la encuesta se borró correctamente.',
+                'Exito'  => 'La opción de la encuesta se borró correctamente.',
                 'option' => $pollOption->option
             ]);
             
         } else return response()->json(['Error' => 'La opción de la encuesta no existe.']);
     } 
+
+    //ENCUESTAS SIN PUBLICAR
+    public function unpublishedPolls(Request $request) {
+
+        if (Auth::user()->is_admin) {
+
+            if (Auth::user()->is_admin) {
+
+                $Articles = Poll::unpublished();
+                return view('auth.viewArticles', compact('Articles'))
+                ->with('status','encuestas');
+
+            } else return response()->json(['Error' => 'Tu no eres administrador del sistema.']);
+
+        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
+    }
 }

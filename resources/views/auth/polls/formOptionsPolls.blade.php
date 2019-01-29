@@ -9,9 +9,9 @@
             <p><b>Título:</b> {{ $poll->title }}</p>            
             <p><b>Copete:</b> {{ $poll->article_desc }}</p>           
         </fieldset>
-        <input type="button" id="agregarCampo" value="+ AGREGAR OPCIÓN" />
+        <input type="button" id="agregarCampo" value="+ Agregar opción" class="primary" />
         <div id="campos"></div>
-        <input type="submit" id="submit" value="GUARDAR" class="disabled" disabled  />
+        <input type="submit" id="submit" value="Guardar" class="disabled" disabled  />
         <input type="hidden" name="poll_id" value="{{ $poll->id }}" />
         @csrf
     </form>
@@ -30,7 +30,6 @@ $(document).ready(function () {
     var FieldCount = x - 1;
 
     $(AddButton).click(function(event){
-        event.stopPropagation();
         event.preventDefault;
             
         if (x > 2) {
@@ -45,12 +44,13 @@ $(document).ready(function () {
         return false;
     });
         
-    $('img.eliminar').on('click', function(event){
-        event.stopPropagation();
+    $('body').on('click','.eliminar', function(event){
         event.preventDefault;
-        
+
         if (x > 1) {
-            $(this).parent('fieldset').fadeOut(400, 'linear');
+            $(this).parent('fieldset').fadeOut(400, 'linear', function(){
+                $(this).remove();
+            });
             x--;
         }
         return false;

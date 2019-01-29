@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <title>Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta name="author" content="Conrado Maranguello" />
+        <meta name="robots" content="noindex,nofollow,nosnippet,noarchive" />
+        <meta name="googlebot" content="noindex,nofollow,nosnippet,noarchive" />
         <link rel="stylesheet" href="{{asset('css/contenido.css')}}" />
         <link rel="stylesheet" href="{{asset('css/titularesIndex.css')}}" />
         <link rel="stylesheet" href="{{asset('css/forms.css')}}" />
@@ -45,6 +46,12 @@
                 <a href="{{ route('formCreateArticle') }}"><img src="{{ asset('svg/add-file.svg') }}" />Artículos</a>
                 <a href="{{ route('formGallery') }}"><img src="{{ asset('svg/image.svg') }}" />Galerías</a>
                 <a href="{{ route('formPoll') }}"><img src="{{ asset('svg/note.svg') }}" />Encuestas</a>
+                @if (Auth::user()->is_admin)
+                <h2>Contenido sin publicar</h2>
+                <a href="{{ route('unpublishedArticles') }}"><img src="{{ asset('svg/add-file.svg') }}" />Artículos</a>
+                <a href="{{ route('unpublishedGalleries') }}"><img src="{{ asset('svg/image.svg') }}" />Galerías</a>
+                <a href="{{ route('unpublishedPolls') }}"><img src="{{ asset('svg/note.svg') }}" />Encuestas</a>
+                @endif
             </aside>
             <div id="loader"><center><img src="{{ asset('img/loader.gif') }}" /></center></div>
             <div id="user-content"></div>                       

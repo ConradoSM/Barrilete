@@ -28,7 +28,7 @@
     </div>
     <hr />
     <article class="pub_galeria">
-    <h2>{{ $poll->title }}</h2>
+    <h1>{{ $poll->title }}</h1>
     <p class="copete">{{ $poll->article_desc }}</p>
     <p class="info">
         <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->created_at->diffForHumans()}}
@@ -47,7 +47,7 @@
             @empty
             <h1>No hay opciones</h1>
             @endforelse
-            <input type="submit" value="VOTAR" disabled />
+            <input type="submit" value="VOTAR" class="disabled" disabled />
         </form>
     </article>
 <br />

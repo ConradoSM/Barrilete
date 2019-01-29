@@ -17,8 +17,8 @@
 <fieldset class="ajax">
     <img class="avatar" src="{{ asset('svg/clipboard.svg') }}" />
     <div class="user-info">
-        <a>Sitio</a>
-        <p>Ver, agregar, modificar opciones del sitio</p>
+        <a href="{{ route('sectionsIndex') }}">Secciones</a>
+        <p>Ver, agregar, modificar las secciones del sitio</p>
     </div>
 </fieldset>
 @endif

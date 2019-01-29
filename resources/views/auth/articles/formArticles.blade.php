@@ -15,9 +15,9 @@
             <p><b>Autor</b>: {{ isset($article) ? $article->author : Auth::user()->name }}</p>
             <p><b>Fecha de publicación</b>: {{ isset($article) ? $article->created_at->diffForHumans() : now()->formatLocalized('%A %d %B %Y') }}</p>
             <select name="section_id" size="1" id="seccion" required>
-                <option value="{{ isset($article) ? $article->section->id : '' }}" selected>{{ isset($article) ? $article->section->name : 'Seleccionar Sección' }}</option>
+                <option value="{{ isset($article) ? $article->section->id : '' }}" selected>{{ isset($article) ? ucfirst($article->section->name) : 'Seleccionar Sección' }}</option>
                 @foreach ($sections as $section)
-                <option value="{{ $section->id }}">{{ $section->name }}</option>
+                <option value="{{ $section->id }}">{{ ucfirst($section->name) }}</option>
                 @endforeach
             </select>   
             <input type="file" class="jfilestyle"  data-inputSize="500px" data-placeholder="Imagen Principal (*) Oligatoria, sólo imágenes JPG, JPEG, PNG" id="foto" name="photo" accept=".png, .jpg, .jpeg" {{ isset($article) ? '' : 'required' }} />
@@ -34,7 +34,8 @@
         <fieldset>
             <legend>Contenido</legend>
             <textarea name="article_body" id="article_body">{{ isset($article) ? $article->article_body : '' }}</textarea>
-            <input type="submit" value="GUARDAR" id="enviar" class="primary" />
+            <input type="submit" value="Guardar" id="enviar" class="primary" />
+            <input type="reset" class="default" value="Restablecer" />
         </fieldset>   
         @csrf
         <input type="hidden" name="user_id" value="{{ isset($article) ? $article->user->id : Auth::user()->id }}" />
