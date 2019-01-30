@@ -44,7 +44,7 @@ class Poll extends Model {
     //BUSCA LA ENCUESTA POR EL ID, LA MUESTRA Y ACTUALIZA LAS VISITAS
     public function scopePoll($query, $id) {
         
-        $query->find($id)->where('status','PUBLISHED'); 
+        $query->findOrFail($id)->where('status','PUBLISHED'); 
         $query->increment('views',1);
         
         return $query->first();

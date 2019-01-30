@@ -17,6 +17,7 @@ class CreateSectionsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name')->unique();
+            $table->integer('prio');
             $table->rememberToken();
             $table->timestamps();
         });

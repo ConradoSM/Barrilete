@@ -48,7 +48,7 @@ class Gallery extends Model {
     //BUSCA LA GALERÍA POR ID
     public function scopeGallery($query, $id) {
         
-        $query->find($id)->where('status','PUBLISHED');
+        $query->findOrFail($id)->where('status','PUBLISHED');
         $query->increment('views',1);
         
         return $query->first();

@@ -36,7 +36,7 @@ class Articles extends Model {
     //ARTÍCULO QUE SE VA A MOSTRAR SEGÚN EL ID
     public function scopeShowArticle($query, $id) {
         
-        $query->find($id)->where('status','PUBLISHED'); 
+        $query->findOrFail($id)->where('status','PUBLISHED'); 
         $query->increment('views',1);
         
         return $query->first();
@@ -75,8 +75,7 @@ class Articles extends Model {
     //ARTÍCULOS NO PUBLICADOS
     public function scopeUnpublished($query) {
 
-        return $query->select('id','title','article_desc','views','status','created_at')
-        ->where('status','DRAFT')
+        return $query->where('status','DRAFT')
         ->orderBy('id','desc')
         ->paginate(10);      
     }

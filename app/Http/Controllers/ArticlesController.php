@@ -192,11 +192,15 @@ class ArticlesController extends Controller {
             if (Auth::user()->is_admin) {
                 
                 $article = Articles::find($id);
-                $article->status = 'PUBLISHED';
-                $article->save();
                 
-                return view('auth.articles.previewArticle', compact('article'))
-                ->with(['Exito' => 'El artículo se ha publicado correctamente.']);
+                if ($article) {
+                    $article->status = 'PUBLISHED';
+                    $article->save();
+
+                    return view('auth.articles.previewArticle', compact('article'))
+                    ->with(['Exito' => 'El artículo se ha publicado correctamente.']);
+                    
+                } else return response()->json(['Error' => 'El artículo no existe.']);
                 
             } else return response()->json(['Error' => 'Tu no eres administrador del sistema.']);
             

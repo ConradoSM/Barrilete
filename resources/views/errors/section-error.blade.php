@@ -3,7 +3,7 @@
 @section('content')
 <article class="pub">
     <h1>Sección no encontrada</h1>
-    <h3>El servidor no pudo encontrar la sección solicitada, ésto puede ser debido a que:</h3>
+    <h2>El servidor no pudo encontrar la sección solicitada, ésto puede ser debido a que:</h2>
     <hr />
     <ul>
         <li>El cliente escribió mal la URL.</li>

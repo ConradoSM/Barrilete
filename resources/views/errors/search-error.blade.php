@@ -3,7 +3,7 @@
 @section('content')
 <article class="pub">
     <h1>Error en la búsqueda</h1>
-    <h3>El servidor no pudo procesar la búsqueda solicitada por el cliente. Esto puede deberse a que:</h3>
+    <h2>El servidor no pudo procesar la búsqueda solicitada por el cliente. Esto puede deberse a que:</h2>
     <hr />
     <ul>
         <li>El cliente escribió mal la URL.</li>
