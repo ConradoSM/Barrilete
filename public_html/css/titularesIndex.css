@@ -52,18 +52,19 @@ article.pubIndex img:hover {
     transition: 0.3s;
 }
 article.pubIndex a {
-    color: rgba(0,0,0,1.00);
-    font-weight: bold;
-    font-size: 2.25em;
+    display: block;
+    color: #424949;
+    font-size: 1.85em;
     line-height: 35px;
+    z-index: 1;
 }
 article.pubIndex a:hover {
-    color: rgba(0,128,192,1);
+    color: #17202a;
     text-decoration: none;
 }
 article.pubIndex p {
-    color: rgba(66,66,66,1.00);
-    font-size: 1.25em;
+    color: #7f8c8d; 
+    font-size: 1.2em;
     margin-bottom: 0px;
     margin-top: 10px;
 }
@@ -79,7 +80,8 @@ div.galeriasContainerIndex {
     border-radius: 5px;
     background-color: #f2f3f4;
 }
-div.galeriasContainerIndex h1 {
+div.galeriasContainerIndex h1, div.pollsContainerIndex h1 {
+    font-size: 2.5em;
     margin-left: 20px;
 }
 div.pollsContainerIndex {
