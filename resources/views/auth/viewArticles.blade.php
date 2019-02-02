@@ -9,7 +9,7 @@
             @else
             <img src="{{ asset('svg/checked.svg') }}" title="Publicado" />
             @endif
-            {{ $article->created_at->diffForHumans() }} · {{ ucfirst($article->section->name) }} · {{ $article->views }} lecturas
+            {{ $article->created_at->diffForHumans() }} · {{ ucfirst($article->section->name) }} · {{ $article->views }} lecturas @if($status == 'encuestas') · {{ $article->option->sum('votes') }} votos @endif
         </p>
         @if ($status == 'artículos')
         <a class="searchTitle" href="{{ route('previewArticle', ['id'=>$article->id]) }}">{{ $article->title }}</a>

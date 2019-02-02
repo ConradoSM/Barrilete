@@ -3,7 +3,7 @@
     <p class="alert-success">{{ $Exito }}</p>
     @endif
     <h1>Administrar galería de fotos</h1>
-    <div class="article-admin">
+    <div id="action">
         @if (Auth::user()->is_admin)
             @if ($gallery->status == "DRAFT")
                 <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="success" id="publish">Publicar</a>
@@ -35,7 +35,7 @@
         <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
         <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}} lecturas
         </p>
-        <br />
+        <hr />
     </article>
     @forelse ($photos as $photo)
     <article class="fotos">

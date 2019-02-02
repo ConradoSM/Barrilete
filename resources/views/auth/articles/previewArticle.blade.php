@@ -3,7 +3,7 @@
     <p class="alert-success">{{ $Exito }}</p>
     @endif
     <h1>Administra el artículo</h1>
-    <div class="article-admin">
+    <div id="action">
         @if (Auth::user()->is_admin)
             @if ($article->status == "DRAFT")
                 <a href="{{ route('publishArticle',['id'=>$article->id]) }}" class="success" id="publish">Publicar</a>

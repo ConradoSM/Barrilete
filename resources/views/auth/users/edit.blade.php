@@ -24,9 +24,7 @@
         <a href="{{ route('account', ['id' => Auth::user()->id]) }}" title="Ver mi perfil" class="success" id="ver">Mi perfil</a>
         @endif
     </div>
-    <hr />
     <fieldset>   
-        <legend>Editar Información</legend>
         <div id="errors"></div>
         <form action="{{ route('updateUser') }}" enctype="multipart/form-data" method="post" id="createArticle">
             <input type="text" name="name" value="{{ $user->name }}" placeholder="Nombre" required />

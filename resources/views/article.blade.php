@@ -19,9 +19,16 @@
     <p class="info">
         <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->created_at->diffForHumans() }}
         <img class="svg" src="{{ asset('svg/user_black.svg') }}" /> {{ $article->user->name }}
-        <img class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $article->views }} lecturas
+        <img class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $article->views }}
     </p>
     <hr />
+    <div class="social">
+        <div class="fb-share-button" data-href="{{ Request::url() }}" data-layout="button" data-size="small" data-mobile-iframe="true">
+            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
+        </div>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
     {!! $article->article_body !!}
     <hr />
 <div class="fb-comments" data-href="{{url()->current()}}" data-width="100%" data-numposts="5"></div>
@@ -37,8 +44,8 @@
 <aside class="pubSeccion">
     @forelse ($moreArticles as $more)
     <article class="pubArticle">
-        <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
         <img data-src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}'" />   
+        <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
     </article> 
     @empty
     @endforelse

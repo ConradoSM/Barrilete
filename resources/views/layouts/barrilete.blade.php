@@ -26,6 +26,7 @@
     <body>
         <header class="relative">
             <div class="navContainer">
+                <img id="logo" class="big" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
                 <div id="search">
                     <form action="{{ route('search') }}" method="get" id="formSearch">
                         <input id="inputText" type="search" value="" name="query" placeholder="Buscar en el sitio" class="big" />
@@ -33,15 +34,6 @@
                         <input type="hidden" value="articulos" name="sec" />
                     </form>
                 </div>
-                <img id="logo" class="big" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
-                <nav class="none">
-                    <ul>
-                        @forelse ($sections as $section)
-                        <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
-                        @empty
-                        @endforelse 
-                    </ul>
-                </nav>
                 <img id="search-btn" class="big" src="{{ asset('svg/search.svg') }}" />
                 <a id="menu-btn" class="big" title="Menú">
                     <div class="menu-btn-block top"></div>
@@ -49,6 +41,14 @@
                     <div class="menu-btn-block bottom"></div>
                 </a>                
             </div>
+            <nav class="none">
+                <ul>
+                    @forelse ($sections as $section)
+                    <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
+                    @empty
+                    @endforelse 
+                </ul>
+            </nav>
             <div id="glass" class="hide"></div>
         </header>
         <section class="mainSection">
@@ -83,11 +83,12 @@
                 <div>
                     <h2>Institucional</h2>
                     <p class="footerCopyright">Conrado Maranguello, responsable editorial</p>
-                    <p class="footerCopyright">©2016 - 2019 todos los derechos reservados<br />Versión: 2.0 02122018 build 18.30 BETA</p>
+                    <p class="footerCopyright">©2016 - 2019 todos los derechos reservados<br />Ver: 2.0.1</p>
                 </div>
                 <div class="footerSocialContainer">
                     <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
                     <a href="https://www.twitter.com/Barrilete_Info/" target="_blank"><img title="Barrilete en Twitter" src="{{ asset('svg/twitter.svg') }}" /></a>
+                    <p class="version">© 2019 todos los derechos reservados - Ver: 2.0.1</p>
                 </div>
             </div>                
         </footer>

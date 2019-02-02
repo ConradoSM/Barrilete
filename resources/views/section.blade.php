@@ -13,7 +13,6 @@
 @section('content')
 @forelse ($articles as $sec)
     <article class="pubIndex">
-        <div class="seccion" onclick="location.href ='{{ route('section', ['section' => $sec -> section -> name ]) }}'">{{ $sec -> section -> name }}</div>
         @if ($sec -> video == 1)<img src="{{ asset('img/play-button.png') }}" class="video"  onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />@endif
         @if ($loop->iteration == 1)
         <img data-src="{{ asset('/img/articles/images/'.$sec -> photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
@@ -21,7 +20,6 @@
         <img data-src="{{ asset('/img/articles/.thumbs/images/'.$sec->photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
         @endif
         <a href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}">{{ $sec -> title  }}</a>
-        <p>{{ $sec -> article_desc }}</p>
     </article>
 @empty
     <h1>No hay artículos para mostrar</h1>

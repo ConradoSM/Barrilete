@@ -6,8 +6,8 @@ div.pubContainer {
     flex-flow: row wrap;
 }
 article.pub {
-    width: 70%;
-    padding-right: 10px;
+    width: 840px;
+    padding-right: 30px;
     z-index: 1;
 }
 article.pub blockquote, article.pub-preview blockquote {
@@ -46,6 +46,7 @@ article.pub ul li:before, article.pub-preview ul li:before {
 article.pub_galeria, article.pub-preview {
     width: 100%;
     height: auto;
+    margin-bottom: 10px;
 }
 article.pub img, article.pub-preview img {
     width: 100% !important;
@@ -55,12 +56,14 @@ article.pub img, article.pub-preview img {
 article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
     font-size: 1.3em;
     margin-top:0px;
+    margin-bottom: 20px;
     text-transform: capitalize;
+    color: #000;
+    opacity: 0.6;
 }
 article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-preview img.svg, article.pub-preview p.info img.svg {
     position: relative;
-    width: auto !important;
-    height: 1.3em !important;
+    width: 1.5em !important;
     vertical-align: middle;
     margin-left: 20px;
 }
@@ -71,6 +74,7 @@ article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
     font-size: 3.2em;
     line-height: 55px;
     margin: 0px;
+    color: #283747;
 }
 article.pub h2, article.pub_galeria h2, article.pub-preview h2 {
     font-size: 2.5em;
@@ -81,11 +85,10 @@ article.pub h2, article.pub_galeria h2, article.pub-preview h2 {
 }
 article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
     font-size: 1.3em;
-    font-style: italic;
     margin-bottom: 30px;
-    margin-top: -25px;
+    margin-top: -20px;
     line-height: 1.1em;
-    color: #b3b6b7;
+    color: #566573;
 }
 article.pub p, article.pub_galeria p, article.pub-preview p {
     margin-top: 30px;
@@ -100,7 +103,15 @@ article.pub p a, article.pub_galeria p a, article.pub-preview p a {
 article.pub p.copete, article.pub_galeria p.copete, article.pub-preview p.copete {
     margin-bottom: 30px;
     margin-top: 15px;
-    color: #797d7f;
+    color: #5d6d7e;
+}
+div.social {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+div.fb-share-button {
+    margin-right: 10px;
 }
 /**********
 ***FOTOS***
@@ -109,9 +120,9 @@ article.fotos {
     position: relative;
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     background-color: #f2f3f4;
-    box-shadow: 0px 0px 3px 0px #999;
+    box-shadow: 0px 0px 10px 0px #999;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -119,37 +130,33 @@ article.fotos img {
     width: 100%;
     height: auto;
 }
-article.fotos p:first-child {
+article.fotos p {
     position: relative;
     display: block;
     padding: 10px;
     top: 0;
     margin-top: 0px;
-    color: #fff;
-    background-color: rgba(0,0,0,1); 
     font-size: 1.5em;
-}
-article.fotos p:last-child {
-    display: block;
-    padding: 10px;
-    font-size: 1.6em;
-}    
+}   
 /************************ 
 ***ASIDE PUBLICACIONES***
 ************************/
 aside.pubSeccion {
     width: 30%;
     height: auto;
-    background-color: #f2f3f4;
 }
-aside.pubSeccion article.pubArticle {
+aside.pubSeccion article.pubArticle, article.morePolls {
     position: relative;
-    display: flex;
-    flex-flow: row wrap;
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     overflow: hidden;
+    box-shadow: 0px 0px 10px 0px #5f6a6a;
+}
+aside.pubSeccion article.pubArticle:hover, article.morePolls:hover {
+    background-color: #f2f3f4;
+    box-shadow: 0px 0px 10px 0px #000;
+    transition: 0.3s;
 }
 aside.pubSeccion article.pubArticle:last-child {
     margin-bottom: 0px;
@@ -164,25 +171,22 @@ aside.pubSeccion article.pubArticle img:hover {
     opacity: 0.8;
     transition: 0.3s;
 }
-aside.pubSeccion article.pubArticle a {
-    position: absolute;
+article.morePolls p {
     display: block;
-    width: 100%;
-    height: auto;
-    bottom: 0;
-    margin-bottom: 0px;
-    color: white;
-    text-decoration: none;
-    font-size: 1.5em;
-    line-height: 1.1em;
-    padding: 5px;
-    background-color: rgba(21,67,96,0.5);
-    text-shadow: 1px 1px 3px #000000;
-    z-index: 1;
+    color: #424949;
+    font-size: 1em;
+    margin: 20px 0px -10px 20px;
 }
-aside.pubSeccion article.pubArticle a:hover {
-    background-color: rgba(41,128,185,0.5);
-    transition: background-color 0.3s ease-out;
+aside.pubSeccion article.pubArticle a, article.morePolls a {
+    display: block;
+    color: #424949;
+    font-size: 1.5em;
+    line-height: 30px;
+    padding: 20px;
+}
+aside.pubSeccion article.pubArticle a:hover, article.morePolls a:hover {
+    color: #000;
+    text-decoration: none;
 }
 /************************ 
 ***SEARCH RESULTS***
@@ -328,28 +332,6 @@ article.pollOptions p.totalVotes {
     color: #000;
     margin: 0px;
 }
-/******************
-***MAS ENCUESTAS***
-******************/
-article.morePolls {
-    position: relative;
-    align-self: flex-start;
-    width: 100%;
-    height: auto;
-    padding: 20px;
-}
-article.morePolls:hover {
-    background-color: #eaecee;
-    transition: background-color 0.3s ease;
-}
-article.morePolls p {
-    font-size: 1em;
-    margin:0px;
-}
-article.morePolls a {
-    font-size: 1.5em;
-    line-height: 35px;
-}
 @media (max-width: 575.98px) {
     /************************ 
     ***ARTICLE PUBLICACION***
@@ -369,21 +351,27 @@ article.morePolls a {
         font-size: 1.25em;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 1em; 
+        font-size: 0.9em; 
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
-        height: 1.5em !important;
+        vertical-align: top !important;
+        height: 1em !important;
+        margin-left: 10px !important;
+        margin-bottom: 0px;
+    }
+    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
+        margin-left: 0px !important;
     }
     article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 2em;
-    line-height: 38px;
+        font-size: 2em;
+        line-height: 38px;
     }
     article.pub h2, article.pub_galeria h2 {
         font-size: 1.7em;
         line-height: 1em;
     }
     article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-    font-size: 1em;
+        font-size: 1em;
     }
     article.pub p, article.pub_galeria p {
         font-size: 1.25em;
@@ -403,10 +391,10 @@ article.morePolls a {
     aside.pubSeccion {
         width: 100%;
         height: auto;
-        background-color: rgba(200,224,205,0.3);
+        margin-top: 30px;
     }
     aside.pubSeccion article.pubArticle img {
-        height: 300px;
+        height: 250px;
     }
     /************************ 
     ***SEARCH RESULTS***
@@ -449,11 +437,11 @@ article.morePolls a {
         padding-right: 0px;
         overflow: hidden;
     }
-    article.pub p.info, article.pub_galeria p.info {
-        font-size: 1em; 
-    }
     article.pub ul li, article.pub-preview ul li {
         font-size: 1.25em;
+    }
+    article.pub p.info, article.pub_galeria p.info {
+        font-size: 1em; 
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         height: 1.5em !important;
@@ -468,9 +456,6 @@ article.morePolls a {
     }
     article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
     font-size: 1em;
-    }
-    article.pub p, article.pub_galeria p {
-        font-size: 1.25em;
     }
     article.pub p, article.pub_galeria p {
         font-size: 1.25em;
@@ -490,10 +475,10 @@ article.morePolls a {
     aside.pubSeccion {
         width: 100%;
         height: auto;
-        background-color: rgba(200,224,205,0.3);
+        margin-top: 30px;
     }
     aside.pubSeccion article.pubArticle img {
-        height: 300px;
+        height: 350px;
     }
     /************************ 
     ***SEARCH RESULTS***
@@ -559,9 +544,6 @@ article.morePolls a {
     article.pub p, article.pub_galeria p {
         font-size: 1.25em;
     }
-    article.pub p, article.pub_galeria p {
-        font-size: 1.25em;
-    }
     /**********
     ***FOTOS***
     ***********/
@@ -577,10 +559,10 @@ article.morePolls a {
     aside.pubSeccion {
         width: 100%;
         height: auto;
-        background-color: rgba(200,224,205,0.3);
+        margin-top: 30px;
     }
     aside.pubSeccion article.pubArticle img {
-        height: 300px;
+        height: 400px;
     }
     /************************ 
     ***SEARCH RESULTS***
@@ -607,4 +589,9 @@ article.morePolls a {
     div.searchResultContainer article.searchResult p.searchCopete {
         font-size: 1.5em;
     }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    article.pub {
+        width: 70%;
+}
 }

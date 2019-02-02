@@ -18,7 +18,7 @@
     <p class="info">
         <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}
         <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
-        <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}} lecturas
+        <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}}
     </p>
     <hr />
 </article>

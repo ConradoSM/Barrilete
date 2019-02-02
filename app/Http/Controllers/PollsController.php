@@ -17,16 +17,18 @@ class PollsController extends Controller {
         $poll = Poll::poll($id);
 
         if ($poll) {
-
-            $ip = PollIp::ip($id);
+            
+            $ipRequest = Request()->getClientIp();
+            $ip = PollIp::where('poll_id',$id)
+            ->where('ip',$ipRequest)
+            ->first(); 
 
             if (!$ip) {
-
+                
                 $poll_options = $poll->option;
                 $morePolls = Poll::morePolls($id);
 
-                return view('poll', compact('poll','poll_options','morePolls'))
-                ->with('status', false);
+                return view('poll', compact('poll','poll_options','morePolls'))->with('status', false);
 
             } else
 
@@ -68,7 +70,7 @@ class PollsController extends Controller {
     //MOSTRAR ENCUESTA
     public function previewPoll($id) {
 
-        $poll = Poll::find($id);
+        $poll = Poll::findOrFail($id);
 
         if ($poll) {
 

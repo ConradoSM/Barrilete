@@ -26,12 +26,6 @@ class Poll extends Model {
         return $this->hasMany(PollOptions::class)->orderBy('votes','desc');
     }
     
-    //UNA ENCUESTA TIENE MUCHAS IP
-    public function ip() {
-
-        return $this->hasMany(PollIp::class);
-    }
-    
     //ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
     public function scopePollsHome($query) {
         
@@ -53,7 +47,7 @@ class Poll extends Model {
     //MUESTRA EL RESTO DE LAS ENCUESTAS
     public function scopeMorePolls($query, $id) {
         
-        return $query->select('id', 'title')
+        return $query->select('id','title','created_at')
         ->where('id','!=',$id)
         ->where('status','PUBLISHED')
         ->latest()

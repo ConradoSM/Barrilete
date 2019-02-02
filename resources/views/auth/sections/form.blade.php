@@ -1,6 +1,6 @@
 @if (Auth::user()->is_admin)
 <div id="Article_Form">
-    <h1>Crear sección</h1>
+    <h1>{{ isset($section) ? 'Editar sección' : 'Crear sección' }}</h1>
     <a href="{{ route('sectionsIndex') }}" class="primary" title="Volver al listado de secciones" id="crear">Lista de secciones</a>
     <fieldset>
         <div id="errors"></div>
@@ -15,7 +15,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <input type="submit" class="primary" value="Cargar" />
+            <input type="submit" class="primary" value="{{ isset($section) ? 'Actualizar' : 'Cargar' }}" />
             <input type="reset" class="default" value="Restablecer" />
             @csrf
         </form>

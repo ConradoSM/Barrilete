@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //BOTÓN PUBLICAR
-    $('div.article-admin').find('a#publish').on('click', function(event){
+    $('div#action').find('a#publish').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
     });
 
     //BOTÓN BORRAR
-    $('div.article-admin').find('a#delete').on('click', function(event){
+    $('div#action').find('a#delete').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
 
@@ -52,7 +52,7 @@ $(document).ready(function(){
     });
 
     //BOTÓN EDITAR
-    $('div.article-admin').find('a#edit').on('click', function(event){
+    $('div#action').find('a#edit').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
 

@@ -4,7 +4,7 @@
         <fieldset>
             <legend>Información</legend>
             <p><b>Autor</b>: {{ Auth::user()->name }}</p>
-            <p><b>Fecha de publicación</b>: {{ now()->formatLocalized('%A %d %B %Y') }}</p> 
+            <p><b>Fecha de publicación</b>: {{ ucwords(now()->formatLocalized('%A %d %B %Y')) }}</p> 
         </fieldset>
         <fieldset>
             <legend>Título y Copete</legend>
@@ -22,4 +22,4 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/dashboard-form-galleries.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-form-submit.js') }}"></script>

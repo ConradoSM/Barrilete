@@ -13,7 +13,7 @@
     </head>
     <body>       
         <header>
-            <img class="logo" src="{{ asset('svg/logo_barrilete.svg') }}" onclick="location.href ='{{ route('default') }}'" title="Home" alt="Home" />
+            <img class="logo" src="{{ asset('svg/logo_barrilete_OLD.svg') }}" onclick="location.href ='{{ route('default') }}'" title="Home" alt="Home" />
             <div id="main-search">
                 <form action="{{ route('searchAuth') }}" method="get" id="search">
                     <input id="inputText" type="search" value="" name="query" placeholder="Buscar contenido" />

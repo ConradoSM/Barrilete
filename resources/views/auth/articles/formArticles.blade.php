@@ -13,7 +13,7 @@
             <legend>Información</legend>
             <div id="errors"></div>
             <p><b>Autor</b>: {{ isset($article) ? $article->author : Auth::user()->name }}</p>
-            <p><b>Fecha de publicación</b>: {{ isset($article) ? $article->created_at->diffForHumans() : now()->formatLocalized('%A %d %B %Y') }}</p>
+            <p><b>Fecha de publicación</b>: {{ isset($article) ? $article->created_at->diffForHumans() : ucwords(now()->formatLocalized('%A %d %B %Y')) }}</p>
             <select name="section_id" size="1" id="seccion" required>
                 <option value="{{ isset($article) ? $article->section->id : '' }}" selected>{{ isset($article) ? ucfirst($article->section->name) : 'Seleccionar Sección' }}</option>
                 @foreach ($sections as $section)

@@ -17,17 +17,17 @@
         <p class="info">
             <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->created_at->diffForHumans()}}
             <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$poll->user->name}}
-            <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$poll->views}} lecturas
+            <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$poll->views}}
         </p>
         <hr />
         <article class="pollOptions">
             @if ($status)
-            <h2>{{$status}}</h2>
+            <h2>{{ $status }}</h2>
             <hr />
             @forelse ($poll_options as $option)
-            <p class="options">{{$option->option}} ({{$option->votes}})</p>
+            <p class="options">{{ $option->option }} ({{ $option->votes }})</p>
             <div class="resultContainer">
-                <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes}}%">{{round(($option->votes * 100) / $totalVotes )}}%</p>
+                <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes }}%">{{ round(($option->votes * 100) / $totalVotes ) }}%</p>
             </div>
             @empty
             <h1>No hay opciones</h1>
@@ -49,7 +49,7 @@
                 <input type="hidden" name="id_encuesta" value="{{$poll->id}}" />
                 <input type="hidden" name="ip" value="{{Request::ip()}}" />
                 <input type="hidden" name="titulo_encuesta" value="{{str_slug($poll->title,'-')}}" />
-                <input type="submit" name="submit" value="VOTAR" class="primary" />
+                <input type="submit" name="submit" value="Votar" class="primary" />
             </form>
             @endif
         </article>
@@ -70,7 +70,7 @@
     <aside class="pubSeccion">
         @forelse ($morePolls as $more)
         <article class="morePolls">
-            <p>{{$more->date}}</p>
+            <p>{{ucfirst($more->created_at->diffForHumans())}}</p>
             <a href="{{route('poll',['id'=>$more->id,'title'=>str_slug($more->title,'-')])}}">{{$more->title}}</a>   
         </article> 
         @empty

@@ -285,11 +285,6 @@ div#user-content {
     padding-left: 10px;
     padding-right: 10px;
 } 
-div.article-admin {
-    width: auto;
-    height: auto;
-    margin-bottom: 10px;
-}
 /*FOOTER*/
 footer {
     position: relative;
@@ -519,6 +514,9 @@ span.info {
 }
 #crear {
     position: absolute;
-    top: 40px;
+    top: 30px;
     right: 10px;
+}
+div#action {
+    margin-bottom: 20px;
 }

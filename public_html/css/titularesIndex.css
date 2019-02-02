@@ -5,29 +5,37 @@ article.pubIndex {
     position: relative;
     width: 386.66666667px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     overflow: hidden;
+    box-shadow: 0px 0px 10px 0px #5f6a6a;
+}
+article.pubIndex:hover {
+    background-color: #f2f3f4;
+    box-shadow: 0px 0px 10px 0px #000;
+    transition: 0.3s;
 }
 article.pubIndex div.seccion {
     position: absolute;
     display: block;
-    left: 0;
-    top: 10px;
+    left: 20px;
+    top: 20px;
     width: auto;
     height: auto;
-    padding: 3px 10px;
-    color: rgba(255,255,255,1.00);
-    background-color: rgba(0,128,192,0.8);
-    font-size: 20px;
+    padding: 7px 15px 5px 15px;
+    color: #fff;
+    background-color: rgba(52,73,94,0.7);
+    font-size: 1em;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     z-index: 1;
+    border-radius: 3px;
 }
 article.pubIndex div.seccion:hover {
     text-decoration: none;
-    background-color: rgba(255,255,255,0.7);
-    color: rgba(0,0,0,1);
+    background-color: #f2f3f4;
+    color: #2e4053;
+    transition: 0.3s;
 }
 article.pubIndex img.video {
     position: absolute;
@@ -43,7 +51,6 @@ article.pubIndex img {
     display: block;
     width: 100%;
     height: 250px;
-    margin-bottom: 10px;
     z-index: 0;
     cursor: pointer;
 }
@@ -54,19 +61,13 @@ article.pubIndex img:hover {
 article.pubIndex a {
     display: block;
     color: #424949;
-    font-size: 1.85em;
-    line-height: 35px;
-    z-index: 1;
+    font-size: 1.5em;
+    line-height: 30px;
+    padding: 20px;
 }
 article.pubIndex a:hover {
-    color: #17202a;
+    color: #000;
     text-decoration: none;
-}
-article.pubIndex p {
-    color: #7f8c8d; 
-    font-size: 1.2em;
-    margin-bottom: 0px;
-    margin-top: 10px;
 }
 /*********************************
 **GALERIA Y ENCUESTAS CONTAINER **
@@ -79,10 +80,22 @@ div.galeriasContainerIndex {
     height: auto;
     border-radius: 5px;
     background-color: #f2f3f4;
+    box-shadow: 0px 0px 10px 0px #5f6a6a;
 }
-div.galeriasContainerIndex h1, div.pollsContainerIndex h1 {
-    font-size: 2.5em;
-    margin-left: 20px;
+div.galeriasContainerIndex img.camera {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -45%);
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+    filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5));
+    opacity: 0.7;
+}
+div.pollsContainerIndex h1 {
+    font-size: 2em;
+    margin-top: 20px;
 }
 div.pollsContainerIndex {
     position: relative;
@@ -93,6 +106,7 @@ div.pollsContainerIndex {
     padding: 0px 20px 20px 20px;
     border-radius: 5px;
     background-color: #f2f3f4;
+    box-shadow: 0px 0px 10px 0px #5f6a6a;
 }
 /*************************
 **GALERIA DE FOTOS INDEX**
@@ -101,30 +115,34 @@ article.galeriaIndex {
     position: relative;
     display: flex;
     flex-flow: row wrap;
+    min-height: 400px;
     width: 100%;
-    height: auto;
+    height: 100%;
     overflow: hidden;
 }
 article.galeriaIndex img {
-    width: 100%;
-    height: 450px;
+    width: auto;
+    height: 100%;
 }
 article.galeriaIndex a {
     position: absolute;
     display: block;
-    width: 100%;
+    width: 660px;
     height: auto;
-    color: white;
-    bottom: 0;
+    bottom: 20px;
+    left: 20px;
+    color: #34495e;
     text-decoration: none;
     font-size: 2em;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.5);
-    text-shadow: 1px 1px 3px #000000;
+    line-height: 1.2em;
+    padding: 20px;
+    background-color: rgba(242,243,244,0.8);
+    border-radius: 3px;
 }
 article.galeriaIndex a:hover {
-    background-color: rgba(0,153,216,0.5);
-    transition: background-color 0.3s ease;
+    color: #1c2833;
+    background-color: #fff;
+    transition: 0.3s;
 }
 /*************************
 *****ENCUESTAS INDEX******
@@ -143,7 +161,7 @@ article.pollIndex:hover {
 }
 article.pollIndex p {
     font-size: 1em;
-    margin:0px;
+    margin: 0px 0px 10px 0px;
 }
 article.pollIndex a {
     font-size: 1.5em;
@@ -155,7 +173,6 @@ article.pollIndex a {
     *****************/
     article.pubIndex {
         width: 100%;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
         background-color: #f2f3f4;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
@@ -165,47 +182,40 @@ article.pollIndex a {
         top: 100px;
     }
     article.pubIndex img {
-        width: auto;
+        width: 100%;
         height: 250px;
     }
     article.pubIndex a {
-        display: block;
         font-size: 1.8em;
         line-height: 1.2em;
-        margin: 10px 0px 10px 0px;
-        padding: 0px 10px 0px 10px;
-    }
-    article.pubIndex p {
-        position: relative;
-        padding: 0px 10px 0px 10px;
-        margin: 0px 0px 10px 0px;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
     **********************************/
     div.galeriasContainerIndex {
-        flex-flow: row wrap;
         width: 100%;
-        height: auto;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
-    }
-    div.galeriasContainerIndex h1{
-        margin: 10px;
+        height: 400px;
     }
     div.pollsContainerIndex {
-        flex-flow: row wrap;
         width: 100%;
-        margin-top: 10px;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        margin-top: 30px;
     }
-    div.galeriasContainerIndex h1, div.pollsContainerIndex h1 {
+    div.pollsContainerIndex h1 {
         font-size: 2em;
+    }
+    article.galeriaIndex {
+        border-radius: 0px 0px 5px 5px;
     }
     article.galeriaIndex img {
         width: 100%;
         height: auto;
+    }
+    article.galeriaIndex a {
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        left: 0;
+        border-radius: 0px 0px 3px 3px;
     }
     /*************************
     *****ENCUESTAS INDEX******
@@ -225,8 +235,7 @@ article.pollIndex a {
     *****************/
     article.pubIndex {
         width: 100%;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
-        background-color: #fff;
+        background-color: #f2f3f4;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
     }
@@ -235,40 +244,37 @@ article.pollIndex a {
         top: 100px;
     }
     article.pubIndex img {
-        width: auto;
-        height: 250px;
+        width: 100%;
+        height: 400px;
     }
     article.pubIndex a {
-        display: block;
-        font-size: 1.5em;
+        font-size: 1.8em;
         line-height: 1em;
-        padding: 5px;
-    }
-    article.pubIndex p {
-        position: relative;
-        padding: 5px;
+        padding: 20px;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
     **********************************/
     div.galeriasContainerIndex {
-        flex-flow: row wrap;
         width: 100%;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
-    }
-    div.galeriasContainerIndex h1{
-        margin: 10px;
+        height: 450px;
     }
     div.pollsContainerIndex {
-        flex-flow: row wrap;
         width: 100%;
-        margin-top: 10px;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        margin-top: 30px;
     }
-    div.galeriasContainerIndex h1, div.pollsContainerIndex h1 {
+    div.pollsContainerIndex h1 {
         font-size: 2em;
+    }
+    article.galeriaIndex {
+        border-radius: 0px 0px 5px 5px;
+    }
+    article.galeriaIndex a {
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        left: 0;
+        border-radius: 0px 0px 3px 3px;
     }
     /*************************
     *****ENCUESTAS INDEX******
@@ -288,50 +294,50 @@ article.pollIndex a {
     *****************/
     article.pubIndex {
         width: 100%;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
-        background-color: #fff;
+        background-color: #f2f3f4;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
     }
     article.pubIndex img.video {
         left: 45%;
-        top: 100px;
+        top: 200px;
     }
     article.pubIndex img {
-        width: auto;
-        height: 250px;
+        width: 100%;
+        height: 500px;
     }
     article.pubIndex a {
-        display: block;
         font-size: 2em;
-        line-height: 45px;
-        padding: 10px;
-    }
-    article.pubIndex p {
-        position: relative;
-        padding: 10px;
+        line-height: 40px;
+        padding: 20px;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
     **********************************/
     div.galeriasContainerIndex {
-        flex-flow: row wrap;
         width: 100%;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
-    }
-    div.galeriasContainerIndex h1{
-        margin: 10px;
+        height: 500px;
     }
     div.pollsContainerIndex {
-        flex-flow: row wrap;
         width: 100%;
-        margin-top: 10px;
-        background-color: #fff;
-        box-shadow: 0px 0px 3px 0px rgba(97,97,97,1.00);
+        margin-top: 30px;
     }
-    div.galeriasContainerIndex h1, div.pollsContainerIndex h1 {
+    div.pollsContainerIndex h1 {
         font-size: 2em;
+    }
+    article.galeriaIndex {
+        border-radius: 0px 0px 5px 5px;
+    }
+    article.galeriaIndex img {
+        width: 100%;
+        height: auto;
+    }
+    article.galeriaIndex a {
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        left: 0;
+        border-radius: 0px 0px 3px 3px;
     }
     /*************************
     *****ENCUESTAS INDEX******
@@ -350,56 +356,33 @@ article.pollIndex a {
     **MAIN TITULARES**
     *****************/
     article.pubIndex {
-        width: 49.5%;
+        width: 49%;
+    }
+    article.pubIndex img.video {
+        left: 50%;
+        top: 35%;
+        transform: translate(-50%, -35%);
     }
     article.pubIndex img {
-        height: 275px;
+        height: 400px;
     }
-    /**************
-    **1° ARTÍCULO**
-    **************/
-    article.pubIndex:nth-child(1) {
-        width: 100%;
-        height: 500px;
-    }
-    article.pubIndex:nth-child(1) img.video {
-        top: 35%;
-    }
-    article.pubIndex:nth-child(1) img {
-        height: auto;
-    }
-    article.pubIndex:nth-child(1) a {
-        position: absolute;
-        display: block;
+    article.galeriaIndex a {
         width: 100%;
         height: auto;
         bottom: 0;
-        margin-bottom: 0px;
-        color: white;
-        text-decoration: none;
-        font-size: 60px;
-        line-height: 60px;
-        padding: 20px;
-        background-color: rgba(0,0,0,0.5);
-        text-shadow: 1px 1px 3px #000000;
-    }
-    article.pubIndex:nth-child(1) a:hover {
-        background-color: rgba(0,153,216,0.5);
-        transition: background-color 0.3s ease-out;
-    }
-    article.pubIndex:nth-child(1) p {
-        display: none;
+        left: 0;
+        border-radius: 0px 0px 3px 3px;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
     **********************************/
     div.galeriasContainerIndex {
         flex-flow: row wrap;
-        width: 49.5%;
+        width: 49%;
     }
     div.pollsContainerIndex {
         flex-flow: row wrap;
-        width: 49.5%;
+        width: 49%;
     }
 }
 @media (min-width: 1200px) {
@@ -407,41 +390,49 @@ article.pollIndex a {
     **1° ARTÍCULO**
     **************/
     article.pubIndex:nth-child(1) {
-        width: 730px;
-        height: 510px;
-        margin-right: 10px;
+        width: 600px;
+        height: 650px;
+        margin-right: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0px 0px 10px 0px #5f6a6a;
+    }
+    article.pubIndex:nth-child(1):hover {
+        box-shadow: 0px 0px 10px 0px #000;
+        transition: 0.3s;
     }
     article.pubIndex:nth-child(1) div.seccion {
-        font-size: 35px;
+        font-size: 1.5em;
     }
     article.pubIndex:nth-child(1) img.video {
         width: 100px;
         height: auto; 
-        top: 205px;
-        left: 315px;
+        top: 250px;
+        left: 250px;
     }
     article.pubIndex:nth-child(1) img {
-        width: 100%;
-        height: 510px;
+        width: auto;
+        height: 650px;
     }
     article.pubIndex:nth-child(1) a {
         position: absolute;
         display: block;
-        width: 100%;
+        width: 560px;
         height: auto;
         bottom: 0;
-        margin-bottom: 0px;
-        color: white;
+        bottom: 20px;
+        left: 20px;
+        color: #34495e;
         text-decoration: none;
-        font-size: 2.5em;
+        font-size: 2em;
         line-height: 1.2em;
-        padding: 10px;
-        background-color: rgba(0,0,0,0.5);
-        text-shadow: 1px 1px 3px #000000;
+        padding: 20px;
+        background-color: rgba(242,243,244,0.8);
+        border-radius: 3px;
     }
-    article.pubIndex:nth-child(1) a:hover {
-        background-color: rgba(41,128,185,0.5);
-        transition: background-color 0.3s ease-out;
+    article.pubIndex:nth-child(1) a:hover, article.pubIndex:nth-child(2) a:hover, article.pubIndex:nth-child(3) a:hover {
+        color: #1c2833;
+        background-color: #fff;
+        transition: 0.3s;
     }
     article.pubIndex:nth-child(1) p {
         display: none;
@@ -450,51 +441,51 @@ article.pollIndex a {
     **2° ARTÍCULO**
     **************/
     article.pubIndex:nth-child(2){
-        width: 440px;
-        height: 250px;
+        width: 570px;
+        height: 310px;
         overflow: hidden;
+        box-shadow: 0px 0px 10px 0px #5f6a6a;
+    }
+    article.pubIndex:nth-child(2):hover, article.pubIndex:nth-child(3):hover{
+        box-shadow: 0px 0px 10px 0px #000;
+        transition: 0.3s;
     }
     article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video{
         width: 50px;
         height: auto; 
         top: 100px;
-        left: 195px;
+        left: 260px;
     }
     article.pubIndex:nth-child(2) img, article.pubIndex:nth-child(3) img{
         width: 100%;
-        height: 250px;
+        height: auto;
     }
     article.pubIndex:nth-child(2) a, article.pubIndex:nth-child(3) a{
         position: absolute;
         display: block;
-        width: 100%;
+        width: 530px;
         height: auto;
         bottom: 0;
-        margin-bottom: 0px;
-        color: white;
+        bottom: 20px;
+        left: 20px;
+        color: #34495e;
         text-decoration: none;
         font-size: 1.5em;
-        line-height: 1em;
-        padding: 10px;
-        background-color: rgba(0,0,0,0.5);
-        text-shadow: 1px 1px 3px #000000;
-    }
-    article.pubIndex:nth-child(2) a:hover, article.pubIndex:nth-child(3) a:hover{
-        background-color: rgba(41,128,185,0.5);
-        transition: background-color 0.3s ease-out;
-    }
-    article.pubIndex:nth-child(2) p, article.pubIndex:nth-child(3) p{
-        display: none;
+        line-height: 1.2em;
+        padding: 20px;
+        background-color: rgba(242,243,244,0.8);
+        border-radius: 3px;
     }
     /**************
     **3° ARTÍCULO**
     **************/
     article.pubIndex:nth-child(3) {
         position: absolute;
-        right: 10px;
-        top: 270px;
-        width: 440px;
-        height: 250px;
+        right: 0px;
+        top: 380px;
+        width: 570px;
+        height: 310px;
         overflow: hidden;
+        box-shadow: 0px 0px 10px 0px #5f6a6a;
     }
 }
