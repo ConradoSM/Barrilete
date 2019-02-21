@@ -17,7 +17,7 @@
             <div id="main-search">
                 <form action="{{ route('searchAuth') }}" method="get" id="search">
                     <input id="inputText" type="search" value="" name="query" placeholder="Buscar contenido" />
-                    <button type="submit" title="Buscar" id="search-button"><img src="{{asset('svg/search.svg')}}" /></button>
+                    <button type="submit" title="Buscar" id="search-button"><img src="{{asset('svg/search-black.svg')}}" /></button>
                     <input type="hidden" value="articulos" name="sec" />
                     <input type="hidden" value="{{ Auth::user()->id }}" name="author" />
                 </form>

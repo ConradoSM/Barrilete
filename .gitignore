@@ -1,6 +1,7 @@
 /public_html/img/
 /public_html/svg/
 /.env
+/vendor
 /public_html/js/ckeditor4.11.1s/
 /public_html/js/kcfinder/
 /public_html/js/jquery-filestyle.js

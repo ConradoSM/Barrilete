@@ -23,7 +23,7 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form-submit.js') }}"></script>
-<script type="text/javascript" src="{{asset('js/dashboard-admin-users.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-admin-users.js')}}"></script>
 @else
 <p class="invalid-feedback">Error: no eres administrador del sistema</p>
 @endif

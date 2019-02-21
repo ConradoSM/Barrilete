@@ -18,16 +18,16 @@
 @empty
 <h1>No hay artículos para mostrar</h1>
 @endforelse
-<div class="galeriasContainerIndex">
+<div class="galeriasContainerIndex">    
+    @forelse ($galleryIndex as $gallery)
     <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
-    @if ($galleryIndex)
         <article class="galeriaIndex">
-            <img data-src="{{ asset('img/galleries/.thumbs/'.$galleryIndex->photos->first()->photo) }}" title="{{ $galleryIndex->title }}" alt="{{ $galleryIndex->title }}" class="lazy" />
-            <a href="{{ route('gallery',['id'=>$galleryIndex->id,'titulo'=>str_slug($galleryIndex->title,'-')]) }}">{{ $galleryIndex->title }}</a>       
+            <img data-src="{{ asset('img/galleries/.thumbs/'.$gallery->photos->first()->photo) }}" title="{{ $gallery->title }}" alt="{{ $gallery->title }}" class="lazy" />
+            <a href="{{ route('gallery',['id'=>$gallery->id,'titulo'=>str_slug($gallery->title,'-')]) }}">{{ $gallery->title }}</a>       
         </article>
-    @else
+    @empty
     <h2>No hay galerías</h2>
-    @endif
+    @endforelse
 </div>
 <div class="pollsContainerIndex">
     <h1>Últimas encuestas</h1>

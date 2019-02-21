@@ -23,7 +23,7 @@ class Gallery extends Model {
         return $this->belongsTo(Sections::class);
     }
     
-    //GALERÍA DE FORTOS DE LA HOMEPAGE
+    //GALERÍA DE FOTOS DE LA HOMEPAGE
     public function scopeGalleryHome($query) {
         
         return $query->where('status','PUBLISHED')
