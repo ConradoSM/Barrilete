@@ -29,6 +29,6 @@ class Sections extends Model
     //BUSCA LA SECCIÓN POR SU NOMBRE
     public function scopeSearchSection($query, $name) {
         
-        return $query->where('name',$name)->first(); 
+        return $query->where('name',$name)->firstOrFail(); 
     }
 }

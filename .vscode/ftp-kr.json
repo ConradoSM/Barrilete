@@ -1,0 +1,16 @@
+{
+    "host": "31.170.166.20",
+    "username": "u119057475",
+    "password": "pandora",
+    "remotePath": "home/u119057475",
+    "protocol": "sftp",
+    "port": 65002,
+    "fileNameEncoding": "utf8",
+    "autoUpload": true,
+    "autoDelete": true,
+    "autoDownload": false,
+    "ignore": [
+        ".git",
+        "/.vscode"
+    ]
+}
