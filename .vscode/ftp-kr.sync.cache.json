@@ -113,22 +113,217 @@
     "vendor": {},
     "home": {
       "u119057475": {
-        "home": {
-          "u119057475": {
-            "resources": {
-              "views": {
-                "errors": {
-                  "500.blade.php": {
-                    "type": "-",
-                    "size": 616,
-                    "lmtime": 1550947857952,
-                    "modified": true
-                  }
-                }
-              }
+        ".bash_history": {
+          "type": "-",
+          "size": 330,
+          "lmtime": 0,
+          "modified": false
+        },
+        ".gitignore": {
+          "type": "-",
+          "size": 198,
+          "lmtime": 0,
+          "modified": false
+        },
+        "package.json": {
+          "type": "-",
+          "size": 1114,
+          "lmtime": 0,
+          "modified": false
+        },
+        "bootstrap": {},
+        ".editorconfig": {
+          "type": "-",
+          "size": 213,
+          "lmtime": 0,
+          "modified": false
+        },
+        "composer.lock": {
+          "type": "-",
+          "size": 202080,
+          "lmtime": 0,
+          "modified": false
+        },
+        "storage": {},
+        "server.php": {
+          "type": "-",
+          "size": 573,
+          "lmtime": 0,
+          "modified": false
+        },
+        "app": {},
+        "config": {},
+        "artisan": {
+          "type": "-",
+          "size": 1686,
+          "lmtime": 0,
+          "modified": false
+        },
+        "package-lock.json": {
+          "type": "-",
+          "size": 511653,
+          "lmtime": 0,
+          "modified": false
+        },
+        "composer - copia.lock": {
+          "type": "-",
+          "size": 202080,
+          "lmtime": 0,
+          "modified": false
+        },
+        "phpunit.xml": {
+          "type": "-",
+          "size": 1138,
+          "lmtime": 0,
+          "modified": false
+        },
+        ".cl.selector": {},
+        "home": {},
+        "composer.json": {
+          "type": "-",
+          "size": 1713,
+          "lmtime": 0,
+          "modified": false
+        },
+        ".logs": {},
+        "public_html": {
+          "js": {},
+          "favicon": {},
+          "svg": {},
+          "index.php": {
+            "type": "-",
+            "size": 1823,
+            "lmtime": 0,
+            "modified": false
+          },
+          "storage": {},
+          "css": {
+            "contenido.css": {
+              "type": "-",
+              "size": 15950,
+              "lmtime": 0,
+              "modified": false
+            },
+            "main.css": {
+              "type": "-",
+              "size": 27466,
+              "lmtime": 1551107015600,
+              "modified": false
+            },
+            "titularesIndex.css": {
+              "type": "-",
+              "size": 14846,
+              "lmtime": 0,
+              "modified": false
+            },
+            "bootstrap4.1.3.min.css": {
+              "type": "-",
+              "size": 140936,
+              "lmtime": 0,
+              "modified": false
+            },
+            "app.css": {
+              "type": "-",
+              "size": 304948,
+              "lmtime": 0,
+              "modified": false
+            },
+            "forms.css": {
+              "type": "-",
+              "size": 11428,
+              "lmtime": 0,
+              "modified": false
+            },
+            "dashboard.css": {
+              "type": "-",
+              "size": 10476,
+              "lmtime": 0,
+              "modified": false
             }
-          }
-        }
+          },
+          "sitemap.xml": {
+            "type": "-",
+            "size": 38416,
+            "lmtime": 0,
+            "modified": false
+          },
+          "BingSiteAuth.xml": {
+            "type": "-",
+            "size": 85,
+            "lmtime": 0,
+            "modified": false
+          },
+          "mix-manifest.json": {
+            "type": "-",
+            "size": 72,
+            "lmtime": 0,
+            "modified": false
+          },
+          ".htaccess": {
+            "type": "-",
+            "size": 592,
+            "lmtime": 0,
+            "modified": false
+          },
+          "robots.txt": {
+            "type": "-",
+            "size": 24,
+            "lmtime": 0,
+            "modified": false
+          },
+          "img": {},
+          "google5b1d7e7bbeff3933.html": {
+            "type": "-",
+            "size": 53,
+            "lmtime": 0,
+            "modified": false
+          },
+          "web.config": {
+            "type": "-",
+            "size": 914,
+            "lmtime": 0,
+            "modified": false
+          },
+          "old": {}
+        },
+        "nbproject": {},
+        "database": {},
+        "composer.phar": {
+          "type": "-",
+          "size": 1892003,
+          "lmtime": 0,
+          "modified": false
+        },
+        ".env": {
+          "type": "-",
+          "size": 762,
+          "lmtime": 0,
+          "modified": false
+        },
+        "node_modules": {},
+        ".cagefs": {},
+        "routes": {},
+        "webpack.mix.js": {
+          "type": "-",
+          "size": 537,
+          "lmtime": 0,
+          "modified": false
+        },
+        "resources": {},
+        "tests": {},
+        "readme.md": {
+          "type": "-",
+          "size": 148,
+          "lmtime": 0,
+          "modified": false
+        },
+        "composer-installer.sh": {
+          "type": "-",
+          "size": 453,
+          "lmtime": 0,
+          "modified": false
+        },
+        "vendor": {}
       }
     }
   },

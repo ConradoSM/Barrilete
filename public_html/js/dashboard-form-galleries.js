@@ -9,7 +9,8 @@ $(document).ready(function () {
         success: mostrarRespuesta,
         error: mostrarError,
         data: $('#createArticle').serialize(),
-        datatype: 'json'
+        datatype: 'json',
+        async: true
     };
     $('#createArticle').ajaxForm(opciones);
     

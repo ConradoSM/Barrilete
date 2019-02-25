@@ -10,7 +10,8 @@ $(document).ready(function () {
         success: mostrarRespuesta,
         error: mostrarError,
         data: $('#createArticle').serialize(),
-        datatype: 'json'
+        datatype: 'json',
+        async: true
     };
 
     $('#createArticle').ajaxForm(opciones);
@@ -43,9 +44,9 @@ $(document).ready(function () {
 
         $('#user-content').hide().html(responseText).fadeIn('fast');
     };
-    function mostrarError(xhr) {
+    function mostrarError(jqXHR) {
         
-        var errors = xhr.responseJSON.errors;
+        var errors = jqXHR.responseJSON.errors;
         
         progress.fadeOut('fast', function(){    
             $('#status').fadeIn('slow');

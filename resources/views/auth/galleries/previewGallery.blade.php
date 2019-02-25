@@ -9,14 +9,14 @@
                 <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="success" id="publish">Publicar</a>
             @else
                 <a href="#" class="disabled">Publicado</a>
-                <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
+                <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
             @endif      
             <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success" id="edit">Editar</a>
             <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" id="delete">Eliminar</a>
         @else
             @if ($gallery->status == "PUBLISHED")
                 <a href="#" class="disabled">Publicado</a>
-                <a href="{{ route('gallery',['id'=>$gallery->id,'section'=>str_slug($gallery->section->name),'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
+                <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}" target="_blank" class="primary">Ver artículo</a>
                 <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success" id="edit">Editar</a>
                 <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" id="delete">Eliminar</a>
             @else
