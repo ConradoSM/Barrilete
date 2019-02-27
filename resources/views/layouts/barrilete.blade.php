@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="UTF-8" /> 
+    <meta charset="UTF-8" />
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/favicon/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#34495e">
+        <meta name="theme-color" content="#ffffff">
         <title>@yield('title')</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta name="author" content="Conrado Maranguello" />
-        <meta name="description" content="@yield('description')" />
+        <link rel="image_src" href="https://barrilete.com.ar/img/barrilete.jpg">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="author" content="Conrado Maranguello">
+        <meta name="description" content="Secciones de noticias, galerías de fotos, encuestas, toda la actualidad en un solo sitio">
         <meta name="copyright" content="Barrilete.com.ar">
         <!-- Open Graph data -->
-        <meta property="og:title" content="@yield('article_title')" />
-        <meta property="og:type" content="@yield('article_type')" />
-        <meta property="og:description" content="@yield('article_desc')" />
-        <meta property="og:url" content="@yield('article_url')" />
-        <meta property="og:image" content="@yield('article_photo')" />
-        <meta property="og:site_name" content="@yield('site_name')" />
-        <meta property="article:published_time" content="@yield('created_at')" />
-        <meta property="article:modified_time" content="@yield('updated_at')" />
-        <meta property="article:section" content="@yield('article_section')" />
+        <meta property="og:title" content="Barrilete Home">
+        <meta property="og:type" content="article">
+        <meta property="og:description" content="Secciones de noticias, galerías de fotos, encuestas, toda la actualidad en un solo sitio">
+        <meta property="og:url" content="https://barrilete.com.ar">
+        <meta property="og:image" content="https://barrilete.com.ar/img/barrilete.jpg">
+        <meta property="og:site_name" content="Barrilete">
+        <meta property="article:published_time" content="01-04-2016">
+        <meta property="article:modified_time" content="27-02-2019">
+        <meta property="article:section" content="Barrilete » Inicio">
         <!-- Hojas de estilo en cascada -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}" />

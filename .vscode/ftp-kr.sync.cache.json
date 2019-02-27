@@ -113,81 +113,96 @@
     "vendor": {},
     "home": {
       "u119057475": {
-        ".bash_history": {
-          "type": "-",
-          "size": 330,
-          "lmtime": 0,
-          "modified": false
-        },
-        ".gitignore": {
-          "type": "-",
-          "size": 198,
-          "lmtime": 0,
-          "modified": false
-        },
-        "package.json": {
-          "type": "-",
-          "size": 1114,
-          "lmtime": 0,
-          "modified": false
-        },
-        "bootstrap": {},
-        ".editorconfig": {
-          "type": "-",
-          "size": 213,
-          "lmtime": 0,
-          "modified": false
-        },
-        "composer.lock": {
-          "type": "-",
-          "size": 202080,
-          "lmtime": 0,
-          "modified": false
-        },
         "storage": {},
-        "server.php": {
-          "type": "-",
-          "size": 573,
-          "lmtime": 0,
-          "modified": false
-        },
-        "app": {},
-        "config": {},
-        "artisan": {
-          "type": "-",
-          "size": 1686,
-          "lmtime": 0,
-          "modified": false
-        },
-        "package-lock.json": {
-          "type": "-",
-          "size": 511653,
-          "lmtime": 0,
-          "modified": false
-        },
-        "composer - copia.lock": {
-          "type": "-",
-          "size": 202080,
-          "lmtime": 0,
-          "modified": false
-        },
-        "phpunit.xml": {
-          "type": "-",
-          "size": 1138,
-          "lmtime": 0,
-          "modified": false
-        },
-        ".cl.selector": {},
-        "home": {},
-        "composer.json": {
-          "type": "-",
-          "size": 1713,
-          "lmtime": 0,
-          "modified": false
-        },
-        ".logs": {},
         "public_html": {
-          "js": {},
+          "js": {
+            "dashboard-form-articles.js": {
+              "type": "-",
+              "size": 1774,
+              "lmtime": 1551122324516,
+              "modified": false
+            },
+            "ckeditor4.11.1": {},
+            "home-scripts.js": {
+              "type": "-",
+              "size": 2176,
+              "lmtime": 0,
+              "modified": false
+            },
+            "dashboard-form-submit.js": {
+              "type": "-",
+              "size": 1126,
+              "lmtime": 0,
+              "modified": false
+            },
+            "bootstrap4.1.3.min.js": {
+              "type": "-",
+              "size": 51039,
+              "lmtime": 0,
+              "modified": false
+            },
+            "dashboard-admin-users.js": {
+              "type": "-",
+              "size": 2409,
+              "lmtime": 0,
+              "modified": false
+            },
+            "dashboard-admin-links.js": {
+              "type": "-",
+              "size": 3096,
+              "lmtime": 0,
+              "modified": false
+            },
+            "dashboard.js": {
+              "type": "-",
+              "size": 2128,
+              "lmtime": 0,
+              "modified": false
+            },
+            "kcfinder": {},
+            "jquery.form.js": {
+              "type": "-",
+              "size": 41533,
+              "lmtime": 1551120981230,
+              "modified": false
+            },
+            "jquery.filestyle.js": {
+              "type": "-",
+              "size": 9385,
+              "lmtime": 0,
+              "modified": false
+            },
+            "app.js": {
+              "type": "-",
+              "size": 1394223,
+              "lmtime": 0,
+              "modified": false
+            },
+            "jquery.lazy.min.js": {
+              "type": "-",
+              "size": 5023,
+              "lmtime": 0,
+              "modified": false
+            },
+            "dashboard-form-galleries.js": {
+              "type": "-",
+              "size": 1516,
+              "lmtime": 1551119866619,
+              "modified": false
+            },
+            "jquery-3.3.1.min.js": {
+              "type": "-",
+              "size": 86927,
+              "lmtime": 0,
+              "modified": false
+            },
+            "popper.min.js": {
+              "type": "-",
+              "size": 20973,
+              "lmtime": 0,
+              "modified": false
+            }
+          },
           "favicon": {},
           "svg": {},
           "index.php": {
@@ -206,8 +221,8 @@
             },
             "main.css": {
               "type": "-",
-              "size": 27466,
-              "lmtime": 1551107015600,
+              "size": 27464,
+              "lmtime": 1551117106251,
               "modified": false
             },
             "titularesIndex.css": {
@@ -286,44 +301,36 @@
           },
           "old": {}
         },
-        "nbproject": {},
-        "database": {},
-        "composer.phar": {
-          "type": "-",
-          "size": 1892003,
-          "lmtime": 0,
-          "modified": false
+        "resources": {
+          "views": {
+            "auth": {
+              "galleries": {
+                "previewGallery.blade.php": {
+                  "type": "-",
+                  "size": 2561,
+                  "lmtime": 1551121379091,
+                  "modified": false
+                }
+              }
+            }
+          }
         },
-        ".env": {
-          "type": "-",
-          "size": 762,
-          "lmtime": 0,
-          "modified": false
-        },
-        "node_modules": {},
-        ".cagefs": {},
-        "routes": {},
-        "webpack.mix.js": {
-          "type": "-",
-          "size": 537,
-          "lmtime": 0,
-          "modified": false
-        },
-        "resources": {},
-        "tests": {},
-        "readme.md": {
-          "type": "-",
-          "size": 148,
-          "lmtime": 0,
-          "modified": false
-        },
-        "composer-installer.sh": {
-          "type": "-",
-          "size": 453,
-          "lmtime": 0,
-          "modified": false
-        },
-        "vendor": {}
+        "home": {
+          "u119057475": {
+            "resources": {
+              "views": {
+                "layouts": {
+                  "barrilete.blade.php": {
+                    "type": "-",
+                    "size": 6170,
+                    "lmtime": 1551293136063,
+                    "modified": false
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
