@@ -317,17 +317,32 @@
         },
         "home": {
           "u119057475": {
-            "resources": {
-              "views": {
-                "layouts": {
-                  "barrilete.blade.php": {
-                    "type": "-",
-                    "size": 6170,
-                    "lmtime": 1551293136063,
-                    "modified": false
-                  }
-                }
-              }
+            "ssh_key_git_barrilete.pub": {
+              "type": "-",
+              "size": 754,
+              "lmtime": 1551294391171,
+              "modified": false
+            },
+            ".gitignore": {
+              "type": "-",
+              "size": 258,
+              "lmtime": 1551295078376,
+              "modified": true
+            },
+            "storage": {},
+            "public_html": {},
+            "ssh_key_git_barrilete": {
+              "type": "-",
+              "size": 3326,
+              "lmtime": 1551294391147,
+              "modified": false
+            },
+            "resources": {},
+            ".~lock.ssh_key_git_barrilete.pub#": {
+              "type": "-",
+              "size": 99,
+              "lmtime": 1551294586113,
+              "modified": false
             }
           }
         }
