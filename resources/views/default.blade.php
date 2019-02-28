@@ -34,7 +34,7 @@
     <h1>Últimas encuestas</h1>
     @forelse ($pollsIndex as $pollIndex)
     <article class="pollIndex">
-        <p>{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} votos</p>
+        <p>{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} @if ($pollIndex->option->sum('votes') == 1) voto @elseif ($pollIndex->option->sum('votes') > 1) votos @elseif ($pollIndex->option->sum('votes') == 0) No hay votos @endif</p>
         <a href="{{ route('poll',['id'=>$pollIndex->id,'titulo'=>str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
     </article>
     @empty

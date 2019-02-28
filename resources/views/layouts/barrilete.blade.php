@@ -10,27 +10,35 @@
         <meta name="msapplication-TileColor" content="#34495e">
         <meta name="theme-color" content="#ffffff">
         <title>@yield('title')</title>
-        <link rel="image_src" href="https://barrilete.com.ar/img/barrilete.jpg">
+        <link rel="image_src" href="@yield('image')">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="author" content="Conrado Maranguello">
-        <meta name="description" content="Secciones de noticias, galerías de fotos, encuestas, toda la actualidad en un solo sitio">
+        <meta name="description" content="@yield('description')">
         <meta name="copyright" content="Barrilete.com.ar">
         <!-- Open Graph data -->
-        <meta property="og:title" content="Barrilete Home">
-        <meta property="og:type" content="article">
-        <meta property="og:description" content="Secciones de noticias, galerías de fotos, encuestas, toda la actualidad en un solo sitio">
-        <meta property="og:url" content="https://barrilete.com.ar">
-        <meta property="og:image" content="https://barrilete.com.ar/img/barrilete.jpg">
-        <meta property="og:site_name" content="Barrilete">
-        <meta property="article:published_time" content="01-04-2016">
-        <meta property="article:modified_time" content="27-02-2019">
-        <meta property="article:section" content="Barrilete » Inicio">
+        <meta property="og:title" content="@yield('article_title')">
+        <meta property="og:type" content="@yield('article_type')">
+        <meta property="og:description" content="@yield('article_desc')">
+        <meta property="og:url" content="@yield('article_url')">
+        <meta property="og:image" content="@yield('article_photo')">
+        <meta property="og:site_name" content="@yield('site_name')">
+        <meta property="article:published_time" content="@yield('created_at')">
+        <meta property="article:modified_time" content="@yield('updated_at')">
+        <meta property="article:section" content="@yield('article_section')">
         <!-- Hojas de estilo en cascada -->
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/contenido.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/forms.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129739451-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-129739451-1');
+        </script>
     </head>
     <body>
         <header class="relative">
