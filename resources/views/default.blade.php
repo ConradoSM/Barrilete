@@ -14,6 +14,7 @@
         <img data-src="{{ asset('img/articles/.thumbs/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
         @endif
         <a href="{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}">{{ $article->title }}</a>
+        <p>{{ ucfirst($article->created_at->diffForHumans()) }}</p>
     </article>
 @empty
 <h1>No hay artículos para mostrar</h1>
@@ -33,7 +34,7 @@
     <h1>Últimas encuestas</h1>
     @forelse ($pollsIndex as $pollIndex)
     <article class="pollIndex">
-        <p>{{ ucfirst($pollIndex->created_at->diffForHumans()) }}</p>
+        <p>{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} votos</p>
         <a href="{{ route('poll',['id'=>$pollIndex->id,'titulo'=>str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
     </article>
     @empty

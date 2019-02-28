@@ -53,7 +53,7 @@
             <nav class="none">
                 <ul>
                     @forelse ($sections as $section)
-                    <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
+                    <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" class="{{ Request::path() == 'sec/'.$section->name ? 'active' : '' }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
                     @empty
                     @endforelse 
                 </ul>
