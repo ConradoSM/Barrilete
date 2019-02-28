@@ -53,19 +53,22 @@
             </form>
             @endif
         </article>
-        <div class="fb-comments" data-href="{{url()->current()}}" data-width="100%" data-numposts="5"></div>
-        <div id="fb-root"></div>
+        <div id="disqus_thread"></div>
         <script>
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id))
-                    return;
-                js = d.createElement(s);
-                js.id = id;
-                js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.2';
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
+
+        var disqus_config = function () {
+        this.page.url = '{{ Request::url() }}';
+        this.page.identifier = '{{ Request::url() }}'; 
+        };
+
+        (function() { 
+        var d = document, s = d.createElement('script');
+        s.src = 'https://barrilete.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
         </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </article>
     <aside class="pubSeccion">
         @forelse ($morePolls as $more)

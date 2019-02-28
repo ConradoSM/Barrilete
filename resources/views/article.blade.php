@@ -22,24 +22,24 @@
         <img class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $article->views }}
     </p>
     <hr />
-    <div class="social">
-        <div class="fb-share-button" data-href="{{ Request::url() }}" data-layout="button" data-size="small" data-mobile-iframe="true">
-            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
-        </div>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
     {!! $article->article_body !!}
     <hr />
-<div class="fb-comments" data-href="{{url()->current()}}" data-width="100%" data-numposts="5"></div>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.2';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    <div id="disqus_thread"></div>
+    <script>
+    
+    var disqus_config = function () {
+    this.page.url = '{{ Request::url() }}';
+    this.page.identifier = '{{ Request::url() }}'; 
+    };
+    
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://barrilete.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </article>
 <aside class="pubSeccion">
     @forelse ($moreArticles as $more)

@@ -29,7 +29,7 @@ class Gallery extends Model {
         return $query->where('status','PUBLISHED')
         ->latest()
         ->take(1)
-        ->first();      
+        ->get();      
     }    
     
     //BUSCA LA LISTA DE GALERÍAS
