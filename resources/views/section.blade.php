@@ -20,9 +20,9 @@
         <img data-src="{{ asset('/img/articles/.thumbs/images/'.$sec->photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
         @endif
         <a href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}">{{ $sec -> title  }}</a>
+        <p>{{ ucfirst($sec->created_at->diffForHumans()) }}</p>
     </article>
 @empty
     <h1>No hay artículos para mostrar</h1>
 @endforelse
 @endsection
-

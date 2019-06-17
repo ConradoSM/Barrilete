@@ -11,23 +11,23 @@ article.pub {
     z-index: 1;
 }
 article.pub blockquote, article.pub-preview blockquote {
-  background: #f2f3f4;
-  border-left: 10px solid #ccc;
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
-  quotes: "\201C""\201D""\2018""\2019";
+    background: #f2f3f4;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D";
 }
 article.pub blockquote:before, article.pub-preview blockquote:before {
-  color: #ccc;
-  content: open-quote;
-  font-size: 4em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
 }
 article.pub blockquote p, article.pub-preview blockquote p {
-  display: inline;
-  color: #808b96;
+    display: inline;
+    color: #808b96;
 }
 article.pub ul, article.pub-preview ul {
     list-style: none;
@@ -55,7 +55,7 @@ article.pub img, article.pub-preview img {
 }
 article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
     font-size: 1.3em;
-    margin-top:0px;
+    margin-top: 0px;
     margin-bottom: 20px;
     text-transform: capitalize;
     color: #000;
@@ -66,6 +66,7 @@ article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-prev
     width: 1.5em !important;
     vertical-align: middle;
     margin-left: 20px;
+    margin-right: 5px;
 }
 article.pub p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child, article.pub-preview p.info img.svg:first-child {
     margin-left: 0px;
@@ -80,8 +81,8 @@ article.pub h2, article.pub_galeria h2, article.pub-preview h2 {
     font-size: 2.5em;
     margin-bottom: 30px;
     margin-top: 30px;
-    line-height: 65px;
-    color: #000;
+    line-height: 40px;
+    color: #283747;
 }
 article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
     font-size: 1.3em;
@@ -92,7 +93,8 @@ article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
 }
 article.pub p, article.pub_galeria p, article.pub-preview p {
     margin-top: 30px;
-    font-size: 1.9em;
+    font-size: 1.7em;
+    line-height: 40px;
 }
 article.pub p:last-child, article.pub_galeria p:last-child, article.pub-preview p:last-child {
     margin-bottom: 30px;
@@ -101,6 +103,7 @@ article.pub p a, article.pub_galeria p a, article.pub-preview p a {
     font-size: 0.95em;
 }
 article.pub p.copete, article.pub_galeria p.copete, article.pub-preview p.copete {
+    font-size: 2em;
     margin-bottom: 30px;
     margin-top: 15px;
     color: #5d6d7e;
@@ -152,9 +155,12 @@ aside.pubSeccion article.pubArticle, article.morePolls {
     margin-bottom: 30px;
     overflow: hidden;
     box-shadow: 0px 0px 10px 0px #5f6a6a;
+    border-radius: 0px 0px 5px 5px;
+    cursor: pointer;
 }
 aside.pubSeccion article.pubArticle:hover, article.morePolls:hover {
     background-color: #f2f3f4;
+    opacity: 0.8;
     box-shadow: 0px 0px 10px 0px #000;
     transition: 0.3s;
 }
@@ -165,11 +171,6 @@ aside.pubSeccion article.pubArticle img {
     width: 100%;
     height: 225px;
     z-index: 0;
-    cursor: pointer;
-}
-aside.pubSeccion article.pubArticle img:hover {
-    opacity: 0.8;
-    transition: 0.3s;
 }
 article.morePolls p {
     display: block;
@@ -179,13 +180,11 @@ article.morePolls p {
 }
 aside.pubSeccion article.pubArticle a, article.morePolls a {
     display: block;
-    color: #424949;
     font-size: 1.5em;
     line-height: 30px;
     padding: 20px;
 }
 aside.pubSeccion article.pubArticle a:hover, article.morePolls a:hover {
-    color: #000;
     text-decoration: none;
 }
 /************************ 
@@ -306,6 +305,7 @@ article.pollOptions {
     padding: 30px;
     border-radius: 10px;
     background-color: #f2f3f4;
+    margin-bottom: 20px;
 }
 article.pollOptions div.resultContainer {
     width: 100%;
@@ -351,30 +351,33 @@ article.pollOptions p.totalVotes {
         font-size: 1.25em;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 0.9em; 
+        font-size: 0.9em;
+        line-height: 15px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         vertical-align: top !important;
         height: 1em !important;
         margin-left: 10px !important;
-        margin-bottom: 0px;
+        margin-right: 0px !important;
     }
     article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
         margin-left: 0px !important;
     }
     article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-        font-size: 2em;
-        line-height: 38px;
+        font-size: 2.1em;
+        line-height: 32px;
     }
     article.pub h2, article.pub_galeria h2 {
         font-size: 1.7em;
-        line-height: 1em;
+        line-height: 30px;
     }
     article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
         font-size: 1em;
     }
-    article.pub p, article.pub_galeria p {
-        font-size: 1.25em;
+    
+    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
+        font-size: 1.2em;
+        line-height: 30px;
     }
     /**********
     ***FOTOS***
@@ -400,26 +403,27 @@ article.pollOptions p.totalVotes {
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1em;
+        font-size: 0.9em;
         margin: 10px 10px;
     }
     div.searchResultContainer p.searchFilter a.active {
-        font-size: 1em;
+        font-size: 0.9em;
         margin: 10px 10px;
     }
     div.searchResultContainer p.searchInfo {
         margin: 20px 0px 20px 0px;
-        font-size: 1.7em;
+        font-size: 1.2em;
     }
     div.searchResultContainer article.searchResult p.searchDate {
         font-size: 1em;
+        margin-bottom: 5px;
     }
     div.searchResultContainer article.searchResult a.searchTitle {
-        font-size: 2.5em;
+        font-size: 2em;
         line-height: 1em;
     }
     div.searchResultContainer article.searchResult p.searchCopete {
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -441,24 +445,26 @@ article.pollOptions p.totalVotes {
         font-size: 1.25em;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 1em; 
+        font-size: 1.3em; 
+        line-height: 20px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         height: 1.5em !important;
     }
     article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 2em;
-    line-height: 38px;
+    font-size: 2.5em;
+    line-height: 35px;
     }
     article.pub h2, article.pub_galeria h2 {
-        font-size: 1.7em;
-        line-height: 1em;
+        font-size: 2em;
+        line-height: 35px;
     }
     article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
     font-size: 1em;
     }
-    article.pub p, article.pub_galeria p {
-        font-size: 1.25em;
+    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
+        font-size: 1.5em;
+        line-height: 30px;
     }
     /**********
     ***FOTOS***
@@ -484,11 +490,11 @@ article.pollOptions p.totalVotes {
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1em;
+        font-size: 1.5em;
         margin: 10px 10px;
     }
     div.searchResultContainer p.searchFilter a.active {
-        font-size: 1em;
+        font-size: 1.5em;
         margin: 10px 10px;
     }
     div.searchResultContainer p.searchInfo {
@@ -497,6 +503,7 @@ article.pollOptions p.totalVotes {
     }
     div.searchResultContainer article.searchResult p.searchDate {
         font-size: 1em;
+        margin-bottom: 5px;
     }
     div.searchResultContainer article.searchResult a.searchTitle {
         font-size: 2.5em;
@@ -525,24 +532,26 @@ article.pollOptions p.totalVotes {
         font-size: 1.25em;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 1em; 
+        font-size: 1.3em;
+        line-height: 20px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
         height: 1.5em !important;
     }
     article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 2em;
-    line-height: 38px;
+    font-size: 2.5em;
+    line-height: 35px;
     }
     article.pub h2, article.pub_galeria h2 {
-        font-size: 1.7em;
-        line-height: 1em;
+        font-size: 2.5em;
+        line-height: 40px;
     }
     article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
     font-size: 1em;
     }
-    article.pub p, article.pub_galeria p {
-        font-size: 1.25em;
+    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
+        font-size: 1.3em;
+        line-height: 30px;
     }
     /**********
     ***FOTOS***

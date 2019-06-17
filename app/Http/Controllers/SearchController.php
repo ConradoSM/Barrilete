@@ -7,9 +7,16 @@ use barrilete\Articles;
 use barrilete\Gallery;
 use barrilete\Poll;
 
+/**
+ * Class SearchController
+ * @package barrilete\Http\Controllers
+ */
 class SearchController extends Controller {
 
-   //BUSCADOR DE CONTENIDO
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function search(Request $request) {
 
@@ -29,8 +36,11 @@ class SearchController extends Controller {
 
         return view('search', compact('resultado'));
     }
-    
-    //BUSCADOR CONTENIDO USUARIOS
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function searchAuth(Request $request) {
         
         if ($request->ajax()) {

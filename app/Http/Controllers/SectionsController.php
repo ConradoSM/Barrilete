@@ -9,37 +9,43 @@ use barrilete\Gallery;
 use barrilete\Sections;
 
 class SectionsController extends Controller {
-    
-    //VER SECCIONES
+
+    /**
+     * @param $name
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function searchSection($name) {
 
         $section = Sections::searchSection($name);
-        
         if ($section) {
-            
+
             if ($section->name == 'galerias') {
-                
+
                 $galleries = Gallery::galleries();
-                
+
                 if ($galleries) {
-                    
+
                     return view('galleries', compact('galleries'));
-                    
+
                 } else return view('errors.section-error');
-                
+
             } else $articles = $section->articles;
 
             if ($articles) {
 
                 return view('section', compact('articles'));
-                
+
             } else return view('errors.article-error');
-            
+
         } else return view('errors.section-error');
     }
-    
-    //ADMINISTRAR SECCIONES: LISTAR
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function index(Request $request) {
+
         if (Auth::user()->is_admin) {
         
             if ($request->ajax()) {
@@ -50,8 +56,11 @@ class SectionsController extends Controller {
             } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);           
         } else return response()->json(['Error' => 'No eres administrador del sistema.']);
     }
-    
-    //ADMINISTRAR SECCIONES: NUEVA
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function newSection(Request $request) {
         if (Auth::user()->is_admin) {
             
@@ -62,8 +71,11 @@ class SectionsController extends Controller {
             } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
         } else return response()->json(['Error' => 'No eres administrador del sistema.']);
     }
-    
-    //ADMINISTRAR SECCIONES: CREAR
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function create(Request $request) {
         
         if (Auth::user()->is_admin) {
@@ -83,8 +95,12 @@ class SectionsController extends Controller {
             } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);          
         } else return response()->json(['Error' => 'No eres administrador del sistema.']);
     }
-    
-    //ADMINISTRAR SECCIONES: EDITAR
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function edit(Request $request, $id) {
         
         if (Auth::user()->is_admin) {
@@ -101,8 +117,12 @@ class SectionsController extends Controller {
             } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);           
         } else return response()->json(['Error' => 'No eres administrador del sistema.']);       
     }
-    
-    //ADMINISTRAR SECCIONES: ACTUALIZAR
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id) {
         
         if (Auth::user()->is_admin) {
@@ -119,8 +139,12 @@ class SectionsController extends Controller {
             } else return response()->json(['Error' => 'La sección no existe.']);           
         } else return response()->json(['Error' => 'No eres administrador del sistema.']);
     }
-    
-    //ADMINISTRAR SECCIONES: BORRAR
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function delete(Request $request, $id) {
         
         if (Auth::user()->is_admin) {

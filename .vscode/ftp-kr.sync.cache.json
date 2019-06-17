@@ -453,6 +453,24 @@
         },
         "resources": {
           "views": {
+            "poll.blade.php": {
+              "type": "-",
+              "size": 3595,
+              "lmtime": 0,
+              "modified": false
+            },
+            "article.blade.php": {
+              "type": "-",
+              "size": 2601,
+              "lmtime": 0,
+              "modified": false
+            },
+            "default.blade.php": {
+              "type": "-",
+              "size": 3115,
+              "lmtime": 1551388603443,
+              "modified": false
+            },
             "auth": {
               "galleries": {
                 "previewGallery.blade.php": {
@@ -461,7 +479,107 @@
                   "lmtime": 1551121379091,
                   "modified": false
                 }
+              },
+              "polls": {},
+              "verify.blade.php": {
+                "type": "-",
+                "size": 929,
+                "lmtime": 0,
+                "modified": false
+              },
+              "sections": {},
+              "articles": {
+                "previewArticle.blade.php": {
+                  "type": "-",
+                  "size": 2598,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "formArticles.blade.php": {
+                  "type": "-",
+                  "size": 3554,
+                  "lmtime": 1551391130412,
+                  "modified": false
+                }
+              },
+              "viewArticles.blade.php": {
+                "type": "-",
+                "size": 2229,
+                "lmtime": 0,
+                "modified": false
+              },
+              "register.blade.php": {
+                "type": "-",
+                "size": 1688,
+                "lmtime": 0,
+                "modified": false
+              },
+              "dashboard.blade.php": {
+                "type": "-",
+                "size": 5610,
+                "lmtime": 1551391155812,
+                "modified": false
+              },
+              "login.blade.php": {
+                "type": "-",
+                "size": 1796,
+                "lmtime": 0,
+                "modified": false
+              },
+              "users": {},
+              "passwords": {},
+              "search.blade.php": {
+                "type": "-",
+                "size": 2815,
+                "lmtime": 0,
+                "modified": false
               }
+            },
+            "layouts": {
+              "app.blade.php": {
+                "type": "-",
+                "size": 3534,
+                "lmtime": 0,
+                "modified": false
+              },
+              "barrilete.blade.php": {
+                "type": "-",
+                "size": 6480,
+                "lmtime": 1551390467406,
+                "modified": false
+              }
+            },
+            "galleries.blade.php": {
+              "type": "-",
+              "size": 1289,
+              "lmtime": 0,
+              "modified": false
+            },
+            "errors": {},
+            "gallery.blade.php": {
+              "type": "-",
+              "size": 1884,
+              "lmtime": 0,
+              "modified": false
+            },
+            "dashboard.blade.php": {
+              "type": "-",
+              "size": 4991,
+              "lmtime": 0,
+              "modified": false
+            },
+            "users": {},
+            "section.blade.php": {
+              "type": "-",
+              "size": 2043,
+              "lmtime": 0,
+              "modified": false
+            },
+            "search.blade.php": {
+              "type": "-",
+              "size": 1812,
+              "lmtime": 0,
+              "modified": false
             }
           }
         },

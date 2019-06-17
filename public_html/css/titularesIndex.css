@@ -4,13 +4,16 @@
 article.pubIndex {
     position: relative;
     width: 386.66666667px;
-    height: auto;
+    height: 400px;
     margin-bottom: 30px;
     overflow: hidden;
     box-shadow: 0px 0px 10px 0px #5f6a6a;
+    border-radius: 0px 0px 5px 5px;
+    cursor: pointer;
 }
 article.pubIndex:hover {
     background-color: #f2f3f4;
+    opacity: 0.8;
     box-shadow: 0px 0px 10px 0px #000;
     transition: 0.3s;
 }
@@ -25,9 +28,7 @@ article.pubIndex div.seccion {
     color: #fff;
     background-color: rgba(52,73,94,0.7);
     font-size: 1em;
-    font-weight: bold;
     text-transform: uppercase;
-    cursor: pointer;
     z-index: 1;
     border-radius: 3px;
 }
@@ -52,22 +53,19 @@ article.pubIndex img {
     width: 100%;
     height: 250px;
     z-index: 0;
-    cursor: pointer;
-}
-article.pubIndex img:hover {
-    opacity: 0.8;
-    transition: 0.3s;
 }
 article.pubIndex a {
     display: block;
-    color: #424949;
+    height: auto;
     font-size: 1.5em;
     line-height: 30px;
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
 }
-article.pubIndex a:hover {
-    color: #000;
-    text-decoration: none;
+article.pubIndex p {
+    position: absolute;
+    right: 20px;
+    bottom: 0px;
+    font-size: 1.2em;
 }
 /*********************************
 **GALERIA Y ENCUESTAS CONTAINER **
@@ -131,7 +129,6 @@ article.galeriaIndex a {
     height: auto;
     bottom: 20px;
     left: 20px;
-    color: #34495e;
     text-decoration: none;
     font-size: 2em;
     line-height: 1.2em;
@@ -140,9 +137,7 @@ article.galeriaIndex a {
     border-radius: 3px;
 }
 article.galeriaIndex a:hover {
-    color: #1c2833;
     background-color: #fff;
-    transition: 0.3s;
 }
 /*************************
 *****ENCUESTAS INDEX******
@@ -164,6 +159,7 @@ article.pollIndex p {
     margin: 0px 0px 10px 0px;
 }
 article.pollIndex a {
+    display: block;
     font-size: 1.5em;
     line-height: 1.2em;
 }
@@ -172,7 +168,10 @@ article.pollIndex a {
     **MAIN TITULARES**
     *****************/
     article.pubIndex {
+        display: flex;
+        flex-flow: column nowrap;
         width: 100%;
+        height: auto;
         background-color: #f2f3f4;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
@@ -186,6 +185,7 @@ article.pollIndex a {
         height: 250px;
     }
     article.pubIndex a {
+        height: auto;
         font-size: 1.8em;
         line-height: 1.2em;
     }
@@ -217,6 +217,14 @@ article.pollIndex a {
         left: 0;
         border-radius: 0px 0px 3px 3px;
     }
+    article.pubIndex p {
+        align-self: flex-end;
+        position: relative;
+        margin-top: 10px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
     /*************************
     *****ENCUESTAS INDEX******
     **************************/
@@ -233,8 +241,11 @@ article.pollIndex a {
     /*****************
     **MAIN TITULARES**
     *****************/
-    article.pubIndex {
+    article.pubIndex {       
+        display: flex;
+        flex-flow: column nowrap;
         width: 100%;
+        height: auto;
         background-color: #f2f3f4;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
@@ -276,6 +287,14 @@ article.pollIndex a {
         left: 0;
         border-radius: 0px 0px 3px 3px;
     }
+    article.pubIndex p {
+        align-self: flex-end;
+        position: relative;
+        margin-top: 10px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
     /*************************
     *****ENCUESTAS INDEX******
     **************************/
@@ -293,7 +312,10 @@ article.pollIndex a {
     **MAIN TITULARES**
     *****************/
     article.pubIndex {
+        display: flex;
+        flex-flow: column nowrap;
         width: 100%;
+        height: auto;
         background-color: #f2f3f4;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
@@ -349,7 +371,15 @@ article.pollIndex a {
     article.pollIndex a {
         font-size: 2em;
         line-height: 1em;
-    }  
+    }
+    article.pubIndex p {
+        align-self: flex-end;
+        position: relative;
+        margin-top: 10px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) { 
     /*****************
@@ -366,12 +396,26 @@ article.pollIndex a {
     article.pubIndex img {
         height: 400px;
     }
-    article.galeriaIndex a {
+    article.pubIndex a {
+        position: absolute;
         width: 100%;
         height: auto;
-        bottom: 0;
+        bottom: 25px;
         left: 0;
-        border-radius: 0px 0px 3px 3px;
+        background-color: rgba(242,243,244,0.8);
+        padding: 20px 20px 20px 20px;
+    }
+    article.pubIndex p {
+        padding: 5px 10px;
+        border-radius: 3px;
+        background-color: #fff;
+        right: 10px;
+    }
+    article.galeriaIndex a{
+        width: 100%;
+        height: auto;
+        bottom: 0px;
+        left: 0px;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
@@ -395,6 +439,7 @@ article.pollIndex a {
         margin-right: 30px;
         margin-bottom: 30px;
         box-shadow: 0px 0px 10px 0px #5f6a6a;
+        border-radius: 0px 0px 0px 0px;
     }
     article.pubIndex:nth-child(1):hover {
         box-shadow: 0px 0px 10px 0px #000;
@@ -421,7 +466,6 @@ article.pollIndex a {
         bottom: 0;
         bottom: 20px;
         left: 20px;
-        color: #34495e;
         text-decoration: none;
         font-size: 2em;
         line-height: 1.2em;
@@ -430,11 +474,10 @@ article.pollIndex a {
         border-radius: 3px;
     }
     article.pubIndex:nth-child(1) a:hover, article.pubIndex:nth-child(2) a:hover, article.pubIndex:nth-child(3) a:hover {
-        color: #1c2833;
         background-color: #fff;
         transition: 0.3s;
     }
-    article.pubIndex:nth-child(1) p {
+    article.pubIndex:nth-child(1) p, article.pubIndex:nth-child(2) p, article.pubIndex:nth-child(3) p {
         display: none;
     }
     /**************
@@ -445,6 +488,7 @@ article.pollIndex a {
         height: 310px;
         overflow: hidden;
         box-shadow: 0px 0px 10px 0px #5f6a6a;
+        border-radius: 0px 0px 0px 0px;
     }
     article.pubIndex:nth-child(2):hover, article.pubIndex:nth-child(3):hover{
         box-shadow: 0px 0px 10px 0px #000;
@@ -468,7 +512,6 @@ article.pollIndex a {
         bottom: 0;
         bottom: 20px;
         left: 20px;
-        color: #34495e;
         text-decoration: none;
         font-size: 1.5em;
         line-height: 1.2em;
@@ -487,5 +530,61 @@ article.pollIndex a {
         height: 310px;
         overflow: hidden;
         box-shadow: 0px 0px 10px 0px #5f6a6a;
+        border-radius: 0px 0px 0px 0px;
+    }
+    /******************
+    **7 y 8° ARTÍCULO**
+    ******************/
+    article.pubIndex:nth-child(10), article.pubIndex:nth-child(11) {
+        display: flex;
+        flex-flow: row wrap;
+        width: 780px;
+        height: 220px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px 0px #5f6a6a;
+        border-radius: 0px 0px 0px 0px;
+    }
+    article.pubIndex:nth-child(10) img, article.pubIndex:nth-child(11) img {
+        width: 300px;
+        height: auto;
+    }
+    article.pubIndex:nth-child(10) a, article.pubIndex:nth-child(11) a {
+        width: 480px;
+        height: 220px;
+        padding-top: 60px;
+    }
+    article.pubIndex:nth-child(10) img.video, article.pubIndex:nth-child(11) img.video {
+        width: 50px;
+        height: auto;
+        left: 130px;
+        top: 90px;
+    }
+    article.pubIndex:nth-child(10) div.seccion, article.pubIndex:nth-child(11) div.seccion {
+        left: 320px;
+    }
+    /**************
+    **9° ARTÍCULO**
+    **************/
+    article.pubIndex:nth-child(12) {
+        margin-top: -251px;
+        width: 400px;
+        height: 471px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px 0px #5f6a6a;
+        border-radius: 0px 0px 0px 0px;
+    }
+    article.pubIndex:nth-child(12) img {
+        width: 100%;
+        height: 300px;
+    }
+    article.pubIndex:nth-child(12) a {
+        width: 100%;
+        height: 171px;
+    }
+    article.pubIndex:nth-child(12) img.video {
+        width: 50px;
+        height: auto; 
+        top: 130px;
+        left: 180px;
     }
 }
