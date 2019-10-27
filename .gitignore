@@ -1,6 +1,5 @@
 /public_html/img/
 /.idea
-/.env
 /vendor
 /key
 /key.pub
