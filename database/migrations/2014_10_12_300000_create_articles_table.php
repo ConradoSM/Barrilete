@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
             $table->string('title')->unique();
-            $table->datetime('date');          
+            $table->datetime('date');
             $table->integer('section_id')->unsigned();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('restrict')->onUpdate('restrict');
             $table->string('author');
@@ -32,6 +32,10 @@ class CreateArticlesTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        /**
+         * Add full text index
+         */
+        DB::statement('ALTER TABLE articles ADD FULLTEXT fulltext_index (title, article_desc, article_body)');
     }
 
     /**
