@@ -1,8 +1,12 @@
-/public_html/img/
 /.idea
 /vendor
 /key
 /key.pub
+/public_html/img/articles/.thumbs/images/*
+/public_html/img/articles/images/*
+/public_html/img/galleries/*
+/public_html/img/galleries/.thumbs/*
+/public_html/img/users/*
 /public_html/js/ckeditor4.11.1s/
 /public_html/js/kcfinder/
 /public_html/js/jquery-filestyle.js
@@ -11,5 +15,4 @@ git status
 .~lock.ssh_key_git_barrilete.pub#
 ssh_key_git_barrilete
 ssh_key_git_barrilete.pub
-/.vscode
 .gitignore
