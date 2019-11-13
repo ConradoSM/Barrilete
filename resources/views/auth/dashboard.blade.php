@@ -26,7 +26,7 @@
                 <p>{{ Auth::user()->name }}<img src="{{ asset('svg/arrow-down.svg') }}" /></p>
                 <div id="user-options">
                     <a href="{{ route('options') }}" id="options"><img src="{{ asset('svg/options.svg') }}" />Opciones</a>
-                    <a href="{{ URL::route('logout') }}" data-ajax="false"><img src="{{ asset('svg/log-out.svg') }}" />{{ __('Logout') }}</a>
+                    <a href="#" onclick="window.location = '{{ route('logout') }}'" data-ajax="false"><img src="{{ asset('svg/log-out.svg') }}" />{{ __('Logout') }}</a>
                 </div>
             </div>
             <div id="user-notifications" style="display:none;">
@@ -107,9 +107,9 @@
                     $('div#user-options').slideToggle('fast');
                     $(this).addClass('focus');
                 });
-                $(document).on('click', function(event){
+                $(document).on('click', function(e){
                     const trigger = $('div#user-menu');
-                    if(trigger !== event.target && !trigger.has(event.target).length) {
+                    if(trigger !== e.target && !trigger.has(e.target).length) {
                         $('div#user-options').slideUp('fast');
                         $(trigger).removeClass('focus');
                     }

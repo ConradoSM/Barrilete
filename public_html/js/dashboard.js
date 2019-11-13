@@ -11,7 +11,7 @@ $(document).ready(function() {
             /**
              * CLICK EVENT
              */
-            $(this).on('click', function (e) {
+            $(this).on('click', function(e) {
                 const button = $(this);
                 if (button.attr('class') === 'disabled') {
                     return false;
