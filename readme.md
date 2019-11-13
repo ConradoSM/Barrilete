@@ -1,10 +1,10 @@
 <div style="text-align: center;">
     <a href="https://barrilete.com.ar/"><img alt="Barrilete" src="https://barrilete.com.ar/svg/logo_barrilete.svg"></a>
-    <h2>v2.1</h2>
+    <h2>v2.5</h2>
         <h4>Notas de la versión</h4>
             <ul>
                 <li>Se incorpora Docker y Docker-Compose al proyecto</li>
-                <li>Upgrade de laravel a la versión5.8</li>
+                <li>Upgrade de laravel a la versión 6.x</li>
                 <li>Instalación de la extensión Xdebug</li>
             </ul>
         <h3>Pre-requisitos para la instalación del ambiente</h3>
