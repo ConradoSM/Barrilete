@@ -10,7 +10,7 @@
         @else
         <img data-src="{{asset('img/galleries/.thumbs/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" class="lazy" onclick="location.href='{{route('gallery',['id'=>$galeria->id,'titulo'=>str_slug($galeria->title,'-')])}}'" />
         @endif
-        <a href="{{route('gallery',['id'=>$galeria->id,'titule'=>str_slug($galeria->title,'-')])}}">{{$galeria->title}}</a>
+        <a href="{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}">{{$galeria->title}}</a>
     </article>
 @empty
     <h1>No hay artículos para mostrar</h1>
