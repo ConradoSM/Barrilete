@@ -103,13 +103,12 @@
                 </div>
                 <div>
                     <h2>Institucional</h2>
-                    <p class="footerCopyright">Conrado Maranguello, responsable editorial</p>
-                    <p class="footerCopyright">©2016 - 2019 todos los derechos reservados<br />Ver: 2.0.1</p>
+                    <p class="footerCopyright">Conrado Maranguello, creador</p>
+                    <p class="footerCopyright">© 2019 todos los derechos reservados<br />v2.5</p>
                 </div>
                 <div class="footerSocialContainer">
                     <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
                     <a href="https://www.twitter.com/Barrilete_Info/" target="_blank"><img title="Barrilete en Twitter" src="{{ asset('svg/twitter.svg') }}" /></a>
-                    <p class="version">© 2019 todos los derechos reservados - Ver: 2.0.1</p>
                 </div>
             </div>
         </footer>

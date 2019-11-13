@@ -336,6 +336,7 @@ footer div.footerContainer div li {
 footer div.footerContainer div a {
     color: #000000;
     text-transform: uppercase;
+    font-size: 1em;
 }
 footer div.footerContainer div a:hover {
     color: #666666;
@@ -357,7 +358,7 @@ footer div.footerContainer div.footerSocialContainer {
 }
 footer div.footerContainer div.footerSocialContainer img {
     width: auto;
-    height: 60px;
+    height: 40px;
 }
 /*EDITAR FOTO*/
 div.container-photo-update-form {

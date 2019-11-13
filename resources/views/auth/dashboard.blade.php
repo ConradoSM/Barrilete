@@ -65,13 +65,11 @@
                 </div>
                 <div>
                     <h2>Institucional</h2>
-                    <p class="footerCopyright">Conrado Maranguello, responsable editorial</p>
-                    <p class="footerCopyright">©2016 - 2019 todos los derechos reservados<br />Versión: 2.0 02122018 build 18.30 BETA</p>
+                    <p class="footerCopyright">Conrado Maranguello, creador</p>
+                    <p class="footerCopyright">© 2019 todos los derechos reservados<br />v2.5</p>
                 </div>
                 <div class="footerSocialContainer">
                     <img src="{{ asset('svg/logo_barrilete.svg') }}" />
-                    <img src="{{ asset('svg/facebook.svg') }}" class="footerSocialFacebook" />
-                    <img src="{{ asset('svg/twitter.svg') }}" class="footerSocialTwitter" />
                 </div>
             </div>
         </footer>
