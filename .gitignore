@@ -3,8 +3,6 @@
 /key
 /key.pub
 /public_html/img/articles/.thumbs/images/*
-/public_html/img/articles/images/*
-/public_html/img/galleries/*
 /public_html/img/galleries/.thumbs/*
 /public_html/img/users/*
 /public_html/js/jquery-filestyle.js
