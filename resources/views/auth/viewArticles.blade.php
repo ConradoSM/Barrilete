@@ -1,7 +1,10 @@
+@if (isset($success))
+    <p class="alert-success"><img src="/svg/ajax-success.svg" alt="Exito"/>{{ $success }}</p>
+@endif
 <div id="user-articles-list">
-    <h1>Mis {{ $status }}</h1>
-    <p>Se encontraron {{ $Articles->total() }} {{ $status }}</p>
-    @forelse ($Articles as $article)
+    <h1>{{ ucfirst($status) }}</h1>
+    <p>Se encontraron {{ $articles->total() }} {{ $status }}</p>
+    @forelse ($articles as $article)
     <article class="searchResult">
         <p class="searchDate">
             @if ($article->status == 'DRAFT')
@@ -9,7 +12,7 @@
             @else
             <img src="{{ asset('svg/checked.svg') }}" title="Publicado" />
             @endif
-            {{ $article->created_at->diffForHumans() }} · {{ ucfirst($article->section->name) }} · {{ $article->views }} lecturas @if($status == 'encuestas') · {{ $article->option->sum('votes') }} votos @endif
+            {{ $article->created_at->diffForHumans() }} · {{ $article->section ? ucfirst($article->section->name) : $status}} · {{ $article->views }} lecturas @if($status == 'encuestas') · {{ $article->option->sum('votes') }} votos @endif
         </p>
         @if ($status == 'artículos')
         <a class="searchTitle" href="{{ route('previewArticle', ['id'=>$article->id]) }}">{{ $article->title }}</a>
@@ -22,29 +25,6 @@
     </article>
     @empty
     @endforelse
-        {{$Articles->links()}}
+        {{$articles->links()}}
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('div#user-articles-list a').each(function () {
-
-            var href = $(this).attr('href');
-            $(this).attr({href: '#'});
-
-            $(this).click(function () {
-                $('#user-articles-list').fadeOut('fast', 'linear', function () {
-                    $('#loader').fadeIn('fast', 'linear', function () {
-                        $('#loader').fadeOut('fast', 'linear', function () {
-                            $('#user-content').fadeOut('fast', 'linear', function () {
-                                $('#user-content').load(href, function () {
-                                    $('#user-content').fadeIn('fast', 'linear');
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>

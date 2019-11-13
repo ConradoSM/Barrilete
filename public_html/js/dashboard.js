@@ -1,65 +1,94 @@
-$(document).ready(function () {
-
-    // NAVEGACIÓN CONTENIDO PRINCIPAL DEL DASHBOARD
-    $(document).find('a').each(function () {
-
-        var href = $(this).attr('href');
-        $(this).attr({href: '#'});
-
-        $(this).click(function () {
-
-            $('aside.tools-bar').find('a').removeClass('selected');
-            $(this).addClass('selected');
-            $('#loader').fadeIn('fast');
-
-            $('#user-content').hide(0, function () {
-                $('#user-content').load(href, function () {
-                    $('#loader').fadeOut('fast', function () {
-                        $('#user-content').fadeIn('fast');
-                    });
-                });
+$(document).ready(function() {
+    /**
+     * FIND LINKS
+     */
+    $(document).find('a').each(function() {
+        const dataAjax = $(this).attr('data-ajax');
+        if (!dataAjax) {
+            const href = $(this).attr('href');
+            const dataConfirm = $(this).attr('data-confirm');
+            $(this).attr({href: '#'});
+            /**
+             * CLICK EVENT
+             */
+            $(this).on('click', function (e) {
+                const button = $(this);
+                if (button.attr('class') === 'disabled') {
+                    return false;
+                }
+                /**
+                 * ADD/REMOVE SELECTED CLASS
+                 */
+                $(document).find('a').removeClass('selected');
+                button.addClass('selected');
+                /**
+                 * EXECUTE AJAX REQUEST
+                 */
+                getAjaxRequest(e, button, href, dataConfirm);
             });
-        });
+        }
     });
-    // BUSCADOR CONTENIDO USUARIOS
-    $('button#search-button').on('click', function(e){            
+
+    /**
+     * SEARCH DASHBOARD
+     */
+    $('button#search-button').on('click', function (e) {
+        const button = $(this);
+        const query = $('#query').val();
+        const author = $('#author').val();
+        const sec = $('#sec').val();
+        const href = $('form#search').attr('action')+'?sec='+sec+'&author='+author+'&query='+query;
+        getAjaxRequest(e, button, href, null);
+    });
+
+    /**
+     * BEFORE AJAX REQUEST
+     */
+    function beforeSend() {
+        $('div#user-content').hide();
+        $('#loader').fadeIn('fast');
+    }
+
+    /**
+     * AJAX GET REQUEST
+     */
+    function getAjaxRequest(e, button, href, dataConfirm) {
         e.preventDefault();
-        var form = $('#search');
-        var formAction = $(form).attr('action');           
-        $.ajax({
-            type: 'get',
-            url: formAction,
-            data: $(form).serialize(),
-            beforeSend: function(){
-                $('#loader').fadeIn('fast');
+        e.stopImmediatePropagation();
+        if (dataConfirm) {
+            if (!confirm(dataConfirm)) {
+                return false;
             }
-        }).done(function(responseText){ 
-            $('#loader').fadeOut('fast', function(){
-                $('#user-content').html(responseText).fadeIn('fast');
-                $(form).trigger('reset');
-            });        
-        }).fail(function(xhr, statusText){
-            $('#loader').fadeOut('fast', function(){
-                $('#user-content').empty();
-                $('#user-content').prepend('<p class="invalid-feedback">Error: '+xhr.statusText+'</p>'); 
+        }
+        /**
+         * STOP AJAX REQUEST RUNNING
+         */
+        if (button.data('requestRunning')) {
+            return;
+        }
+        button.data('requestRunning', true);
+        /**
+         * AJAX REQUEST STARTER
+         */
+        $.get({
+            beforeSend: beforeSend,
+            type: 'GET',
+            url: href,
+            async: true,
+            dataType: 'json',
+            contentType: 'application/json'
+        }).done(function (data) {
+            $('#loader').fadeOut('fast', function () {
+                $('div#user-content').html(data.view).fadeIn('fast');
             });
+        }).fail(function (xhr) {
+            const xhrError = xhr.responseJSON.error ? xhr.responseJSON.error : xhr.statusText;
+            const errorMessage = '<p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="error"/>' + xhr.status + ' - ' + xhrError + '</p>';
+            $('#loader').fadeOut('fast', function () {
+                $('div#user-content').html(errorMessage).fadeIn('fast');
+            });
+        }).always(function () {
+            button.data('requestRunning', false);
         });
-    });    
-    // DROPDOWN MENU USUARIO
-    $('div#user-menu').click(function(){
-
-        $(this).find('div#user-options').slideToggle('fast');
-        $(this).addClass('focus');
-    });
-
-    $(document).on('click', function(event){
-
-        var trigger = $('div#user-menu');
-
-        if(trigger !== event.target && !trigger.has(event.target).length){
-
-            $('div#user-options').slideUp('fast');
-            $(trigger).removeClass('focus');
-        }            
-    });
+    }
 });

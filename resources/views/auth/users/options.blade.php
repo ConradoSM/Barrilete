@@ -25,24 +25,8 @@
 <fieldset>
     <img class="avatar" src="{{ asset('svg/delete-account.svg') }}" />
     <div class="user-info">
-        <a href="{{ route('deleteUser', ['id' => Auth::user()->id]) }}" onclick="return confirm('¿Estás seguro que quieres eliminar tu cuenta?')">Eliminar cuenta</a>
+        <a href="{{ route('deleteUser', ['id' => Auth::user()->id]) }}" data-confirm="¿Estás seguro que quieres eliminar tu cuenta?">Eliminar cuenta</a>
         <p>Dar de baja al perfil, ten en cuenta que tus artículos no se borraran</p>
     </div>
 </fieldset>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('fieldset.ajax').find('a').click(function(event){
-            event.preventDefault();
-            var href = $(this).attr('href');
-            $(this).attr({href: '#'});
-            $('#loader').fadeIn('fast');
-            $('#user-content').hide(0, function () {
-                $('#user-content').load(href, function () {
-                    $('#loader').fadeOut('fast', function () {
-                        $('#user-content').fadeIn('fast');
-                    });
-                });
-            });
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>

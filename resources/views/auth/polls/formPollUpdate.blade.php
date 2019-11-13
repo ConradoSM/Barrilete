@@ -1,13 +1,30 @@
-<div id="Article_Form">
-<h1>Actualizar encuesta</h1>  
+<div id="progressBar-Container">
+    <img src="{{ asset('img/loading.gif') }}" /> Cargando encuesta...
+    <div class="progress">
+        <div class="bar"></div >
+        <div class="percent">0%</div >
+    </div>
+    <p>Por favor no actualizar ni cerrar ésta ventana mientras dure el proceso de carga.</p>
+</div>
+<div id="status">
+@if (isset($success))
+    <p class="alert-success"><img src="/svg/ajax-success.svg" alt="Exito"/>{{ $success }}</p>
+@endif
+@if (isset($error))
+    <p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="Error"/>{{ $error }}</p>
+@endif
+@if (!$options)
+    <p class="alert-warning"><img src="/svg/ajax-warning.svg" alt="Advertencia"/>Ésta encuesta no posee opciones</p>
+@endif
+<h1>Actualizar encuesta</h1>
     <fieldset>
         <legend>Información</legend>
         <p><b>Autor</b>: {{ $poll->author }}</p>
-        <p><b>Fecha de publicación</b>: {{ $poll->created_at->diffForHumans() }}</p> 
+        <p><b>Fecha de publicación</b>: {{ $poll->created_at->diffForHumans() }}</p>
     </fieldset>
     <fieldset>
         <legend>Título y Copete</legend>
-        <div class="status"></div>
+            <div id="errors"></div>
             <form method="post" class="data" enctype="multipart/form-data" action="{{ route('updatePoll') }}">
                 <p title="Editar">{{ $poll->title }}</p>
                 <input type="text" class="input" name="title" value="{{ $poll->title }}" placeholder="Título: éste es el principal título de la encuesta (*) Mínimo 20 caracteres" required />
@@ -18,222 +35,29 @@
                 <input type="hidden" name="id" value="{{ $poll->id }}" />
                 <input type="hidden" name="user_id" value="{{ $poll->user_id }}" />
                 <input type="hidden" name="author" value="{{ $poll->author }}" />
-                <input type="hidden" name="section_id" value="{{ $poll->section_id }}" />   
+                <input type="hidden" name="section_id" value="{{ $poll->section_id }}" />
             </form>
     </fieldset>
-    <div class="status"></div>
-    <input type="button" id="mas-opciones" data-id="{{ $poll->id }}" value="+ Agregar opciones" class="primary" />
-    @forelse ($options as $option)
-    <div class="status"></div>
     <fieldset>
-        <div class="status"></div>
+        <legend>Opciones</legend>
+    @forelse ($options as $option)
         <form method="post" class="data" enctype="multipart/form-data" action="{{ route('updatePollOption') }}">
             <p title="Editar">{{ $option->option }}</p>
             <input type="text" class="input" name="option" value="{{ $option->option }}" placeholder="Opción de la encuesta" required />
             <input type="submit" value="Actualizar" class="success" />
-            <input type="button" class="danger" data-id="{{ $option->id }}" value="Borrar" />
+            <a href="{{ route('deleteOption',['id' => $option->id]) }}" class="danger" data-confirm="¿Estás seguro que deseas eliminar ésta opción?">Eliminar</a>
             @csrf
-            <input type="hidden" name="poll_id" value="{{ $poll->id }}" /> 
+            <input type="hidden" name="poll_id" value="{{ $poll->id }}" />
             <input type="hidden" name="id" value="{{ $option->id }}" />
         </form>
-    </fieldset>    
     @empty
-    <p>No hay opciones cargadas</p>
-    @endforelse   
+        <p class="alert-warning"><img src="/svg/ajax-warning.svg" alt="Advertencia"/>Ésta encuesta no posee opciones</p>
+    @endforelse
+        <hr />
+        <a href="{{ route('addOptions', ['id' => $poll->id]) }}" class="primary">+ Agregar opciones</a>
+    </fieldset>
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
-<script type="text/javascript">       
-$(document).ready(function () {                                            
-
-    //MOSTRAR FORMULARIOS
-    $('fieldset form p').click(function(){
-
-        var parrafo = $(this);
-        var input = $(parrafo).next();
-        var submit = $(parrafo).parent('form.data').children('input[type=submit]');
-        var deleteBtn = $(parrafo).parent('form.data').children('input[type=button]');
-
-        $(this).fadeOut('fast', function(){
-            $(submit).css('display','inline-block');
-            $(deleteBtn).css('display','inline-block');
-            $(input).fadeIn('fast', function(){                           
-                $(input).focus();
-                $(input).on('keyup', function(){
-                    var valor = $(this).val();
-                    $(parrafo).text(valor);
-                });
-            });
-        });
-
-        $(input).on('focusout', function(){
-            $(submit).fadeOut('fast');
-            $(deleteBtn).fadeOut('fast');
-            $(input).fadeOut('fast', function(){ 
-                $(parrafo).fadeIn('fast');                               
-            });
-        });
-    });
-
-    //BORRAR OPCIÓN
-    $('input[type=button].danger').on('click', function () {
-
-        var id = $(this).data('id');
-        var fieldset = $(this).parents('fieldset');
-        var divStatus = $(fieldset).prev('div.status');
-
-        if (confirm("¿Estás seguro que quieres borrar la opción de la encuesta?")) {
-
-            $.ajax({
-                success: mostrarRespuesta,
-                error: mostrarError,
-                data: {'id': id, '_token': '{!! csrf_token() !!}'},
-                url: '{!! route('deletePollOption') !!}',
-                type: 'post',
-                datatype: 'json',
-                async: true
-            });
-
-            function mostrarRespuesta(data){ 
-
-                if(data['Error']){
-
-                    $(divStatus).hide().append('<p class="invalid-feedback">'+data['Error']+'</p>').fadeIn('fast'); 
-
-                } else {
-
-                    $(divStatus).hide().append('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow'); 
-                    $(fieldset).hide(0, function(){
-                        $(this).remove();
-                    });                      
-                    setTimeout(function(){
-                        $('p.alert-success').fadeOut('slow', function(){
-                            $('p.alert-success').remove();
-                        });
-                    }, 2000);  
-                }
-            };
-
-            function mostrarError(xhr){
-
-                var errors = xhr.responseJSON.errors;                   
-                $.each(errors, function(key,value){
-                    $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
-                });
-            }; 
-            $('p.invalid-feedback').remove();                      
-        } return false;
-        
-    });
-
-    //ACTUALIZAR DATOS
-    $('input[type=submit]').on('click', function(event){
-        event.stopPropagation();
-        event.preventDefault();
-
-        var form = $(this).parent('form');
-        var input = $(form).children('.input');
-        var parrafoTitle = $(form).children('p');
-        var parrafoArticleDesc = $(parrafoTitle).next().next();
-        var divStatus = $(form).prev('div.status');
-
-        $.ajax({
-            success: mostrarRespuesta,
-            error: mostrarError,
-            data: $(form).serialize(),
-            url: $(form).prop('action'),
-            type: $(form).prop('method'),
-            datatype: 'json',
-            async: true
-        });
-
-        function mostrarRespuesta(data){ 
-
-            if(data['Error']){
-
-                $(divStatus).hide().append('<p class="invalid-feedback">'+data['Error']+'</p>').fadeIn('fast'); 
-
-            } else if(data['article_desc']) {
-
-                $(divStatus).hide().append('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow'); 
-                $(input).hide(0, function(){
-                    $(this).focusout();
-                    $(parrafoTitle).text(data['title']);
-                    $(parrafoArticleDesc).text(data['article_desc']); 
-                });                      
-                setTimeout(function(){
-                    $('p.alert-success').fadeOut('slow', function(){
-                        $('p.alert-success').remove();
-                    });
-                }, 2000);  
-
-            } else if(data['option']) {
-                $(divStatus).hide().append('<p class="alert-success">'+data['Exito']+'</p>').fadeIn('slow'); 
-                $(input).hide(0, function(){
-                    $(this).focusout();                         
-                    $(parrafoTitle).text(data['option']);
-                });                      
-                setTimeout(function(){
-                    $('p.alert-success').fadeOut('slow', function(){
-                        $('p.alert-success').remove();
-                    });
-                }, 2000);
-            }
-        };
-
-        function mostrarError(xhr){
-
-            var errors = xhr.responseJSON.errors;                   
-            $.each(errors, function(key,value){
-                $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
-            });
-        };               
-        $('p.invalid-feedback').remove();
-    });
-
-    //AGREGAR MAS OPCIONES
-    $('#mas-opciones').on('click', function(event){
-        
-        event.preventDefault();
-
-        var divStatus = $(this).prev('div.status');
-        var id = $(this).data('id');
-
-        $.ajax({
-            beforeSend: mostrarLoader,
-            success: mostrarRespuesta,
-            error: mostrarError,
-            data: {'id': id, '_token': '{!! csrf_token() !!}'},
-            url: '{!! route('addMorePollOption') !!}',
-            type: 'post',
-            datatype: 'json',
-            async: true
-        });
-        function mostrarLoader() {
-
-            $('#Article_Form').hide(0);
-            $('#loader').fadeIn('slow');
-        };
-
-        function mostrarRespuesta(data){ 
-
-            if(data['Error']) {
-                $(divStatus).hide().append('<p class="invalid-feedback">'+data['Error']+'</p>').fadeIn('fast');
-
-            } else {
-                $('#loader').fadeOut('slow', function () {
-                    $('#user-content').html(data).fadeIn('fast'); 
-                });              
-            }
-        };
-
-        function mostrarError(xhr){
-
-            var errors = xhr.responseJSON.errors;                   
-            $.each(errors, function(key,value){
-                $(divStatus).hide().append('<p class="invalid-feedback">'+value+'</p>').fadeIn('slow');      
-            });
-        };               
-        $('p.invalid-feedback').remove();
-    });
-});
-</script>
+<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-edit-form.js') }}"></script>

@@ -11,23 +11,22 @@
         <link rel="stylesheet" href="{{asset('css/forms.css')}}" />
         <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" />
     </head>
-    <body>       
+    <body>
         <header>
             <img class="logo" src="{{ asset('svg/logo_barrilete_OLD.svg') }}" onclick="location.href ='{{ route('default') }}'" title="Home" alt="Home" />
             <div id="main-search">
                 <form action="{{ route('searchAuth') }}" method="get" id="search">
-                    <input id="inputText" type="search" value="" name="query" placeholder="Buscar contenido" />
+                    <input type="search" value="" name="query" id="query" placeholder="Buscar contenido" />
                     <button type="submit" title="Buscar" id="search-button"><img src="{{asset('svg/search-black.svg')}}" /></button>
-                    <input type="hidden" value="articulos" name="sec" />
-                    <input type="hidden" value="{{ Auth::user()->id }}" name="author" />
+                    <input type="hidden" value="articulos" name="sec" id="sec" />
+                    <input type="hidden" value="{{ Auth::user()->id }}" name="author" id="author" />
                 </form>
             </div>
             <div id="user-menu">
                 <p>{{ Auth::user()->name }}<img src="{{ asset('svg/arrow-down.svg') }}" /></p>
                 <div id="user-options">
                     <a href="{{ route('options') }}" id="options"><img src="{{ asset('svg/options.svg') }}" />Opciones</a>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ asset('svg/log-out.svg') }}" />{{ __('Logout') }}</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+                    <a href="{{ URL::route('logout') }}" data-ajax="false"><img src="{{ asset('svg/log-out.svg') }}" />{{ __('Logout') }}</a>
                 </div>
             </div>
             <div id="user-notifications" style="display:none;">
@@ -35,8 +34,8 @@
                <img src="{{ asset('svg/notification.svg') }}" />
                <img src="{{ asset('svg/info.svg') }}" />
             </div>
-        </header>       
-        <section class="dashboard">            
+        </header>
+        <section class="dashboard">
             <aside class="tools-bar">
                 <h2>Mis publicaciones</h2>
                 <a href="{{ route('viewArticles',['id' => Auth::user() -> id]) }}" class="selected"><img src="{{ asset('svg/file.svg') }}" />Artículos</a>
@@ -54,7 +53,7 @@
                 @endif
             </aside>
             <div id="loader"><center><img src="{{ asset('img/loader.gif') }}" /></center></div>
-            <div id="user-content"></div>                       
+            <div id="user-content"></div>
         </section>
         <footer>
             <div class="footerContainer">
@@ -74,16 +73,48 @@
                     <img src="{{ asset('svg/facebook.svg') }}" class="footerSocialFacebook" />
                     <img src="{{ asset('svg/twitter.svg') }}" class="footerSocialTwitter" />
                 </div>
-            </div>                
+            </div>
         </footer>
         <!-- scripts -->
         <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>
         <script type="text/javascript">
-        $(document).ready(function(){
-            // LOAD CONTENIDO PAGINA PRINCIPAL DASHBOARD
-            $('#user-content').load('{{ route('viewArticles',['id' => Auth::user() -> id]) }}').prepend('<div id="loader"><center><img src="{{ asset("img/loader.gif") }}" /></center></div>').hide().fadeIn('normal');
-        });
+            $(document).ready(function(){
+                /**
+                 * LOAD MAIN ARTICLES
+                 */
+                const link = '{{ URL::route('viewArticles',['id' => Auth::user()->id], false) }}';
+                $.get(link, function(data) {
+                    $('#user-content').html(data.view)
+                        .prepend('<div id="loader"><center><img src="{{ asset("img/loader.gif") }}" /></center></div>')
+                        .hide().fadeIn('normal');
+                });
+
+                /**
+                 * SEARCH FORM
+                 */
+                $('button#search-button').on('click', function(e) {
+                    const button = $(this);
+                    const href = $('form#search').attr('action');
+                    getAjaxRequest(e, button, href, null);
+                });
+
+                /**
+                 * DROPDOWN USER OPTIONS
+                 */
+                $('div#user-menu').on('click', function(e) {
+                    e.preventDefault();
+                    $('div#user-options').slideToggle('fast');
+                    $(this).addClass('focus');
+                });
+                $(document).on('click', function(event){
+                    const trigger = $('div#user-menu');
+                    if(trigger !== event.target && !trigger.has(event.target).length) {
+                        $('div#user-options').slideUp('fast');
+                        $(trigger).removeClass('focus');
+                    }
+                });
+            });
         </script>
     </body>
 </html>

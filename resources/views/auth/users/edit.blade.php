@@ -2,7 +2,7 @@
     <img src="{{ asset('img/loading.gif') }}" /> Cargando galería de fotos...
     <div class="progress">
         <div class="bar"></div >
-        <div class="percent">0%</div >  
+        <div class="percent">0%</div >
     </div>
     <p>Por favor no actualizar ni cerrar ésta ventana mientras dure el proceso de carga.</p>
 </div>
@@ -10,12 +10,12 @@
     <h1>Editar usuario</h1>
     <div id="action">
         @if (Auth::user()->is_admin)
-        <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="primary" id="ver">Volver al listado</a>       
+        <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="primary" id="ver">Volver al listado</a>
         @if (!$user->is_admin)
         <a href="{{ route('makeAdmin', ['id' => $user->id]) }}" title="Dar privilegios de administración" class="success" id="editar">Hacer administrador</a>
         @elseif (!(Auth::user()->id == $user->id))
         <a href="{{ route('deleteAdmin', ['id' => $user->id]) }}" title="Quitar privilegios de administración" class="success" id="editar">Quitar administración</a>
-        @endif           
+        @endif
         @if (!(Auth::user()->id == $user->id))
         <a href="{{ route('deleteUser', ['id' => $user->id]) }}" title="Borrar usuario" class="danger" id="borrar">Borrar</a>
         @endif
@@ -24,20 +24,20 @@
         <a href="{{ route('account', ['id' => Auth::user()->id]) }}" title="Ver mi perfil" class="success" id="ver">Mi perfil</a>
         @endif
     </div>
-    <fieldset>   
+    <fieldset>
         <div id="errors"></div>
-        <form action="{{ route('updateUser') }}" enctype="multipart/form-data" method="post" id="createArticle">
+        <form action="{{ route('updateUser') }}" enctype="multipart/form-data" method="post">
             <input type="text" name="name" value="{{ $user->name }}" placeholder="Nombre" required />
-            <input type="email" name="email" value="{{ $user->email }}" placeholder="Correo electrónico (*) Obligatorio" required /> 
+            <input type="email" name="email" value="{{ $user->email }}" placeholder="Correo electrónico (*) Obligatorio" required />
             <input type="file" name="photo" class="jfilestyle" data-inputSize="500px" data-placeholder="Foto, 1MB Max. sólo imágenes JPG, JPEG, PNG" accept=".png, .jpg, .jpeg" />
             <hr />
-            <input type="date" name="birthday" value="{{ $user->birthday }}" placeholder="Fecha de nacimiento" />
+            <input type="date" name="birthday" value="{{ date("Y-m-d", strtotime($user->birthday)) }}" placeholder="Fecha de nacimiento" />
             <input type="text" name="phone" value="{{ $user->phone }}" placeholder="Número de teléfono" />
             <input type="text" name="address" value="{{ $user->address }}" placeholder="Dirección" />
             <input type="text" name="city" value="{{ $user->city }}" placeholder="Ciudad" />
             <input type="text" name="state" value="{{ $user->state }}" placeholder="Provincia o Estado" />
             <select name="country">
-                <option>{{ $user->country }}</option>
+                <option>{{ $user->country ? $user->country : 'Selecciona país' }}</option>
                 <option value="Afganistán" id="AF">Afganistán</option>
                 <option value="Albania" id="AL">Albania</option>
                 <option value="Alemania" id="DE">Alemania</option>
@@ -287,5 +287,5 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/dashboard-form-galleries.js') }}"></script>
-<script type="text/javascript" src="{{asset('js/dashboard-admin-users.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>
+<script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>

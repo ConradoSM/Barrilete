@@ -1,7 +1,7 @@
 @extends('layouts.barrilete')
 @section('title', 'Buscador')
 @section('content')
-@php 
+@php
 $query = Request::get('query')
 @endphp
 <div class="searchResultContainer">
@@ -10,8 +10,8 @@ $query = Request::get('query')
         <a class="{{ Request::get('sec') == 'galerias' ? 'active' : 'searchFilterLink' }}" href="{{route('search',['query'=>$query,'sec'=>'galerias'])}}">Galerías</a>
         <a class="{{ Request::get('sec') == 'encuestas' ? 'active' : 'searchFilterLink' }}" href="{{route('search',['query'=>$query,'sec'=>'encuestas'])}}">Encuestas</a>
     </p>
-    <p class="searchInfo">Se encontraron {{$resultado->total()}} resultados para la búsqueda: <b>{{$query}}</b></p>
-    @forelse ($resultado as $pub)
+    <p class="searchInfo">Se encontraron {{$result->total()}} resultados para la búsqueda: <b>{{$query}}</b></p>
+    @forelse ($result as $pub)
     <article class="searchResult">
         <p class="searchDate">{{$pub->created_at->diffForHumans()}}</p>
         @if (Request::get('sec') == 'articulos')
@@ -27,6 +27,6 @@ $query = Request::get('query')
     <hr />
     <p>No hay artículos para mostrar</p>
     @endforelse
-    {{$resultado->links()}}
+    {{$result->links()}}
 </div>
 @endsection

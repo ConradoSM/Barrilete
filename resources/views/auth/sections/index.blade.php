@@ -1,10 +1,9 @@
-@if (Auth::user()->is_admin)
 <h1>Lista de secciones</h1>
 <a href="{{ route('newSection') }}" class="primary" title="Nueva sección" id="crear">+ Nueva sección</a>
-@if (session('success'))
-<p class="alert-success">{{ session('success') }}</p>
-@elseif (session('error'))
-<p class="invalid-feedback">{{ session('error') }}</p>
+@if (isset($success))
+<p class="alert-success"><img src="/svg/ajax-success.svg"/>{{ $success }}</p>
+@elseif (isset($error))
+<p class="invalid-feedback"><img src="/svg/ajax-error.svg"/>{{ $error }}</p>
 @endif
 <table class="table">
   <thead>
@@ -22,18 +21,15 @@
       <td>{{ ucfirst($section->name) }}</td>
       <td>{{ $section->prio }}</td>
       <td>
-          <a href="{{ route('editSection', ['id' => $section->id]) }}" class="success-small" title="Editar sección" id="editar">Editar</a>
-          <a href="{{ route('deleteSection', ['id' => $section->id]) }}" class="danger-small" title="Borrar sección" id="borrar">Borrar</a>
+          <a href="{{ route('editSection', ['id' => $section->id]) }}" class="success-small" title="Editar sección">Editar</a>
+          <a href="{{ route('deleteSection', ['id' => $section->id]) }}" class="danger-small" title="Borrar sección" data-confirm="¿Estás seguro que deseas borrar la sección?">Borrar</a>
       </td>
     </tr>
     @empty
     <tr>
-        <td>No hay secciones</td>
+        <td colspan="4">No hay secciones</td>
     </tr>
     @endforelse
   </tbody>
 </table>
-<script type="text/javascript" src="{{asset('js/dashboard-admin-users.js')}}"></script>
-@else
-<p class="invalid-feedback">Error: no eres administrador del sistema</p>
-@endif
+<script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>

@@ -57,13 +57,13 @@ h3 {
 p {
     font-size: 1.7em;
     margin: 10px 0px;
-} 
+}
 p.alert-success {
     background-color: #82e0aa;
     padding: 10px;
     color:  #1d8348;
     margin: 10px 0px;
-    border-radius: 3px; 
+    border-radius: 3px;
     font-size: 1.3em;
 }
 p.invalid-feedback {
@@ -73,7 +73,22 @@ p.invalid-feedback {
     margin: 10px 0px;
     border-radius: 3px;
     font-size: 1.3em;
-} 
+}
+p.alert-warning {
+    background-color: #eeedc2;
+    padding: 10px;
+    color: #807F5F;
+    margin: 10px 0px;
+    border-radius: 3px;
+    font-size: 1.3em;
+}
+p.invalid-feedback img, p.alert-success img, p.alert-warning img {
+    width: auto;
+    height: 20px;
+    margin-right: 10px;
+    margin-bottom: -2px;
+}
+
 /*HEADER*/
 header {
     position: relative;
@@ -83,7 +98,7 @@ header {
     max-width: 1200px;
     height: 78px;
     padding: 10px;
-    background-image: linear-gradient(180deg,rgba(164,211,244,1.00) 0%,rgba(85,172,238,1.00) 69.42%);
+    background-color: #A9CCE3;
 }
 /*LOGO*/
 header img.logo {
@@ -120,15 +135,14 @@ header div#main-search button {
     width: 45px;
     height: 45px;
     padding: 7px;
-    background-color: rgba(85,172,238,1.00);
-    box-shadow: inset 0px 0px 5px 0px #1b90e8;
+    background-color: #8BADC4;
     border-radius: 0px 3px 3px 0px;
     border: none;
     cursor: pointer;
     -webkit-appearance: none;
 }
 header div#main-search button:hover {
-    background-color: #1b90e8;
+    background-color: #7495AC;
     transition: 0.3s;
 }
 /*DIV USER MENU*/
@@ -140,21 +154,20 @@ header div#user-menu {
     width: auto;
     height: auto;
     padding: 7px 10px 7px 10px;
-    background-color: rgba(85,172,238,1.00);
-    box-shadow: inset 0px 0px 5px 0px #1b90e8;
+    background-color: #8BADC4;
     border-radius: 3px;
     transition: 0.3s;
     cursor: pointer;
     z-index: 1;
 }
 header div#user-menu:hover {
-    background-color: #1b90e8;
+    background-color: #7495AC;
     transition: 0.3s;
 }
 header div#user-menu.focus {
     background-color: #f2f3f4;
     box-shadow: 0px 0px 3px 0px #999;
-}     
+}
 header div#user-menu p {
     font-size: 1.3em;
     font-weight: bold;
@@ -200,7 +213,7 @@ header div#user-menu a {
     height: auto;
     padding: 5px;
     color: #000;
-    font-size: 1.3em; 
+    font-size: 1.3em;
     font-weight: bold;
 }
 header div#user-menu a:visited {
@@ -259,7 +272,7 @@ section.dashboard aside.tools-bar a {
     font-size: 1.5em;
 }
 section.dashboard aside.tools-bar a.selected {
-    background-color: #a9cce3;  
+    background-color: #8BADC4;
     border-radius: 3px;
     cursor: default;
 }
@@ -284,7 +297,7 @@ div#user-content {
     height: auto;
     padding-left: 10px;
     padding-right: 10px;
-} 
+}
 /*FOOTER*/
 footer {
     position: relative;
@@ -344,7 +357,7 @@ footer div.footerContainer div.footerSocialContainer {
 }
 footer div.footerContainer div.footerSocialContainer img {
     width: auto;
-    height: 60px;   
+    height: 60px;
 }
 /*EDITAR FOTO*/
 div.container-photo-update-form {

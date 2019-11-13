@@ -2,66 +2,65 @@
 
 namespace barrilete\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use barrilete\Articles;
 use barrilete\Gallery;
 use barrilete\Poll;
 
-/**
- * Class SearchController
- * @package barrilete\Http\Controllers
- */
-class SearchController extends Controller {
-
+class SearchController extends Controller
+{
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
-
-    public function search(Request $request) {
-
-        $seccion = $request->input('sec');
-        $busqueda = $request->input('query');
-
-        if ($seccion == 'articulos') {
-            $resultado = Articles::search($busqueda);
-        } elseif ($seccion == 'galerias') {
-            $resultado = Gallery::search($busqueda);
-        } elseif ($seccion == 'encuestas') {
-            $resultado = Poll::search($busqueda);
-        } else
-            return view('errors.search-error');
-
-        $resultado->appends(['query' => $busqueda, 'sec' => $seccion]);
-
-        return view('search', compact('resultado'));
+    public function search(Request $request)
+    {
+        $section = $request->input('sec');
+        $search = $request->input('query');
+        if ($section == 'articulos') {
+            $result = Articles::search($search);
+        } elseif ($section == 'galerias') {
+            $result = Gallery::search($search);
+        } elseif ($section == 'encuestas') {
+            $result = Poll::search($search);
+        } else {
+            return view('errors.404');
+        }
+        $result->appends(['query' => $search, 'sec' => $section]);
+        return view('search', compact('result'));
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @return Factory|JsonResponse|View
+     * @throws \Throwable
      */
-    public function searchAuth(Request $request) {
-        
+    public function searchAuth(Request $request)
+    {
         if ($request->ajax()) {
-
-            $seccion = $request->input('sec');
-            $busqueda = $request->input('query');
+            $section = $request->input('sec');
+            $search = $request->input('query');
             $author = $request->input('author');
-
-            if ($seccion == 'articulos') {
-                $resultado = Articles::searchAuth($busqueda, $author);
-            } elseif ($seccion == 'galerias') {
-                $resultado = Gallery::SearchAuth($busqueda, $author);
-            } elseif ($seccion == 'encuestas') {
-                $resultado = Poll::SearchAuth($busqueda, $author);
-            } else
-                return view('errors.search-error');
-
-            $resultado->appends(['query' => $busqueda, 'sec' => $seccion, 'author' => $author]);
-
-            return view('auth.search', compact('resultado'));
-            
-        } else return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
+            if ($section == 'articulos') {
+                $result = Articles::searchAuth($search, $author);
+            } elseif ($section == 'galerias') {
+                $result = Gallery::SearchAuth($search, $author);
+            } elseif ($section == 'encuestas') {
+                $result = Poll::SearchAuth($search, $author);
+            } else {
+                $result = [];
+                return response()->json([
+                    'view' => view('auth.search', compact('result'))->render()
+                ])->header('Content-Type', 'application/json');
+            }
+            $result->appends(['query' => $search, 'sec' => $section, 'author' => $author]);
+            return response()->json([
+                'view' => view('auth.search', compact('result'))->render()
+            ])->header('Content-Type', 'application/json');
+        }
+        return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 }

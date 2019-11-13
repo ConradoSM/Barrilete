@@ -31,6 +31,10 @@
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
         <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}">
         <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+        <!-- Scripts js -->
+        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.lazy.min.js') }}"></script>
+        <script src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129739451-1"></script>
         <script>
@@ -56,14 +60,14 @@
                     <div class="menu-btn-block top"></div>
                     <div class="menu-btn-block middle"></div>
                     <div class="menu-btn-block bottom"></div>
-                </a>                
+                </a>
             </div>
             <nav class="none">
                 <ul>
                     @forelse ($sections as $section)
-                    <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" class="{{ Request::path() == 'sec/'.$section->name ? 'active' : '' }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
+                    <li><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" class="{{ Request::path() == 'sec/'.$section->name ? 'active' : '' }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
                     @empty
-                    @endforelse 
+                    @endforelse
                 </ul>
             </nav>
             <div id="glass" class="hide"></div>
@@ -77,10 +81,10 @@
                     <h2>Secciones</h2>
                     <ul>
                         @forelse ($sections as $section)
-                        <li><a href="{{ route('section',['seccion'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
+                        <li><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
                         @empty
-                        @endforelse 
-                    </ul>   
+                        @endforelse
+                    </ul>
                 </div>
                 <div>
                     <h2>Ingreso al sistema</h2>
@@ -107,11 +111,7 @@
                     <a href="https://www.twitter.com/Barrilete_Info/" target="_blank"><img title="Barrilete en Twitter" src="{{ asset('svg/twitter.svg') }}" /></a>
                     <p class="version">© 2019 todos los derechos reservados - Ver: 2.0.1</p>
                 </div>
-            </div>                
+            </div>
         </footer>
-        <!-- Scripts js --> 
-        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>       
-        <script src="{{ asset('js/jquery.lazy.min.js') }}"></script>
-        <script src="{{ asset('js/home-scripts.js') }}"></script>
     </body>
 </html>

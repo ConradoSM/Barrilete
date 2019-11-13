@@ -5,7 +5,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 0px;
-    border: 0px; 
+    border: 0px;
     border-radius: 3px;
     box-shadow: 0px 0px 3px #999;
     font-size: 1.2em;
@@ -34,7 +34,7 @@ input[type=submit], input[type=button], input[type=reset] {
     color: #fff;
     border: none;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 2px 0px #515a5a; 
+    box-shadow: inset 0px 0px 2px 0px #515a5a;
     text-shadow:  1px 1px 0px #000;
     cursor: pointer;
 }
@@ -44,7 +44,7 @@ input[type=submit], input[type=button], input[type=reset] {
     color: #fff;
     border: none;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 2px 0px #515a5a; 
+    box-shadow: inset 0px 0px 2px 0px #515a5a;
     text-shadow:  1px 1px 0px #000;
     font-size: 1em;
     cursor: pointer;
@@ -56,17 +56,17 @@ input[type=submit], input[type=button], input[type=reset] {
 .default:hover, .default-small:hover {
     color: #fff;
     background: rgb(234,236,238);
-    background: linear-gradient(180deg, rgba(213,216,220,1) 30%, rgba(128,139,150,1) 100%); 
+    background: linear-gradient(180deg, rgba(213,216,220,1) 30%, rgba(128,139,150,1) 100%);
     transition: 0.3s;
 }
 /*Boton primary*/
 .primary {
     padding: 5px 20px 7px 20px;
-    background: linear-gradient(180deg, rgba(127,179,213,1) 30%, rgba(41,128,185,1) 100%); 
+    background: linear-gradient(180deg, rgba(127,179,213,1) 30%, rgba(41,128,185,1) 100%);
     color: #fff;
     border: none;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 2px 0px #1a5276; 
+    box-shadow: inset 0px 0px 2px 0px #1a5276;
     text-shadow:  1px 1px 0px #000;
     cursor: pointer;
 }
@@ -76,7 +76,7 @@ input[type=submit], input[type=button], input[type=reset] {
     color: #fff;
     border: none;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 2px 0px #1a5276; 
+    box-shadow: inset 0px 0px 2px 0px #1a5276;
     text-shadow:  1px 1px 0px #000;
     font-size: 1em;
     cursor: pointer;
@@ -87,7 +87,7 @@ input[type=submit], input[type=button], input[type=reset] {
 }
 .primary:hover, .primary-small:hover {
     color: #fff;
-    background: linear-gradient(180deg, rgba(127,179,213,1) 30%, rgba(31,97,141,1) 100%); 
+    background: linear-gradient(180deg, rgba(127,179,213,1) 30%, rgba(31,97,141,1) 100%);
     transition: 0.3s;
 }
 
@@ -95,22 +95,22 @@ input[type=submit], input[type=button], input[type=reset] {
 .danger {
     padding: 5px 20px 7px 20px;
     background: rgb(236,112,99);
-    background: linear-gradient(180deg, rgba(236,112,99,1) 30%, rgba(203,67,53,1) 100%); 
+    background: linear-gradient(180deg, rgba(236,112,99,1) 30%, rgba(203,67,53,1) 100%);
     color: #fff;
     border: none;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 2px 0px #641e16; 
+    box-shadow: inset 0px 0px 2px 0px #641e16;
     text-shadow:  1px 1px 0px #000;
     cursor: pointer;
 }
 .danger-small {
     padding: 0px 10px 3px 10px;
     background: rgb(236,112,99);
-    background: linear-gradient(180deg, rgba(236,112,99,1) 30%, rgba(203,67,53,1) 100%); 
+    background: linear-gradient(180deg, rgba(236,112,99,1) 30%, rgba(203,67,53,1) 100%);
     color: #fff;
     border: none;
     border-radius: 3px;
-    box-shadow: inset 0px 0px 2px 0px #641e16; 
+    box-shadow: inset 0px 0px 2px 0px #641e16;
     text-shadow:  1px 1px 0px #000;
     font-size: 1em;
     cursor: pointer;
@@ -122,14 +122,14 @@ input[type=submit], input[type=button], input[type=reset] {
 .danger:hover, .danger-small:hover {
     color: #fff;
     background: rgb(236,112,99);
-    background: linear-gradient(180deg, rgba(236,112,99,1) 30%, rgba(148,49,38,1) 100%); 
+    background: linear-gradient(180deg, rgba(236,112,99,1) 30%, rgba(148,49,38,1) 100%);
     transition: 0.3s;
 }
 /*Boton success*/
 .success {
     padding: 5px 20px 7px 20px;
     background: rgb(88,214,141);
-    background: linear-gradient(180deg, rgba(88,214,141,1) 30%, rgba(40,180,99,1) 100%); 
+    background: linear-gradient(180deg, rgba(88,214,141,1) 30%, rgba(40,180,99,1) 100%);
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -156,7 +156,7 @@ input[type=submit], input[type=button], input[type=reset] {
 .success:hover, .success-small:hover {
     color: #fff;
     background: rgb(88,214,141);
-    background: linear-gradient(180deg, rgba(88,214,141,1) 30%, rgba(35,155,86,1) 100%); 
+    background: linear-gradient(180deg, rgba(88,214,141,1) 30%, rgba(35,155,86,1) 100%);
     transition: 0.3s;
 }
 .disabled {
@@ -203,7 +203,7 @@ fieldset img {
     width: 100%;
     height: auto;
 }
-fieldset img.eliminar {
+fieldset img.delete {
     position: absolute;
     top:20px;
     right: 10px;
@@ -214,7 +214,7 @@ fieldset img.eliminar {
     border-radius: 0px 3px 3px 0px;
     cursor: pointer;
 }
-fieldset img.eliminar:hover {
+fieldset img.delete:hover {
     background-color: #e53838;
     transition: 0.3s;
 }
@@ -235,7 +235,7 @@ div.dashboard-login input[type=password].is-invalid, input[type=email].is-invali
     height: auto;
     padding: 10px;
     margin-bottom: 10px;
-    border: 0px; 
+    border: 0px;
     border-radius: 3px;
     box-shadow: 0px 0px 3px #c71a1a;
     font-size: 1.2em;
@@ -289,7 +289,7 @@ div.dashboard-login input[type=password].is-invalid, input[type=email].is-invali
     height: 8px;
     border-radius: 50%;
     background: white;
-}  
+}
 
 /* INPUT CHECKBOX */
 .check-container {
@@ -370,7 +370,7 @@ div.jfilestyle input {
 div.jfilestyle label {
     display: inline-block;
     width: auto;
-    vertical-align: middle;	
+    vertical-align: middle;
     margin-top: -7px;
     margin-left: -3px;
     padding: 10px 20px 10px 20px;
@@ -393,12 +393,12 @@ div.jfilestyle.jfilestyle-corner input:last-child {
 }
 div.jfilestyle.jfilestyle-corner input:first-child,
 div.jfilestyle.jfilestyle-corner span:first-child>label {
-    border-radius: 3px 0 0 3px;	
+    border-radius: 3px 0 0 3px;
 }
 
 div.jfilestyle.jfilestyle-corner input:last-child,
 div.jfilestyle.jfilestyle-corner span:last-child>label {
-    border-radius: 0 3px 3px 0;	
+    border-radius: 0 3px 3px 0;
 }
 
 div.jfilestyle label[disabled] {

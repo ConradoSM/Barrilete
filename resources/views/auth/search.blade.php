@@ -1,4 +1,4 @@
-@php 
+@php
 $query = Request::get('query')
 @endphp
 <div id="user-articles-list">
@@ -7,8 +7,8 @@ $query = Request::get('query')
         <a class="{{ Request::get('sec') == 'galerias' ? 'active' : 'searchFilterLink' }}" href="{{route('searchAuth',['query'=>$query,'sec'=>'galerias','author'=>Auth::user()->id])}}">Galerías</a>
         <a class="{{ Request::get('sec') == 'encuestas' ? 'active' : 'searchFilterLink' }}" href="{{route('searchAuth',['query'=>$query,'sec'=>'encuestas','author'=>Auth::user()->id])}}">Encuestas</a>
     </p>
-    <p class="searchInfo">Se encontraron {{$resultado->total()}} resultados para la búsqueda: <b>{{$query}}</b></p>
-    @forelse ($resultado as $pub)
+    <p class="searchInfo">Se encontraron {{$result ? $result->total() : 0}} resultados para la búsqueda: <b>{{$query}}</b></p>
+    @forelse ($result as $pub)
     <article class="searchResult">
         <p class="searchDate">
             @if ($pub->status == 'DRAFT')
@@ -31,29 +31,6 @@ $query = Request::get('query')
     <hr />
     <p>No hay artículos para mostrar</p>
     @endforelse
-    {{$resultado->links()}}
+    {{$result ? $result->links() : ''}}
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('div#user-articles-list a').each(function () {
-
-            var href = $(this).attr('href');
-            $(this).attr({href: '#'});
-
-            $(this).click(function () {
-                $('#user-articles-list').fadeOut('fast', 'linear', function () {
-                    $('#loader').fadeIn('fast', 'linear', function () {
-                        $('#loader').fadeOut('fast', 'linear', function () {
-                            $('#user-content').fadeOut('fast', 'linear', function () {
-                                $('#user-content').load(href, function () {
-                                    $('#user-content').fadeIn('fast', 'linear');
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>

@@ -1,18 +1,18 @@
-@if (isset($Exito))
-<p class="alert-success">{{ $Exito }}</p>
+@if (isset($success))
+<p class="alert-success"><img src="/svg/ajax-success.svg"/>{{ $success }}</p>
 @endif
 <h1>Detalle del usuario</h1>
 <div id="action">
     @if (Auth::user()->is_admin)
-    <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="primary" id="ver">Volver al listado</a>
-    <a href="{{ route('editUser', ['id' => $user->id]) }}" title="Editar perfil del usuario" class="success" id="editar">Editar</a>
+    <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="primary">Volver al listado</a>
+    <a href="{{ route('editUser', ['id' => $user->id]) }}" title="Editar perfil del usuario" class="success">Editar</a>
     @if (!(Auth::user()->id == $user->id))
-    <a href="{{ route('deleteUser', ['id' => $user->id]) }}" title="Borrar usuario del sistema" class="danger" id="borrar">Borrar</a>
+    <a href="{{ route('deleteUser', ['id' => $user->id]) }}" title="Borrar usuario del sistema" class="danger" data-confirm="¿Estás seguro que quieres borrar éste usuario?">Borrar</a>
     @endif
     @else
-    <a href="{{ route('options') }}" class="primary" title="Ver opciones" id="ver">Opciones</a>
-    <a href="{{ route('editUser', ['id' => $user->id]) }}" title="Editar mi perfil" class="success" id="editar">Editar</a>
-    @endif       
+    <a href="{{ route('options') }}" class="primary" title="Ver opciones">Opciones</a>
+    <a href="{{ route('editUser', ['id' => $user->id]) }}" title="Editar mi perfil" class="success">Editar</a>
+    @endif
 </div>
 <fieldset>
     @if ($user->photo)
@@ -44,4 +44,4 @@
     <p><b>Galerías</b>: <span class="info">{{ $user->gallery->count() }}</span></p>
     <p><b>Encuestas</b>: <span class="info">{{ $user->poll->count() }}</span></p>
 </fieldset>
-<script type="text/javascript" src="{{asset('js/dashboard-admin-users.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>

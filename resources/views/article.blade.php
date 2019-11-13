@@ -26,27 +26,25 @@
     <hr />
     <div id="disqus_thread"></div>
     <script>
-    
-    var disqus_config = function () {
-    this.page.url = '{{ Request::url() }}';
-    this.page.identifier = '{{ Request::url() }}'; 
-    };
-    
-    (function() { 
-    var d = document, s = d.createElement('script');
-    s.src = 'https://barrilete.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
+        const disqus_config = function () {
+            this.page.url = '{{ Request::url() }}';
+            this.page.identifier = '{{ Request::url() }}';
+        };
+        (function() {
+            const d = document, s = d.createElement('script');
+            s.src = 'https://barrilete.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </article>
 <aside class="pubSeccion">
     @forelse ($moreArticles as $more)
     <article class="pubArticle">
-        <img data-src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}'" />   
+        <img data-src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}'" />
         <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
-    </article> 
+    </article>
     @empty
     @endforelse
 </aside>
