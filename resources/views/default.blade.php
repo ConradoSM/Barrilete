@@ -27,7 +27,7 @@
                 <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
                     <article class="galeriaIndex">
                         <img data-src="{{ asset('img/galleries/.thumbs/'.$gallery->photos->first()->photo) }}" title="{{ $gallery->title }}" alt="{{ $gallery->title }}" class="lazy" />
-                        <a href="{{ route('gallery',['id'=>$gallery->id,'titulo'=>str_slug($gallery->title,'-')]) }}">{{ $gallery->title }}</a>
+                        <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}">{{ $gallery->title }}</a>
                     </article>
                 @endforeach
             </div>
@@ -38,7 +38,7 @@
                 @foreach ($pollsIndex as $pollIndex)
                 <article class="pollIndex">
                     <p>{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} @if ($pollIndex->option->sum('votes') == 1) voto @elseif ($pollIndex->option->sum('votes') > 1) votos @elseif ($pollIndex->option->sum('votes') == 0) No hay votos @endif</p>
-                    <a href="{{ route('poll',['id'=>$pollIndex->id,'titulo'=>str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
+                    <a href="{{ route('poll',['id'=>$pollIndex->id,'title'=>str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
                 </article>
                 @endforeach
             </div>

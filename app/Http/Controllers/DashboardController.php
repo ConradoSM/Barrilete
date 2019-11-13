@@ -92,7 +92,7 @@ class DashboardController extends Controller
     {
         if ($request->ajax()) {
             $article = null;
-            $sections = Sections::select('id','name')->where('name','!=','Encuestas');
+            $sections = Sections::select('id','name')->where('name','!=','Encuestas')->where('name','!=','Galerias')->get();
             if ($request->id) {
                 $article = Articles::find($request->id);
                 $sections = Sections::select('id','name')->where('name', '!=', $article->section->name)->where('name','!=','Encuestas');
@@ -100,7 +100,6 @@ class DashboardController extends Controller
             if (!$sections->first()) {
                 return response()->json(['error' => 'Primero debes crear alguna sección'], 500);
             }
-            $sections = $sections->get();
             return response()->json([
                 'view' => view('auth.articles.formArticles', compact('sections', 'article'))->render()
             ])->header('Content-Type', 'application/json');
