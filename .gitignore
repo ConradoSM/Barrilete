@@ -7,8 +7,6 @@
 /public_html/img/galleries/*
 /public_html/img/galleries/.thumbs/*
 /public_html/img/users/*
-/public_html/js/ckeditor4.11.1s/
-/public_html/js/kcfinder/
 /public_html/js/jquery-filestyle.js
 /public_html/js/jquery.form.js
 git status
