@@ -5,14 +5,15 @@
 @section('content')
     @if($articlesIndex)
         @foreach ($articlesIndex as $article)
-            <article class="pubIndex">
+            <article class="pubIndex translate">
+                <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
                 <div class="seccion" onclick="location.href ='{{ route('section',['seccion'=>str_slug($article->section->name)]) }}'">{{ $article->section->name }}</div>
                 @if ($article->video == 1)<img src="{{ asset('img/play-button.png') }}" class="video" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
                 @endif
                 @if ($loop->iteration == 1)
-                <img data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
+                <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
                 @else
-                <img data-src="{{ asset('img/articles/.thumbs/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
+                <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/.thumbs/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
                 @endif
                 <a href="{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}">{{ $article->title }}</a>
                 <p>{{ ucfirst($article->created_at->diffForHumans()) }}</p>
@@ -22,11 +23,12 @@
         <h2>No hay artículos para mostrar</h2>
     @endif
         @if($galleryIndex)
-            <div class="galeriasContainerIndex">
+            <div class="galeriasContainerIndex translate">
                 @foreach ($galleryIndex as $gallery)
-                <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
+                    <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
+                    <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
                     <article class="galeriaIndex">
-                        <img data-src="{{ asset('img/galleries/.thumbs/'.$gallery->photos->first()->photo) }}" title="{{ $gallery->title }}" alt="{{ $gallery->title }}" class="lazy" />
+                        <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/.thumbs/'.$gallery->photos->first()->photo) }}" title="{{ $gallery->title }}" alt="{{ $gallery->title }}" class="lazy"/>
                         <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}">{{ $gallery->title }}</a>
                     </article>
                 @endforeach

@@ -22,21 +22,22 @@
     </p>
     <hr />
 @forelse ($photos as $photo)
-<article class="fotos">
-    <img data-src="{{ asset('img/galleries/'.$photo->photo)}}" class="lazy" title="{{$photo->title}}" />
+<article class="fotos translate">
+    <img src="{{asset('svg/placeholder.svg')}}" class="placeholder"/>
+    <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/'.$photo->photo)}}" class="lazy" title="{{$photo->title}}" />
     <p>{{$photo->title}}</p>
 </article>
 @empty
-    <h1>No hay fotos</h1>
+    <h2>No hay fotos</h2>
 @endforelse
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
 this.page.url = '{{ Request::url() }}';
-this.page.identifier = '{{ Request::url() }}'; 
+this.page.identifier = '{{ Request::url() }}';
 };
 
-(function() { 
+(function() {
 var d = document, s = d.createElement('script');
 s.src = 'https://barrilete.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());

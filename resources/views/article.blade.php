@@ -12,8 +12,9 @@
 @section('article_section', $article->section->name)
 @section('content')
 <div class="pubContainer">
-<article class="pub">
-    <img data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" />
+<article class="pub translate">
+    <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
+    <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" />
     <h1>{{ $article -> title }}</h1>
     <p class="copete">{{ $article->article_desc }}</p>
     <p class="info">
@@ -41,8 +42,9 @@
 </article>
 <aside class="pubSeccion">
     @forelse ($moreArticles as $more)
-    <article class="pubArticle">
-        <img data-src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}'" />
+    <article class="pubArticle translate">
+        <img src="{{asset('svg/placeholder.svg')}}" class="placeholder"/>
+        <img src="{{ asset('img/before-load.png') }}" data-src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}'" />
         <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
     </article>
     @empty
