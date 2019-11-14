@@ -13,7 +13,7 @@
     </head>
     <body>
         <header>
-            <img class="logo" src="{{ asset('svg/logo_barrilete_OLD.svg') }}" onclick="location.href ='{{ route('default') }}'" title="Home" alt="Home" />
+            <img class="logo" src="{{ asset('svg/logo_barrilete_OLD.svg') }}" onclick="window.location = '{{ route('default') }}'" title="Home" alt="Home" />
             <div id="main-search">
                 <form action="{{ route('searchAuth') }}" method="get" id="search">
                     <input type="search" value="" name="query" id="query" placeholder="Buscar contenido" />
@@ -60,7 +60,7 @@
                 <div>
                     <h2>Contacto</h2>
                     <ul>
-                        <li><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></li>
+                        <li><a href="mailto:info@barrilete.com.ar" data-ajax="false">info@barrilete.com.ar</a></li>
                     </ul>
                 </div>
                 <div>
