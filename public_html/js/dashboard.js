@@ -13,6 +13,7 @@ $(document).ready(function() {
              */
             $(this).on('click', function(e) {
                 const button = $(this);
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
                 if (button.attr('class') === 'disabled') {
                     return false;
                 }

@@ -12,17 +12,18 @@
 @section('article_section', $articles->first()->section->name)
 @section('content')
     @forelse ($articles as $sec)
-        <article class="pubIndex">
+        <article class="pubIndex translate">
+            <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
             @if ($sec -> video == 1)<img src="{{ asset('img/play-button.png') }}" class="video"  onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />@endif
             @if ($loop->iteration == 1)
-            <img data-src="{{ asset('/img/articles/images/'.$sec -> photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
+            <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('/img/articles/images/'.$sec -> photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
             @else
-            <img data-src="{{ asset('/img/articles/.thumbs/images/'.$sec->photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
+            <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('/img/articles/.thumbs/images/'.$sec->photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
             @endif
             <a href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}">{{ $sec -> title  }}</a>
             <p>{{ ucfirst($sec->created_at->diffForHumans()) }}</p>
         </article>
     @empty
-        <h1>No hay artículos para mostrar</h1>
+        <h2>No hay artículos para mostrar</h2>
     @endforelse
 @endsection

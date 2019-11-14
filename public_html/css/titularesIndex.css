@@ -48,8 +48,23 @@ article.pubIndex img.video {
     border-radius: 50%;
     z-index: 1;
 }
+img.lazy {
+    background-image: url('/img/loader-image.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 50px auto;
+}
+img.placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px !important;
+    height: auto !important;
+}
+.translate img.camera, img.placeholder {
+    transform: translate(-50%, -50%);
+}
 article.pubIndex img {
-    display: block;
     width: 100%;
     height: 250px;
     z-index: 0;
@@ -83,8 +98,7 @@ div.galeriasContainerIndex {
 div.galeriasContainerIndex img.camera {
     position: absolute;
     left: 50%;
-    top: 45%;
-    transform: translate(-50%, -45%);
+    top: 50%;
     width: 100px;
     height: 100px;
     z-index: 1;
@@ -237,11 +251,11 @@ article.pollIndex a {
         line-height: 1em;
     }
 }
-@media (min-width: 576px) and (max-width: 767.98px) { 
+@media (min-width: 576px) and (max-width: 767.98px) {
     /*****************
     **MAIN TITULARES**
     *****************/
-    article.pubIndex {       
+    article.pubIndex {
         display: flex;
         flex-flow: column nowrap;
         width: 100%;
@@ -305,9 +319,9 @@ article.pollIndex a {
     article.pollIndex a {
         font-size: 2em;
         line-height: 1em;
-    } 
+    }
 }
-@media (min-width: 768px) and (max-width: 991.98px) { 
+@media (min-width: 768px) and (max-width: 991.98px) {
     /*****************
     **MAIN TITULARES**
     *****************/
@@ -381,7 +395,7 @@ article.pollIndex a {
         font-size: 1.2em;
     }
 }
-@media (min-width: 992px) and (max-width: 1199.98px) { 
+@media (min-width: 992px) and (max-width: 1199.98px) {
     /*****************
     **MAIN TITULARES**
     *****************/
@@ -450,7 +464,7 @@ article.pollIndex a {
     }
     article.pubIndex:nth-child(1) img.video {
         width: 100px;
-        height: auto; 
+        height: auto;
         top: 250px;
         left: 250px;
     }
@@ -496,7 +510,7 @@ article.pollIndex a {
     }
     article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video{
         width: 50px;
-        height: auto; 
+        height: auto;
         top: 100px;
         left: 260px;
     }
@@ -583,7 +597,7 @@ article.pollIndex a {
     }
     article.pubIndex:nth-child(12) img.video {
         width: 50px;
-        height: auto; 
+        height: auto;
         top: 130px;
         left: 180px;
     }

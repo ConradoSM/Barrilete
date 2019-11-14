@@ -28,7 +28,7 @@ a:active:focus {
     color: #1f618d;
 }
 a:hover {
-    color: #000;   
+    color: #000;
 }
 hr {
     width: 100%;
@@ -61,7 +61,7 @@ h3 {
 p {
     font-size: 1.7em;
     margin: 10px 0px;
-} 
+}
 
 /*********
 **HEADER**
@@ -69,7 +69,7 @@ p {
 header.relative {
     position: relative;
     display: flex;
-    flex-flow: row wrap; 
+    flex-flow: row wrap;
     justify-content: center;
     width: 100%;
     height: auto;
@@ -80,12 +80,12 @@ header.relative {
 header.fixed {
     position: fixed;
     display: flex;
-    flex-flow: row wrap; 
+    flex-flow: row wrap;
     justify-content: center;
     width: 100%;
     height: auto;
     background-color: #eaecee;
-    box-shadow: 0px 0px 10px #000; 
+    box-shadow: 0px 0px 10px #000;
     z-index: 1;
     transition: 0.5s;
 }
@@ -141,7 +141,7 @@ div#search img.small {
     width: auto;
     height: 37px;
     padding: 7px;
-    background-color: #d0d3d4; 
+    background-color: #d0d3d4;
     border-radius: 0px 3px 3px 0px;
     cursor: pointer;
     transition: 0.5s;
@@ -177,7 +177,7 @@ nav {
     background-color: #d0d3d4;
 }
 nav ul {
-    display: flex;    
+    display: flex;
     list-style: none;
     margin: 0px;
     padding: 0px;
@@ -239,7 +239,7 @@ section.mainSection {
     width: 100%;
     max-width: 1200px;
     height: auto;
-    min-height: 500px;      
+    min-height: 500px;
     padding-top: 40px;
     padding-bottom: 30px;
     z-index: 0;
@@ -281,7 +281,7 @@ div.dashboard-login a {
 div.dashboard-login p img {
     width: auto;
     height: 1.3em;
-    vertical-align: middle; 
+    vertical-align: middle;
     margin-right: 10px;
 }
 p.alert-success {
@@ -289,7 +289,7 @@ p.alert-success {
     padding: 10px;
     color:  #1d8348;
     margin: 10px 0px;
-    border-radius: 3px; 
+    border-radius: 3px;
     font-size: 1.3em;
 }
 p.invalid-feedback {
@@ -360,7 +360,7 @@ footer div.footerContainer div.footerSocialContainer {
 }
 footer div.footerContainer div.footerSocialContainer img {
     width: auto;
-    height: 60px;   
+    height: 60px;
 }
 footer div.footerContainer div.footerSocialContainer p {
     display: none;
@@ -378,7 +378,7 @@ footer div.footerContainer div.footerSocialContainer p {
     z-index: 0;
     opacity: 0.6;
 }
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
     header.relative, header.fixed {
         padding: 10px;
     }
@@ -534,8 +534,8 @@ footer div.footerContainer div.footerSocialContainer p {
         background-color: rgba(0,0,0,0.3);
         z-index: 2;
     }
-    div#glass.show {   
-        right: 0%;    
+    div#glass.show {
+        right: 0%;
     }
     /**********************
     ****NAV NONE-ACTIVE****
@@ -578,7 +578,7 @@ footer div.footerContainer div.footerSocialContainer p {
     nav.none ul li a, nav.active ul li a {
         padding: 5px 5px 5px 5px;
         color: #000;
-        font-size: 1.6em; 
+        font-size: 1.6em;
         font-weight: bold;
         text-transform: uppercase;
         border: none;
@@ -626,10 +626,10 @@ footer div.footerContainer div.footerSocialContainer p {
         margin-right: 10px;
     }
     footer div.footerContainer div.footerSocialContainer p {
-        display: block;   
+        display: block;
     }
 }
-@media (min-width: 576px) and (max-width: 767.98px) { 
+@media (min-width: 576px) and (max-width: 767.98px) {
     header.relative, header.fixed {
         padding: 10px;
     }
@@ -786,8 +786,8 @@ footer div.footerContainer div.footerSocialContainer p {
         background-color: rgba(0,0,0,0.3);
         z-index: 2;
     }
-    div#glass.show {   
-        right: 0%;    
+    div#glass.show {
+        right: 0%;
     }
     /**********************
     ****NAV NONE-ACTIVE****
@@ -830,7 +830,7 @@ footer div.footerContainer div.footerSocialContainer p {
     nav.none ul li a, nav.active ul li a {
         padding: 5px 5px 5px 5px;
         color: #000;
-        font-size: 1.5em; 
+        font-size: 1.5em;
         font-weight: bold;
         text-transform: uppercase;
         border: none;
@@ -886,7 +886,7 @@ footer div.footerContainer div.footerSocialContainer p {
         margin-left: 10px;
     }
 }
-@media (min-width: 768px) and (max-width: 991.98px) { 
+@media (min-width: 768px) and (max-width: 991.98px) {
     header.relative, header.fixed {
         padding: 10px;
     }
@@ -1043,7 +1043,7 @@ footer div.footerContainer div.footerSocialContainer p {
         background-color: rgba(0,0,0,0.3);
         z-index: 2;
     }
-    div#glass.show {   
+    div#glass.show {
         right: 0%;
     }
     /**********************
@@ -1087,7 +1087,7 @@ footer div.footerContainer div.footerSocialContainer p {
     nav.none ul li a, nav.active ul li a {
         padding: 5px 5px 5px 5px;
         color: #000;
-        font-size: 1.5em; 
+        font-size: 1.5em;
         font-weight: bold;
         text-transform: uppercase;
         border: none;
@@ -1137,12 +1137,12 @@ footer div.footerContainer div.footerSocialContainer p {
         margin-right: 10px;
     }
     footer div.footerContainer div.footerSocialContainer p {
-        display: block; 
+        display: block;
         margin-top: 0px;
         margin-left: 10px;
     }
 }
-@media (min-width: 992px) and (max-width: 1199.98px) { 
+@media (min-width: 992px) and (max-width: 1199.98px) {
     /*********
     **HEADER**
     *********/
@@ -1153,9 +1153,9 @@ footer div.footerContainer div.footerSocialContainer p {
         padding-left: 10px;
         padding-right: 10px;
     }
-    
+
     nav ul li a {
-        font-size: 1.25em; 
+        font-size: 1.25em;
     }
     /********************
     **SECCION PRINCIPAL**
