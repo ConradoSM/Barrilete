@@ -85,7 +85,7 @@ class GalleryPhotosController extends Controller
                 $uploadThumb = public_path('img/galleries/.thumbs/'.$fileName);
                 /** SUBIR FOTO NUEVA */
                 Image::make($request->file('photo')->getRealPath())->save($upload);
-                Image::make($request->file('photo')->getRealPath())->resize(700, NULL,
+                Image::make($request->file('photo')->getRealPath())->resize(570, 310,
                     function($constraint) {
                         $constraint->aspectRatio();
                     })->save($uploadThumb);

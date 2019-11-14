@@ -24,14 +24,12 @@
     @endif
         @if($galleryIndex)
             <div class="galeriasContainerIndex translate">
-                @foreach ($galleryIndex as $gallery)
-                    <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
-                    <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
-                    <article class="galeriaIndex">
-                        <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/.thumbs/'.$gallery->photos->first()->photo) }}" title="{{ $gallery->title }}" alt="{{ $gallery->title }}" class="lazy"/>
-                        <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}">{{ $gallery->title }}</a>
-                    </article>
-                @endforeach
+                <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
+                <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
+                <article class="galeriaIndex">
+                    <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/.thumbs/'.$galleryIndex->photos->first()->photo) }}" title="{{ $galleryIndex->title }}" alt="{{ $galleryIndex->title }}" class="lazy"/>
+                    <a href="{{ route('gallery',['id'=>$galleryIndex->id,'title'=>str_slug($galleryIndex->title,'-')]) }}">{{ $galleryIndex->title }}</a>
+                </article>
             </div>
         @endif
         @if($pollsIndex)

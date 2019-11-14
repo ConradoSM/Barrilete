@@ -91,7 +91,7 @@ class GalleriesController extends Controller
                 $upload = public_path('img/galleries/'.$filename);
                 $uploadThumb = public_path('img/galleries/.thumbs/'.$filename);
                 Image::make($file->getRealPath())->save($upload);
-                Image::make($file->getRealPath())->resize(700, NULL, function($constraint) {
+                Image::make($file->getRealPath())->resize(570, 310, function($constraint) {
                 $constraint->aspectRatio(); })->save($uploadThumb);
                 /** GUARDAR EN BASE DE DATOS */
                 $galleryPhotos = new GalleryPhotos;

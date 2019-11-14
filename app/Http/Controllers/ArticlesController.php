@@ -212,7 +212,7 @@ class ArticlesController extends Controller
             $upload = public_path('img/articles/images/' . $newPhoto);
             $uploadThumbnail = public_path('img/articles/.thumbs/images/' . $newPhoto);
             Image::make($request->file('photo')->getRealPath())->save($upload);
-            Image::make($request->file('photo')->getRealPath())->resize(450, NULL,
+            Image::make($request->file('photo')->getRealPath())->resize(570, 310,
                 function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($uploadThumbnail);
