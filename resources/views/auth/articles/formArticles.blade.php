@@ -45,8 +45,11 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/ckeditor4.11.1/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form.js')}}"></script>
 <script type="text/javascript">
-    CKEDITOR.replace('article_body');
+    // Create editor instance
+    CKEDITOR.replace('article_body', {
+        allowedContent: true
+    });
 </script>

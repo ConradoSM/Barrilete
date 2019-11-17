@@ -1,4 +1,4 @@
-/************************ 
+/************************
 ***ARTICLE PUBLICACION***
 ************************/
 div.pubContainer {
@@ -140,8 +140,8 @@ article.fotos p {
     top: 0;
     margin-top: 0px;
     font-size: 1.5em;
-}   
-/************************ 
+}
+/************************
 ***ASIDE PUBLICACIONES***
 ************************/
 aside.pubSeccion {
@@ -187,7 +187,7 @@ aside.pubSeccion article.pubArticle a, article.morePolls a {
 aside.pubSeccion article.pubArticle a:hover, article.morePolls a:hover {
     text-decoration: none;
 }
-/************************ 
+/************************
 ***SEARCH RESULTS***
 ************************/
 div.searchResultContainer {
@@ -260,7 +260,7 @@ ul.pagination {
 ul.pagination li.page-item {
     border: none;
     margin: 0px;
-    padding: 5px 0px 5px 0px;      
+    padding: 5px 0px 5px 0px;
 }
 ul.pagination li.page-item a.page-link {
     margin: 0px;
@@ -290,11 +290,11 @@ ul.pagination li.active span.page-link {
 }
 ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
     border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;       
+    border-bottom-left-radius: 3px;
 }
 ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
     border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;      
+    border-bottom-right-radius: 3px;
 }
 /*****************
 ***VER ENCUESTA***
@@ -333,7 +333,7 @@ article.pollOptions p.totalVotes {
     margin: 0px;
 }
 @media (max-width: 575.98px) {
-    /************************ 
+    /************************
     ***ARTICLE PUBLICACION***
     ************************/
     div.pubContainer {
@@ -374,7 +374,7 @@ article.pollOptions p.totalVotes {
     article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
         font-size: 1em;
     }
-    
+
     article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
         font-size: 1.2em;
         line-height: 30px;
@@ -388,7 +388,7 @@ article.pollOptions p.totalVotes {
     article.fotos p:last-child {
         font-size: 1em;
     }
-    /************************ 
+    /************************
     ***ASIDE PUBLICACIONES***
     ************************/
     aside.pubSeccion {
@@ -399,7 +399,7 @@ article.pollOptions p.totalVotes {
     aside.pubSeccion article.pubArticle img {
         height: 250px;
     }
-    /************************ 
+    /************************
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {
@@ -427,7 +427,7 @@ article.pollOptions p.totalVotes {
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
-    /************************ 
+    /************************
     ***ARTICLE PUBLICACION***
     ************************/
     div.pubContainer {
@@ -445,7 +445,7 @@ article.pollOptions p.totalVotes {
         font-size: 1.25em;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 1.3em; 
+        font-size: 1.3em;
         line-height: 20px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
@@ -475,7 +475,7 @@ article.pollOptions p.totalVotes {
     article.fotos p:last-child {
         font-size: 1em;
     }
-    /************************ 
+    /************************
     ***ASIDE PUBLICACIONES***
     ************************/
     aside.pubSeccion {
@@ -486,7 +486,7 @@ article.pollOptions p.totalVotes {
     aside.pubSeccion article.pubArticle img {
         height: 350px;
     }
-    /************************ 
+    /************************
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {
@@ -514,7 +514,7 @@ article.pollOptions p.totalVotes {
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
-    /************************ 
+    /************************
     ***ARTICLE PUBLICACION***
     ************************/
     div.pubContainer {
@@ -562,7 +562,7 @@ article.pollOptions p.totalVotes {
     article.fotos p:last-child {
         font-size: 1em;
     }
-    /************************ 
+    /************************
     ***ASIDE PUBLICACIONES***
     ************************/
     aside.pubSeccion {
@@ -573,7 +573,7 @@ article.pollOptions p.totalVotes {
     aside.pubSeccion article.pubArticle img {
         height: 400px;
     }
-    /************************ 
+    /************************
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {
