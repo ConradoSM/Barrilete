@@ -9,7 +9,7 @@
 <div id="status">
     <h1>Editar usuario</h1>
     <div id="action">
-        @if (Auth::user()->is_admin)
+        @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
         <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="primary" id="ver">Volver al listado</a>
         @if (!$user->is_admin)
         <a href="{{ route('makeAdmin', ['id' => $user->id]) }}" title="Dar privilegios de administración" class="success" id="editar">Hacer administrador</a>

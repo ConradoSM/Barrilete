@@ -5,15 +5,10 @@
 @section('content')
 @forelse ($galleries as $galeria)
     <article class="pubIndex">
-        @if ($loop->iteration == 1)
-        <img src="{{ asset('img/before-load.png') }}" data-src="{{asset('img/galleries/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" class="lazy" onclick="location.href='{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}'" />
-        @else
-        <img src="{{ asset('img/before-load.png') }}" data-src="{{asset('img/galleries/.thumbs/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" class="lazy" onclick="location.href='{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}'" />
-        @endif
+        <img src="{{ asset('img/before-load.png') }}" data-src="{{$loop->iteration == 1 ? asset('img/galleries/'.$galeria->photos->first()->photo) : asset('img/galleries/.thumbs/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" class="lazy" onclick="location.href='{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}'" />
         <a href="{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}">{{$galeria->title}}</a>
     </article>
 @empty
     <h1>No hay artículos para mostrar</h1>
 @endforelse
 @endsection
-

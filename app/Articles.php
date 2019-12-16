@@ -4,6 +4,7 @@ namespace barrilete;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Articles extends Model
 {
@@ -125,5 +126,13 @@ class Articles extends Model
         return $query->where('status','DRAFT')
         ->orderBy('id','desc')
         ->paginate(10);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comments::class,'article_id');
     }
 }

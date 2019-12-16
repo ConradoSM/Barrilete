@@ -7,7 +7,7 @@
     @endif
     <h1>Administra el artículo</h1>
     <div id="action">
-        @if (Auth::user()->is_admin)
+        @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
             @if ($article->status == "DRAFT")
                 <a href="{{ route('publishArticle',['id'=>$article->id]) }}" class="success" data-confirm="¿Estás seguro que deseas publicar el artículo?">Publicar</a>
             @else

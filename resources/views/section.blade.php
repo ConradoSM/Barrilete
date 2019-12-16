@@ -14,13 +14,11 @@
     @forelse ($articles as $sec)
         <article class="pubIndex translate">
             <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
-            @if ($sec -> video == 1)<img src="{{ asset('img/play-button.png') }}" class="video"  onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />@endif
-            @if ($loop->iteration == 1)
-            <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('/img/articles/images/'.$sec -> photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
-            @else
-            <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('/img/articles/.thumbs/images/'.$sec->photo) }}" title="{{ $sec -> title  }}" alt="{{ $sec -> title  }}" class="lazy"   onclick="location.href ='{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}'" />
+            @if ($sec->video == 1)
+                <img src="{{ asset('img/play-button.png') }}" class="video"  onclick="location.href ='{{ route('article', ['id' => $sec->id, 'section' => $sec->section->name ,'title' => str_slug($sec->title, '-')]) }}'" />
             @endif
-            <a href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec -> title, '-')]) }}">{{ $sec -> title  }}</a>
+            <img src="{{ asset('img/before-load.png') }}" data-src="{{ $loop->iteration == 1 ? asset('/img/articles/images/'.$sec->photo) : asset('/img/articles/.thumbs/images/'.$sec->photo) }}" title="{{ $sec->title }}" alt="{{ $sec->title }}" class="lazy"  onclick="location.href ='{{ route('article', ['id' => $sec->id, 'section' => $sec->section->name ,'title' => str_slug($sec->title, '-')]) }}'" />
+            <a href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec->title, '-')]) }}">{{ $sec->title  }}</a>
             <p>{{ ucfirst($sec->created_at->diffForHumans()) }}</p>
         </article>
     @empty

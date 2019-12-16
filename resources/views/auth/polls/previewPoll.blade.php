@@ -6,7 +6,7 @@
 @endif
 <h1>Administrar encuesta</h1>
 <div id="action">
-    @if (Auth::user()->is_admin)
+    @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
         @if ($poll->status == "DRAFT")
             <a href="{{ route('publishPoll',['id'=>$poll->id]) }}" class="success" data-confirm="¿Estás seguro que deseas publicar la encuesta?">Publicar</a>
         @else

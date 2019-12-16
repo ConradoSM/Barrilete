@@ -27,8 +27,13 @@ Route::get('gallery/{id}/{title}', 'GalleriesController@showGallery')->name('gal
 //VIEW POLLS
 Route::get('poll/{id}/{title}', 'PollsController@poll')->name('poll');
 Route::post('poll-vote', 'PollsController@pollVote')->name('poll-vote');
+//GET COMMENTS
+Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get')->name('commentsGet');
 //DASHBOARD
 Route::group(['middleware' => ['auth']], function () {
+    //COMMENTS
+    Route::post('comment/save', 'CommentController@save')->name('commentsSave');
+    Route::post('comment/delete', 'CommentController@delete')->name('deleteComment');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     //DASHBOARD USER ARTICLES, GALLERIES, POLLS LIST
     Route::get('dashboard/view/articles/{id}', 'DashboardController@userArticles')->name('viewArticles');

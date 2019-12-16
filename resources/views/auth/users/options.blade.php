@@ -6,7 +6,7 @@
         <p>Actualiza tus datos personales y preferencias</p>
     </div>
 </fieldset>
-@if (Auth::user()->is_admin)
+@if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
 <fieldset class="ajax">
     <img class="avatar" src="{{ asset('svg/avatar.svg') }}" />
     <div class="user-info">

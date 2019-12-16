@@ -48,7 +48,7 @@ class IndexController extends Controller
      */
     public function home()
     {
-        $articlesIndex = $this->_articles->articlesHome()->count() != 0 ? $this->_articles->articlesHome() : null;
+        $articlesIndex = $this->_articles->articlesHome();
         $galleryIndex = $this->_gallery->galleryHome()->count() != 0 ? $this->_gallery->galleryHome()->first() : null;
         $pollsIndex = $this->_poll->pollsHome()->count() != 0 ? $this->_poll->pollsHome() : null;
         return view('default', compact('articlesIndex','galleryIndex','pollsIndex'));

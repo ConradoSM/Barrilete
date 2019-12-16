@@ -2,6 +2,7 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -11,6 +12,7 @@ use barrilete\Articles;
 use barrilete\Gallery;
 use barrilete\Sections;
 use Illuminate\View\View;
+use Throwable;
 
 class SectionsController extends Controller
 {
@@ -74,13 +76,13 @@ class SectionsController extends Controller
 
     /**
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function index()
     {
         $request = $this->_request;
         if ($request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $sections = $this->_sections->all()->sortByDesc('id');
                 return response()->json([
                     'view' => view('auth.sections.index', compact('sections'))->render()
@@ -94,12 +96,12 @@ class SectionsController extends Controller
     /**
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function newSection(Request $request)
     {
         if ($request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 return response()->json([
                     'view' => view('auth.sections.form')->render()
                 ])->header('Content-Type', 'application/json');
@@ -110,13 +112,13 @@ class SectionsController extends Controller
     }
 
     /**
-     * @return JsonResponse|RedirectResponse
+     * @return Factory|View|JsonResponse|RedirectResponse
      */
     public function create()
     {
         $request = $this->_request;
         if ($request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $section = new $this->_sections;
                 $section->name = strtolower($request->name);
                 $section->prio = $request->prio;
@@ -132,12 +134,12 @@ class SectionsController extends Controller
     /**
      * @param $id
      * @return Factory|JsonResponse|RedirectResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function edit($id)
     {
         if ($this->_request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $section = $this->_sections->find($id);
                 return response()->json([
                     'view' => view('auth.sections.form', compact('section'))->render()
@@ -150,12 +152,12 @@ class SectionsController extends Controller
 
     /**
      * @param $id
-     * @return JsonResponse|RedirectResponse
+     * @return Factory|View|JsonResponse|RedirectResponse
      */
     public function update($id)
     {
         if ($this->_request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $request = $this->_request;
                 $section = $this->_sections->find($id);
                 $sections = $this->_sections->all();
@@ -171,13 +173,13 @@ class SectionsController extends Controller
 
     /**
      * @param $id
-     * @return RedirectResponse
-     * @throws \Throwable
+     * @return JsonResponse
+     * @throws Throwable
      */
     public function delete($id)
     {
         if ($this->_request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $section = $this->_sections->find($id);
                 $section->delete();
                 $sections = $this->_sections->all();

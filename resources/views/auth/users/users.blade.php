@@ -16,7 +16,7 @@
   <tbody>
     @forelse ($users as $user)
     <tr>
-      <td>@if ($user->is_admin) Admin @else User @endif</td>
+      <td>@if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE])) Admin @else User @endif</td>
       <td>{{ $user->name }}</td>
       <td>{{ $user->email }}</td>
       <td>

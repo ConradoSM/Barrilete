@@ -9,7 +9,7 @@
 @endif
 <h1>Administrar galería de fotos</h1>
 <div id="action">
-    @if (Auth::user()->is_admin)
+    @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
         @if ($gallery->status == "DRAFT")
             <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="success" data-confirm="¿Estás seguro que desea publicar ésta galería de fotos?">Publicar</a>
         @else

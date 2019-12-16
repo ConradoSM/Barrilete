@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 150);
-            $table->string('photo', 255)->nullable();          
+            $table->string('photo', 255)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -28,7 +28,6 @@ class CreateUsersTable extends Migration
             $table->string('state', 100)->nullable();
             $table->string('country', 100)->nullable();
             $table->mediumText('description')->nullable();
-            $table->boolean('is_admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

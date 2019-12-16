@@ -49,8 +49,8 @@ article.pub_galeria, article.pub-preview {
     margin-bottom: 10px;
 }
 article.pub img, article.pub-preview img {
-    width: 100% !important;
-    height: auto !important;
+    width: 100%;
+    height: auto;
     margin-bottom: 10px;
 }
 article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
@@ -331,6 +331,74 @@ article.pollOptions p.totalVotes {
     font-size: 2em;
     color: #000;
     margin: 0px;
+}
+section.comments {
+    position: relative;
+}
+div#loader img.loader {
+    display: none;
+    width: 20px !important;
+    height: 20px !important;
+}
+div.comment p {
+    font-size: 1.1em !important;
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+    margin-left: 70px;
+    line-height: normal !important;
+    background-color: #EAF2F8;
+    padding: 20px 30px 20px 20px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 2px 0 #D6DBDF;
+}
+div.comment p img.delete {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+div.comment p img.delete:hover {
+    opacity: 0.8;
+}
+div.comment p span {
+    display: block;
+    font-size: 0.8em !important;
+    color: #4c4c4c;
+    margin-top: 10px;
+}
+div.comment p span {
+    color: #808B96;
+}
+div.comment p span a {
+    color: #808B96 !important;
+    cursor: pointer;
+}
+div.comment p span a:hover {
+    color: #566573 !important;
+}
+div.comment {
+    position: relative;
+    margin-top: 10px;
+}
+div.comment div {
+    margin-left: 60px;
+}
+div.comment img.user {
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px !important;
+    height: 50px !important;
+}
+div.comment span img.reply {
+    width: 10px !important;
+    height: auto !important;
+    margin-right: 5px;
+    margin-left: 10px;
+    margin-bottom: 0 !important;
 }
 @media (max-width: 575.98px) {
     /************************

@@ -3,7 +3,7 @@
 @endif
 <h1>Detalle del usuario</h1>
 <div id="action">
-    @if (Auth::user()->is_admin)
+    @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
     <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="primary">Volver al listado</a>
     <a href="{{ route('editUser', ['id' => $user->id]) }}" title="Editar perfil del usuario" class="success">Editar</a>
     @if (!(Auth::user()->id == $user->id))
@@ -22,7 +22,7 @@
     @endif
     <div class="user-info">
         <h2>{{ $user->name }}</h2>
-        <p>{{ $user->email }} - @if ($user->is_admin) Administrador @else User @endif</p>
+        <p>{{ $user->email }} - @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE])) Administrador @else User @endif</p>
     </div>
 </fieldset>
 <fieldset>

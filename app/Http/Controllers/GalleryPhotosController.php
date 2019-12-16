@@ -2,9 +2,11 @@
 
 namespace barrilete\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use barrilete\GalleryPhotos;
+use Illuminate\View\View;
 use Image;
 use File;
 
@@ -42,7 +44,7 @@ class GalleryPhotosController extends Controller
     /**
      * ACTUALIZAR TÍTULO FOTO
      * @param Request $request
-     * @return JsonResponse
+     * @return JsonResponse|Factory|View
      */
     public function updateTitlePhotoGallery(Request $request)
     {
@@ -63,7 +65,7 @@ class GalleryPhotosController extends Controller
     /**
      * ACTUALIZAR FOTO
      * @param Request $request
-     * @return JsonResponse
+     * @return Factory|View|JsonResponse
      */
     public function updatePhoto(Request $request)
     {
