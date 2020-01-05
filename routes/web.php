@@ -28,7 +28,7 @@ Route::get('gallery/{id}/{title}', 'GalleriesController@showGallery')->name('gal
 Route::get('poll/{id}/{title}', 'PollsController@poll')->name('poll');
 Route::post('poll-vote', 'PollsController@pollVote')->name('poll-vote');
 //GET COMMENTS
-Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get')->name('commentsGet');
+Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get')->name('getComments');
 //DASHBOARD
 Route::group(['middleware' => ['auth']], function () {
     //COMMENTS

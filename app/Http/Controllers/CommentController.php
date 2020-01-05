@@ -4,10 +4,8 @@ namespace barrilete\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use barrilete\Comments;
-use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 use Throwable;
 
@@ -51,8 +49,11 @@ class CommentController extends Controller
      */
     public function get($id, $section_id)
     {
-        $comments = Comments::articles($id, $section_id);
-        return view('comments.list', compact('comments'));
+        $comments = Comments::Articles($id, $section_id)->setPath(route('getComments', ['article_id' => $id, 'section_id' => $section_id]));
+        if ($comments->first()) {
+            return view('comments.list', compact('comments'));
+        }
+        return view('comments.404');
     }
 
     /**

@@ -8,13 +8,13 @@
 </div>
 <div id="status">
     @if (isset($success))
-        <p class="alert-success"><img src="/svg/ajax-success.svg" alt="Exito"/>{{ $success }}</p>
+        <p class="alert feedback-success">{{ $success }}</p>
     @endif
     @if (isset($error))
-        <p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="Error"/>{{ $error }}</p>
+        <p class="alert feedback-error">{{ $error }}</p>
     @endif
     @if (!$photos)
-        <p class="alert-warning"><img src="/svg/ajax-warning.svg" alt="Advertencia"/>Ésta galería no posee fotos</p>
+        <p class="alert feedback-warning">Ésta galería no posee fotos</p>
     @endif
     <h1>Actualizar galería de fotos</h1>
     <fieldset>
@@ -30,7 +30,7 @@
                 <input type="text" class="input" name="title" value="{{ $gallery->title }}" placeholder="Título: éste es el principal título del articulo (*)" required />
                 <p title="Editar">{{ $gallery->article_desc }}</p>
                 <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*)" required>{{ $gallery->article_desc }}</textarea>
-                <input type="submit" value="Actualizar" class="success" />
+                <input type="submit" value="Actualizar" class="button success" />
                 @csrf
                 <input type="hidden" name="id" value="{{ $gallery->id }}" />
                 <input type="hidden" name="user_id" value="{{ $gallery->user_id }}" />
@@ -38,7 +38,7 @@
                 <input type="hidden" name="section_id" value="{{ $gallery->section_id }}" />
             </form>
     </fieldset>
-    <a href="{{ route('morePhotos', ['id' => $gallery->id]) }}" class="primary">+ Agregar Imágenes</a>
+    <a href="{{ route('morePhotos', ['id' => $gallery->id]) }}" class="button primary">+ Agregar Imágenes</a>
     @forelse ($photos as $photo)
     <fieldset data-id="{{ $photo->id }}">
         <div class="status"></div>
@@ -58,7 +58,7 @@
         <form method="post" class="data" action="{{ route('updateTitlePhotoGallery') }}">
             <p title="Editar">{{ $photo->title }}</p>
             <input type="text" name="title" class="input" value="{{ $photo->title }}" placeholder="Título: éste es el principal título de la foto (*)" required />
-            <input type="submit" class="success" value="Actualizar" />
+            <input type="submit" class="button success" value="Actualizar" />
             <input type="hidden" name="id" value="{{ $photo->id }}" />
             @csrf
         </form>

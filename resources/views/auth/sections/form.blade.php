@@ -8,11 +8,11 @@
 </div>
 <div id="status">
     <h1>{{ isset($section) ? 'Editar sección' : 'Crear sección' }}</h1>
-    <a href="{{ route('sectionsIndex') }}" class="primary" title="Volver al listado de secciones" id="crear">Lista de secciones</a>
+    <a href="{{ route('sectionsIndex') }}" class="button primary" title="Volver al listado de secciones" id="crear">Lista de secciones</a>
     @if (session('success'))
-        <p class="alert-success">{{ session('success') }}</p>
+        <p class="alert feedback-success">{{ session('success') }}</p>
     @elseif (session('error'))
-        <p class="invalid-feedback">{{ session('error') }}</p>
+        <p class="alert feedback-error">{{ session('error') }}</p>
     @endif
     <fieldset>
         <div id="errors"></div>
@@ -27,8 +27,8 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <input type="submit" class="primary" value="{{ isset($section) ? 'Actualizar' : 'Cargar' }}" />
-            <input type="reset" class="default" value="Restablecer" />
+            <input type="submit" class="button primary" value="{{ isset($section) ? 'Actualizar' : 'Cargar' }}" />
+            <input type="reset" class="button default" value="Restablecer" />
             @csrf
         </form>
     </fieldset>

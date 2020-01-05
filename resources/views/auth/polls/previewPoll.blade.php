@@ -1,30 +1,30 @@
 @if (isset($success))
-    <p class="alert-success"><img src="/svg/ajax-success.svg" alt="Exito"/>{{ $success }}</p>
+    <p class="alert feedback-success">{{ $success }}</p>
 @endif
 @if (isset($error))
-    <p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="Error"/>{{ $error }}</p>
+    <p class="alert feedback-error">{{ $error }}</p>
 @endif
 <h1>Administrar encuesta</h1>
 <div id="action">
     @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
         @if ($poll->status == "DRAFT")
-            <a href="{{ route('publishPoll',['id'=>$poll->id]) }}" class="success" data-confirm="¿Estás seguro que deseas publicar la encuesta?">Publicar</a>
+            <a href="{{ route('publishPoll',['id'=>$poll->id]) }}" class="button success" data-confirm="¿Estás seguro que deseas publicar la encuesta?">Publicar</a>
         @else
-            <a href="#" class="disabled">Publicado</a>
-            <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" data-ajax="false" class="primary">Ver artículo</a>
+            <span class="button disabled">Publicado</span>
+            <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" data-ajax="false" class="button primary">Ver artículo</a>
         @endif
-        <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="success">Editar</a>
-        <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="danger" data-confirm="¿Estás seguro que deseas borrar la encuesta?">Eliminar</a>
+        <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="button success">Editar</a>
+        <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="button danger" data-confirm="¿Estás seguro que deseas borrar la encuesta?">Eliminar</a>
     @else
         @if ($poll->status == "PUBLISHED")
-            <a href="#" class="disabled">Publicado</a>
-            <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" data-ajax="false" class="primary">Ver artículo</a>
-            <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="success">Editar</a>
-            <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="danger" data-confirm="¿Estás seguro que deseas borrar la encuesta?">Eliminar</a>
+            <span class="button disabled">Publicado</span>
+            <a href="{{ route('poll',['id'=>$poll->id,'section'=>str_slug($poll->section->name),'title'=>str_slug($poll->title,'-')]) }}" target="_blank" data-ajax="false" class="button primary">Ver artículo</a>
+            <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="button success">Editar</a>
+            <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="button danger" data-confirm="¿Estás seguro que deseas borrar la encuesta?">Eliminar</a>
         @else
-            <a href="#" class="disabled">No publicado</a>
-            <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="success">Editar</a>
-            <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="danger" data-confirm="¿Estás seguro que deseas borrar la encuesta?">Eliminar</a>
+            <span class="button disabled">Publicado</span>
+            <a href="{{ route('formUpdatePoll',['id'=>$poll->id]) }}" class="button success">Editar</a>
+            <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="button danger" data-confirm="¿Estás seguro que deseas borrar la encuesta?">Eliminar</a>
         @endif
     @endif
 </div>
@@ -47,9 +47,9 @@
             <span class="checkmark"></span>
         </label>
         @empty
-            <p class="alert-warning"><img src="/svg/ajax-warning.svg" alt="Advertencia"/>Ésta encuesta no posee opciones</p>
+            <p class="alert feedback-warning">Ésta encuesta no posee opciones</p>
         @endforelse
-        <input type="submit" value="VOTAR" class="disabled" disabled />
+        <input type="submit" value="VOTAR" class="button disabled" disabled />
     </form>
 </article>
 <br />

@@ -27,6 +27,7 @@
     {!! $article->article_body !!}
     <hr />
     <h2>Comentarios ( {{ $article->comments->count() }} )</h2>
+    <div id="status"></div>
     <section class="comments"></section>
     @include('comments.form')
 </article>
@@ -50,7 +51,7 @@
      */
     $(document).ready(function()
     {
-        const link = '{{ URL::route('commentsGet',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
+        const link = '{{ URL::route('getComments',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
         $.get(link, function(data) {
             $('section.comments').html(data).hide().fadeIn('normal');
         });
