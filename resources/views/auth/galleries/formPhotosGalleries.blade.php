@@ -20,7 +20,7 @@
         </fieldset>
         <div id="error"></div>
         <div id="preview"></div>
-        <input type="submit" id="submit" value="Guardar" class="disabled" disabled />
+        <input type="submit" id="submit" value="Guardar" class="button disabled" disabled />
         <input type="hidden" name="gallery_id" value="{{ $gallery->id }}" />
         @csrf
     </form>
@@ -40,7 +40,7 @@ $(document).ready(function () {
             const type = files[x].type;
             const name = files[x].name;
             if(type !== 'image/jpeg' && type !== 'image/jpg' && type !== 'image/png') {
-                $('#error').append('<p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="Error"/>El archivo <b>'+name+'</b> no es del tipo de imagen permitida, sólo se admiten archivos JPG, JPEG o PNG, por favor selecciona los archivos nuevamente</p>');
+                $('#error').append('<p class="alert feedback-error">El archivo <b>'+name+'</b> no es del tipo de imagen permitida, sólo se admiten archivos JPG, JPEG o PNG, por favor selecciona los archivos nuevamente</p>');
                 $('input#submit').attr('disabled','disabled');
                 return false;
             } else {

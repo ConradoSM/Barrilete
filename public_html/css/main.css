@@ -286,36 +286,6 @@ div.dashboard-login p img {
     vertical-align: middle;
     margin-right: 10px;
 }
-p.alert {
-    padding: 10px !important;
-    margin: 10px 0 !important;
-    border-radius: 3px;
-    font-size: 1.1em !important;
-    line-height: normal !important;
-}
-p.feedback-success {
-    background-color: #82e0aa;
-    color:  #1d8348;
-}
-p.feedback-error {
-    background-color: #f9bfbf;
-    padding: 10px !important;
-    color: #c71a1a;
-    margin: 10px 0 !important;
-    border-radius: 3px;
-    font-size: 1.1em !important;
-    line-height: normal !important;
-}
-p.feedback-warning {
-    background-color: #eeedc2;
-    color:  #807F5F;
-}
-p.alert img {
-    width: 15px !important;
-    height: 15px !important;
-    margin-right: 10px;
-    margin-bottom: -2px !important;
-}
 /*********
 **FOOTER**
 *********/

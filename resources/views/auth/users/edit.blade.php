@@ -10,21 +10,22 @@
     <h1>Editar usuario</h1>
     <div id="action">
         @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
-        <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="primary" id="ver">Volver al listado</a>
-        @if (!$user->is_admin)
-        <a href="{{ route('makeAdmin', ['id' => $user->id]) }}" title="Dar privilegios de administración" class="success" id="editar">Hacer administrador</a>
-        @elseif (!(Auth::user()->id == $user->id))
-        <a href="{{ route('deleteAdmin', ['id' => $user->id]) }}" title="Quitar privilegios de administración" class="success" id="editar">Quitar administración</a>
-        @endif
-        @if (!(Auth::user()->id == $user->id))
-        <a href="{{ route('deleteUser', ['id' => $user->id]) }}" title="Borrar usuario" class="danger" id="borrar">Borrar</a>
-        @endif
-        @else
-        <a href="{{ route('options') }}" class="primary" title="Ver opciones" id="ver">Opciones</a>
-        <a href="{{ route('account', ['id' => Auth::user()->id]) }}" title="Ver mi perfil" class="success" id="ver">Mi perfil</a>
+            <a href="{{ route('users') }}" title="Volver la lista de usuarios del sitio" class="button primary" id="ver">Volver al listado</a>
+            @if ($user->authorizeRoles([\barrilete\User::EDITOR_USER_ROLE]) OR $user->authorizeRoles([\barrilete\User::DEFAULT_USER_ROLE]))
+                <a href="{{ route('makeAdmin', ['id' => $user->id]) }}" title="Dar privilegios de administración" class="button success" id="editar">Hacer administrador</a>
+            @elseif ((Auth::user()->id != $user->id) AND ($user->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE])))
+                <a href="{{ route('deleteAdmin', ['id' => $user->id]) }}" title="Quitar privilegios de administración" class="button success" id="editar">Quitar administración</a>
+            @endif
+            @if ((Auth::user()->id != $user->id))
+                <a href="{{ route('deleteUser', ['id' => $user->id]) }}" title="Borrar usuario" class="button danger" id="borrar">Borrar</a>
+            @endif
+            @else
+                <a href="{{ route('options') }}" class="button primary" title="Ver opciones" id="ver">Opciones</a>
+                <a href="{{ route('account', ['id' => Auth::user()->id]) }}" title="Ver mi perfil" class="button success" id="ver">Mi perfil</a>
         @endif
     </div>
     <fieldset>
+        <p class="alert feedback-warning"><b>Rol</b>: {{ ucfirst($user->roles->first()->name) }}</p>
         <div id="errors"></div>
         <form action="{{ route('updateUser') }}" enctype="multipart/form-data" method="post">
             <input type="text" name="name" value="{{ $user->name }}" placeholder="Nombre" required />
@@ -278,8 +279,8 @@
             </select>
             <hr />
             <textarea name="description" placeholder="Acerca de mí">{{ $user->description }}</textarea>
-            <input type="submit" class="success" value="Actualizar" />
-            <input type="reset" class="default" value="Restablecer" />
+            <input type="submit" class="button success" value="Actualizar" />
+            <input type="reset" class="button default" value="Restablecer" />
             <input type="hidden" name="id" value="{{ $user->id }}" />
             @csrf
         </form>

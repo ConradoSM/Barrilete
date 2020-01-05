@@ -79,16 +79,15 @@ $(document).ready(function () {
          */
         function error(xhr, errorThrown)
         {
-            const imgError = '<img src="/svg/ajax-error.svg"/>';
             const errors = xhr.responseJSON.errors;
             progress.fadeOut('fast', function() {
                 $('div#status').fadeIn('slow');
                 if (errors) {
                     $.each(errors, function (key, value) {
-                        $('div#errors').append('<p class="invalid-feedback">' + imgError + value + '</p>');
+                        $('div#errors').append('<p class="alert feedback-error">'+ value +'</p>');
                     });
                 } else {
-                    $('div#errors').html('<p class="invalid-feedback">' + imgError + xhr.status + ' - ' + xhr.statusText +'</p>');
+                    $('div#errors').html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
                 }
 
             });

@@ -1,8 +1,8 @@
 <h1>Lista de usuarios</h1>
 @if (session('success'))
-<p class="alert-success">{{ session('success') }}</p>
+<p class="alert feedback-success">{{ session('success') }}</p>
 @elseif (session('error'))
-<p class="invalid-feedback">{{ session('error') }}</p>
+<p class="alert feedback-error">{{ session('error') }}</p>
 @endif
 <table class="table">
   <thead>
@@ -16,16 +16,16 @@
   <tbody>
     @forelse ($users as $user)
     <tr>
-      <td>@if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE])) Admin @else User @endif</td>
+      <td>{{ ucfirst($user->roles->first()->name) }}</td>
       <td>{{ $user->name }}</td>
       <td>{{ $user->email }}</td>
       <td>
-          <a href="{{ route('showUser', ['id' => $user->id]) }}" class="primary-small" title="Ver usuario">Ver</a>
-          <a href="{{ route('editUser', ['id' => $user->id]) }}" class="success-small" title="Editar usuario">Editar</a>
+          <a href="{{ route('showUser', ['id' => $user->id]) }}" class="button primary small" title="Ver usuario">Ver</a>
+          <a href="{{ route('editUser', ['id' => $user->id]) }}" class="button success small" title="Editar usuario">Editar</a>
           @if (!(Auth::user()->id == $user->id))
-          <a href="{{ route('deleteUser', ['id' => $user->id]) }}" class="danger-small" title="Borrar usuario" data-confirm="¿Estás seguro que quieres borrar éste usuario?">Borrar</a>
+          <a href="{{ route('deleteUser', ['id' => $user->id]) }}" class="button danger small" title="Borrar usuario" data-confirm="¿Estás seguro que quieres borrar éste usuario?">Borrar</a>
           @else
-          <a href="{{ route('options') }}" class="danger-small" title="Borrar cuenta" data-confirm="Para borrar tu usuario debes ir a opciones de usuario -> eliminar cuenta">Borrar</a>
+          <a href="{{ route('options') }}" class="button danger small" title="Borrar cuenta" data-confirm="Para borrar tu usuario debes ir a opciones de usuario -> eliminar cuenta">Borrar</a>
           @endif
       </td>
     </tr>

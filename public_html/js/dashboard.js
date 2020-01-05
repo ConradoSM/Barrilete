@@ -84,7 +84,7 @@ $(document).ready(function() {
             });
         }).fail(function (xhr) {
             const xhrError = xhr.responseJSON.error ? xhr.responseJSON.error : xhr.statusText;
-            const errorMessage = '<p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="error"/>' + xhr.status + ' - ' + xhrError + '</p>';
+            const errorMessage = '<p class="alert feedback-error">'+ xhr.status + ' - ' + xhrError +'</p>';
             $('#loader').fadeOut('fast', function () {
                 $('div#user-content').html(errorMessage).fadeIn('fast');
             });

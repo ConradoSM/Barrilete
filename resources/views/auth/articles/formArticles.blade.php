@@ -34,8 +34,8 @@
         <fieldset>
             <legend>Contenido</legend>
             <textarea name="article_body" id="article_body">{{ isset($article) ? $article->article_body : '' }}</textarea>
-            <input type="submit" value="Guardar" id="enviar" class="primary" />
-            <input type="reset" class="default" value="Restablecer" />
+            <input type="submit" value="Guardar" id="enviar" class="button primary" />
+            <input type="reset" class="button default" value="Restablecer" />
         </fieldset>
         @csrf
         <input type="hidden" name="user_id" value="{{ isset($article) ? $article->user->id : Auth::user()->id }}" />

@@ -13,6 +13,7 @@ $(document).ready(function() {
         submitHandler: function (form, e) {
             e.preventDefault();
             const divError = $('div#status');
+            const container = $('section.comments');
             $.ajax({
                 type: form.method,
                 url: form.action,
@@ -28,20 +29,19 @@ $(document).ready(function() {
                     divError.find('p').remove();
                 },
                 success: function (responseText) {
-                    divError.append('<p class="alert feedback-success"><img src="/svg/ajax-success.svg" alt="Exito"/>' + responseText.success + '</p>');
+                    divError.append('<p class="alert feedback-success">'+ responseText.success +'</p>');
                     divError.find('p').delay(3000).fadeOut('fast');
-                    $('section.comments').html(responseText.view).fadeIn('fast');
+                    container.html(responseText.view).fadeIn('fast');
                 },
                 error: function (xhr) {
-                    const imgError = '<img src="/svg/ajax-error.svg"/>';
                     const errors = xhr.responseJSON.errors;
                     $('div#status').fadeIn(function () {
                         if (errors) {
                             $.each(errors, function (key, value) {
-                                $('div#status').append('<p class="alert feedback-error">' + imgError + value + '</p>');
+                                $('div#status').append('<p class="alert feedback-error">'+ value +'</p>');
                             });
                         } else {
-                            $('div#status').html('<p class="alert feedback-error">' + imgError + xhr.status + ' - ' + xhr.statusText + '</p>');
+                            $('div#status').html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
                         }
                     });
                 },
@@ -49,11 +49,12 @@ $(document).ready(function() {
                     $('img.loader').fadeOut('fast', function () {
                         $(form).find(':input').attr('disabled', false);
                         $(form).find(':input').removeClass('disabled');
-                        $(form).find('input[type=submit]').attr('value', 'Comentar');
+                        $(form).find('input[type=submit]').attr('value', 'Enviar');
                         $('section.comments').css('opacity', '100%');
                         $(form).find('input[type=hidden]#parent_id').attr('value', '');
                         $(form).resetForm();
                     });
+                    $('html, body').animate({scrollTop:container.offset().top -250});
                 }
             });
         }
@@ -68,13 +69,13 @@ $(document).ready(function() {
     deleteConfirm = function (commentID, articleID, sectionID) {
         $.confirm({
             title: 'Borrar Comentario',
-            content: '<p class="alert feedback-warning"><img src="/svg/ajax-warning.svg" />¿Realmente quieres borrar tu comentario?</p>',
+            content: '<p class="alert feedback-warning">¿Realmente quieres borrar tu comentario?</p>',
             type: 'orange',
             boxWidth: '55%',
             useBootstrap: false,
             buttons: {
                 borrar: {
-                    btnClass: 'btn-red',
+                    btnClass: 'button danger',
                     action: function () {
                         const URL = '/comment/delete';
                         const data = {
@@ -87,7 +88,7 @@ $(document).ready(function() {
                     }
                 },
                 cancelar: {
-                    btnClass: 'btn-default',
+                    btnClass: 'button default',
                 }
             }
         })
@@ -112,7 +113,7 @@ $(document).ready(function() {
             useBootstrap: false,
             buttons: {
                 enviar: {
-                    btnClass: 'btn-blue',
+                    btnClass: 'button primary',
                     action: function () {
                         const URL = '/comment/save';
                         const textarea = $('textarea#reply');
@@ -128,7 +129,7 @@ $(document).ready(function() {
                     }
                 },
                 cancelar: {
-                    btnClass: 'btn-default',
+                    btnClass: 'button default',
                 }
             }
         })
@@ -148,22 +149,23 @@ $(document).ready(function() {
             async: true,
             data: data,
             success: function (response) {
+                const container = $('section.comments');
                 $.alert({
                     type: 'green',
                     boxWidth: '55%',
                     useBootstrap: false,
                     title: 'Listo!',
-                    content: '<p class="alert feedback-success"><img src="/svg/ajax-success.svg" alt="Exito"/>' + response.success + '</p>',
+                    content: '<p class="alert feedback-success">'+ response.success +'</p>',
                     buttons: {
                         ok: {
-                            btnClass: 'btn-green'
+                            btnClass: 'button success'
                         }
                     }
                 });
-                $('section.comments').html(response.view).hide().fadeIn('normal');
+                container.html(response.view).hide().fadeIn('normal');
+                $('html, body').animate({scrollTop:container.offset().top -250});
             },
             error: function (xhr) {
-                const imgError = '<img src="/svg/ajax-error.svg"/>';
                 const errors = xhr.responseJSON.errors;
                 $.alert({
                     type: 'red',
@@ -174,15 +176,15 @@ $(document).ready(function() {
                     onContentReady: function () {
                         if (errors) {
                             $.each(errors, function (key, value) {
-                                $('div#errors').append('<p class="alert feedback-error">' + imgError + value + '</p>');
+                                $('div#errors').append('<p class="alert feedback-error">'+ value +'</p>');
                             });
                         } else {
-                            $('div#errors').html('<p class="alert feedback-error">' + imgError + xhr.status + ' - ' + xhr.statusText + '</p>');
+                            $('div#errors').html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
                         }
                     },
                     buttons: {
                         ok: {
-                            btnClass: 'btn-red'
+                            btnClass: 'button danger'
                         }
                     }
                 });

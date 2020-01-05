@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}">
         <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
         <link rel="stylesheet" href="{{ asset('css/jquery-confirm.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">
         <!-- Scripts js -->
         <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
         <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{asset('css/titularesIndex.css')}}" />
         <link rel="stylesheet" href="{{asset('css/forms.css')}}" />
         <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/alerts-messages.css')}}">
     </head>
     <body>
         <header>

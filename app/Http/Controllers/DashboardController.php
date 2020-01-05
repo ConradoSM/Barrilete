@@ -102,7 +102,6 @@ class DashboardController extends Controller
             $sections = Sections::select('id','name')->where('name','!=','Encuestas')->where('name','!=','Galerias')->get();
             if ($request->id) {
                 $article = Articles::find($request->id);
-                $sections = Sections::select('id','name')->where('name', '!=', $article->section->name)->where('name','!=','Encuestas');
             }
             if (!$sections->first()) {
                 return response()->json(['error' => 'Primero debes crear alguna sección'], 500);

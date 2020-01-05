@@ -24,14 +24,16 @@ class Comments extends Model
      * @param $query
      * @param $article_id
      * @param $section_id
-     * @return HasMany
+     * @return mixed
      */
     public function scopeArticles($query, $article_id, $section_id)
     {
         return $query->where('article_id', $article_id)
             ->where('section_id', $section_id)
             ->whereNull('parent_id')
-            ->get();
+            ->orderBy('id','DESC')
+            ->paginate(10)
+            ->onEachSide(1);
     }
 
     /**
