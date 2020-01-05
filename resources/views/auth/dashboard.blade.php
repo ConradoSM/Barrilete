@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{asset('css/titularesIndex.css')}}" />
         <link rel="stylesheet" href="{{asset('css/forms.css')}}" />
         <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/alerts-messages.css')}}">
     </head>
     <body>
         <header>
@@ -45,7 +46,7 @@
                 <a href="{{ route('formCreateArticle') }}"><img src="{{ asset('svg/add-file.svg') }}" />Artículos</a>
                 <a href="{{ route('formGallery') }}"><img src="{{ asset('svg/image.svg') }}" />Galerías</a>
                 <a href="{{ route('formPoll') }}"><img src="{{ asset('svg/note.svg') }}" />Encuestas</a>
-                @if (Auth::user()->is_admin)
+                @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
                 <h2>Contenido sin publicar</h2>
                 <a href="{{ route('unpublishedArticles') }}"><img src="{{ asset('svg/add-file.svg') }}" />Artículos</a>
                 <a href="{{ route('unpublishedGalleries') }}"><img src="{{ asset('svg/image.svg') }}" />Galerías</a>

@@ -1,4 +1,4 @@
-/************************ 
+/************************
 ***ARTICLE PUBLICACION***
 ************************/
 div.pubContainer {
@@ -29,14 +29,14 @@ article.pub blockquote p, article.pub-preview blockquote p {
     display: inline;
     color: #808b96;
 }
-article.pub ul, article.pub-preview ul {
+article.pub ul, article.pub-preview ul, section.comments ul.pagination {
     list-style: none;
-    margin: 0px;
+    margin: 0;
 }
 article.pub ul li, article.pub-preview ul li {
     padding-left: 10px;
     font-size: 1.9em;
-    margin: 30px 0px 30px 0px;
+    margin: 30px 0 30px 0;
 }
 article.pub ul li:before, article.pub-preview ul li:before {
     content: "▪";
@@ -49,13 +49,13 @@ article.pub_galeria, article.pub-preview {
     margin-bottom: 10px;
 }
 article.pub img, article.pub-preview img {
-    width: 100% !important;
-    height: auto !important;
+    width: 100%;
+    height: auto;
     margin-bottom: 10px;
 }
 article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
     font-size: 1.3em;
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 20px;
     text-transform: capitalize;
     color: #000;
@@ -69,12 +69,12 @@ article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-prev
     margin-right: 5px;
 }
 article.pub p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child, article.pub-preview p.info img.svg:first-child {
-    margin-left: 0px;
+    margin-left: 0;
 }
 article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
     font-size: 3.2em;
     line-height: 55px;
-    margin: 0px;
+    margin: 0;
     color: #283747;
 }
 article.pub h2, article.pub_galeria h2, article.pub-preview h2 {
@@ -125,7 +125,7 @@ article.fotos {
     height: auto;
     margin-bottom: 30px;
     background-color: #f2f3f4;
-    box-shadow: 0px 0px 10px 0px #999;
+    box-shadow: 0 0 10px 0 #999;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -138,10 +138,10 @@ article.fotos p {
     display: block;
     padding: 10px;
     top: 0;
-    margin-top: 0px;
+    margin-top: 0;
     font-size: 1.5em;
-}   
-/************************ 
+}
+/************************
 ***ASIDE PUBLICACIONES***
 ************************/
 aside.pubSeccion {
@@ -154,18 +154,18 @@ aside.pubSeccion article.pubArticle, article.morePolls {
     height: auto;
     margin-bottom: 30px;
     overflow: hidden;
-    box-shadow: 0px 0px 10px 0px #5f6a6a;
-    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 0 10px 0 #5f6a6a;
+    border-radius: 0 0 5px 5px;
     cursor: pointer;
 }
 aside.pubSeccion article.pubArticle:hover, article.morePolls:hover {
     background-color: #f2f3f4;
     opacity: 0.8;
-    box-shadow: 0px 0px 10px 0px #000;
+    box-shadow: 0 0 10px 0 #000;
     transition: 0.3s;
 }
 aside.pubSeccion article.pubArticle:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 aside.pubSeccion article.pubArticle img {
     width: 100%;
@@ -187,7 +187,7 @@ aside.pubSeccion article.pubArticle a, article.morePolls a {
 aside.pubSeccion article.pubArticle a:hover, article.morePolls a:hover {
     text-decoration: none;
 }
-/************************ 
+/************************
 ***SEARCH RESULTS***
 ************************/
 div.searchResultContainer {
@@ -215,7 +215,7 @@ p.searchFilter a.active {
     border-bottom: 5px solid #007600;
 }
 p.searchInfo {
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0 20px 0;
     color: #666;
     font-size: 1.7em;
 }
@@ -225,7 +225,7 @@ article.searchResult{
     padding: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
-    box-shadow: 0px 0px 2px #999;
+    box-shadow: 0 0 2px #999;
     background-color: #f2f3f4;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -233,8 +233,8 @@ article.searchResult{
 article.searchResult p.searchDate {
     font-size: 1.1em;
     color: #666;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 article.searchResult p.searchDate img {
     height: 1.2em;
@@ -259,11 +259,11 @@ ul.pagination {
 }
 ul.pagination li.page-item {
     border: none;
-    margin: 0px;
-    padding: 5px 0px 5px 0px;      
+    margin: 0;
+    padding: 5px 0 5px 0;
 }
 ul.pagination li.page-item a.page-link {
-    margin: 0px;
+    margin: 0;
     padding: 5px 15px 5px 15px;
     background-color: #0086b3;
     font-size: 2em;
@@ -274,15 +274,15 @@ ul.pagination li.page-item a.page-link:hover {
     transition: 0.3s;
 }
 ul.pagination li.disabled span.page-link {
-    margin: 0px;
+    margin: 0;
     padding: 5px 15px 5px 15px;
     background-color: #f2f3f4;
     font-size: 2em;
     color: #666;
-    box-shadow: inset 0px 0px 2px 0px #999;
+    box-shadow: inset 0 0 2px 0 #999;
 }
 ul.pagination li.active span.page-link {
-    margin: 0px;
+    margin: 0;
     padding: 5px 15px 5px 15px;
     background-color: #005b7a;
     font-size: 2em;
@@ -290,11 +290,11 @@ ul.pagination li.active span.page-link {
 }
 ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
     border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;       
+    border-bottom-left-radius: 3px;
 }
 ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
     border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;      
+    border-bottom-right-radius: 3px;
 }
 /*****************
 ***VER ENCUESTA***
@@ -315,25 +315,150 @@ article.pollOptions p.barResult {
     background-color: #1c2833;
     padding: 5px;
     font-size: 1.3em;
-    margin: 0px 0px 20px 0px;
+    margin: 0 0 20px 0;
     color: #fff;
-    text-shadow: 0px 0px 5px #000;
+    text-shadow: 0 0 5px #000;
 }
 article.pollOptions h2 {
-    margin: 0px;
+    margin: 0;
     color: #cb4335;
 }
 article.pollOptions p.options {
-    margin: 0px 10px 0px 0px;
+    margin: 0 10px 0 0;
     font-size: 1.3em;
 }
 article.pollOptions p.totalVotes {
     font-size: 2em;
     color: #000;
-    margin: 0px;
+    margin: 0;
+}
+section.comments {
+    position: relative;
+}
+div#loader img.loader {
+    display: none;
+    width: 20px !important;
+    height: 20px !important;
+}
+div.comment p {
+    font-size: 1.1em !important;
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+    margin-left: 70px;
+    line-height: normal !important;
+    background-color: #EAF2F8;
+    padding: 20px 30px 20px 20px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 2px 0 #D6DBDF;
+}
+div.comment p img.delete {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+div.comment p img.delete:hover {
+    opacity: 0.8;
+}
+div.comment p span {
+    display: block;
+    font-size: 0.8em !important;
+    color: #4c4c4c;
+    margin-top: 10px;
+}
+div.comment p span {
+    color: #808B96;
+}
+div.comment p span a {
+    color: #808B96 !important;
+    cursor: pointer;
+}
+div.comment p span a:hover {
+    color: #566573 !important;
+}
+div.comment {
+    position: relative;
+    margin-top: 10px;
+}
+div.comment div {
+    margin-left: 60px;
+}
+div.comment img.user {
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px !important;
+    height: 50px !important;
+}
+div.comment span img.reply {
+    width: 10px !important;
+    height: auto !important;
+    margin-right: 5px;
+    margin-left: 10px;
+    margin-bottom: 0 !important;
+}
+/** Comments Navigation **/
+section.comments nav {
+    background-color: #ffffff;
+    margin-top: 10px;
+    flex-flow: row nowrap;
+}
+section.comments ul li:before {
+    content: none;
+}
+section.comments nav ul.pagination {
+    display: flex;
+    flex-flow: row nowrap;
+    list-style: none;
+    padding-left: 0;
+}
+section.comments nav ul.pagination li.page-item {
+    border: none;
+    margin: 10px;
+}
+section.comments nav ul.pagination li.page-item a.page-link {
+    margin: 0;
+    padding: 5px 15px 5px 15px;
+    background-color: #EAF2F8;
+    box-shadow: inset 0 0 2px 0 #D6DBDF;
+    font-size: 1em;
+    color: #808B96;
+    border-radius: 10px;
+}
+section.comments nav ul.pagination li.page-item a.page-link:hover {
+    background-color: #566573;
+    transition: 0.3s;
+}
+section.comments nav ul.pagination li.disabled span.page-link {
+    margin: 0;
+    padding: 5px 15px 5px 15px;
+    font-size: 1em;
+    color: #666;
+    border-radius: 10px;
+}
+section.comments nav ul.pagination li.active span.page-link {
+    margin: 0;
+    padding: 5px 15px 5px 15px;
+    background-color: #95a0ab;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 10px;
+}
+section.comments nav ul.pagination li.page-item, section.comments nav ul.pagination li.page-item:first-child .page-link {
+    border-radius: 10px;
+}
+section.comments nav ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
+    border-radius: 10px;
+}
+img.loading {
+    width: auto !important;
+    height: auto !important;
 }
 @media (max-width: 575.98px) {
-    /************************ 
+    /************************
     ***ARTICLE PUBLICACION***
     ************************/
     div.pubContainer {
@@ -344,7 +469,7 @@ article.pollOptions p.totalVotes {
     article.pub {
         width: 100%;
         height: auto;
-        padding-right: 0px;
+        padding-right: 0;
         overflow: hidden;
     }
     article.pub ul li, article.pub-preview ul li {
@@ -358,10 +483,10 @@ article.pollOptions p.totalVotes {
         vertical-align: top !important;
         height: 1em !important;
         margin-left: 10px !important;
-        margin-right: 0px !important;
+        margin-right: 0 !important;
     }
     article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
-        margin-left: 0px !important;
+        margin-left: 0 !important;
     }
     article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
         font-size: 2.1em;
@@ -374,7 +499,7 @@ article.pollOptions p.totalVotes {
     article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
         font-size: 1em;
     }
-    
+
     article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
         font-size: 1.2em;
         line-height: 30px;
@@ -383,12 +508,12 @@ article.pollOptions p.totalVotes {
     ***FOTOS***
     ***********/
     article.fotos:last-child {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
     article.fotos p:last-child {
         font-size: 1em;
     }
-    /************************ 
+    /************************
     ***ASIDE PUBLICACIONES***
     ************************/
     aside.pubSeccion {
@@ -399,7 +524,7 @@ article.pollOptions p.totalVotes {
     aside.pubSeccion article.pubArticle img {
         height: 250px;
     }
-    /************************ 
+    /************************
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {
@@ -411,7 +536,7 @@ article.pollOptions p.totalVotes {
         margin: 10px 10px;
     }
     div.searchResultContainer p.searchInfo {
-        margin: 20px 0px 20px 0px;
+        margin: 20px 0 20px 0;
         font-size: 1.2em;
     }
     div.searchResultContainer article.searchResult p.searchDate {
@@ -425,9 +550,21 @@ article.pollOptions p.totalVotes {
     div.searchResultContainer article.searchResult p.searchCopete {
         font-size: 1.2em;
     }
+    section.comments nav ul.pagination li.page-item a.page-link {
+        padding: 5px 10px 5px 10px;
+    }
+    section.comments nav ul.pagination li.disabled span.page-link {
+        padding: 5px 10px 5px 10px;
+    }
+    section.comments nav ul.pagination li.active span.page-link {
+        padding: 5px 10px 5px 10px;
+    }
+    section.comments nav ul.pagination li.page-item {
+        margin: 2px;
+    }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
-    /************************ 
+    /************************
     ***ARTICLE PUBLICACION***
     ************************/
     div.pubContainer {
@@ -438,14 +575,14 @@ article.pollOptions p.totalVotes {
     article.pub {
         width: 100%;
         height: auto;
-        padding-right: 0px;
+        padding-right: 0;
         overflow: hidden;
     }
     article.pub ul li, article.pub-preview ul li {
         font-size: 1.25em;
     }
     article.pub p.info, article.pub_galeria p.info {
-        font-size: 1.3em; 
+        font-size: 1.3em;
         line-height: 20px;
     }
     article p.info img.svg, article.pub_galeria p.info img.svg {
@@ -470,12 +607,12 @@ article.pollOptions p.totalVotes {
     ***FOTOS***
     ***********/
     article.fotos:last-child {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
     article.fotos p:last-child {
         font-size: 1em;
     }
-    /************************ 
+    /************************
     ***ASIDE PUBLICACIONES***
     ************************/
     aside.pubSeccion {
@@ -486,7 +623,7 @@ article.pollOptions p.totalVotes {
     aside.pubSeccion article.pubArticle img {
         height: 350px;
     }
-    /************************ 
+    /************************
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {
@@ -498,7 +635,7 @@ article.pollOptions p.totalVotes {
         margin: 10px 10px;
     }
     div.searchResultContainer p.searchInfo {
-        margin: 20px 0px 20px 0px;
+        margin: 20px 0 20px 0;
         font-size: 1.7em;
     }
     div.searchResultContainer article.searchResult p.searchDate {
@@ -514,7 +651,7 @@ article.pollOptions p.totalVotes {
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
-    /************************ 
+    /************************
     ***ARTICLE PUBLICACION***
     ************************/
     div.pubContainer {
@@ -562,7 +699,7 @@ article.pollOptions p.totalVotes {
     article.fotos p:last-child {
         font-size: 1em;
     }
-    /************************ 
+    /************************
     ***ASIDE PUBLICACIONES***
     ************************/
     aside.pubSeccion {
@@ -573,7 +710,7 @@ article.pollOptions p.totalVotes {
     aside.pubSeccion article.pubArticle img {
         height: 400px;
     }
-    /************************ 
+    /************************
     ***SEARCH RESULTS***
     ************************/
     div.searchResultContainer p.searchFilter a.searchFilterLink {

@@ -58,37 +58,6 @@ p {
     font-size: 1.7em;
     margin: 10px 0px;
 }
-p.alert-success {
-    background-color: #82e0aa;
-    padding: 10px;
-    color:  #1d8348;
-    margin: 10px 0px;
-    border-radius: 3px;
-    font-size: 1.3em;
-}
-p.invalid-feedback {
-    background-color: #f9bfbf;
-    padding: 10px;
-    color: #c71a1a;
-    margin: 10px 0px;
-    border-radius: 3px;
-    font-size: 1.3em;
-}
-p.alert-warning {
-    background-color: #eeedc2;
-    padding: 10px;
-    color: #807F5F;
-    margin: 10px 0px;
-    border-radius: 3px;
-    font-size: 1.3em;
-}
-p.invalid-feedback img, p.alert-success img, p.alert-warning img {
-    width: auto;
-    height: 20px;
-    margin-right: 10px;
-    margin-bottom: -2px;
-}
-
 /*HEADER*/
 header {
     position: relative;

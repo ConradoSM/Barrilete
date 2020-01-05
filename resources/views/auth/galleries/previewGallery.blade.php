@@ -1,33 +1,33 @@
 @if (isset($success))
-    <p class="alert-success"><img src="/svg/ajax-success.svg" alt="Exito"/>{{ $success }}</p>
+    <p class="alert feedback-success">{{ $success }}</p>
 @endif
 @if (isset($error))
-    <p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="Error"/>{{ $error }}</p>
+    <p class="alert feedback-error">{{ $error }}</p>
 @endif
 @if (!$photos)
-    <p class="alert-warning"><img src="/svg/ajax-warning.svg" alt="Advertencia"/>Ésta galería no posee fotos</p>
+    <p class="alert feedback-warning">Ésta galería no posee fotos</p>
 @endif
 <h1>Administrar galería de fotos</h1>
 <div id="action">
-    @if (Auth::user()->is_admin)
+    @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
         @if ($gallery->status == "DRAFT")
-            <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="success" data-confirm="¿Estás seguro que desea publicar ésta galería de fotos?">Publicar</a>
+            <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="button success" data-confirm="¿Estás seguro que desea publicar ésta galería de fotos?">Publicar</a>
         @else
-            <a href="#" class="disabled">Publicado</a>
-            <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}" class="primary" data-ajax="false" target="_blank">Ver artículo</a>
+            <span class="button disabled">Publicado</span>
+            <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}" class="button primary" data-ajax="false" target="_blank">Ver artículo</a>
         @endif
-        <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success">Editar</a>
-        <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" data-confirm="¿Estás seguro que desea borrar ésta galería de fotos?">Eliminar</a>
+        <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="button success">Editar</a>
+        <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="button danger" data-confirm="¿Estás seguro que desea borrar ésta galería de fotos?">Eliminar</a>
     @else
         @if ($gallery->status == "PUBLISHED")
-            <a href="#" class="disabled">Publicado</a>
-            <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}" class="primary" data-ajax="false" target="_blank">Ver artículo</a>
-            <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success">Editar</a>
-            <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" data-confirm="¿Estás seguro que desea borrar ésta galería de fotos?">Eliminar</a>
+            <span class="button disabled">Publicado</span>
+            <a href="{{ route('gallery',['id'=>$gallery->id,'title'=>str_slug($gallery->title,'-')]) }}" class="button primary" data-ajax="false" target="_blank">Ver artículo</a>
+            <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="button success">Editar</a>
+            <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="button danger" data-confirm="¿Estás seguro que desea borrar ésta galería de fotos?">Eliminar</a>
         @else
-            <a href="#" class="disabled">No publicado</a>
-            <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="success">Editar</a>
-            <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="danger" data-confirm="¿Estás seguro que desea borrar ésta galería de fotos?">Eliminar</a>
+            <span class="button disabled">Publicado</span>
+            <a href="{{ route('formUpdateGallery',['id'=>$gallery->id]) }}" class="button success">Editar</a>
+            <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="button danger" data-confirm="¿Estás seguro que desea borrar ésta galería de fotos?">Eliminar</a>
         @endif
     @endif
 </div>

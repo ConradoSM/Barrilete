@@ -1,5 +1,5 @@
 @if (isset($success))
-    <p class="alert-success"><img src="/svg/ajax-success.svg" alt="Exito"/>{{ $success }}</p>
+    <p class="alert feedback-success">{{ $success }}</p>
 @endif
 <div id="user-articles-list">
     <h1>{{ ucfirst($status) }}</h1>

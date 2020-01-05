@@ -2,7 +2,9 @@
 
 namespace barrilete\Http\Controllers\Auth;
 
+use Auth;
 use barrilete\Http\Controllers\Controller;
+use barrilete\Role;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -21,11 +23,9 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
+     * Default Redirect
      */
-    protected $redirectTo = '/dashboard';
+    const DEFAULT_REDIRECT = '/';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,23 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Redirect To After Login
+     * @return string
+     */
+    public function redirectTo()
+    {
+        $userRole = Auth::user()->roles()->first() ? Auth::user()->roles()->first()->name : null;
+        $roles = Role::exists() ? Role::get() : false;
+        if ($roles) {
+            foreach ($roles as $role) {
+                if ($role->name == $userRole) {
+                    return $role->redirectTo;
+                }
+            }
+        }
+        return self::DEFAULT_REDIRECT;
     }
 }

@@ -23,6 +23,10 @@ services:
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
+    ports:
+      - 6001:6001
+    expose:
+      - 6001
 
   #Nginx
   webserver:
@@ -31,11 +35,12 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/certs/:/etc/nginx/certs/
     networks:
       - app-network
 

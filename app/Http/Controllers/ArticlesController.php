@@ -2,6 +2,7 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -12,6 +13,7 @@ use barrilete\Http\Requests\articleRequest;
 use barrilete\Articles;
 use Image;
 use File;
+use Throwable;
 
 class ArticlesController extends Controller
 {
@@ -83,7 +85,7 @@ class ArticlesController extends Controller
      * BORRAR ARTÍCULO
      * @param $id
      * @return JsonResponse
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function delete($id)
     {
@@ -110,7 +112,7 @@ class ArticlesController extends Controller
      * PREVIEW ARTÍCULO
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function preview($id)
     {
@@ -130,12 +132,12 @@ class ArticlesController extends Controller
      * PUBLICAR ARTÍCULO
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function publish($id)
     {
         if ($this->_request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $article = $this->_articles->find($id);
                 if ($article) {
                     $article->status = 'PUBLISHED';
@@ -155,12 +157,12 @@ class ArticlesController extends Controller
     /**
      * ARTÍCULOS SIN PUBLICAR
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function unpublished()
     {
         if ($this->_request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $articles = $this->_articles->unpublished();
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))->with('status','artículos')->render()
@@ -212,7 +214,7 @@ class ArticlesController extends Controller
             $upload = public_path('img/articles/images/' . $newPhoto);
             $uploadThumbnail = public_path('img/articles/.thumbs/images/' . $newPhoto);
             Image::make($request->file('photo')->getRealPath())->save($upload);
-            Image::make($request->file('photo')->getRealPath())->resize(450, NULL,
+            Image::make($request->file('photo')->getRealPath())->resize(570, 310,
                 function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($uploadThumbnail);

@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use barrilete\Articles;
 use barrilete\Gallery;
 use barrilete\Poll;
+use Throwable;
 
 class SearchController extends Controller
 {
@@ -36,7 +37,7 @@ class SearchController extends Controller
     /**
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function searchAuth(Request $request)
     {

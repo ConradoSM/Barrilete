@@ -3,6 +3,8 @@
     font-family: 'Ropa Sans', sans-serif;
     text-decoration: none;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -webkit-appearance: none;
     color: #212f3c;
 }
 html, body {
@@ -11,18 +13,18 @@ html, body {
     justify-content: center;
     width: 100%;
     background-color: #fff;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     font-size: 1em;
 }
 a {
-    color: #1a5276;
+    color: #21618C;
     text-decoration: none;
     font-size: 1.6em;
     transition: 0.3s;
 }
 a:visited {
-    color: #1a5276;
+    color: #21618C;
 }
 a:active:focus {
     color: #1f618d;
@@ -103,23 +105,23 @@ div#search {
 div#search input[type=search].big {
     width: 400px;
     height: 50px;
-    margin: 0px;
-    border: 0px;
+    margin: 0;
+    border: 0;
     border-radius: 5px;
     padding: 10px;
     font-size: 1.5em;
-    box-shadow: 0px 0px 3px #5f6a6a;
+    box-shadow: 0 0 3px #5f6a6a;
     transition: 0.5s;
 }
 div#search input[type=search].small {
     width: 300px;
     height: 37px;
-    margin: 0px;
-    border: 0px;
+    margin: 0;
+    border: 0;
     border-radius: 5px;
     padding: 10px;
     font-size: 1em;
-    box-shadow: 0px 0px 3px #5f6a6a;
+    box-shadow: 0 0 3px #5f6a6a;
     transition: 0.5s;
 }
 div#search img.big {
@@ -256,7 +258,7 @@ div.dashboard-container {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: 0px 0px 10px 0px #5f6a6a;
+    box-shadow: 0 0 10px 0 #5f6a6a;
 }
 /*DIV LOGIN*/
 div.dashboard-login {
@@ -267,7 +269,7 @@ div.dashboard-login {
     background-color: rgba(242,243,244,0.6);
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0px 0px 3px #000;
+    box-shadow: 0 0 3px #000;
 }
 div.dashboard-login p {
     font-size: 2em;
@@ -283,22 +285,6 @@ div.dashboard-login p img {
     height: 1.3em;
     vertical-align: middle;
     margin-right: 10px;
-}
-p.alert-success {
-    background-color: #82e0aa;
-    padding: 10px;
-    color:  #1d8348;
-    margin: 10px 0px;
-    border-radius: 3px;
-    font-size: 1.3em;
-}
-p.invalid-feedback {
-    background-color: #f9bfbf;
-    padding: 10px;
-    color: #c71a1a;
-    margin: 10px 0px;
-    border-radius: 3px;
-    font-size: 1.3em;
 }
 /*********
 **FOOTER**

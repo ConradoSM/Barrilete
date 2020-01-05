@@ -10,6 +10,7 @@
 @section('created_at', $article->created_at)
 @section('updated_at', $article->updated_at)
 @section('article_section', $article->section->name)
+<meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pubContainer">
 <article class="pub translate">
@@ -25,30 +26,35 @@
     <hr />
     {!! $article->article_body !!}
     <hr />
-    <div id="disqus_thread"></div>
-    <script>
-        const disqus_config = function () {
-            this.page.url = '{{ Request::url() }}';
-            this.page.identifier = '{{ Request::url() }}';
-        };
-        (function() {
-            const d = document, s = d.createElement('script');
-            s.src = 'https://barrilete.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <h2>Comentarios ( {{ $article->comments->count() }} )</h2>
+    <div id="status"></div>
+    <section class="comments"></section>
+    @include('comments.form')
 </article>
 <aside class="pubSeccion">
     @forelse ($moreArticles as $more)
     <article class="pubArticle translate">
         <img src="{{asset('svg/placeholder.svg')}}" class="placeholder"/>
-        <img src="{{ asset('img/before-load.png') }}" data-src="/img/articles/.thumbs/images/{{ $more -> photo }}" title="{{ $more -> title }}" alt="{{ $more -> title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}'" />
-        <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more -> title, '-')]) }}">{{ $more -> title }}</a>
+        @if ($more->video == 1)
+            <img src="{{ asset('img/play-button.png') }}" class="video" onclick="location.href='{{ route('article',['id'=>$more->id,'section'=>str_slug($more->section->name),'title'=>str_slug($more->title,'-')]) }}'" />
+        @endif
+        <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/.thumbs/images/'.$more->photo) }}" title="{{ $more->title }}" alt="{{ $more->title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more->id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}'" />
+        <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}">{{ $more->title }}</a>
     </article>
     @empty
     @endforelse
 </aside>
 </div>
+<script>
+    /**
+     * Load Comments Box
+     */
+    $(document).ready(function()
+    {
+        const link = '{{ URL::route('getComments',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
+        $.get(link, function(data) {
+            $('section.comments').html(data).hide().fadeIn('normal');
+        });
+    });
+</script>
 @endsection

@@ -8,13 +8,13 @@
 </div>
 <div id="status">
 @if (isset($success))
-    <p class="alert-success"><img src="/svg/ajax-success.svg" alt="Exito"/>{{ $success }}</p>
+    <p class="alert feedback-success">{{ $success }}</p>
 @endif
 @if (isset($error))
-    <p class="invalid-feedback"><img src="/svg/ajax-error.svg" alt="Error"/>{{ $error }}</p>
+    <p class="alert feedback-error">{{ $error }}</p>
 @endif
 @if (!$options)
-    <p class="alert-warning"><img src="/svg/ajax-warning.svg" alt="Advertencia"/>Ésta encuesta no posee opciones</p>
+    <p class="alert feedback-warning">Ésta encuesta no posee opciones</p>
 @endif
 <h1>Actualizar encuesta</h1>
     <fieldset>
@@ -30,7 +30,7 @@
                 <input type="text" class="input" name="title" value="{{ $poll->title }}" placeholder="Título: éste es el principal título de la encuesta (*) Mínimo 20 caracteres" required />
                 <p title="Editar">{{ $poll->article_desc }}</p>
                 <textarea name="article_desc" class="input" placeholder="Copete: puedes incluir el primer párrafo de tu encuesta (*) Mínimo 50 caracteres" required>{{ $poll->article_desc }}</textarea>
-                <input type="submit" value="Actualizar" class="success" />
+                <input type="submit" value="Actualizar" class="button success" />
                 @csrf
                 <input type="hidden" name="id" value="{{ $poll->id }}" />
                 <input type="hidden" name="user_id" value="{{ $poll->user_id }}" />
@@ -44,17 +44,17 @@
         <form method="post" class="data" enctype="multipart/form-data" action="{{ route('updatePollOption') }}">
             <p title="Editar">{{ $option->option }}</p>
             <input type="text" class="input" name="option" value="{{ $option->option }}" placeholder="Opción de la encuesta" required />
-            <input type="submit" value="Actualizar" class="success" />
-            <a href="{{ route('deleteOption',['id' => $option->id]) }}" class="danger" data-confirm="¿Estás seguro que deseas eliminar ésta opción?">Eliminar</a>
+            <input type="submit" value="Actualizar" class="button success" />
+            <a href="{{ route('deleteOption',['id' => $option->id]) }}" class="button danger" data-confirm="¿Estás seguro que deseas eliminar ésta opción?">Eliminar</a>
             @csrf
             <input type="hidden" name="poll_id" value="{{ $poll->id }}" />
             <input type="hidden" name="id" value="{{ $option->id }}" />
         </form>
     @empty
-        <p class="alert-warning"><img src="/svg/ajax-warning.svg" alt="Advertencia"/>Ésta encuesta no posee opciones</p>
+        <p class="alert feedback-warning">Ésta encuesta no posee opciones</p>
     @endforelse
         <hr />
-        <a href="{{ route('addOptions', ['id' => $poll->id]) }}" class="primary">+ Agregar opciones</a>
+        <a href="{{ route('addOptions', ['id' => $poll->id]) }}" class="button primary">+ Agregar opciones</a>
     </fieldset>
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>

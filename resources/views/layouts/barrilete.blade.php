@@ -31,8 +31,13 @@
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
         <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}">
         <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery-confirm.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">
         <!-- Scripts js -->
         <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.form.js') }}"></script>
+        <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
         <script src="{{ asset('js/jquery.lazy.min.js') }}"></script>
         <script src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->

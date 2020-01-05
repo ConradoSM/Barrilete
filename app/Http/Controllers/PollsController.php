@@ -2,6 +2,7 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -13,6 +14,7 @@ use barrilete\Http\Requests\pollRequest;
 use barrilete\Poll;
 use barrilete\PollOptions;
 use barrilete\PollIp;
+use Throwable;
 
 class PollsController extends Controller
 {
@@ -71,7 +73,7 @@ class PollsController extends Controller
      * MOSTRAR ENCUESTA
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function preview($id)
     {
@@ -131,7 +133,7 @@ class PollsController extends Controller
      * FORMULARIO AGREGAR MAS OPCIONES
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function addOptions($id)
     {
@@ -149,7 +151,7 @@ class PollsController extends Controller
      * @param Request $request
      * @param $id
      * @return JsonResponse
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function delete(Request $request, $id)
     {
@@ -176,12 +178,12 @@ class PollsController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function publishPoll(Request $request, $id)
     {
         if ($request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles(User::ADMIN_USER_ROLE)) {
                 $poll = Poll::find($id);
                 if ($poll) {
                     $poll_options = $poll->option->first() ? $poll->option : null;
@@ -206,7 +208,7 @@ class PollsController extends Controller
      * FORMULARIO ACTUALIZAR ENCUESTA
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function formUpdatePoll($id)
     {
@@ -223,7 +225,7 @@ class PollsController extends Controller
     /**
      * ACTUALIZAR ENCUESTA
      * @param pollRequest $request
-     * @return JsonResponse
+     * @return Factory|View|JsonResponse
      */
     public function update(pollRequest $request)
     {
@@ -245,7 +247,7 @@ class PollsController extends Controller
     /**
      * ACTUALIZAR OPCIONES DE LA ENCUESTA
      * @param Request $request
-     * @return JsonResponse
+     * @return Factory|View|JsonResponse
      */
     public function updateOption(Request $request)
     {
@@ -268,7 +270,7 @@ class PollsController extends Controller
      * @param Request $request
      * @param $id
      * @return JsonResponse
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function deleteOption(Request $request, $id)
     {
@@ -292,12 +294,12 @@ class PollsController extends Controller
      * ENCUESTAS SIN PUBLICAR
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function unpublishedPolls(Request $request)
     {
         if ($request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles(User::ADMIN_USER_ROLE)) {
                 $articles = Poll::unpublished();
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))->with('status','encuestas')->render()

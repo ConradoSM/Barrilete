@@ -19,7 +19,7 @@
         </fieldset>
         <input type="button" id="add-field" value="+ Agregar opción" class="primary" />
         <div id="fields"></div>
-        <input type="submit" id="submit" value="Guardar" class="disabled" disabled  />
+        <input type="submit" id="submit" value="Guardar" class="button disabled" disabled  />
         <input type="hidden" name="poll_id" value="{{ $poll->id }}" />
         @csrf
     </form>

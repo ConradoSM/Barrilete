@@ -12,6 +12,7 @@ use barrilete\Http\Requests\userRequest;
 use barrilete\User;
 use Image;
 use File;
+use Throwable;
 
 class UsersController extends Controller
 {
@@ -19,7 +20,7 @@ class UsersController extends Controller
      * OPCIONES DE USUARIO
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function options(Request $request)
     {
@@ -36,7 +37,7 @@ class UsersController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function account(Request $request, $id)
     {
@@ -59,12 +60,12 @@ class UsersController extends Controller
      * LISTA DE USUARIOS
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function users(Request $request)
     {
         if($request->ajax()) {
-            if(Auth::user()->is_admin) {
+            if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $users = User::all();
                 return response()->json([
                     'view' => view('auth.users.users', compact('users'))->render()
@@ -80,12 +81,12 @@ class UsersController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function show(Request $request, $id)
     {
         if($request->ajax()) {
-            if(Auth::user()->is_admin) {
+            if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $user = User::find($id);
                 return $user
                     ? response()->json([
@@ -103,7 +104,7 @@ class UsersController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function edit(Request $request, $id)
     {
@@ -158,7 +159,7 @@ class UsersController extends Controller
         }
         $newFile = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
         $upload = public_path('img/users/' . $newFile);
-        Image::make($file->getRealPath())->resize(200, 200)->save($upload);
+        Image::make($file->getRealPath())->resize(75, 75)->save($upload);
         return $newFile;
     }
 
@@ -166,12 +167,12 @@ class UsersController extends Controller
      * BORRAR USUARIO
      * @param Request $request
      * @param $id
-     * @return RedirectResponse
+     * @return RedirectResponse|JsonResponse
      */
     public function delete(Request $request, $id)
     {
         if($request->ajax()) {
-            if(Auth::user()->is_admin) {
+            if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $user = User::find($id);
                 if($user) {
                     $image_path = public_path('img/users/'.$user->photo);
@@ -197,6 +198,7 @@ class UsersController extends Controller
      * @param Request $request
      * @param $id
      * @return JsonResponse|RedirectResponse
+     * @deprecated Change Functionality
      */
     public function makeAdmin(Request $request, $id)
     {
@@ -223,11 +225,12 @@ class UsersController extends Controller
      * @param Request $request
      * @param $id
      * @return JsonResponse|RedirectResponse
+     * @deprecated Change functionality
      */
     public function deleteAdmin(Request $request, $id)
     {
         if($request->ajax()) {
-            if(Auth::user()->is_admin) {
+            if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $user = User::find($id);
                 if($user) {
                     if($user->is_admin) {

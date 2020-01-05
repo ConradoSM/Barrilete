@@ -2,6 +2,7 @@
 
 namespace barrilete\Http\Controllers;
 
+use Auth;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -12,17 +13,23 @@ use barrilete\User;
 use barrilete\Sections;
 use barrilete\Articles;
 use barrilete\Gallery;
+use Throwable;
 
 
 class DashboardController extends Controller
 {
+
+    const DEFAULT_REDIRECT = '/';
     /**
      * INDEX DEL DASHBOARD
-     * @return Factory|View
+     * @return Factory|View|RedirectResponse|Redirector
      */
     public function index()
     {
-        return view('auth.dashboard');
+        if (Auth::user()->authorizeRoles(['editor', 'admin'])) {
+            return view('auth.dashboard');
+        }
+        return redirect(self::DEFAULT_REDIRECT);
     }
 
     /**
@@ -30,7 +37,7 @@ class DashboardController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function userArticles(Request $request, $id)
     {
@@ -49,7 +56,7 @@ class DashboardController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function userGalleries(Request $request, $id)
     {
@@ -68,7 +75,7 @@ class DashboardController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function userPolls(Request $request, $id)
     {
@@ -86,7 +93,7 @@ class DashboardController extends Controller
      * FORMULARIO CARGAR ARTÍCULO
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function formArticle(Request $request)
     {
@@ -95,7 +102,6 @@ class DashboardController extends Controller
             $sections = Sections::select('id','name')->where('name','!=','Encuestas')->where('name','!=','Galerias')->get();
             if ($request->id) {
                 $article = Articles::find($request->id);
-                $sections = Sections::select('id','name')->where('name', '!=', $article->section->name)->where('name','!=','Encuestas');
             }
             if (!$sections->first()) {
                 return response()->json(['error' => 'Primero debes crear alguna sección'], 500);
@@ -111,7 +117,7 @@ class DashboardController extends Controller
      * FORMULARIO CARGAR GALERÍA
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function formGallery(Request $request)
     {
@@ -132,7 +138,7 @@ class DashboardController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function formUpdateGallery(Request $request, $id)
     {
@@ -153,7 +159,7 @@ class DashboardController extends Controller
      * FORMULARIO CARGAR ENCUESTA
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function formPoll(Request $request)
     {

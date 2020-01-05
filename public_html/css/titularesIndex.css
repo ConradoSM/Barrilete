@@ -1,3 +1,20 @@
+/** LAZY IMAGES*/
+img.lazy {
+    background-image: url('/img/loader-image.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 50px auto;
+}
+img.placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px !important;
+    height: auto !important;
+}
+.translate img.camera, img.placeholder {
+    transform: translate(-50%, -50%);
+}
 /*****************
 **MAIN TITULARES**
 *****************/
@@ -7,14 +24,14 @@ article.pubIndex {
     height: 400px;
     margin-bottom: 30px;
     overflow: hidden;
-    box-shadow: 0px 0px 10px 0px #5f6a6a;
-    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 0 10px 0 #5f6a6a;
+    border-radius: 0 0 5px 5px;
     cursor: pointer;
 }
 article.pubIndex:hover {
     background-color: #f2f3f4;
     opacity: 0.8;
-    box-shadow: 0px 0px 10px 0px #000;
+    box-shadow: 0 0 10px 0 #000;
     transition: 0.3s;
 }
 article.pubIndex div.seccion {
@@ -41,28 +58,12 @@ article.pubIndex div.seccion:hover {
 article.pubIndex img.video {
     position: absolute;
     width: 50px;
-    height: auto;
+    height: 50px;
     left: 168px;
     top: 100px;
-    box-shadow: 0px 0px 50px 0px rgba(255,255,255,0.2);
+    box-shadow: 0 0 50px 0 rgba(255,255,255,0.2);
     border-radius: 50%;
     z-index: 1;
-}
-img.lazy {
-    background-image: url('/img/loader-image.gif');
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: 50px auto;
-}
-img.placeholder {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px !important;
-    height: auto !important;
-}
-.translate img.camera, img.placeholder {
-    transform: translate(-50%, -50%);
 }
 article.pubIndex img {
     width: 100%;
@@ -74,12 +75,12 @@ article.pubIndex a {
     height: auto;
     font-size: 1.5em;
     line-height: 30px;
-    padding: 20px 20px 0px 20px;
+    padding: 20px 20px 0 20px;
 }
 article.pubIndex p {
     position: absolute;
     right: 20px;
-    bottom: 0px;
+    bottom: 0;
     font-size: 1.2em;
 }
 /*********************************
@@ -93,7 +94,7 @@ div.galeriasContainerIndex {
     height: auto;
     border-radius: 5px;
     background-color: #f2f3f4;
-    box-shadow: 0px 0px 10px 0px #5f6a6a;
+    box-shadow: 0 0 10px 0 #5f6a6a;
 }
 div.galeriasContainerIndex img.camera {
     position: absolute;
@@ -115,10 +116,10 @@ div.pollsContainerIndex {
     flex-flow: column wrap;
     width: 470px;
     height: auto;
-    padding: 0px 20px 20px 20px;
+    padding: 0 20px 20px 20px;
     border-radius: 5px;
     background-color: #f2f3f4;
-    box-shadow: 0px 0px 10px 0px #5f6a6a;
+    box-shadow: 0 0 10px 0 #5f6a6a;
 }
 /*************************
 **GALERIA DE FOTOS INDEX**
@@ -170,7 +171,7 @@ article.pollIndex:hover {
 }
 article.pollIndex p {
     font-size: 1em;
-    margin: 0px 0px 10px 0px;
+    margin: 0 0 10px 0;
 }
 article.pollIndex a {
     display: block;
@@ -218,7 +219,7 @@ article.pollIndex a {
         font-size: 2em;
     }
     article.galeriaIndex {
-        border-radius: 0px 0px 5px 5px;
+        border-radius: 0 0 5px 5px;
     }
     article.galeriaIndex img {
         width: 100%;
@@ -229,13 +230,13 @@ article.pollIndex a {
         height: auto;
         bottom: 0;
         left: 0;
-        border-radius: 0px 0px 3px 3px;
+        border-radius: 0 0 3px 3px;
     }
     article.pubIndex p {
         align-self: flex-end;
         position: relative;
         margin-top: 10px;
-        margin-right: 0px;
+        margin-right: 0;
         margin-bottom: 10px;
         font-size: 1.2em;
     }
@@ -292,20 +293,20 @@ article.pollIndex a {
         font-size: 2em;
     }
     article.galeriaIndex {
-        border-radius: 0px 0px 5px 5px;
+        border-radius: 0 0 5px 5px;
     }
     article.galeriaIndex a {
         width: 100%;
         height: auto;
         bottom: 0;
         left: 0;
-        border-radius: 0px 0px 3px 3px;
+        border-radius: 0 0 3px 3px;
     }
     article.pubIndex p {
         align-self: flex-end;
         position: relative;
         margin-top: 10px;
-        margin-right: 0px;
+        margin-right: 0;
         margin-bottom: 10px;
         font-size: 1.2em;
     }
@@ -362,7 +363,7 @@ article.pollIndex a {
         font-size: 2em;
     }
     article.galeriaIndex {
-        border-radius: 0px 0px 5px 5px;
+        border-radius: 0 0 5px 5px;
     }
     article.galeriaIndex img {
         width: 100%;
@@ -373,7 +374,7 @@ article.pollIndex a {
         height: auto;
         bottom: 0;
         left: 0;
-        border-radius: 0px 0px 3px 3px;
+        border-radius: 0 0 3px 3px;
     }
     /*************************
     *****ENCUESTAS INDEX******
@@ -390,7 +391,7 @@ article.pollIndex a {
         align-self: flex-end;
         position: relative;
         margin-top: 10px;
-        margin-right: 0px;
+        margin-right: 0;
         margin-bottom: 10px;
         font-size: 1.2em;
     }
@@ -428,8 +429,8 @@ article.pollIndex a {
     article.galeriaIndex a{
         width: 100%;
         height: auto;
-        bottom: 0px;
-        left: 0px;
+        bottom: 0;
+        left: 0;
     }
     /*********************************
     **GALERIA Y ENCUESTAS CONTAINER **
@@ -452,8 +453,8 @@ article.pollIndex a {
         height: 650px;
         margin-right: 30px;
         margin-bottom: 30px;
-        box-shadow: 0px 0px 10px 0px #5f6a6a;
-        border-radius: 0px 0px 0px 0px;
+        box-shadow: 0 0 10px 0 #5f6a6a;
+        border-radius: 0 0 0 0;
     }
     article.pubIndex:nth-child(1):hover {
         box-shadow: 0px 0px 10px 0px #000;
@@ -477,7 +478,6 @@ article.pollIndex a {
         display: block;
         width: 560px;
         height: auto;
-        bottom: 0;
         bottom: 20px;
         left: 20px;
         text-decoration: none;
@@ -501,11 +501,11 @@ article.pollIndex a {
         width: 570px;
         height: 310px;
         overflow: hidden;
-        box-shadow: 0px 0px 10px 0px #5f6a6a;
-        border-radius: 0px 0px 0px 0px;
+        box-shadow: 0 0 10px 0 #5f6a6a;
+        border-radius: 0 0 0 0;
     }
     article.pubIndex:nth-child(2):hover, article.pubIndex:nth-child(3):hover{
-        box-shadow: 0px 0px 10px 0px #000;
+        box-shadow: 0 0 10px 0 #000;
         transition: 0.3s;
     }
     article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video{
@@ -516,14 +516,13 @@ article.pollIndex a {
     }
     article.pubIndex:nth-child(2) img, article.pubIndex:nth-child(3) img{
         width: 100%;
-        height: auto;
+        height: 310px;
     }
     article.pubIndex:nth-child(2) a, article.pubIndex:nth-child(3) a{
         position: absolute;
         display: block;
         width: 530px;
         height: auto;
-        bottom: 0;
         bottom: 20px;
         left: 20px;
         text-decoration: none;
@@ -538,13 +537,13 @@ article.pollIndex a {
     **************/
     article.pubIndex:nth-child(3) {
         position: absolute;
-        right: 0px;
+        right: 0;
         top: 380px;
         width: 570px;
         height: 310px;
         overflow: hidden;
-        box-shadow: 0px 0px 10px 0px #5f6a6a;
-        border-radius: 0px 0px 0px 0px;
+        box-shadow: 0 0 10px 0 #5f6a6a;
+        border-radius: 0 0 0 0;
     }
     /******************
     **7 y 8° ARTÍCULO**
@@ -555,26 +554,26 @@ article.pollIndex a {
         width: 780px;
         height: 220px;
         overflow: hidden;
-        box-shadow: 0px 0px 10px 0px #5f6a6a;
-        border-radius: 0px 0px 0px 0px;
+        box-shadow: 0 0 10px 0 #5f6a6a;
+        border-radius: 0 0 0 0;
     }
     article.pubIndex:nth-child(10) img, article.pubIndex:nth-child(11) img {
-        width: 300px;
-        height: auto;
+        width: 400px;
+        height: 220px;
     }
     article.pubIndex:nth-child(10) a, article.pubIndex:nth-child(11) a {
-        width: 480px;
+        width: 380px;
         height: 220px;
         padding-top: 60px;
     }
     article.pubIndex:nth-child(10) img.video, article.pubIndex:nth-child(11) img.video {
         width: 50px;
-        height: auto;
-        left: 130px;
-        top: 90px;
+        height: 50px;
+        left: 175px;
+        top: 85px;
     }
     article.pubIndex:nth-child(10) div.seccion, article.pubIndex:nth-child(11) div.seccion {
-        left: 320px;
+        left: 420px;
     }
     /**************
     **9° ARTÍCULO**
@@ -584,8 +583,8 @@ article.pollIndex a {
         width: 400px;
         height: 471px;
         overflow: hidden;
-        box-shadow: 0px 0px 10px 0px #5f6a6a;
-        border-radius: 0px 0px 0px 0px;
+        box-shadow: 0 0 10px 0 #5f6a6a;
+        border-radius: 0 0 0 0;
     }
     article.pubIndex:nth-child(12) img {
         width: 100%;

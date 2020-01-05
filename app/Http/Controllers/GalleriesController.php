@@ -2,6 +2,7 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use barrilete\Gallery;
 use barrilete\GalleryPhotos;
 use Image;
 use File;
+use Throwable;
 
 class GalleriesController extends Controller
 {
@@ -36,7 +38,7 @@ class GalleriesController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function preview(Request $request, $id)
     {
@@ -91,7 +93,7 @@ class GalleriesController extends Controller
                 $upload = public_path('img/galleries/'.$filename);
                 $uploadThumb = public_path('img/galleries/.thumbs/'.$filename);
                 Image::make($file->getRealPath())->save($upload);
-                Image::make($file->getRealPath())->resize(700, NULL, function($constraint) {
+                Image::make($file->getRealPath())->resize(570, 310, function($constraint) {
                 $constraint->aspectRatio(); })->save($uploadThumb);
                 /** GUARDAR EN BASE DE DATOS */
                 $galleryPhotos = new GalleryPhotos;
@@ -115,7 +117,7 @@ class GalleriesController extends Controller
      * @param Request $request
      * @param $id
      * @return JsonResponse
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function delete(Request $request, $id)
     {
@@ -153,12 +155,12 @@ class GalleriesController extends Controller
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function publishGallery(Request $request, $id)
     {
         if ($request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $gallery = Gallery::find($id);
                 $photos = $gallery->photos->first() ? $gallery->photos : [];
                 if ($photos) {
@@ -185,7 +187,7 @@ class GalleriesController extends Controller
     /**
      * ACTUALIZAR GALERIA
      * @param galleryRequest $request
-     * @return JsonResponse
+     * @return JsonResponse|Factory|View
      */
     public function update(galleryRequest $request)
     {
@@ -206,7 +208,7 @@ class GalleriesController extends Controller
      * MAS FOTOS
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function morePhotos(Request $request)
     {
@@ -223,12 +225,12 @@ class GalleriesController extends Controller
      * GALERÍAS SIN PUBLICAR
      * @param Request $request
      * @return Factory|JsonResponse|View
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function unpublishedGalleries(Request $request)
     {
         if ($request->ajax()) {
-            if (Auth::user()->is_admin) {
+            if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $articles = Gallery::unpublished();
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))->with('status','galerías')->render()
