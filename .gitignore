@@ -8,6 +8,7 @@ git status
 ssh_key_git_barrilete
 ssh_key_git_barrilete.pub
 storage/framework/.gitignore
+/public_html/img/galleries/
 /public_html/img/articles/.thumbs/images/
 /public_html/img/articles/images/
 /public_html/img/galleries/.thumbs/
