@@ -46,7 +46,7 @@
             <form action="{{ route('updatePhoto') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="file" class="jfilestyle" data-placeholder="Seleccionar imagen" name="photo" accept="image/*" required />
-                <input type="submit" class="success" value="Actualizar" />
+                <input type="submit" class="button success" value="Actualizar" />
                 <input type="hidden" name="id" value="{{ $photo->id }}" />
                 <input type="hidden" name="actual_photo" value="{{ $photo->photo }}" />
             </form>

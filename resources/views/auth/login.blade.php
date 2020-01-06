@@ -10,13 +10,13 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             @if ($errors->has('email'))
-            <p class="alert feedback-error" role="alert"><img src="{{ asset('svg/ajax-error.svg') }}" alt="Error"/>{{ $errors->first('email') }}</p>
+            <p class="alert feedback-error" role="alert">{{ $errors->first('email') }}</p>
             @endif
             @if ($errors->has('password'))
-            <p class="alert feedback-error" role="alert"><img src="{{ asset('svg/ajax-error.svg') }}" alt="Error"/>{{ $errors->first('password') }}</p>
+            <p class="alert feedback-error" role="alert">{{ $errors->first('password') }}</p>
             @endif
-            <input id="email" type="email" class="{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autofocus>
-            <input id="password" type="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" required>
+            <input id="email" type="email" class="{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autofocus>
+            <input id="password" type="password" class="{{ $errors->has('password') ? ' error' : '' }}" name="password" placeholder="{{ __('Password') }}" required>
             @if (Route::has('password.request'))
             <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
             @endif

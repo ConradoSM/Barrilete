@@ -4,11 +4,11 @@
 <div class="dashboard-container">
     <div class="dashboard-login">
         <p><img src="{{asset('svg/lock.svg')}}" />{{ __('Reset Password') }}</p>
-         @if (session('status'))<p class="alert feedback-success" role="alert"><img src="{{ asset('svg/ajax-success.svg') }}" alt="Error"/>{{ session('status') }}</p>@endif
+         @if (session('status'))<p class="alert feedback-success" role="alert">{{ session('status') }}</p>@endif
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
             @if ($errors->has('email'))
-            <p class="alert feedback-error" role="alert"><img src="{{ asset('svg/ajax-error.svg') }}" alt="Error"/>{{ $errors->first('email') }}</p>
+            <p class="alert feedback-error" role="alert">{{ $errors->first('email') }}</p>
             @endif
             <input placeholder="{{ __('E-Mail Address') }}" id="email" type="email" class="form-control{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
             @if ($errors->has('password'))

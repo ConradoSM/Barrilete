@@ -17,7 +17,7 @@
             <p><b>Título:</b> {{ $poll->title }}</p>
             <p><b>Copete:</b> {{ $poll->article_desc }}</p>
         </fieldset>
-        <input type="button" id="add-field" value="+ Agregar opción" class="primary" />
+        <input type="button" id="add-field" value="+ Agregar opción" class="button primary" />
         <div id="fields"></div>
         <input type="submit" id="submit" value="Guardar" class="button disabled" disabled  />
         <input type="hidden" name="poll_id" value="{{ $poll->id }}" />
