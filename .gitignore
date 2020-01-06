@@ -3,6 +3,7 @@
 /key
 /key.pub
 git status
+/.env
 .~lock.ssh_key_git_barrilete.pub#
 ssh_key_git_barrilete
 ssh_key_git_barrilete.pub
