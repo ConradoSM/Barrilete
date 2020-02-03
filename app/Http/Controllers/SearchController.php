@@ -21,17 +21,72 @@ class SearchController extends Controller
     {
         $section = $request->input('sec');
         $search = $request->input('query');
+        $result = '';
+
         if ($section == 'articulos') {
-            $result = Articles::search($search);
-        } elseif ($section == 'galerias') {
-            $result = Gallery::search($search);
-        } elseif ($section == 'encuestas') {
-            $result = Poll::search($search);
-        } else {
-            return view('errors.404');
+            $result = Articles::search($search)->paginate(10);
+        }
+        if ($section == 'galerias') {
+            $result = Gallery::search($search)->paginate(10);
+        }
+        if ($section == 'encuestas') {
+            $result = Poll::search($search)->paginate(10);
         }
         $result->appends(['query' => $search, 'sec' => $section]);
+
         return view('search', compact('result'));
+    }
+
+    /**
+     * @param Request $request
+     * @return Factory|View
+     */
+    public function autocomplete(Request $request)
+    {
+        $query = $request->input('query');
+
+        $results = array_values([
+            'articles' => Articles::search($query)->get(),
+            'galleries' => Gallery::search($query)->get(),
+            'polls' => Poll::search($query)->get()
+        ]);
+
+        $response = [];
+        foreach ($results as $key => $values) {
+            foreach ($values as $result) {
+                $sectionName = $result->section->name;
+                $url = '';
+                if ($sectionName !== 'galerias' && $sectionName !== 'encuestas') {
+                    $url = route('article', [
+                        'id' => $result->id,
+                        'section' => str_slug($sectionName),
+                        'title' => str_slug($result->first()->title, '-')
+                    ]);
+                }
+                if ($sectionName == 'galerias') {
+                    $url = route('gallery', [
+                        'id' => $result->id,
+                        'title' => str_slug($result->first()->title, '-')
+                    ]);
+                }
+                if ($sectionName == 'encuestas') {
+                    $url = route('poll', [
+                        'id' => $result->id,
+                        'title' => str_slug($result->first()->title, '-')
+                    ]);
+                }
+                $data = [
+                    'title' => $result->title,
+                    'url' => $url
+                ];
+                if (array_key_exists($sectionName, $response)) {
+                    array_push($response[$sectionName], $data);
+                } else {
+                    $response[$sectionName][$key] = $data;
+                }
+            }
+        }
+        return view('autocomplete', compact('response'));
     }
 
     /**

@@ -20,7 +20,7 @@ services:
     env_file: .env
     volumes:
       - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
     ports:
@@ -39,8 +39,8 @@ services:
       - 443:443
     volumes:
       - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-      - ./nginx/certs/:/etc/nginx/certs/
+      - ./docker/config/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/config/nginx/certs/:/etc/nginx/certs/
     networks:
       - app-network
 
@@ -57,9 +57,21 @@ services:
       MYSQL_ROOT_PASSWORD: ba5Tgl28sy
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+    networks:
+      - app-network
+
+  #Elasticsearch
+  elasticsearch:
+    image: summasolutions/elasticsearch:${ES_VERSION}
+    env_file: .env
+    ports:
+      - "9200"
+      - "9300"
     volumes:
-      - dbdata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - "./docker/volumes/elasticsearch:/usr/share/elasticsearch/data"
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
     networks:
       - app-network
 

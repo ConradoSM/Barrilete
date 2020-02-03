@@ -97,8 +97,7 @@ class Articles extends Model
     {
         return $query->whereRaw("MATCH (title,article_desc,article_body) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
         ->where('status','PUBLISHED')
-        ->orderBy('id', 'DESC')
-        ->paginate(10);
+        ->orderBy('id', 'DESC');
     }
 
     /**

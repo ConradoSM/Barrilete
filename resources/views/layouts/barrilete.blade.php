@@ -3,10 +3,10 @@
     <head>
     <meta charset="UTF-8" />
         <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/favicon/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
         <meta name="msapplication-TileColor" content="#34495e">
         <meta name="theme-color" content="#ffffff">
         <title>@yield('title')</title>
@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">
         <!-- Scripts js -->
         <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{asset('js/jquery-ui.min.js')}}"></script>
         <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>
         <script src="{{ asset('js/jquery.form.js') }}"></script>
         <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
@@ -50,32 +51,40 @@
         </script>
     </head>
     <body>
-        <header class="relative">
-            <div class="navContainer">
-                <img id="logo" class="big" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" />
+        <header>
+            <div class="headerContainer">
+                <img id="logo" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" alt="Home" />
                 <div id="search">
                     <form action="{{ route('search') }}" method="get" id="formSearch">
-                        <input id="inputText" type="search" value="" name="query" placeholder="Buscar en el sitio" class="big" />
-                        <img src="{{ asset('svg/search.svg') }}" title="Buscar" onClick="document.getElementById('formSearch').submit();" class="big" />
+                        <input id="search" type="search" value="" name="query" placeholder="Buscar en el sitio" />
+                        <img src="{{ asset('svg/search.svg') }}" onClick="document.getElementById('formSearch').submit();" alt="Buscar" title="Buscar" class="search-button"/>
                         <input type="hidden" value="articulos" name="sec" />
                     </form>
+                    <div id="results"></div>
                 </div>
-                <img id="search-btn" class="big" src="{{ asset('svg/search.svg') }}" />
-                <a id="menu-btn" class="big" title="Menú">
+                <div class="user-bar">
+                    <img src="{{asset('svg/user-blue.svg')}}" />
+                    <!--
+                    <img src="{{asset('svg/alarm.svg')}}" />
+                    <img src="{{asset('svg/chat.svg')}}" />
+                    -->
+                </div>
+                <a id="menu-btn" class="display" title="Menú">
                     <div class="menu-btn-block top"></div>
                     <div class="menu-btn-block middle"></div>
                     <div class="menu-btn-block bottom"></div>
                 </a>
             </div>
-            <nav class="none">
-                <ul>
-                    @forelse ($sections as $section)
-                    <li><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" class="{{ Request::path() == 'sec/'.$section->name ? 'active' : '' }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
-                    @empty
-                    @endforelse
-                </ul>
-            </nav>
-            <div id="glass" class="hide"></div>
+            <div class="navContainer">
+                <nav>
+                    <ul>
+                        @forelse ($sections as $section)
+                        <li><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" class="{{ Request::path() == 'sec/'.$section->name ? 'active' : '' }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
+                        @empty
+                        @endforelse
+                    </ul>
+                </nav>
+            </div>
         </header>
         <section class="mainSection">
             @yield('content')

@@ -20,6 +20,7 @@ Route::get('/', 'IndexController@home')->name('default');
 Route::get('sec/{name}', 'SectionsController@searchSection')->name('section');
 //SEARCH
 Route::get('search', 'SearchController@search')->name('search');
+Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 //VIEW ARTICLES
 Route::get('article/{id}/{section}/{title}', 'ArticlesController@show')->name('article');
 //VIEW GALLERIES

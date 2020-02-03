@@ -95,8 +95,7 @@ class Gallery extends Model
     {
         return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($search))
         ->where('status','PUBLISHED')
-        ->orderBy('id', 'DESC')
-        ->paginate(10);
+        ->orderBy('id', 'DESC');
     }
 
     /**
