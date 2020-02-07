@@ -127,10 +127,12 @@ class Gallery extends Model
     }
 
     /**
+     * @param $sectionId
      * @return HasMany
      */
-    public function comments()
+    public function comments($sectionId)
     {
-        return $this->hasMany(Comments::class,'article_id');
+        return $this->hasMany(Comments::class,'article_id')
+            ->where('section_id', $sectionId);
     }
 }

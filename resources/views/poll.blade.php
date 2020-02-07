@@ -55,7 +55,7 @@
             @endif
         </article>
         <hr />
-        <h2>Comentarios ( {{ $article->comments->count() }} )</h2>
+        <h2>Comentarios ( {{ $article->comments($article->section_id)->count() }} )</h2>
         <div id="status"></div>
         <section class="comments"></section>
         @include('comments.form')
