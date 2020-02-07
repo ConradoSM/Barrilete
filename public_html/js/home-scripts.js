@@ -54,28 +54,49 @@ $(document).ready(function() {
      * MOBILE BUTTON SEARCH
      */
     $('img#search-btn').on('click', function () {
-        $('div#search').slideDown('fast', 'linear');
+        $('div#search').slideDown('fast');
         $('#inputText').focus();
         $('div#glass.hide').addClass('show');
+    });
+
+    const userBar = $('div.user-bar img');
+    const divUser = $('div#user-menu');
+    userBar.on('click', function () {
+        const link = $(this).attr('data-bind');
+        $.ajax({
+            type: 'GET',
+            url: link,
+            dataType: 'json',
+            success: function (data) {
+                divUser.html(data).slideDown('fast');
+            },
+            error: function (xhr) {
+                divUser.html('<p>Error: ' + xhr.status + ' - ' + xhr.statusText + '</p>').slideDown('fast');
+            }
+        });
     });
 
     /**
      * Autocomplete Search Functionality
      */
     const inputSearch = $('input#search');
-    const div = $('div#results');
+    const divResults = $('div#results');
 
-    searchAPI = function () {
+    let searchAPI = function () {
         inputSearch.autocomplete({
             source: function (request) {
                 $.ajax({
                     type: 'GET',
                     url: '/autocomplete',
+                    dataType: 'json',
                     data: {
                         query: request.term,
                     },
                     success: function (data) {
-                        div.html(data).show();
+                        divResults.html(data).slideDown('fast');
+                    },
+                    error: function (xhr) {
+                        divResults.html('<p>Error: ' + xhr.status + ' - ' + xhr.statusText+'</p>').slideDown('fast');
                     }
                 });
             },
@@ -84,13 +105,17 @@ $(document).ready(function() {
     };
 
     $(document).on('click', function (e) {
-        if (e.target.id !== 'results' && !div.find(e.target).length) {
-            div.hide();
+        if (e.target.id !== 'results' && !divResults.find(e.target).length) {
+            divResults.slideUp('fast');
+        }
+        if (e.target.id !== 'user-menu' && !divUser.find(e.target).length) {
+            divUser.slideUp('fast');
         }
     });
+
     inputSearch.keyup(function() {
         if ($(this).val().length === 0) {
-            div.hide();
+            divResults.slideUp('fast');
         }
         searchAPI();
     }).keyup();

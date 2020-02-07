@@ -3,6 +3,8 @@
 namespace barrilete;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Poll extends Model
 {
@@ -13,7 +15,7 @@ class Poll extends Model
 
     /**
      * UNA ENCUESTA PERTENECE A UN USUARIO
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {
@@ -22,7 +24,7 @@ class Poll extends Model
 
     /**
      * UNA ENCUESTA PERTENECE A UNA SECCIÓN
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function section()
     {
@@ -31,7 +33,7 @@ class Poll extends Model
 
     /**
      * UNA ENCUESTA TIENE MUCHAS OPCIONES
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function option()
     {
@@ -119,5 +121,13 @@ class Poll extends Model
         ->where('status','DRAFT')
         ->orderBy('id','desc')
         ->paginate(10);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comments::class,'article_id');
     }
 }

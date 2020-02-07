@@ -1,23 +1,24 @@
 @extends('layouts.barrilete')
-@section('title', $poll->title)
-@section('description', $poll->article_desc)
-@section('article_title', $poll->title)
+@section('title', $article->title)
+@section('description', $article->article_desc)
+@section('article_title', $article->title)
 @section('article_type', 'poll')
-@section('article_desc', $poll->article_desc)
-@section('article_url', route('poll', ['id' => $poll->id, 'title' => str_slug($poll->title, '-')]))
+@section('article_desc', $article->article_desc)
+@section('article_url', route('poll', ['id' => $article->id, 'title' => str_slug($article->title, '-')]))
 @section('site_name', 'Barrilete')
-@section('created_at', $poll->created_at)
-@section('updated_at', $poll->updated_at)
-@section('article_section', $poll->section->name)
+@section('created_at', $article->created_at)
+@section('updated_at', $article->updated_at)
+@section('article_section', $article->section->name)
+<meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pubContainer">
     <article class="pub">
-        <h1>{{ $poll->title }}</h1>
-        <p class="copete">{{ $poll->article_desc }}</p>
+        <h1>{{ $article->title }}</h1>
+        <p class="copete">{{ $article->article_desc }}</p>
         <p class="info">
-            <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->created_at->diffForHumans()}}
-            <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$poll->user->name}}
-            <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$poll->views}}
+            <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$article->created_at->diffForHumans()}}
+            <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$article->user->name}}
+            <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$article->views}}
         </p>
         <hr />
         <article class="pollOptions">
@@ -35,7 +36,7 @@
             <hr />
             <p class="totalVotes">Votos: {{$totalVotes}}</p>
             @else
-            <form action="{{route('poll-vote')}}" method="post">            
+            <form action="{{route('poll-vote')}}" method="post">
                 @forelse ($poll_options as $option)
                 <label class="radio-container" for="{{$option->id}}">{{ $option->option }}
                     <input type="radio" name="id_opcion" id="{{$option->id}}" value="{{$option->id}}" required />
@@ -46,36 +47,35 @@
                 @endforelse
                 <hr />
                 @csrf
-                <input type="hidden" name="id_encuesta" value="{{$poll->id}}" />
+                <input type="hidden" name="id_encuesta" value="{{$article->id}}" />
                 <input type="hidden" name="ip" value="{{Request::ip()}}" />
-                <input type="hidden" name="titulo_encuesta" value="{{str_slug($poll->title,'-')}}" />
-                <input type="submit" name="submit" value="Votar" class="primary" />
+                <input type="hidden" name="titulo_encuesta" value="{{str_slug($article->title,'-')}}" />
+                <input type="submit" name="submit" value="Votar" class="button primary" />
             </form>
             @endif
         </article>
-        <div id="disqus_thread"></div>
+        <hr />
+        <h2>Comentarios ( {{ $article->comments->count() }} )</h2>
+        <div id="status"></div>
+        <section class="comments"></section>
+        @include('comments.form')
         <script>
-
-        var disqus_config = function () {
-        this.page.url = '{{ Request::url() }}';
-        this.page.identifier = '{{ Request::url() }}'; 
-        };
-
-        (function() { 
-        var d = document, s = d.createElement('script');
-        s.src = 'https://barrilete.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
+            /**
+             * Load Comments Box
+             */
+            $(document).ready(function()
+            {
+                const link = '{{URL::route('getComments',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
+                return getComments(link);
+            });
         </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </article>
     <aside class="pubSeccion">
         @forelse ($morePolls as $more)
         <article class="morePolls">
             <p>{{ucfirst($more->created_at->diffForHumans())}}</p>
-            <a href="{{route('poll',['id'=>$more->id,'title'=>str_slug($more->title,'-')])}}">{{$more->title}}</a>   
-        </article> 
+            <a href="{{route('poll',['id'=>$more->id,'title'=>str_slug($more->title,'-')])}}">{{$more->title}}</a>
+        </article>
         @empty
         @endforelse
     </aside>

@@ -51,10 +51,8 @@
      */
     $(document).ready(function()
     {
-        const link = '{{ URL::route('getComments',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
-        $.get(link, function(data) {
-            $('section.comments').html(data).hide().fadeIn('normal');
-        });
+        const link = '{{URL::route('getComments',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
+        return getComments(link);
     });
 </script>
 @endsection

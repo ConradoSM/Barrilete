@@ -125,4 +125,12 @@ class Gallery extends Model
         ->orderBy('id','desc')
         ->paginate(10);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comments::class,'article_id');
+    }
 }

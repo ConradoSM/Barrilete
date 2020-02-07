@@ -19,37 +19,37 @@ use Throwable;
 class PollsController extends Controller
 {
     /**
-     * MOSTRAR ENCUESTA
+     * Show Poll In Frontend
      * @param $id
-     * @return Factory|View
+     * @return Factory|View|void
      */
     public function poll($id)
     {
-        $poll = Poll::poll($id);
-        if ($poll) {
+        $article = Poll::poll($id);
+        if ($article) {
             $ipRequest = Request()->getClientIp();
             $ip = PollIp::where('poll_id',$id)
             ->where('ip',$ipRequest)
             ->first();
             if (!$ip) {
-                $poll_options = $poll->option;
+                $poll_options = $article->option;
                 $morePolls = Poll::morePolls($id);
-                return view('poll', compact('poll','poll_options','morePolls'))->with('status', false);
+                return view('poll', compact('article','poll_options','morePolls'))->with('status', false);
 
             }
-            $poll_options = $poll->option;
+            $poll_options = $article->option;
             $totalVotes = $poll_options->sum('votes');
             $morePolls = Poll::morePolls($id);
-            return view('poll', compact('poll','poll_options','totalVotes','morePolls'))
+            return view('poll', compact('article','poll_options','totalVotes','morePolls'))
             ->with('status', 'Ya has votado!');
         }
-        return view('errors.404');
+        return abort(404);
     }
 
     /**
-     * VOTOS DE LA ENCUESTA
+     * Set Poll Vote
      * @param Request $request
-     * @return Factory|RedirectResponse|Redirector|View
+     * @return Factory|RedirectResponse|Redirector|View|void
      */
     public function pollVote(Request $request)
     {
@@ -66,11 +66,11 @@ class PollsController extends Controller
             ]);
             return redirect('poll/'.$poll_id.'/'. $pollTitle);
         }
-        return view('errors.404');
+        return abort(404);
     }
 
     /**
-     * MOSTRAR ENCUESTA
+     * Show Poll In Admin
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -88,7 +88,7 @@ class PollsController extends Controller
     }
 
     /**
-     * CREAR ENCUESTA
+     * Create Poll
      * @param pollRequest $request
      * @return Factory|View
      */
@@ -105,7 +105,7 @@ class PollsController extends Controller
     }
 
     /**
-     * GUARDAR OPCIONES
+     * Create Options
      * @param Request $request
      * @return Factory|JsonResponse|View
      */
@@ -130,7 +130,7 @@ class PollsController extends Controller
     }
 
     /**
-     * FORMULARIO AGREGAR MAS OPCIONES
+     * More Options Form
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -147,7 +147,7 @@ class PollsController extends Controller
     }
 
     /**
-     * BORRAR ENCUESTA
+     * Delete Poll
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -174,7 +174,7 @@ class PollsController extends Controller
     }
 
     /**
-     * PUBLICAR ENCUESTA
+     * Publish Poll
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -205,7 +205,7 @@ class PollsController extends Controller
     }
 
     /**
-     * FORMULARIO ACTUALIZAR ENCUESTA
+     * Poll Form
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -223,7 +223,7 @@ class PollsController extends Controller
     }
 
     /**
-     * ACTUALIZAR ENCUESTA
+     * Update Poll
      * @param pollRequest $request
      * @return Factory|View|JsonResponse
      */
@@ -245,7 +245,7 @@ class PollsController extends Controller
     }
 
     /**
-     * ACTUALIZAR OPCIONES DE LA ENCUESTA
+     * Update Options Poll
      * @param Request $request
      * @return Factory|View|JsonResponse
      */
@@ -266,7 +266,7 @@ class PollsController extends Controller
     }
 
     /**
-     * BORRAR OPCIONES DE LA ENCUESTA
+     * Delete Options Poll
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -291,7 +291,7 @@ class PollsController extends Controller
     }
 
     /**
-     * ENCUESTAS SIN PUBLICAR
+     * Unpublished Polls
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable

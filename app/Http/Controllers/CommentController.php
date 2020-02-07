@@ -35,7 +35,7 @@ class CommentController extends Controller
             $comment->save();
             return response()->json([
                 'view' => $this->get($request->article_id, $request->section_id)->render(),
-                'success' => 'El comentario se ha publicado.'
+                'success' => $request->parent_id ? 'Tu respuesta se ha publicado.' : 'El comentario se ha publicado.'
             ])->header('Content-Type', 'application/json');
         }
         return abort(500);
@@ -59,7 +59,7 @@ class CommentController extends Controller
     /**
      * Delete Comment
      * @param Request $request
-     * @return Factory|JsonResponse|View
+     * @return JsonResponse|void
      * @throws Throwable
      */
     public function delete(Request $request)
@@ -75,6 +75,6 @@ class CommentController extends Controller
             }
             return response()->json(['error' => 'El comentario no existe'],404);
         }
-        return response()->json(['error' => 'Ésta no es una petición Ajax!']);
+        return abort(404);
     }
 }

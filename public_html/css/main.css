@@ -18,19 +18,19 @@ html, body {
     font-size: 1em;
 }
 a {
-    color: #21618C;
+    color: #34495e;
     text-decoration: none;
     font-size: 1.6em;
     transition: 0.3s;
 }
 a:visited {
-    color: #21618C;
+    color: #34495e;
 }
 a:active:focus {
-    color: #1f618d;
+    color: #34495e;
 }
 a:hover {
-    color: #000;
+    color: #2980B9;
 }
 hr {
     width: 100%;
@@ -95,7 +95,7 @@ div#search form {
     padding: 0;
 }
 div#search input[type=search] {
-    width: 400px;
+    width: 500px;
     height: 50px;
     margin: 0;
     border: 0;
@@ -122,60 +122,61 @@ div#search img:hover {
     transition: 0.3s;
 }
 
-div#results {
+div#results, div#user-menu {
     position: absolute;
+    display: none;
     width: 100%;
     top: 100%;
     left: 0;
     z-index: 1000;
-    float: left;
-    display: none;
+    padding: 10px;
     background-color: #ffffff;
-    border-color: #ccc;
-    border-color: rgba(0, 0, 0, 0.2);
-    border-style: solid;
-    border-width: 1px;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    -webkit-background-clip: padding-box;
-    -moz-background-clip: padding;
-    background-clip: padding-box;
-    *border-right-width: 2px;
-    *border-bottom-width: 2px;
+    box-shadow: 0 0 3px #5f6a6a;
+}
+div#results hr:first-child {
+    display: none;
 }
 div#results span {
     width: 100%;
     display: block;
-    padding: 0 10px 10px 10px;
     margin: 0;
     color: #555555;
-    font-size: 0.8em;
+    font-size: 1em;
     font-style: italic;
     text-transform: capitalize;
 }
-div#results p {
+div#results p, div#user-menu p {
     width: 100%;
     display: block;
     padding: 10px;
     margin: 0;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 div#results a {
     width: 100%;
     display: block;
-    padding: 10px;
     margin: 0;
-    font-size: 1em;
+    padding: 10px;
+    font-size: 1.2em;
 }
-div#results a:hover {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #34495e;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    background-image: none;
+div#user-menu ul {
+    padding: 0 0 0 15px;
+    margin: 0;
+}
+div#user-menu ul li {
+    list-style: square;
+    margin-bottom: 5px;
+    color: #21618C;
+}
+div#user-menu ul li:hover {
+    list-style: disc;
+    color: #2980B9;
+}
+div#user-menu ul li:last-child {
+    margin-bottom: 0;
+}
+div#user-menu ul li a {
+    font-size: 1.09em;
 }
 /**********
 ****NAV****
@@ -194,6 +195,9 @@ div.headerContainer {
 }
 div.headerContainer.opacity {
     opacity: 0.8;
+}
+div.user-bar {
+    position: relative;
 }
 div.user-bar img {
     height: 36px;

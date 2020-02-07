@@ -39,54 +39,58 @@ class SearchController extends Controller
 
     /**
      * @param Request $request
-     * @return Factory|View
+     * @return JsonResponse|void
+     * @throws Throwable
      */
     public function autocomplete(Request $request)
     {
-        $query = $request->input('query');
+        if($request->ajax()) {
+            $query = $request->input('query');
 
-        $results = array_values([
-            'articles' => Articles::search($query)->get(),
-            'galleries' => Gallery::search($query)->get(),
-            'polls' => Poll::search($query)->get()
-        ]);
+            $results = array_values([
+                'articles' => Articles::search($query)->get(),
+                'galleries' => Gallery::search($query)->get(),
+                'polls' => Poll::search($query)->get()
+            ]);
 
-        $response = [];
-        foreach ($results as $key => $values) {
-            foreach ($values as $result) {
-                $sectionName = $result->section->name;
-                $url = '';
-                if ($sectionName !== 'galerias' && $sectionName !== 'encuestas') {
-                    $url = route('article', [
-                        'id' => $result->id,
-                        'section' => str_slug($sectionName),
-                        'title' => str_slug($result->first()->title, '-')
-                    ]);
-                }
-                if ($sectionName == 'galerias') {
-                    $url = route('gallery', [
-                        'id' => $result->id,
-                        'title' => str_slug($result->first()->title, '-')
-                    ]);
-                }
-                if ($sectionName == 'encuestas') {
-                    $url = route('poll', [
-                        'id' => $result->id,
-                        'title' => str_slug($result->first()->title, '-')
-                    ]);
-                }
-                $data = [
-                    'title' => $result->title,
-                    'url' => $url
-                ];
-                if (array_key_exists($sectionName, $response)) {
-                    array_push($response[$sectionName], $data);
-                } else {
-                    $response[$sectionName][$key] = $data;
+            $response = [];
+            foreach ($results as $key => $values) {
+                foreach ($values as $result) {
+                    $sectionName = $result->section->name;
+                    $url = '';
+                    if ($sectionName !== 'galerias' && $sectionName !== 'encuestas') {
+                        $url = route('article', [
+                            'id' => $result->id,
+                            'section' => str_slug($sectionName),
+                            'title' => str_slug($result->first()->title, '-')
+                        ]);
+                    }
+                    if ($sectionName == 'galerias') {
+                        $url = route('gallery', [
+                            'id' => $result->id,
+                            'title' => str_slug($result->first()->title, '-')
+                        ]);
+                    }
+                    if ($sectionName == 'encuestas') {
+                        $url = route('poll', [
+                            'id' => $result->id,
+                            'title' => str_slug($result->first()->title, '-')
+                        ]);
+                    }
+                    $data = [
+                        'title' => $result->title,
+                        'url' => $url
+                    ];
+                    if (array_key_exists($sectionName, $response)) {
+                        array_push($response[$sectionName], $data);
+                    } else {
+                        $response[$sectionName][$key] = $data;
+                    }
                 }
             }
+            return response()->json([view('autocomplete', compact('response'))->render()]);
         }
-        return view('autocomplete', compact('response'));
+        return abort(404);
     }
 
     /**

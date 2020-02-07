@@ -1,24 +1,25 @@
 @extends('layouts.barrilete')
-@section('title', $gallery->title)
-@section('description', $gallery->article_desc)
-@section('article_title', $gallery->title)
+@section('title', $article->title)
+@section('description', $article->article_desc)
+@section('article_title', $article->title)
 @section('article_type', 'gallery')
-@section('article_desc', $gallery->article_desc)
-@section('article_url', route('gallery', ['id' => $gallery->id, 'title' => str_slug($gallery->title, '-')]))
+@section('article_desc', $article->article_desc)
+@section('article_url', route('gallery', ['id' => $article->id, 'title' => str_slug($article->title, '-')]))
 @section('article_photo', 'https://barrilete.com.ar/img/galleries/.thumbs/'.$photos->first()->photo)
 @section('site_name', 'Barrilete')
-@section('created_at', $gallery->created_at)
-@section('updated_at', $gallery->updated_at)
-@section('article_section', $gallery->section->name)
+@section('created_at', $article->created_at)
+@section('updated_at', $article->updated_at)
+@section('article_section', $article->section->name)
+<meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pubContainer">
 <article class="pub_galeria">
-    <h1>{{$gallery->title}}</h1>
-    <p class="copete">{{$gallery->article_desc}}</p>
+    <h1>{{$article->title}}</h1>
+    <p class="copete">{{$article->article_desc}}</p>
     <p class="info">
-        <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}
-        <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
-        <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}}
+        <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$article->created_at->diffForHumans()}}
+        <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$article->user->name}}
+        <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$article->views}}
     </p>
     <hr />
 @forelse ($photos as $photo)
@@ -30,20 +31,20 @@
 @empty
     <h2>No hay fotos</h2>
 @endforelse
-<div id="disqus_thread"></div>
-<script>
-var disqus_config = function () {
-this.page.url = '{{ Request::url() }}';
-this.page.identifier = '{{ Request::url() }}';
-};
-
-(function() {
-var d = document, s = d.createElement('script');
-s.src = 'https://barrilete.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <hr />
+    <h2>Comentarios ( {{ $article->comments->count() }} )</h2>
+    <div id="status"></div>
+    <section class="comments"></section>
+    @include('comments.form')
+    <script>
+        /**
+         * Load Comments Box
+         */
+        $(document).ready(function()
+        {
+            const link = '{{URL::route('getComments',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
+            return getComments(link);
+        });
+    </script>
 </article>
 @endsection

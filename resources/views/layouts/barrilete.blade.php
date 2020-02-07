@@ -63,11 +63,10 @@
                     <div id="results"></div>
                 </div>
                 <div class="user-bar">
-                    <img src="{{asset('svg/user-blue.svg')}}" />
-                    <!--
-                    <img src="{{asset('svg/alarm.svg')}}" />
-                    <img src="{{asset('svg/chat.svg')}}" />
-                    -->
+                    <img src="{{asset('svg/user-blue.svg')}}" data-bind="{{route('user-menu')}}" />
+                    <img src="{{asset('svg/alarm.svg')}}" data-bind="{{route('notifications')}}" />
+                    <img src="{{asset('svg/chat.svg')}}" data-bind="{{route('inbox')}}" />
+                    <div id="user-menu"></div>
                 </div>
                 <a id="menu-btn" class="display" title="Menú">
                     <div class="menu-btn-block top"></div>

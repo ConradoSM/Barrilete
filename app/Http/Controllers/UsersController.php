@@ -246,4 +246,43 @@ class UsersController extends Controller
         }
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws Throwable
+     */
+    public function menu(Request $request)
+    {
+        if($request->ajax()) {
+            return response()->json([view('auth.users.menu')->render()]);
+        }
+        return abort(404);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws Throwable
+     */
+    public function notifications(Request $request)
+    {
+        if($request->ajax()) {
+            return response()->json([view('auth.users.notifications')->render()]);
+        }
+        return abort(404);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws Throwable
+     */
+    public function inbox(Request $request)
+    {
+        if($request->ajax()) {
+            return response()->json([view('auth.users.inbox')->render()]);
+        }
+        return abort(404);
+    }
 }

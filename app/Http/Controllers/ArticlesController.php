@@ -42,7 +42,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * VER ARTÍCULO SEGÚN  ID Y SECCIÓN
+     * Show Article
      * @param $id
      * @return Factory|View
      */
@@ -57,7 +57,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * CARGAR ARTÍCULO
+     * Create Article
      * @param articleRequest $request
      * @return Factory|RedirectResponse|View
      */
@@ -69,7 +69,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * ACTUALIZAR ARTÍCULO
+     * Update Article
      * @param articleRequest $request
      * @param $id
      * @return Factory|RedirectResponse|View
@@ -82,7 +82,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * BORRAR ARTÍCULO
+     * Delete Article
      * @param $id
      * @return JsonResponse
      * @throws Throwable
@@ -109,7 +109,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * PREVIEW ARTÍCULO
+     * Article Preview
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -129,7 +129,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * PUBLICAR ARTÍCULO
+     * Publish Article
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -155,7 +155,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * ARTÍCULOS SIN PUBLICAR
+     * Unpublished Articles
      * @return Factory|JsonResponse|View
      * @throws Throwable
      */

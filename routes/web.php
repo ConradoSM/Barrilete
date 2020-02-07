@@ -21,6 +21,10 @@ Route::get('sec/{name}', 'SectionsController@searchSection')->name('section');
 //SEARCH
 Route::get('search', 'SearchController@search')->name('search');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
+//USER MENU
+Route::get('user-menu', 'UsersController@menu')->name('user-menu');
+Route::get('notifications', 'UsersController@notifications')->name('notifications');
+Route::get('inbox', 'UsersController@inbox')->name('inbox');
 //VIEW ARTICLES
 Route::get('article/{id}/{section}/{title}', 'ArticlesController@show')->name('article');
 //VIEW GALLERIES

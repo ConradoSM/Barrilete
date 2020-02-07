@@ -1,8 +1,17 @@
 $(document).ready(function() {
     /**
-     * Post New Comment
+     * Constants
+     * @type {jQuery|HTMLElement}
      */
-    $('form#comments').validate({
+    const form = $('form#comments');
+    const loader = $('img.loader');
+    const divStatus = $('div#status');
+    const container = $('section.comments');
+
+    /**
+     * New Comment Form
+     */
+    form.validate({
         messages: {
             comment: 'Debes completar éste campo.'
         },
@@ -12,51 +21,7 @@ $(document).ready(function() {
         },
         submitHandler: function (form, e) {
             e.preventDefault();
-            const divError = $('div#status');
-            const container = $('section.comments');
-            $.ajax({
-                type: form.method,
-                url: form.action,
-                data: $(form).serialize(),
-                datatype: 'json',
-                async: true,
-                beforeSend: function () {
-                    $('img.loader').fadeIn('fast');
-                    $('section.comments').css('opacity', '50%');
-                    $(form).find(':input').attr('disabled', true);
-                    $(form).find(':input').addClass('disabled');
-                    $(form).find('input[type=submit]').attr('value', 'Enviando...');
-                    divError.find('p').remove();
-                },
-                success: function (responseText) {
-                    divError.append('<p class="alert feedback-success">'+ responseText.success +'</p>');
-                    divError.find('p').delay(3000).fadeOut('fast');
-                    container.html(responseText.view).fadeIn('fast');
-                },
-                error: function (xhr) {
-                    const errors = xhr.responseJSON.errors;
-                    $('div#status').fadeIn(function () {
-                        if (errors) {
-                            $.each(errors, function (key, value) {
-                                $('div#status').append('<p class="alert feedback-error">'+ value +'</p>');
-                            });
-                        } else {
-                            $('div#status').html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
-                        }
-                    });
-                },
-                complete: function () {
-                    $('img.loader').fadeOut('fast', function () {
-                        $(form).find(':input').attr('disabled', false);
-                        $(form).find(':input').removeClass('disabled');
-                        $(form).find('input[type=submit]').attr('value', 'Enviar');
-                        $('section.comments').css('opacity', '100%');
-                        $(form).find('input[type=hidden]#parent_id').attr('value', '');
-                        $(form).resetForm();
-                    });
-                    $('html, body').animate({scrollTop:container.offset().top -250});
-                }
-            });
+            ajaxPost(form.action, $(form).serialize())
         }
     });
 
@@ -77,8 +42,8 @@ $(document).ready(function() {
                 borrar: {
                     btnClass: 'button danger',
                     action: function () {
-                        const URL = '/comment/delete';
-                        const data = {
+                        let URL = '/comment/delete';
+                        let data = {
                             _token: $('meta[name="_token"]').attr('content'),
                             id: commentID,
                             article_id: articleID,
@@ -115,9 +80,9 @@ $(document).ready(function() {
                 enviar: {
                     btnClass: 'button primary',
                     action: function () {
-                        const URL = '/comment/save';
-                        const textarea = $('textarea#reply');
-                        const data = {
+                        let URL = '/comment/save';
+                        let textarea = $('textarea#reply');
+                        let data = {
                             _token: $('meta[name="_token"]').attr('content'),
                             parent_id: commentID,
                             article_id: articleID,
@@ -135,6 +100,29 @@ $(document).ready(function() {
         })
     };
 
+    /**
+     * Get Comments
+     * @param link
+     */
+    getComments = function (link)
+    {
+        $.ajax({
+            method: 'GET',
+            url: link,
+            beforeSend: function () {
+                loader.fadeIn('fast');
+            },
+            success: function (data) {
+                container.hide().html(data).fadeIn('normal');
+            },
+            error: function (xhr) {
+                container.hide().html('<p class="alert feedback-error">'+xhr.status+' - '+xhr.statusText+'</p>').fadeIn('normal');
+            },
+            complete: function () {
+                loader.fadeOut('fast');
+            }
+        });
+    };
 
     /**
      * Ajax Post Comment
@@ -148,46 +136,36 @@ $(document).ready(function() {
             dataType: 'json',
             async: true,
             data: data,
-            success: function (response) {
-                const container = $('section.comments');
-                $.alert({
-                    type: 'green',
-                    boxWidth: '55%',
-                    useBootstrap: false,
-                    title: 'Listo!',
-                    content: '<p class="alert feedback-success">'+ response.success +'</p>',
-                    buttons: {
-                        ok: {
-                            btnClass: 'button success'
-                        }
-                    }
-                });
-                container.html(response.view).hide().fadeIn('normal');
+            beforeSend: function () {
+                loader.fadeIn('fast');
+                $(form).find(':input').attr('disabled', true);
+                $(form).find(':input').addClass('disabled');
+                divStatus.find('p').remove();
+            },
+            success: function (data) {
+                divStatus.append('<p class="alert feedback-success">'+ data.success +'</p>');
+                divStatus.find('p').delay(3000).fadeOut('fast');
+                container.html(data.view).fadeIn('fast');
                 $('html, body').animate({scrollTop:container.offset().top -250});
             },
             error: function (xhr) {
-                const errors = xhr.responseJSON.errors;
-                $.alert({
-                    type: 'red',
-                    boxWidth: '55%',
-                    useBootstrap: false,
-                    title: 'Error',
-                    content: '<div id="errors"></div>',
-                    onContentReady: function () {
-                        if (errors) {
-                            $.each(errors, function (key, value) {
-                                $('div#errors').append('<p class="alert feedback-error">'+ value +'</p>');
-                            });
-                        } else {
-                            $('div#errors').html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
-                        }
-                    },
-                    buttons: {
-                        ok: {
-                            btnClass: 'button danger'
-                        }
-                    }
+                let errors = xhr.responseJSON.errors;
+                if (errors) {
+                    $.each(errors, function (key, value) {
+                        divStatus.append('<p class="alert feedback-error">'+ value +'</p>');
+                    });
+                } else {
+                    divStatus.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
+                }
+            },
+            complete: function () {
+                loader.fadeOut('fast', function () {
+                    $(form).find(':input').attr('disabled', false);
+                    $(form).find(':input').removeClass('disabled');
+                    $(form).find('input[type=hidden]#parent_id').attr('value', '');
+                    $(form).resetForm();
                 });
+                $('html, body').animate({scrollTop:container.offset().top -250});
             }
         });
     };

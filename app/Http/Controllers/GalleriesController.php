@@ -19,22 +19,22 @@ use Throwable;
 class GalleriesController extends Controller
 {
     /**
-     * MOSTRAR GALERÍA SEGÚN ID
+     * Show Gallery
      * @param $id
      * @return Factory|View
      */
     public function showGallery($id)
     {
-        $gallery = Gallery::gallery($id);
-        if ($gallery) {
-            $photos  = $gallery->photos;
-            return view('gallery', compact('gallery', 'photos'));
+        $article = Gallery::gallery($id);
+        if ($article) {
+            $photos  = $article->photos;
+            return view('gallery', compact('article', 'photos'));
         }
         return view('errors.404');
     }
 
     /**
-     * PREVIEW GALERÍA
+     * Gallery Preview
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -56,7 +56,7 @@ class GalleriesController extends Controller
     }
 
     /**
-     * CREAR GALERÍA
+     * Create Gallery
      * @param galleryRequest $request
      * @return Factory|JsonResponse|View
      */
@@ -76,7 +76,7 @@ class GalleriesController extends Controller
     }
 
     /**
-     * GUARDAR FOTOS
+     * Set Photos Gallery
      * @param galleryPhotosRequest $request
      * @return Factory|JsonResponse|View
      */
@@ -87,7 +87,7 @@ class GalleriesController extends Controller
         if ($request->hasFile('photo')) {
             $photos = $request->photo;
             foreach ($photos as $key => $val) {
-                /** SUBIR FOTOS AL SERVIDOR */
+                /** Upstream File */
                 $file = $photos[$key];
                 $filename = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
                 $upload = public_path('img/galleries/'.$filename);
@@ -95,7 +95,7 @@ class GalleriesController extends Controller
                 Image::make($file->getRealPath())->save($upload);
                 Image::make($file->getRealPath())->resize(570, 310, function($constraint) {
                 $constraint->aspectRatio(); })->save($uploadThumb);
-                /** GUARDAR EN BASE DE DATOS */
+                /** Save in Data Base */
                 $galleryPhotos = new GalleryPhotos;
                 $galleryPhotos->gallery_id = $gallery_id;
                 $galleryPhotos->title = $titles[$key];
@@ -113,7 +113,7 @@ class GalleriesController extends Controller
     }
 
     /**
-     * BORRAR GALERÍA
+     * Delete Gallery
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -151,7 +151,7 @@ class GalleriesController extends Controller
     }
 
     /**
-     * PUBLICAR GALERÍA
+     * Publish Gallery
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -185,7 +185,7 @@ class GalleriesController extends Controller
     }
 
     /**
-     * ACTUALIZAR GALERIA
+     * Update Gallery
      * @param galleryRequest $request
      * @return JsonResponse|Factory|View
      */
@@ -205,7 +205,7 @@ class GalleriesController extends Controller
     }
 
     /**
-     * MAS FOTOS
+     * Add More Photos
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -222,7 +222,7 @@ class GalleriesController extends Controller
     }
 
     /**
-     * GALERÍAS SIN PUBLICAR
+     * Unpublished Galleries
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
