@@ -310,37 +310,51 @@ section#main-container {
     padding-bottom: 30px;
     z-index: 0;
 }
-/*DIV CONTENEDOR*/
+/**-- Login --**/
 div.dashboard-container {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 550px;
-    box-shadow: 0 0 10px 0 #5f6a6a;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
 }
-/*DIV LOGIN*/
+div.dashboard-container div {
+    z-index: 1;
+    width: 40%;
+    height: auto;
+    margin-bottom: 20px;
+}
+div.dashboard-container div p, div.dashboard-container div a {
+    margin: 0;
+    font-size: 1em;
+}
+img.img-background-login {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+}
+div.logo-container img {
+    width: 400px;
+    height: auto;
+    filter: drop-shadow(0 0 2px #fff);
+}
 div.dashboard-login {
     display: flex;
     flex-flow: column nowrap;
-    width: 60%;
-    height: auto;
-    background-color: rgba(242,243,244,0.6);
+    background-color: rgba(242, 243, 244, 0.6);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 3px #000;
 }
-div.dashboard-login p {
-    font-size: 2em;
+p.dashboard-title {
     margin-bottom: 20px;
+    font-size: 1.6em !important;
 }
-div.dashboard-login a {
-    display: block;
-    font-size: 1em;
-    margin-top: 10px;
-}
-div.dashboard-login p img {
+p.dashboard-title img {
     width: auto;
     height: 1.3em;
     vertical-align: middle;
@@ -494,6 +508,13 @@ footer div#footer-container div.footerSocialContainer img:hover {
         flex-flow: column nowrap;
         list-style: none;
     }
+    /**-- Login --**/
+    div.dashboard-container div {
+        width: 70%;
+    }
+    div.logo-container img {
+        width: 200px;
+    }
     /**-- Main Container --**/
     section#main-container {
         max-width: 575.98px;
@@ -593,6 +614,13 @@ footer div#footer-container div.footerSocialContainer img:hover {
         max-width: 575.98px;
         padding: 20px;
     }
+    /**-- Login --**/
+    div.dashboard-container div {
+        width: 70%;
+    }
+    div.logo-container img {
+        width: 300px;
+    }
     /**-- Footer --**/
     footer div#footer-container div {
         display: none;
@@ -687,6 +715,13 @@ footer div#footer-container div.footerSocialContainer img:hover {
         max-width: 575.98px;
         padding: 20px;
     }
+    /**-- Login --**/
+    div.dashboard-container div {
+        width: 70%;
+    }
+    div.logo-container img {
+        width: 300px;
+    }
     /**-- Footer --**/
     footer div#footer-container div {
         display: none;
@@ -734,5 +769,12 @@ footer div#footer-container div.footerSocialContainer img:hover {
         min-width: 992px;
         width: 100%;
         padding: 30px;
+    }
+    /**-- Login --**/
+    div.dashboard-container div {
+        width: 60%;
+    }
+    div.logo-container img {
+        width: 300px;
     }
 }
