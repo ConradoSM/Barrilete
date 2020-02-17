@@ -24,7 +24,6 @@
     <hr />
 @forelse ($photos as $photo)
 <article class="fotos translate">
-    <img src="{{asset('svg/placeholder.svg')}}" class="placeholder"/>
     <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/'.$photo->photo)}}" class="lazy" title="{{$photo->title}}" />
     <p>{{$photo->title}}</p>
 </article>

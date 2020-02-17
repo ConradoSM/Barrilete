@@ -17,6 +17,7 @@ html, body {
     padding: 0;
     font-size: 1em;
 }
+/**-- Links --**/
 a {
     color: #34495e;
     text-decoration: none;
@@ -32,6 +33,7 @@ a:active:focus {
 a:hover {
     color: #2980B9;
 }
+/**-- Hr Style --**/
 hr {
     width: 100%;
     border-top-width: 1px;
@@ -46,6 +48,7 @@ hr {
     border-bottom-color: #fff;
     margin: 10px 0 10px 0;
 }
+/**-- h1, h2, h3 , p Styles --**/
 h1, h2 {
     color: #000;
     margin-top: 10px;
@@ -64,10 +67,7 @@ p {
     font-size: 1.7em;
     margin: 10px 0;
 }
-
-/*********
-**HEADER**
-*********/
+/**-- Header --**/
 header {
     position: relative;
     display: flex;
@@ -78,13 +78,37 @@ header {
     box-shadow: 0 0 10px #5f6a6a;
     z-index: 1;
 }
-header.fixed {
+.fixed {
     position: fixed;
     transition: 0.5s;
 }
-/***********************
-****DIV SEARCH**********
-***********************/
+/**-- Header Container -- **/
+div#header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center;
+    padding: 10px 0;
+    max-width: 1200px;
+    width: 100%;
+    height: auto;
+}
+/**-- Logo --**/
+.logo {
+    width: 400px;
+    height: auto;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.logo:hover {
+    opacity: 0.8;
+}
+.small {
+    width: 300px;
+}
+/**-- Search --**/
 div#search {
     position:relative;
     width: auto;
@@ -121,7 +145,6 @@ div#search img:hover {
     opacity: 0.8;
     transition: 0.3s;
 }
-
 div#results, div#user-menu {
     position: absolute;
     display: none;
@@ -159,6 +182,24 @@ div#results a {
     padding: 10px;
     font-size: 1.2em;
 }
+/**-- User Bar --**/
+div#user-bar {
+    position: relative;
+}
+div#user-bar img {
+    height: 36px;
+    width: auto;
+    margin-right: 20px;
+    cursor: pointer;
+}
+div#user-bar img.search-mobile {
+    display: none;
+}
+div#user-bar img:hover {
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+/**-- User Menu --**/
 div#user-menu ul {
     padding: 0 0 0 15px;
     margin: 0;
@@ -178,44 +219,9 @@ div#user-menu ul li:last-child {
 div#user-menu ul li a {
     font-size: 1.09em;
 }
-/**********
-****NAV****
-**********/
-div.headerContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-self: center;
-    padding: 10px 0;
-    max-width: 1200px;
-    width: 100%;
-    height: auto;
-}
-div.headerContainer.opacity {
-    opacity: 0.8;
-}
-div.user-bar {
-    position: relative;
-}
-div.user-bar img {
-    height: 36px;
-    width: auto;
-    margin-right: 20px;
-    cursor: pointer;
-}
-div.user-bar img:hover {
-    opacity: 0.8;
-    transition: 0.3s ease;
-}
-/*****************
-****BOTON MENU****
-*****************/
+/**-- Menu Button --**/
 a#menu-btn {
     display: block;
-    top: 5px;
-    right: 20px;
     width: 45px;
     height: auto;
     z-index: 4;
@@ -236,7 +242,6 @@ a#menu-btn div.menu-btn-block {
     transform-origin: 0 50%;
     transition: transform 0.3s ease;
 }
-
 a#menu-btn div.menu-btn-block.middle {
     margin: 9px 0;
 }
@@ -249,9 +254,11 @@ a#menu-btn div.menu-btn-block.middle.active {
 a#menu-btn div.menu-btn-block.bottom.active {
     transform: rotate(-42deg);
 }
-div.navContainer {
+/**-- Nav  Container --**/
+div#nav-container {
     width: 100%;
 }
+/**-- Nav --**/
 nav {
     display: flex;
     flex-flow: row nowrap;
@@ -289,25 +296,8 @@ nav ul li a.active {
     border-bottom: 3px solid #34495e;
     color: #34495e;
 }
-/*********
-***LOGO***
-*********/
-img#logo {
-    width: 400px;
-    height: auto;
-    cursor: pointer;
-    transition: 0.3s;
-}
-img#logo:hover {
-    opacity: 0.8;
-}
-img#logo.small {
-    width: 300px;
-}
-/********************
-**SECCION PRINCIPAL**
-********************/
-section.mainSection {
+/**-- Principal Section --**/
+section#main-container {
     position: relative;
     display: flex;
     flex-flow: row wrap;
@@ -356,9 +346,7 @@ div.dashboard-login p img {
     vertical-align: middle;
     margin-right: 10px;
 }
-/*********
-**FOOTER**
-*********/
+/**-- Footer --**/
 footer {
     position: relative;
     display: flex;
@@ -368,7 +356,7 @@ footer {
     height: auto;
     background-color: rgba(216,219,227,1.00);
 }
-footer div.footerContainer {
+footer div#footer-container {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
@@ -378,32 +366,32 @@ footer div.footerContainer {
     padding: 30px;
     background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
 }
-footer div.footerContainer div {
+footer div#footer-container div {
     position: relative;
     width: 33.33333333%;
 }
-footer div.footerContainer h2 {
+footer div#footer-container h2 {
     color: #34495e;
     font-size: 2em;
 }
-footer div.footerContainer div li {
+footer div#footer-container div li {
     margin-left: 0;
     margin-bottom: 10px;
     list-style: none;
 }
-footer div.footerContainer div a {
+footer div#footer-container div a {
     font-size: 1.75em;
     color: #34495e;
     text-transform: uppercase;
 }
-footer div.footerContainer div a:hover {
+footer div#footer-container div a:hover {
     color: #000;
 }
-footer div.footerContainer p.footerCopyright {
+footer div#footer-container p.footerCopyright {
     font-size: 1em;
     color: #34495e;
 }
-footer div.footerContainer div.footerSocialContainer {
+footer div#footer-container div.footerSocialContainer {
     position: absolute;
     display: block;
     bottom: 0;
@@ -413,12 +401,12 @@ footer div.footerContainer div.footerSocialContainer {
     height: auto;
     width: auto;
 }
-footer div.footerContainer div.footerSocialContainer img {
+footer div#footer-container div.footerSocialContainer img {
     width: auto;
     height: 60px;
     margin-left: 10px;
 }
-footer div.footerContainer div.footerSocialContainer img:hover {
+footer div#footer-container div.footerSocialContainer img:hover {
     opacity: 0.8;
     transition: 0.3s ease;
 }
@@ -431,701 +419,317 @@ footer div.footerContainer div.footerSocialContainer img:hover {
     z-index: 0;
     opacity: 0.6;
 }
+/**-- Mobile -- **/
 @media (max-width: 575.98px) {
-    header.relative, header.fixed {
-        padding: 10px;
+    /**-- Logo --**/
+    .logo {
+        margin-left: 50px;
+        width: auto;
+        height: 25px;
     }
-    div.navContainer {
-        position: relative;
-        max-width: 575.98px;
+    /**-- Div Search --**/
+    div#search {
+        position:fixed;
+        display: none;
+        background-color: #fff;
         width: 100%;
         height: auto;
-        padding: 0 0 0 0;
+        padding: 10px;
+        box-shadow: 0 0 10px #5f6a6a;
+        top: 0;
+        left: 0;
+        z-index: 5;
     }
-    /*********
-    ***LOGO***
-    *********/
-    img#logo {
-        width: 200px;
-        height: 50px;
+    div#search input[type=search] {
+        width: 100%;
     }
-    img#logo.small {
-        width: auto;
-        height: 30px;
+    div#search img.search-button {
+        position: absolute;
+        top:10px;
+        right: 10px;
+    }
+    /**-- User Bar --**/
+    div#user-bar {
+        margin-right: 10px;
+    }
+    div#user-bar img {
+        height: 25px;
+        margin-right: 0;
+        margin-left: 10px;
+    }
+    div#user-bar img:first-child {
+        margin-left: 0;
+    }
+    div#user-bar img.search-mobile {
+        display: inline;
+    }
+    /**-- Menu button --**/
+    a#menu-btn {
+        position: absolute;
+        top: 12px;
+        left: 10px;
+        width: 30px;
     }
     a#menu-btn.display {
         display: block;
     }
-    /***************
-    **BOTON BUSCAR**
-    ***************/
-    img#search-btn {
-        position: absolute;
-        display: block;
-        right: 80px;
-        top: 2px;
-        width: auto;
-        height: 40px;
-        transition: all 0.5s ease;
+    a#menu-btn div.menu-btn-block {
+        height: 5px;
     }
-    /***********************
-    ****DIV SEARCH**********
-    ***********************/
-    div#search {
-        position:fixed;
-        display: none;
-        background-color: #fff;
-        width: 100%;
-        height: auto;
-        top: -10px;
-        left: 0;
-        z-index: 5;
-        box-shadow: 0 0 10px 0 #000;
+    a#menu-btn div.menu-btn-block.middle {
+        margin: 5px 0;
     }
-    div#search input[type=search].big, div#search input[type=search].small{
-        width: 100%;
-        height: 70px;
-        border: 0;
-        border-radius: 0;
-        padding: 20px;
-        font-size: 1.5em;
-        box-shadow: none;
-    }
-    div#search img.big, div#search img.small {
-        position: absolute;
-        top:0;
-        right: 0;
-        margin-top: 10px;
-        margin-right: 20px;
-        width: auto;
-        height: 50px;
-        background-color: #fff;
-        box-shadow: none;
-    }
-    /**********************
-    ****NAV NONE-ACTIVE****
-    **********************/
-    div.navContainer nav {
+    /**-- Nav Container --**/
+    div#nav-container {
         position: fixed;
-        right: -60%;
-        top: 0;
-        width: 50%;
-        height: 100%;
-        padding-top: 50px;
-        padding-left: 0;
-        background-color: #f4f4f4;
-        box-shadow: 0 0 10px 0 #000;
-        z-index: 3;
-        transition: all 0.3s linear;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        &::-webkit-scrollbar {
         display: none;
-        }
+        width: 50%;
     }
-    div.navContainer nav.active {
-        right: 0;
-        width: 70%;
+    div#nav-container nav {
+        padding-top: 20px;
+        height: 100vh;
     }
-    div.navContainer nav ul, div.navContainer nav.active ul {
+    div#nav-container nav ul, div#nav-container nav.active ul {
         display: flex;
         flex-flow: column nowrap;
         list-style: none;
-        padding: 0;
-        margin: 0;
     }
-    div.navContainer nav ul li, div.navContainer nav.active ul li {
-        margin-bottom: 20px;
-        margin-left: -20px;
-        padding: 0;
-    }
-    div.navContainer nav ul li a, div.navContainer nav.active ul li a {
-        padding: 5px 5px 5px 5px;
-        color: #000;
-        font-size: 1.6em;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-    }
-    div.navContainer nav ul li a:focus {
-        color: #000;
-        background-color: #f2f3f4;
-
-    }
-    div.navContainer nav ul li a:hover {
-        color: #000;
-        background-color: #f2f3f4;
-        border: none;
-    }
-    div.navContainer nav ul li a:visited {
-        color: #000;
-    }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
+    /**-- Main Container --**/
+    section#main-container {
         max-width: 575.98px;
         padding: 20px;
     }
-    /*********
-    **FOOTER**
-    *********/
-
-    footer div.footerContainer div {
+    /**-- Footer --**/
+    footer div#footer-container div {
         display: none;
     }
-    footer div.footerContainer div.footerSocialContainer {
+    footer div#footer-container div.footerSocialContainer {
         position: relative;
         width: 100%;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-        opacity: 0.5;
     }
-    footer div.footerContainer div.footerSocialContainer img {
+    footer div#footer-container div.footerSocialContainer img {
         position: relative;
         align-self: center;
         width: auto;
         height: 60px;
         margin-right: 10px;
     }
-    footer div.footerContainer div.footerSocialContainer p {
+    footer div#footer-container div.footerSocialContainer p {
         display: block;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
-    header.relative, header.fixed {
-        padding: 10px;
-    }
-    div.navContainer {
-        position: relative;
-        max-width: 767.98px;
-        min-width: 576px;
-        width: 100%;
-        height: auto;
-        padding: 0px 0px 0px 0px;
-    }
-    /*********
-    ***LOGO***
-    *********/
-    img#logo.big {
-        width: 200px;
-        height: 50px;
-    }
-    img#logo.small {
-        width: auto;
-        height: 30px;
-    }
-    /*****************
-    ****BOTON MENU****
-    *****************/
-    a#menu-btn.big {
-        position: absolute;
-        display: block;
-        top: 5px;
-        right: 20px;
-        width: 45px;
-        height: auto;
-        z-index: 4;
-        transition: 0.5s ease;
-    }
-    a#menu-btn div.menu-btn-block {
-        width: 100%;
-        height: 6px;
-        background-color: #34495e;
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-
-    a#menu-btn div.menu-btn-block.middle {
-        margin: 9px 0;
-    }
-    a#menu-btn div.menu-btn-block.top.active {
-        transform: rotate(42deg);
-    }
-    a#menu-btn div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a#menu-btn div.menu-btn-block.bottom.active {
-        transform: rotate(-42deg);
-    }
-    /***********************
-    ****BOTON MENU SMALL****
-    ***********************/
-    a#menu-btn.small {
-        position: absolute;
-        display: block;
-        top: 0px;
-        right: 10px;
-        width: 35px;
-        height: auto;
-        z-index: 4;
-        transition: width 0.5s ease;
-    }
-    a#menu-btn.small div.menu-btn-block {
-        width: 100%;
-        height: 5px;
-        background-color: #34495e;
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-    a#menu-btn.small div.menu-btn-block.middle {
-        margin: 6px 0;
-    }
-    a#menu-btn.small div.menu-btn-block.top.active {
-        transform: rotate(39deg);
-    }
-    a#menu-btn.small div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a#menu-btn.small div.menu-btn-block.bottom.active {
-        transform: rotate(-39deg);
-    }
-    /***************
-    **BOTON BUSCAR**
-    ***************/
-    img#search-btn {
-        position: absolute;
-        display: block;
-        right: 80px;
-        top: 2px;
+    /**-- Logo --**/
+    .logo {
+        margin-left: 70px;
         width: auto;
         height: 40px;
-        transition: all 0.5s ease;
     }
-    img#search-btn.small {
-        position: absolute;
-        right: 65px;
-        top: -2px;
-        width: auto;
-        height: 30px;
-        transition: all 0.5s ease;
-    }
-    /***********************
-    ****DIV SEARCH**********
-    ***********************/
+    /**-- Div Search --**/
     div#search {
         position:fixed;
         display: none;
         background-color: #fff;
         width: 100%;
         height: auto;
-        top: -10px;
-        left: 0px;
+        padding: 10px;
+        box-shadow: 0 0 10px #5f6a6a;
+        top: 0;
+        left: 0;
         z-index: 5;
-        box-shadow: 0px 0px 10px 0px #000;
     }
-    div#search input[type=search].big, div#search input[type=search].small{
+    div#search input[type=search] {
         width: 100%;
-        height: 70px;
-        border: 0px;
-        border-radius: 0px;
-        padding: 20px;
-        font-size: 1.5em;
-        box-shadow: none;
     }
-    div#search img.big, div#search img.small {
+    div#search img.search-button {
         position: absolute;
-        top:0;
-        right: 0;
-        margin-top: 10px;
-        margin-right: 20px;
-        width: auto;
-        height: 50px;
-        background-color: #fff;
-        box-shadow: none;
+        top:10px;
+        right: 10px;
     }
-    /***********************
-    ****DIV GLASS***********
-    ***********************/
-    div#glass.hide {
-        position: fixed;
-        display: block;
-        right: -100%;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.3);
-        z-index: 2;
+    /**-- User Bar --**/
+    div#user-bar {
+        margin-right: 10px;
     }
-    div#glass.show {
-        right: 0%;
-    }
-    /**********************
-    ****NAV NONE-ACTIVE****
-    **********************/
-    nav.none {
-        position: fixed;
-        right: -60%;
-        top: 0;
-        width: 50%;
-        height: 100%;
-        padding-top: 50px;
-        padding-left: 0px;
-        background-color: #f4f4f4;
-        box-shadow: 0px 0px 10px 0px #000;
-        z-index: 3;
-        transition: all 0.3s linear;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        &::-webkit-scrollbar {
-        display: none;
-        }
-    }
-    nav.active {
-        right: 0%;
-        width: 40%;
-    }
-    nav.none ul, nav.active ul {
-        display: flex;
-        flex-flow: column nowrap;
-        list-style: none;
-        padding: 0px;
-        margin: 0px;
-    }
-    nav.none ul li, nav.active ul li {
-        margin-left: -20px;
-        margin-bottom: 20px;
-        padding: 0px;
-    }
-    nav.none ul li a, nav.active ul li a {
-        padding: 5px 5px 5px 5px;
-        color: #000;
-        font-size: 1.5em;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-    }
-    nav.active ul li a:focus {
-        color: #000;
-        background-color: #f2f3f4;
-
-    }
-    nav.active ul li a:hover {
-        color: #999;
-        color: #000;
-        background-color: #f2f3f4;
-        border: none;
-    }
-    nav.active ul li a:visited {
-        color: #000;
-    }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
-        max-width: 767.98px;
-        min-width: 576px;
-        width: 100%;
-        padding: 20px;
-    }
-    /*********
-    **FOOTER**
-    *********/
-
-    footer div.footerContainer div {
-        display: none;
-    }
-    footer div.footerContainer div.footerSocialContainer {
-        position: relative;
-        width: 100%;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        opacity: 0.5;
-    }
-    footer div.footerContainer div.footerSocialContainer img {
-        position: relative;
-        align-self: center;
-        width: auto;
-        height: 60px;
-        margin: 10px;
-    }
-    footer div.footerContainer div.footerSocialContainer p {
-        display: block;
-        margin-top: 0px;
+    div#user-bar img {
+        height: 35px;
+        margin-right: 0;
         margin-left: 10px;
     }
-}
-@media (min-width: 768px) and (max-width: 991.98px) {
-    header.relative, header.fixed {
-        padding: 10px;
+    div#user-bar img:first-child {
+        margin-left: 0;
     }
-    div.navContainer {
-        position: relative;
-        max-width: 991.98px;
-        min-width: 768px;
-        width: 100%;
-        height: auto;
-        padding: 0px 0px 0px 0px;
+    div#user-bar img.search-mobile {
+        display: inline;
     }
-    /*********
-    ***LOGO***
-    *********/
-    img#logo.big {
-        width: 200px;
-        height: 50px;
-    }
-    img#logo.small {
-        width: auto;
-        height: 30px;
-    }
-    /*****************
-    ****BOTON MENU****
-    *****************/
-    a#menu-btn.big {
+    /**-- Menu button --**/
+    a#menu-btn {
         position: absolute;
+        top: 12px;
+        left: 10px;
+    }
+    a#menu-btn.display {
         display: block;
-        top: 5px;
-        right: 20px;
-        width: 45px;
-        height: auto;
-        z-index: 4;
-        transition: 0.5s ease;
     }
-    a#menu-btn div.menu-btn-block {
-        width: 100%;
-        height: 6px;
-        background-color: #34495e;
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-
-    a#menu-btn div.menu-btn-block.middle {
-        margin: 9px 0;
-    }
-    a#menu-btn div.menu-btn-block.top.active {
-        transform: rotate(42deg);
-    }
-    a#menu-btn div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a#menu-btn div.menu-btn-block.bottom.active {
-        transform: rotate(-42deg);
-    }
-    /***********************
-    ****BOTON MENU SMALL****
-    ***********************/
-    a#menu-btn.small {
-        position: absolute;
-        display: block;
-        top: 0px;
-        right: 10px;
-        width: 35px;
-        height: auto;
-        z-index: 4;
-        transition: width 0.5s ease;
-    }
-    a#menu-btn.small div.menu-btn-block {
-        width: 100%;
-        height: 5px;
-        background-color: #34495e;
-        border-radius: 2px;
-        transform-origin: 0 50%;
-        transition: transform 0.3s ease;
-    }
-    a#menu-btn.small div.menu-btn-block.middle {
-        margin: 6px 0;
-    }
-    a#menu-btn.small div.menu-btn-block.top.active {
-        transform: rotate(39deg);
-    }
-    a#menu-btn.small div.menu-btn-block.middle.active {
-        transform: scale(0);
-    }
-    a#menu-btn.small div.menu-btn-block.bottom.active {
-        transform: rotate(-39deg);
-    }
-    /***************
-    **BOTON BUSCAR**
-    ***************/
-    img#search-btn {
-        position: absolute;
-        display: block;
-        right: 80px;
-        top: 2px;
-        width: auto;
-        height: 40px;
-        transition: all 0.5s ease;
-    }
-    img#search-btn.small {
-        position: absolute;
-        right: 65px;
-        top: -2px;
-        width: auto;
-        height: 30px;
-        transition: all 0.5s ease;
-    }
-    /***********************
-    ****DIV SEARCH**********
-    ***********************/
-    div#search {
-        position:fixed;
+    /**-- Nav Container --**/
+    div#nav-container {
+        position: fixed;
         display: none;
-        background-color: #fff;
-        width: 100%;
-        height: auto;
-        top: -10px;
-        left: 0px;
-        z-index: 5;
-        box-shadow: 0px 0px 10px 0px #000;
-    }
-    div#search input[type=search].big, div#search input[type=search].small{
-        width: 100%;
-        height: 70px;
-        border: 0px;
-        border-radius: 0px;
-        padding: 20px;
-        font-size: 1.5em;
-        box-shadow: none;
-    }
-    div#search img.big, div#search img.small {
-        position: absolute;
-        top:0;
-        right: 0;
-        margin-top: 10px;
-        margin-right: 20px;
-        width: auto;
-        height: 50px;
-        background-color: #fff;
-        box-shadow: none;
-    }
-    /***********************
-    ****DIV GLASS***********
-    ***********************/
-    div#glass.hide {
-        position: fixed;
-        display: block;
-        right: -100%;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.3);
-        z-index: 2;
-    }
-    div#glass.show {
-        right: 0%;
-    }
-    /**********************
-    ****NAV NONE-ACTIVE****
-    **********************/
-    nav.none {
-        position: fixed;
-        right: -60%;
-        top: 0;
         width: 50%;
-        height: 100%;
-        padding-top: 50px;
-        padding-left: 0px;
-        background-color: #f4f4f4;
-        box-shadow: 0px 0px 10px 0px #000;
-        z-index: 3;
-        transition: all 0.3s linear;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        &::-webkit-scrollbar {
-        display: none;
-        }
     }
-    nav.active {
-        right: 0%;
-        width: 30%;
+    div#nav-container nav {
+        padding-top: 20px;
+        height: 100vh;
     }
-    nav.none ul, nav.active ul {
+    div#nav-container nav ul, div#nav-container nav.active ul {
         display: flex;
         flex-flow: column nowrap;
         list-style: none;
-        padding: 0px;
-        margin: 0px;
     }
-    nav.none ul li, nav.active ul li {
-        margin-left: -20px;
-        margin-bottom: 20px;
-        padding: 0px;
-    }
-    nav.none ul li a, nav.active ul li a {
-        padding: 5px 5px 5px 5px;
-        color: #000;
-        font-size: 1.5em;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-    }
-    nav.active ul li a:focus {
-        color: #000;
-        background-color: #f2f3f4;
-
-    }
-    nav.active ul li a:hover {
-        color: #000;
-        background-color: #f2f3f4;
-        border: none;
-    }
-    nav.active ul li a:visited {
-        color: #000;
-    }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
-        max-width: 991.98px;
-        min-width: 768px;
-        width: 100%;
+    /**-- Main Container --**/
+    section#main-container {
+        max-width: 575.98px;
         padding: 20px;
     }
-    /*********
-    **FOOTER**
-    *********/
-
-    footer div.footerContainer div {
+    /**-- Footer --**/
+    footer div#footer-container div {
         display: none;
     }
-    footer div.footerContainer div.footerSocialContainer {
+    footer div#footer-container div.footerSocialContainer {
         position: relative;
         width: 100%;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-        opacity: 0.5;
     }
-    footer div.footerContainer div.footerSocialContainer img {
+    footer div#footer-container div.footerSocialContainer img {
         position: relative;
         align-self: center;
         width: auto;
         height: 60px;
         margin-right: 10px;
     }
-    footer div.footerContainer div.footerSocialContainer p {
+    footer div#footer-container div.footerSocialContainer p {
         display: block;
-        margin-top: 0px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /**-- Logo --**/
+    .logo {
+        margin-left: 70px;
+        width: auto;
+        height: 40px;
+    }
+    /**-- Div Search --**/
+    div#search {
+        position:fixed;
+        display: none;
+        background-color: #fff;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        box-shadow: 0 0 10px #5f6a6a;
+        top: 0;
+        left: 0;
+        z-index: 5;
+    }
+    div#search input[type=search] {
+        width: 100%;
+    }
+    div#search img.search-button {
+        position: absolute;
+        top:10px;
+        right: 10px;
+    }
+    /**-- User Bar --**/
+    div#user-bar {
+        margin-right: 10px;
+    }
+    div#user-bar img {
+        height: 35px;
+        margin-right: 0;
         margin-left: 10px;
+    }
+    div#user-bar img:first-child {
+        margin-left: 0;
+    }
+    div#user-bar img.search-mobile {
+        display: inline;
+    }
+    /**-- Menu button --**/
+    a#menu-btn {
+        position: absolute;
+        top: 12px;
+        left: 10px;
+    }
+    a#menu-btn.display {
+        display: block;
+    }
+    /**-- Nav Container --**/
+    div#nav-container {
+        position: fixed;
+        display: none;
+        width: 50%;
+    }
+    div#nav-container nav {
+        padding-top: 20px;
+        height: 100vh;
+    }
+    div#nav-container nav ul, div#nav-container nav.active ul {
+        display: flex;
+        flex-flow: column nowrap;
+        list-style: none;
+    }
+    /**-- Main Container --**/
+    section#main-container {
+        max-width: 575.98px;
+        padding: 20px;
+    }
+    /**-- Footer --**/
+    footer div#footer-container div {
+        display: none;
+    }
+    footer div#footer-container div.footerSocialContainer {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    footer div#footer-container div.footerSocialContainer img {
+        position: relative;
+        align-self: center;
+        width: auto;
+        height: 60px;
+        margin-right: 10px;
+    }
+    footer div#footer-container div.footerSocialContainer p {
+        display: block;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    /*********
-    **HEADER**
-    *********/
-    header.relative, header.fixed {
-        width: 100%;
-        min-width: 992px;
-        max-width: 1199.98px;
-        padding-left: 10px;
-        padding-right: 10px;
+    /**-- Logo --**/
+    .logo {
+        width: 350px;
     }
-
+    .small {
+        width: 250px;
+    }
+    /**-- Search --**/
+    div#search input[type=search] {
+        width: 400px;
+    }
     nav ul li a {
         font-size: 1.25em;
     }
-    /********************
-    **SECCION PRINCIPAL**
-    ********************/
-    section.mainSection {
+    /**-- Menu Button --**/
+    a#menu-btn {
+        margin-right: 10px;
+    }
+    /**-- Main Container --**/
+    section#main-container {
         max-width: 1199.98px;
         min-width: 992px;
         width: 100%;

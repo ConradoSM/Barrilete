@@ -5,7 +5,7 @@ img.lazy {
     background-position: 50% 50%;
     background-size: 50px auto;
 }
-img.placeholder {
+.placeholder {
     position: absolute;
     top: 50%;
     left: 50%;

@@ -77,4 +77,27 @@ class CommentController extends Controller
         }
         return abort(404);
     }
+
+    /**
+     * Update Comment
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws Throwable
+     */
+    public function update(Request $request)
+    {
+        if ($request->ajax()) {
+            $comment = Comments::find($request->id);
+            if ($comment) {
+                $comment->content = $request->comment;
+                $comment->save();
+                return response()->json([
+                    'view' => $this->get($request->article_id, $request->section_id)->render(),
+                    'success' => 'El comentario se ha actualizado.'
+                ])->header('Content-Type', 'application/json');
+            }
+            return response()->json(['error' => 'El comentario no existe'],404);
+        }
+        return abort(404);
+    }
 }

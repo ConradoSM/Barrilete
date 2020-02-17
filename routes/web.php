@@ -38,6 +38,7 @@ Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get
 Route::group(['middleware' => ['auth']], function () {
     //COMMENTS
     Route::post('comment/save', 'CommentController@save')->name('commentsSave');
+    Route::post('comment/update', 'CommentController@update')->name('commentUpdate');
     Route::post('comment/delete', 'CommentController@delete')->name('deleteComment');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     //DASHBOARD USER ARTICLES, GALLERIES, POLLS LIST

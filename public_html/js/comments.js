@@ -60,6 +60,46 @@ $(document).ready(function() {
     };
 
     /**
+     * Edit Comment
+     * @param commentID
+     * @param articleID
+     * @param sectionID
+     * @param commentContent
+     */
+    editComment = function (commentID, articleID, sectionID, commentContent) {
+        $.confirm({
+            title: 'Editar Comentario',
+            content: '<textarea id="reply" placeholder="Tu respuesta:" required>'+commentContent+'</textarea>',
+            onContentReady: function () {
+                $('textarea#reply').focus();
+            },
+            type: 'blue',
+            boxWidth: '55%',
+            useBootstrap: false,
+            buttons: {
+                enviar: {
+                    btnClass: 'button primary',
+                    action: function () {
+                        let URL = '/comment/update';
+                        let textarea = $('textarea#reply');
+                        let data = {
+                            _token: $('meta[name="_token"]').attr('content'),
+                            id: commentID,
+                            article_id: articleID,
+                            section_id: sectionID,
+                            comment: textarea.val()
+                        };
+                        ajaxPost(URL, data);
+                    }
+                },
+                cancelar: {
+                    btnClass: 'button default',
+                }
+            }
+        })
+    };
+
+    /**
      * Reply Comment
      * @param commentID
      * @param articleID

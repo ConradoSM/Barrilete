@@ -5,7 +5,6 @@
 @section('content')
     @forelse ($articlesIndex as $article)
         <article class="pubIndex translate">
-            <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
             <div class="seccion" onclick="location.href ='{{ route('section',['seccion'=>str_slug($article->section->name)]) }}'">{{ $article->section->name }}</div>
             @if ($article->video == 1)
                 <img src="{{ asset('img/play-button.png') }}" class="video" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
@@ -20,7 +19,6 @@
     @if($galleryIndex)
         <div class="galeriasContainerIndex translate">
             <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
-            <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
             <article class="galeriaIndex">
                 <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/.thumbs/'.$galleryIndex->photos->first()->photo) }}" title="{{ $galleryIndex->title }}" alt="{{ $galleryIndex->title }}" class="lazy"/>
                 <a href="{{ route('gallery',['id' => $galleryIndex->id, 'title' => str_slug($galleryIndex->title,'-')]) }}">{{ $galleryIndex->title }}</a>

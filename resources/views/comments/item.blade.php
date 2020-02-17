@@ -3,7 +3,8 @@
     <p>
         @auth
             @if(Auth::user()->id == $comment->user_id)
-                <img onclick="deleteConfirm({{ $comment->id}},{{$comment->article_id}},{{$comment->section_id }})" alt="Delete" title="Borrar Comentario" class="delete" src="{{ asset('svg/remove-symbol.svg') }}">
+                <img onclick="deleteConfirm('{{ $comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}')" alt="Delete" title="Borrar" class="action delete" src="{{ asset('svg/remove-symbol.svg') }}">
+                <img onclick="editComment('{{$comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}', '{{$comment->content}}')" src="{{asset('svg/pencil.svg')}}" class="action edit" alt="Edit" title="Editar" />
             @endif
         @endauth
         <b>{{ $comment->user->name }}</b>: {{ $comment->content }}
@@ -26,11 +27,15 @@
      * Comments Box Functionality
      */
     $('img.delete').hide();
+    $('img.edit').hide();
     $('div.comment').find('p').mouseover(function () {
         const buttonDelete = $(this).find('img.delete');
+        const buttonEdit = $(this).find('img.edit');
+        buttonEdit.show();
         buttonDelete.show();
         $(this).mouseleave(function () {
             buttonDelete.hide();
+            buttonEdit.hide();
         });
     });
 </script>

@@ -14,7 +14,6 @@
 @section('content')
 <div class="pubContainer">
 <article class="pub translate">
-    <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
     <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" />
     <h1>{{ $article -> title }}</h1>
     <p class="copete">{{ $article->article_desc }}</p>
@@ -34,7 +33,6 @@
 <aside class="pubSeccion">
     @forelse ($moreArticles as $more)
     <article class="pubArticle translate">
-        <img src="{{asset('svg/placeholder.svg')}}" class="placeholder"/>
         @if ($more->video == 1)
             <img src="{{ asset('img/play-button.png') }}" class="video" onclick="location.href='{{ route('article',['id'=>$more->id,'section'=>str_slug($more->section->name),'title'=>str_slug($more->title,'-')]) }}'" />
         @endif

@@ -13,7 +13,6 @@
 @section('content')
     @forelse ($articles as $sec)
         <article class="pubIndex translate">
-            <img src="{{ asset('svg/placeholder.svg') }}" class="placeholder"/>
             @if ($sec->video == 1)
                 <img src="{{ asset('img/play-button.png') }}" class="video"  onclick="location.href ='{{ route('article', ['id' => $sec->id, 'section' => $sec->section->name ,'title' => str_slug($sec->title, '-')]) }}'" />
             @endif

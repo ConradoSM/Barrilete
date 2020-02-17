@@ -44,37 +44,44 @@
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129739451-1"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-129739451-1');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-129739451-1');
         </script>
     </head>
     <body>
         <header>
-            <div class="headerContainer">
-                <img id="logo" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" alt="Home" />
+            <!-- HEADER CONTAINER -->
+            <div id="header-container">
+                <!-- DIV LOGO -->
+                <img class="logo" onclick="location.href ='{{ route('default') }}'" src="{{ asset('svg/logo_barrilete.svg') }}" title="Home" alt="Home" />
+                <!-- DIV SEARCH -->
                 <div id="search">
                     <form action="{{ route('search') }}" method="get" id="formSearch">
-                        <input id="search" type="search" value="" name="query" placeholder="Buscar en el sitio" />
+                        <input id="search-input" type="search" value="" name="query" placeholder="Buscar en el sitio" />
                         <img src="{{ asset('svg/search.svg') }}" onClick="document.getElementById('formSearch').submit();" alt="Buscar" title="Buscar" class="search-button"/>
                         <input type="hidden" value="articulos" name="sec" />
                     </form>
                     <div id="results"></div>
                 </div>
-                <div class="user-bar">
+                <!-- BAR USER -->
+                <div id="user-bar">
                     <img src="{{asset('svg/user-blue.svg')}}" data-bind="{{route('user-menu')}}" />
                     <img src="{{asset('svg/alarm.svg')}}" data-bind="{{route('notifications')}}" />
                     <img src="{{asset('svg/chat.svg')}}" data-bind="{{route('inbox')}}" />
+                    <img src="{{asset('svg/research.svg')}}" class="search-mobile" />
                     <div id="user-menu"></div>
                 </div>
-                <a id="menu-btn" class="display" title="Menú">
+                <!-- MENU BUTTON -->
+                <a id="menu-btn" title="Menú" class="display">
                     <div class="menu-btn-block top"></div>
                     <div class="menu-btn-block middle"></div>
                     <div class="menu-btn-block bottom"></div>
                 </a>
             </div>
-            <div class="navContainer">
+            <!-- DIV SECTION CONTAINER -->
+            <div id="nav-container">
                 <nav>
                     <ul>
                         @forelse ($sections as $section)
@@ -85,11 +92,11 @@
                 </nav>
             </div>
         </header>
-        <section class="mainSection">
+        <section id="main-container">
             @yield('content')
         </section>
         <footer>
-            <div class="footerContainer">
+            <div id="footer-container">
                 <div>
                     <h2>Secciones</h2>
                     <ul>
