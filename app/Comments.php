@@ -5,6 +5,7 @@ namespace barrilete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Comments extends Model
 {
@@ -58,5 +59,37 @@ class Comments extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get User Reaction
+     * @param $userId
+     * @return Model|HasOne|object|null
+     */
+    public function getUserReaction($userId)
+    {
+        return $this->hasOne(CommentsUserReactions::class, 'comment_id')
+            ->where('user_id', $userId)
+            ->first();
+    }
+
+    /**
+     * Get Totals Likes
+     * @return HasMany
+     */
+    public function getTotalLikes()
+    {
+        return $this->hasMany(CommentsUserReactions::class, 'comment_id')
+            ->where('reaction', '1');
+    }
+
+    /**
+     * Get Totals Dislikes
+     * @return HasMany
+     */
+    public function getTotalDislikes()
+    {
+        return $this->hasMany(CommentsUserReactions::class, 'comment_id')
+            ->where('reaction', '0');
     }
 }

@@ -209,4 +209,46 @@ $(document).ready(function() {
             }
         });
     };
+
+    /**
+     * Comment Reaction Save
+     * @param userID
+     * @param commentID
+     * @param reaction
+     */
+    commentReactionSave = function (userID, commentID, reaction) {
+        $.ajax({
+            method: 'post',
+            url: '/reaction/save',
+            data: {
+                _token: $('meta[name="_token"]').attr('content'),
+                user_id: userID,
+                comment_id: commentID,
+                reaction: reaction
+            },
+            success: function (data) {
+                const like = $('a#like-'+commentID);
+                const dislike = $('a#dislike-'+commentID);
+                if (data.reaction === '1') {
+                    like.addClass('reaction-active');
+                    dislike.removeAttr('class');
+                } else if (data.reaction === '0') {
+                    like.removeAttr('class');
+                    dislike.addClass('reaction-active');
+                } else {
+                    like.removeAttr('class');
+                    dislike.removeAttr('class');
+                }
+            },
+            error: function (xhr) {
+                divStatus.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
+            },
+            complete: function (data) {
+                const likes = $('img#total-likes-'+commentID);
+                const dislikes = $('img#total-dislikes-'+commentID);
+                likes.get(0).nextSibling.nodeValue = ' '+data.responseJSON.likes;
+                dislikes.get(0).nextSibling.nodeValue = ' '+data.responseJSON.dislikes;
+            }
+        })
+    };
 });

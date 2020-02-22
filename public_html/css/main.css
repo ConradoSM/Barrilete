@@ -487,6 +487,9 @@ footer div#footer-container div.footerSocialContainer img:hover {
     a#menu-btn.display {
         display: block;
     }
+    a#menu-btn:hover {
+        opacity: 1;
+    }
     a#menu-btn div.menu-btn-block {
         height: 5px;
     }
@@ -497,16 +500,23 @@ footer div#footer-container div.footerSocialContainer img:hover {
     div#nav-container {
         position: fixed;
         display: none;
+        margin-top: 49px;
         width: 50%;
     }
-    div#nav-container nav {
+    nav {
         padding-top: 20px;
         height: 100vh;
     }
-    div#nav-container nav ul, div#nav-container nav.active ul {
-        display: flex;
+    nav ul, nav.active ul {
         flex-flow: column nowrap;
-        list-style: none;
+    }
+    nav ul li a.active {
+        border-bottom: none;
+        font-weight: bold;
+    }
+    nav ul li a.active::before {
+        content: '» ';
+        margin-left: -15px;
     }
     /**-- Login --**/
     div.dashboard-container div {
@@ -594,20 +604,30 @@ footer div#footer-container div.footerSocialContainer img:hover {
     a#menu-btn.display {
         display: block;
     }
+    a#menu-btn:hover {
+        opacity: 1;
+    }
     /**-- Nav Container --**/
     div#nav-container {
         position: fixed;
         display: none;
-        width: 50%;
+        margin-top: 60px;
+        width: 40%;
     }
-    div#nav-container nav {
+    nav {
         padding-top: 20px;
         height: 100vh;
     }
-    div#nav-container nav ul, div#nav-container nav.active ul {
-        display: flex;
+    nav ul, nav.active ul {
         flex-flow: column nowrap;
-        list-style: none;
+    }
+    nav ul li a.active {
+        border-bottom: none;
+        font-weight: bold;
+    }
+    nav ul li a.active::before {
+        content: '» ';
+        margin-left: -15px;
     }
     /**-- Main Container --**/
     section#main-container {
@@ -695,24 +715,33 @@ footer div#footer-container div.footerSocialContainer img:hover {
     a#menu-btn.display {
         display: block;
     }
+    a#menu-btn:hover {
+        opacity: 1;
+    }
     /**-- Nav Container --**/
     div#nav-container {
         position: fixed;
         display: none;
-        width: 50%;
+        margin-top: 60px;
+        width: 30%;
     }
-    div#nav-container nav {
+    nav {
         padding-top: 20px;
         height: 100vh;
     }
-    div#nav-container nav ul, div#nav-container nav.active ul {
-        display: flex;
+    nav ul, nav.active ul {
         flex-flow: column nowrap;
-        list-style: none;
+    }
+    nav ul li a.active {
+        border-bottom: none;
+        font-weight: bold;
+    }
+    nav ul li a.active::before {
+        content: '» ';
+        margin-left: -15px;
     }
     /**-- Main Container --**/
     section#main-container {
-        max-width: 575.98px;
         padding: 20px;
     }
     /**-- Login --**/

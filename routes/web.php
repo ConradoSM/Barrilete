@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('comment/update', 'CommentController@update')->name('commentUpdate');
     Route::post('comment/delete', 'CommentController@delete')->name('deleteComment');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    //COMMENTS USER REACTIONS
+    Route::post('reaction/save', 'CommentsUserReactionsController@save')->name('commentReactionSave');
     //DASHBOARD USER ARTICLES, GALLERIES, POLLS LIST
     Route::get('dashboard/view/articles/{id}', 'DashboardController@userArticles')->name('viewArticles');
     Route::get('dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->name('viewGalleries');

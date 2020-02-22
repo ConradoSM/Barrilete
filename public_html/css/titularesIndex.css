@@ -1,4 +1,4 @@
-/** LAZY IMAGES*/
+/**-- Lazy Images --**/
 img.lazy {
     background-image: url('/img/loader-image.gif');
     background-repeat: no-repeat;
@@ -15,9 +15,7 @@ img.lazy {
 .translate img.camera, img.placeholder {
     transform: translate(-50%, -50%);
 }
-/*****************
-**MAIN TITULARES**
-*****************/
+/**-- Main Pubs --**/
 article.pubIndex {
     position: relative;
     width: 386.66666667px;
@@ -83,9 +81,7 @@ article.pubIndex p {
     bottom: 0;
     font-size: 1.2em;
 }
-/*********************************
-**GALERIA Y ENCUESTAS CONTAINER **
-**********************************/
+/**-- Galleries and Polls --**/
 div.galeriasContainerIndex {
     position: relative;
     display: flex;
@@ -121,9 +117,7 @@ div.pollsContainerIndex {
     background-color: #f2f3f4;
     box-shadow: 0 0 10px 0 #5f6a6a;
 }
-/*************************
-**GALERIA DE FOTOS INDEX**
-**************************/
+/**-- Gallery Photo Index --**/
 article.galeriaIndex {
     position: relative;
     display: flex;
@@ -154,9 +148,7 @@ article.galeriaIndex a {
 article.galeriaIndex a:hover {
     background-color: #fff;
 }
-/*************************
-*****ENCUESTAS INDEX******
-**************************/
+/**-- Poll Index --**/
 article.pollIndex {
     position: relative;
     align-self: flex-start;
@@ -179,9 +171,7 @@ article.pollIndex a {
     line-height: 1.2em;
 }
 @media (max-width: 575.98px) {
-    /*****************
-    **MAIN TITULARES**
-    *****************/
+    /**-- Main Pubs --**/
     article.pubIndex {
         display: flex;
         flex-flow: column nowrap;
@@ -201,22 +191,20 @@ article.pollIndex a {
     }
     article.pubIndex a {
         height: auto;
-        font-size: 1.8em;
-        line-height: 1.2em;
+        font-size: 1.5em;
     }
-    /*********************************
-    **GALERIA Y ENCUESTAS CONTAINER **
-    **********************************/
+    article.pubIndex p {
+        align-self: flex-end;
+        position: relative;
+        margin-top: 10px;
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 1em;
+    }
+    /**-- Galleries --**/
     div.galeriasContainerIndex {
         width: 100%;
         height: 400px;
-    }
-    div.pollsContainerIndex {
-        width: 100%;
-        margin-top: 30px;
-    }
-    div.pollsContainerIndex h1 {
-        font-size: 2em;
     }
     article.galeriaIndex {
         border-radius: 0 0 5px 5px;
@@ -231,31 +219,26 @@ article.pollIndex a {
         bottom: 0;
         left: 0;
         border-radius: 0 0 3px 3px;
+        font-size: 1.5em;
     }
-    article.pubIndex p {
-        align-self: flex-end;
-        position: relative;
-        margin-top: 10px;
-        margin-right: 0;
-        margin-bottom: 10px;
-        font-size: 1.2em;
-    }
-    /*************************
-    *****ENCUESTAS INDEX******
-    **************************/
+    /**-- Polls --**/
     article.pollIndex {
         height: auto;
         padding: 10px;
     }
     article.pollIndex a {
-        font-size: 2em;
-        line-height: 1em;
+        font-size: 1.2em;
+    }
+    div.pollsContainerIndex {
+        width: 100%;
+        margin-top: 30px;
+    }
+    div.pollsContainerIndex h1 {
+        font-size: 1.5em;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
-    /*****************
-    **MAIN TITULARES**
-    *****************/
+    /**-- Main Pubs --**/
     article.pubIndex {
         display: flex;
         flex-flow: column nowrap;
@@ -271,36 +254,11 @@ article.pollIndex a {
     }
     article.pubIndex img {
         width: 100%;
-        height: 400px;
+        height: 250px;
     }
     article.pubIndex a {
-        font-size: 1.8em;
-        line-height: 1em;
-        padding: 20px;
-    }
-    /*********************************
-    **GALERIA Y ENCUESTAS CONTAINER **
-    **********************************/
-    div.galeriasContainerIndex {
-        width: 100%;
-        height: 450px;
-    }
-    div.pollsContainerIndex {
-        width: 100%;
-        margin-top: 30px;
-    }
-    div.pollsContainerIndex h1 {
-        font-size: 2em;
-    }
-    article.galeriaIndex {
-        border-radius: 0 0 5px 5px;
-    }
-    article.galeriaIndex a {
-        width: 100%;
         height: auto;
-        bottom: 0;
-        left: 0;
-        border-radius: 0 0 3px 3px;
+        font-size: 1.5em;
     }
     article.pubIndex p {
         align-self: flex-end;
@@ -308,59 +266,12 @@ article.pollIndex a {
         margin-top: 10px;
         margin-right: 0;
         margin-bottom: 10px;
-        font-size: 1.2em;
+        font-size: 1em;
     }
-    /*************************
-    *****ENCUESTAS INDEX******
-    **************************/
-    article.pollIndex {
-        height: auto;
-        padding: 10px;
-    }
-    article.pollIndex a {
-        font-size: 2em;
-        line-height: 1em;
-    }
-}
-@media (min-width: 768px) and (max-width: 991.98px) {
-    /*****************
-    **MAIN TITULARES**
-    *****************/
-    article.pubIndex {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-        height: auto;
-        background-color: #f2f3f4;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
-    article.pubIndex img.video {
-        left: 45%;
-        top: 200px;
-    }
-    article.pubIndex img {
-        width: 100%;
-        height: 500px;
-    }
-    article.pubIndex a {
-        font-size: 2em;
-        line-height: 40px;
-        padding: 20px;
-    }
-    /*********************************
-    **GALERIA Y ENCUESTAS CONTAINER **
-    **********************************/
+    /**-- Galleries --**/
     div.galeriasContainerIndex {
         width: 100%;
-        height: 500px;
-    }
-    div.pollsContainerIndex {
-        width: 100%;
-        margin-top: 30px;
-    }
-    div.pollsContainerIndex h1 {
-        font-size: 2em;
+        height: 400px;
     }
     article.galeriaIndex {
         border-radius: 0 0 5px 5px;
@@ -375,17 +286,46 @@ article.pollIndex a {
         bottom: 0;
         left: 0;
         border-radius: 0 0 3px 3px;
+        font-size: 1.5em;
     }
-    /*************************
-    *****ENCUESTAS INDEX******
-    **************************/
+    /**-- Polls --**/
     article.pollIndex {
         height: auto;
         padding: 10px;
     }
     article.pollIndex a {
-        font-size: 2em;
-        line-height: 1em;
+        font-size: 1.2em;
+    }
+    div.pollsContainerIndex {
+        width: 100%;
+        margin-top: 30px;
+    }
+    div.pollsContainerIndex h1 {
+        font-size: 1.5em;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /**-- Main Pubs --**/
+    article.pubIndex {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 49%;
+        height: auto;
+        background-color: #f2f3f4;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    article.pubIndex img.video {
+        left: 45%;
+        top: 100px;
+    }
+    article.pubIndex img {
+        width: 100%;
+        height: 250px;
+    }
+    article.pubIndex a {
+        height: auto;
+        font-size: 1.5em;
     }
     article.pubIndex p {
         align-self: flex-end;
@@ -393,13 +333,46 @@ article.pollIndex a {
         margin-top: 10px;
         margin-right: 0;
         margin-bottom: 10px;
+        font-size: 1em;
+    }
+    /**-- Galleries --**/
+    div.galeriasContainerIndex {
+        width: 100%;
+        height: 400px;
+    }
+    article.galeriaIndex {
+        border-radius: 0 0 5px 5px;
+    }
+    article.galeriaIndex img {
+        width: 100%;
+        height: auto;
+    }
+    article.galeriaIndex a {
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        left: 0;
+        border-radius: 0 0 3px 3px;
+        font-size: 1.5em;
+    }
+    /**-- Polls --**/
+    article.pollIndex {
+        height: auto;
+        padding: 10px;
+    }
+    article.pollIndex a {
         font-size: 1.2em;
+    }
+    div.pollsContainerIndex {
+        width: 100%;
+        margin-top: 30px;
+    }
+    div.pollsContainerIndex h1 {
+        font-size: 1.5em;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    /*****************
-    **MAIN TITULARES**
-    *****************/
+    /**-- Main Pubs --**/
     article.pubIndex {
         width: 49%;
     }
@@ -432,9 +405,7 @@ article.pollIndex a {
         bottom: 0;
         left: 0;
     }
-    /*********************************
-    **GALERIA Y ENCUESTAS CONTAINER **
-    **********************************/
+    /**-- Galleries --**/
     div.galeriasContainerIndex {
         flex-flow: row wrap;
         width: 49%;
@@ -445,9 +416,7 @@ article.pollIndex a {
     }
 }
 @media (min-width: 1200px) {
-    /**************
-    **1° ARTÍCULO**
-    **************/
+    /**-- 1° Article --**/
     article.pubIndex:nth-child(1) {
         width: 600px;
         height: 650px;
@@ -457,7 +426,7 @@ article.pollIndex a {
         border-radius: 0 0 0 0;
     }
     article.pubIndex:nth-child(1):hover {
-        box-shadow: 0px 0px 10px 0px #000;
+        box-shadow: 0 0 10px 0 #000;
         transition: 0.3s;
     }
     article.pubIndex:nth-child(1) div.seccion {
@@ -494,9 +463,7 @@ article.pollIndex a {
     article.pubIndex:nth-child(1) p, article.pubIndex:nth-child(2) p, article.pubIndex:nth-child(3) p {
         display: none;
     }
-    /**************
-    **2° ARTÍCULO**
-    **************/
+    /**-- 2° Article --**/
     article.pubIndex:nth-child(2){
         width: 570px;
         height: 310px;
@@ -532,9 +499,7 @@ article.pollIndex a {
         background-color: rgba(242,243,244,0.8);
         border-radius: 3px;
     }
-    /**************
-    **3° ARTÍCULO**
-    **************/
+    /**-- 3° Article --**/
     article.pubIndex:nth-child(3) {
         position: absolute;
         right: 0;
@@ -545,9 +510,7 @@ article.pollIndex a {
         box-shadow: 0 0 10px 0 #5f6a6a;
         border-radius: 0 0 0 0;
     }
-    /******************
-    **7 y 8° ARTÍCULO**
-    ******************/
+    /**-- 7° y 8° Article --**/
     article.pubIndex:nth-child(10), article.pubIndex:nth-child(11) {
         display: flex;
         flex-flow: row wrap;
@@ -575,9 +538,7 @@ article.pollIndex a {
     article.pubIndex:nth-child(10) div.seccion, article.pubIndex:nth-child(11) div.seccion {
         left: 420px;
     }
-    /**************
-    **9° ARTÍCULO**
-    **************/
+    /**-- 9° Article --**/
     article.pubIndex:nth-child(12) {
         margin-top: -251px;
         width: 400px;

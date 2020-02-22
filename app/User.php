@@ -115,4 +115,9 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function getCommentReaction($commentId)
+    {
+        return $this->hasOne(CommentsUserReactions::class, 'user_id')->where('comment_id', $commentId);
+    }
 }

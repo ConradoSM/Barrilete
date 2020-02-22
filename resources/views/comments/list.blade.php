@@ -27,4 +27,20 @@
             container.html('<p class="alert feedback-error">'+xhr.status+': '+xhr.statusText+' - <a href="location.reload();">Recargar página</a></p>');
         });
     });
+
+    /**
+     * Comments Box Functionality
+     */
+    $('img.delete').hide();
+    $('img.edit').hide();
+    $('div.comment-container').find('p.comment').mouseover(function () {
+        const buttonDelete = $(this).find('img.delete');
+        const buttonEdit = $(this).find('img.edit');
+        buttonEdit.show();
+        buttonDelete.show();
+        $(this).mouseleave(function () {
+            buttonDelete.hide();
+            buttonEdit.hide();
+        });
+    });
 </script>
