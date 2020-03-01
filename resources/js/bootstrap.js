@@ -51,7 +51,7 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: '34ee6691028a57270a86',
     cluster: 'us2',
-    wsHost: '31.170.167.45',
+    wsHost: '127.0.0.1',
     wsPort: 6001,
     disableStats: true,
     encrypted: false,
