@@ -37,10 +37,14 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => false,
+                'encrypted' => true,
                 'host' => env('LARAVEL_WEBSOCKETS_HOST'),
                 'port' => env('LARAVEL_WEBSOCKETS_PORT'),
-                'scheme' => env('LARAVEL_WEBSOCKETS_SCHEME')
+                'scheme' => env('LARAVEL_WEBSOCKETS_SCHEME'),
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ]
             ],
         ],
 
