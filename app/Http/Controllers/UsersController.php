@@ -265,23 +265,28 @@ class UsersController extends Controller
      * @return JsonResponse|void
      * @throws Throwable
      */
-    public function notifications(Request $request)
+    public function inbox(Request $request)
     {
         if($request->ajax()) {
-            return response()->json([view('auth.users.notifications')->render()]);
+            return response()->json([view('auth.users.inbox')->render()]);
         }
         return abort(404);
     }
 
     /**
+     * Get User Unread Notifications
      * @param Request $request
      * @return JsonResponse|void
      * @throws Throwable
      */
-    public function inbox(Request $request)
+    public function getUnreadNotifications(Request $request)
     {
-        if($request->ajax()) {
-            return response()->json([view('auth.users.inbox')->render()]);
+        if ($request->ajax()) {
+            if (Auth::check()) {
+                $userUnreadNotifications = Auth::user()->notifications()->orderBy('created_at')->limit(10)->get();
+                return response()->json([view('auth.users.notifications', compact('userUnreadNotifications'))->render()]);
+            }
+            return response()->json([view('auth.users.notifications')->render()]);
         }
         return abort(404);
     }

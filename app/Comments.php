@@ -40,6 +40,14 @@ class Comments extends Model
     /**
      * @return BelongsTo
      */
+    public function section()
+    {
+        return $this->belongsTo(Sections::class, 'section_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function parent()
     {
         return $this->belongsTo(Comments::class, 'parent_id');

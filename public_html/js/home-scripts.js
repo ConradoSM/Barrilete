@@ -84,6 +84,8 @@ $(document).ready(function() {
                 url: link,
                 dataType: 'json',
                 success: function (data) {
+                    $('div#notifications-count span').text(0);
+                    $('div#notifications-count').hide();
                     divUser.html(data).slideDown('fast');
                 },
                 error: function (xhr) {
@@ -145,4 +147,26 @@ $(document).ready(function() {
         }
         searchAPI();
     }).keyup();
+
+    /**
+     * User Notifications
+     * @type {number}
+     */
+    let divNotifications = $('div#notifications-count');
+    let spanValue = parseInt(divNotifications.find('span').text());
+    if (spanValue > 0) {
+        if (spanValue > 10) {
+            divNotifications.find('span').text('+10');
+        }
+        divNotifications.show();
+    }
+    let userId = $('meta[name=user_id]').attr('content');
+    if (userId) {
+        window.Echo.private('Barrilete.User.' + userId)
+            .notification((event) => {
+                const numberOfNotifications = parseInt(divNotifications.find('span').text());
+                divNotifications.find('span').text(numberOfNotifications === +10 ? '+10' : numberOfNotifications + event.data.notification);
+                divNotifications.show();
+            });
+    }
 });

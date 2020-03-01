@@ -6,8 +6,10 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use barrilete\Comments;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Throwable;
+use barrilete\Http\Controllers\CommentsUserReactionsController;
 
 class CommentController extends Controller
 {
@@ -33,6 +35,12 @@ class CommentController extends Controller
             $comment->article_id = $request->article_id;
             $comment->section_id = $request->section_id;
             $comment->save();
+            if ($request->parent_id) {
+                $parentComment = Comments::find($request->parent_id);
+                $fromUser = Auth::user();
+                $toUser = $parentComment->user;
+                (new CommentsUserReactionsController)->sendNotification($fromUser, $toUser, $parentComment->section->name, $parentComment->article_id, '1', 'reply');
+            }
             return response()->json([
                 'view' => $this->get($request->article_id, $request->section_id)->render(),
                 'success' => $request->parent_id ? 'Tu respuesta se ha publicado.' : 'El comentario se ha publicado.'

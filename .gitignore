@@ -14,3 +14,4 @@ storage/framework/.gitignore
 /public_html/img/galleries/.thumbs/
 /public_html/img/users/
 /docker/
+/node_modules

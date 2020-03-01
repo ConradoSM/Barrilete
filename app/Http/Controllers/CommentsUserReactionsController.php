@@ -2,9 +2,16 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\Articles;
 use barrilete\Comments;
+use barrilete\Gallery;
+use barrilete\Notifications\UsersCommentReaction;
+use barrilete\Notifications\UsersCommentReply;
+use barrilete\Poll;
+use barrilete\User;
 use Illuminate\Http\Request;
 use barrilete\CommentsUserReactions;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsUserReactionsController extends Controller
 {
@@ -29,6 +36,10 @@ class CommentsUserReactionsController extends Controller
             $request->reaction = null;
         }
         $totalsReactions = $this->getTotalReactions($request->comment_id);
+        if ($request->reaction != null) {
+            $comment = Comments::find($request->comment_id);
+            $this->sendNotification(Auth::user(), $comment->user, $comment->section->name, $comment->article_id, $request->reaction, 'reaction');
+        }
         return array_merge($totalsReactions, ['reaction' => $request->reaction]);
     }
 
@@ -43,5 +54,48 @@ class CommentsUserReactionsController extends Controller
             'likes' => $comment->getTotalLikes->count(),
             'dislikes' => $comment->getTotalDislikes->count()
         ];
+    }
+
+    /**
+     * Send Notification
+     * @param $fromUser
+     * @param $toUser
+     * @param $sectionName
+     * @param $articleId
+     * @param $reaction
+     * @param $type
+     */
+    public function sendNotification($fromUser, $toUser, $sectionName, $articleId, $reaction, $type)
+    {
+        if ($fromUser != $toUser) {
+            $routeName = 'article';
+            $title = Articles::find($articleId) ? Articles::find($articleId)->title : '';
+            if ($sectionName == 'galerias') {
+                $routeName = 'gallery';
+                $title = Gallery::find($articleId)->title;
+            }
+            if ( $sectionName == 'encuestas') {
+                $routeName = 'poll';
+                $title = Poll::find($articleId)->title;
+            }
+            $options = [
+                'id' => $articleId,
+                'section' => str_slug($sectionName),
+                'title' => str_slug($title,'-')
+            ];
+            $link = route($routeName, $options);
+            $reaction = [
+                'from' => $fromUser->name,
+                'to' => $toUser->name,
+                'link' => $link,
+                'reaction' => $reaction
+            ];
+            if ($type == 'reply') {
+                $toUser->notify(new UsersCommentReply($reaction));
+            }
+            if ($type == 'reaction') {
+                $toUser->notify(new UsersCommentReaction($reaction));
+            }
+        }
     }
 }

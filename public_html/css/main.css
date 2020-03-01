@@ -152,9 +152,12 @@ div#results, div#user-menu {
     top: 100%;
     left: 0;
     z-index: 1000;
-    padding: 10px;
+    padding: 0;
     background-color: #ffffff;
     box-shadow: 0 0 3px #5f6a6a;
+}
+div#results {
+    padding: 10px;
 }
 div#results hr:first-child {
     display: none;
@@ -199,10 +202,29 @@ div#user-bar img:hover {
     opacity: 0.8;
     transition: 0.3s ease;
 }
+div#notifications-count {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 80px;
+    min-width: 20px;
+    height: 20px;
+    background-color: #C0392B;
+    border-radius: 50%;
+    text-align: center;
+}
+div#notifications-count span {
+    color: white;
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 3px;
+}
 /**-- User Menu --**/
 div#user-menu ul {
     padding: 0 0 0 15px;
-    margin: 0;
+    margin: 10px;
 }
 div#user-menu ul li {
     list-style: square;
@@ -218,6 +240,38 @@ div#user-menu ul li:last-child {
 }
 div#user-menu ul li a {
     font-size: 1.09em;
+}
+/**-- Notifications --**/
+div.notify {
+    padding: 10px;
+    border-bottom: 1px solid #a5b0b0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+div.notify:hover {
+    background-color: rgba(165, 176, 176, 0.2);
+}
+.unread {
+    background-color: rgba(194, 196, 1, 0.1);
+}
+img.reaction-notification-img {
+    width: 12px !important;
+    height: 12px !important;
+    margin-right: 7px !important;
+}
+img.reaction-notification-img:hover {
+    opacity: 1 !important;
+}
+span.date-notification {
+    color: #808B96;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+p.data-notification {
+    font-size: 1em !important;
+    color: #212f3c;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 /**-- Menu Button --**/
 a#menu-btn {

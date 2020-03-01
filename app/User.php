@@ -120,4 +120,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(CommentsUserReactions::class, 'user_id')->where('comment_id', $commentId);
     }
+
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'Barrilete.User.'.$this->id;
+    }
 }

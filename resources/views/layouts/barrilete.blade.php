@@ -26,6 +26,17 @@
         <meta property="article:published_time" content="@yield('created_at')">
         <meta property="article:modified_time" content="@yield('updated_at')">
         <meta property="article:section" content="@yield('article_section')">
+        <meta name="user_id" content="{{ Auth::check() ? Auth::user()->id : ''}}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="app" id="app">
+        <!-- Scripts js -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{asset('js/jquery-ui.min.js')}}"></script>
+        <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.form.js') }}"></script>
+        <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.lazy.min.js') }}"></script>
+        <script src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Hojas de estilo en cascada -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
@@ -33,14 +44,6 @@
         <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
         <link rel="stylesheet" href="{{ asset('css/jquery-confirm.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">
-        <!-- Scripts js -->
-        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-        <script src="{{asset('js/jquery-ui.min.js')}}"></script>
-        <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.form.js') }}"></script>
-        <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.lazy.min.js') }}"></script>
-        <script src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129739451-1"></script>
         <script>
@@ -51,6 +54,7 @@
         </script>
     </head>
     <body>
+    <div id="app"></div>
         <header>
             <!-- HEADER CONTAINER -->
             <div id="header-container">
@@ -67,11 +71,16 @@
                 </div>
                 <!-- BAR USER -->
                 <div id="user-bar">
-                    <img src="{{asset('svg/user-blue.svg')}}" data-bind="{{route('user-menu')}}" />
-                    <img src="{{asset('svg/alarm.svg')}}" data-bind="{{route('notifications')}}" />
-                    <img src="{{asset('svg/chat.svg')}}" data-bind="{{route('inbox')}}" />
+                    <img src="{{asset('svg/user-blue.svg')}}" data-bind="{{route('user-menu')}}" title="Menú" alt="Menú" />
+                    <img src="{{asset('svg/alarm.svg')}}" data-bind="{{route('notifications')}}" title="Notificaciones" alt="Notificaciones" />
+                    <img src="{{asset('svg/chat.svg')}}" data-bind="{{route('inbox')}}" title="Mensajes" alt="Mensajes" />
                     <img src="{{asset('svg/research.svg')}}" class="search-mobile" />
                     <div id="user-menu"></div>
+                    @auth
+                        <div id="notifications-count">
+                            <span>{{Auth::user()->unreadNotifications()->count()}}</span>
+                        </div>
+                    @endauth
                 </div>
                 <!-- MENU BUTTON -->
                 <a id="menu-btn" title="Menú" class="display">

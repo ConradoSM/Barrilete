@@ -19,7 +19,8 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    curl \
+    npm
 
 # Configuración de Xdebug
 ARG WITH_XDEBUG=false
