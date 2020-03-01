@@ -40,7 +40,11 @@ return [
                 'encrypted' => false,
                 'host' => env('LARAVEL_WEBSOCKETS_HOST'),
                 'port' => env('LARAVEL_WEBSOCKETS_PORT'),
-                'scheme' => env('LARAVEL_WEBSOCKETS_SCHEME')
+                'scheme' => env('LARAVEL_WEBSOCKETS_SCHEME'),
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ]
             ],
         ],
 
