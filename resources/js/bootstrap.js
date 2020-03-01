@@ -53,5 +53,6 @@ window.Echo = new Echo({
     cluster: 'us2',
     wsHost: '127.0.0.1',
     wsPort: 6001,
-    disableStats: true
+    disableStats: true,
+    encrypted: false
 });
