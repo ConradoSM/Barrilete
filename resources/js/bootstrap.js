@@ -52,7 +52,7 @@ window.Echo = new Echo({
     key: '34ee6691028a57270a86',
     cluster: 'us2',
     wsHost: window.location.hostname,
-    wssPort: 6001,
+    wsPort: 6001,
     disableStats: true,
     encrypted: false,
     enabledTransports: ['ws']
