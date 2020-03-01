@@ -51,8 +51,9 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: '34ee6691028a57270a86',
     cluster: 'us2',
-    wsHost: '127.0.0.1',
+    wsHost: window.location.hostname,
     wsPort: 6001,
     disableStats: true,
-    encrypted: false
+    encrypted: false,
+    enabledTransports: ['ws']
 });
