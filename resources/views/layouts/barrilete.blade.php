@@ -44,14 +44,15 @@
         <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
         <link rel="stylesheet" href="{{ asset('css/jquery-confirm.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">
-        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <link rel="stylesheet" href="{{ asset('css/users-dashboard.css') }}">
+        <!-- Global site tag (gtag.js) - Google Analytics
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129739451-1"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'UA-129739451-1');
-        </script>
+        </script>-->
     </head>
     <body>
     <div id="app"></div>
@@ -72,14 +73,21 @@
                 <!-- BAR USER -->
                 <div id="user-bar">
                     <img src="{{asset('svg/user-blue.svg')}}" data-bind="{{route('user-menu')}}" title="Menú" alt="Menú" />
-                    <img src="{{asset('svg/alarm.svg')}}" data-bind="{{route('notifications')}}" title="Notificaciones" alt="Notificaciones" />
-                    <img src="{{asset('svg/chat.svg')}}" data-bind="{{route('inbox')}}" title="Mensajes" alt="Mensajes" />
+                    <img src="{{asset('svg/alarm.svg')}}" data-bind="{{route('notifyReactions')}}" title="Notificaciones" alt="Notificaciones" />
+                    <img src="{{asset('svg/chat.svg')}}" data-bind="{{route('notifyMessages')}}" title="Mensajes" alt="Mensajes" />
                     <img src="{{asset('svg/research.svg')}}" class="search-mobile" />
                     <div id="user-menu"></div>
                     @auth
-                        <div id="notifications-count">
-                            <span>{{Auth::user()->unreadNotifications()->count()}}</span>
-                        </div>
+                        @if(Auth::user()->getUnreadCommentNotifications()->count() > 0)
+                            <div class="notifications comments">
+                                <span>{{Auth::user()->getUnreadCommentNotifications()->count()}}</span>
+                            </div>
+                        @endif
+                        @if(Auth::user()->getUnreadMessageNotifications()->count() > 0)
+                            <div class="notifications messages">
+                                <span>{{Auth::user()->getUnreadMessageNotifications()->count()}}</span>
+                            </div>
+                        @endif
                     @endauth
                 </div>
                 <!-- MENU BUTTON -->

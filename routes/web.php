@@ -23,8 +23,8 @@ Route::get('search', 'SearchController@search')->name('search');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 //USER MENU
 Route::get('user-menu', 'UsersController@menu')->name('user-menu');
-Route::get('notifications', 'UsersController@getUnreadNotifications')->name('notifications');
-Route::get('inbox', 'UsersController@inbox')->name('inbox');
+Route::get('notifications', 'UsersController@notifyReactions')->name('notifyReactions');
+Route::get('inbox', 'UsersController@notifyMessages')->name('notifyMessages');
 //VIEW ARTICLES
 Route::get('article/{id}/{section}/{title}', 'ArticlesController@show')->name('article');
 //VIEW GALLERIES
@@ -36,6 +36,8 @@ Route::post('poll-vote', 'PollsController@pollVote')->name('poll-vote');
 Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get')->name('getComments');
 //DASHBOARD
 Route::group(['middleware' => ['auth']], function () {
+    //USERS DASHBOARD
+    Route::get('users/dashboard', 'UsersController@dashboard')->name('users.dashboard');
     //COMMENTS
     Route::post('comment/save', 'CommentController@save')->name('commentsSave');
     Route::post('comment/update', 'CommentController@update')->name('commentUpdate');
@@ -86,6 +88,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/users/list', 'UsersController@users')->name('users');
     Route::get('dashboard/users/show/{id}', 'UsersController@show')->name('showUser');
     Route::get('dashboard/users/edit/{id}', 'UsersController@edit')->name('editUser');
+    Route::post('dashboard/myaccount/update', 'UsersController@myAccountUpdate')->name('myAccountUpdate');
+    Route::get('dashboard/myaccount/privacy/edit', 'UsersController@editMyPrivacy')->name('editMyPrivacy');
+    Route::get('dashboard/myaccount/password/edit', 'UsersController@editMyPassword')->name('editMyPassword');
+    Route::post('dashboard/myaccount/password/update', 'UsersController@updatePassword')->name('updatePassword');
+    Route::get('dashboard/myaccount/messages/inbox', 'MessagesController@myMessagesInbox')->name('myMessagesInbox');
+    Route::get('dashboard/myaccount/messages/write', 'MessagesController@writeMessage')->name('writeMessage');
+    Route::post('dashboard/myaccount/messages/save', 'MessagesController@save')->name('saveMessage');
+    Route::get('dashboard/myaccount/messages/getUsers', 'UsersController@getUsers')->name('getUsers');
+    Route::get('dashboard/myaccount/messages/message/{id}', 'MessagesController@getConversationById')->name('getConversation');
     Route::post('dashboard/users/update', 'UsersController@update')->name('updateUser');
     Route::get('dashboard/users/delete/{id}', 'UsersController@delete')->name('deleteUser');
     Route::get('dashboard/users/make-admin/{id}', 'UsersController@makeAdmin')->name('makeAdmin');

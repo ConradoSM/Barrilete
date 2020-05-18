@@ -1,5 +1,7 @@
 /* alert message */
 .alert {
+    display: flex;
+    align-items: center;
     padding: 10px !important;
     margin: 10px 0 !important;
     border-radius: 3px;
@@ -12,10 +14,10 @@
 }
 .feedback-success:before {
     background-image: url('/svg/ajax-success.svg');
-    background-size: 15px 15px;
+    background-size: 20px 20px;
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     margin-right: 10px;
     content:"";
 }
@@ -25,10 +27,10 @@
 }
 .feedback-error:before {
     background-image: url('/svg/ajax-error.svg');
-    background-size: 15px 15px;
+    background-size: 20px 20px;
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     margin-right: 10px;
     content:"";
 }
@@ -38,10 +40,10 @@
 }
 .feedback-warning:before {
     background-image: url('/svg/ajax-warning.svg');
-    background-size: 15px 15px;
+    background-size: 20px 20px;
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     margin-right: 10px;
     content:"";
 }

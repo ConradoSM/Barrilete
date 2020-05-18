@@ -52,19 +52,25 @@ article.pub img, article.pub-preview img {
     margin-bottom: 10px;
 }
 article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
+    display: flex;
+    align-items: center;
     font-size: 1.3em;
     margin-top: 0;
     margin-bottom: 20px;
     text-transform: capitalize;
     color: #000;
-    opacity: 0.6;
+    opacity: 0.7;
+    line-height: normal;
 }
 article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-preview img.svg, article.pub-preview p.info img.svg {
-    position: relative;
-    width: 1.5em !important;
-    vertical-align: middle;
+    width: 1.2em !important;
     margin-left: 20px;
     margin-right: 5px;
+    margin-bottom: 0;
+}
+img.dislike {
+    transform: rotate(180deg) scaleX(-1);
+    margin-top: 5px;
 }
 article.pub p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child, article.pub-preview p.info img.svg:first-child {
     margin-left: 0;
@@ -104,7 +110,6 @@ article.pub p.copete, article.pub_galeria p.copete, article.pub-preview p.copete
     font-size: 2em;
     margin-bottom: 30px;
     margin-top: 15px;
-    color: #5d6d7e;
 }
 div.social {
     display: flex;
@@ -243,51 +248,6 @@ article.searchResult a.searchTitle:hover {
 article.searchResult p.searchCopete {
     font-size: 1.5em;
 }
-ul.pagination {
-    display: flex;
-    flex-flow: row nowrap;
-    list-style: none;
-    padding-left: 0;
-}
-ul.pagination li.page-item {
-    border: none;
-    margin: 0;
-    padding: 5px 0 5px 0;
-}
-ul.pagination li.page-item a.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #0086b3;
-    font-size: 2em;
-    color: #fff;
-}
-ul.pagination li.page-item a.page-link:hover {
-    background-color: #00abe5;
-    transition: 0.3s;
-}
-ul.pagination li.disabled span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #f2f3f4;
-    font-size: 2em;
-    color: #666;
-    box-shadow: inset 0 0 2px 0 #999;
-}
-ul.pagination li.active span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #005b7a;
-    font-size: 2em;
-    color: #fff;
-}
-ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
-ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
 /**-- Poll View --**/
 article.pollOptions {
     width: 100%;
@@ -410,58 +370,33 @@ div.comment-container p.actions a.reaction-active {
     color: #21618C !important;
     transition: none;
 }
-/**-- Comments Pagination --**/
-section.comments nav {
-    background-color: #ffffff;
-    margin-top: 10px;
-    flex-flow: row nowrap;
-}
-section.comments ul li:before {
-    content: none;
-}
-section.comments nav ul.pagination {
+/**-- Pagination --**/
+ul.pagination {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+ul.pagination li.page-item {
+    margin-right: 10px;
     list-style: none;
-    padding-left: 0;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 1.6em;
+    background-color: #F8F9F9;
+    border: 1px solid #E5E7E9;
 }
-section.comments nav ul.pagination li.page-item {
-    border: none;
-    margin: 10px;
-}
-section.comments nav ul.pagination li.page-item a.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #EAF2F8;
-    box-shadow: inset 0 0 2px 0 #D6DBDF;
+ul.pagination li.page-item a{
     font-size: 1em;
-    color: #808B96;
-    border-radius: 10px;
 }
-section.comments nav ul.pagination li.page-item a.page-link:hover {
-    background-color: #566573;
-    transition: 0.3s;
+ul.pagination li.page-item.active {
+    background-color: #D6DBDF;
+    cursor: default;
 }
-section.comments nav ul.pagination li.disabled span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    font-size: 1em;
-    color: #666;
-    border-radius: 10px;
-}
-section.comments nav ul.pagination li.active span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #95a0ab;
-    font-size: 1em;
-    color: #fff;
-    border-radius: 10px;
-}
-section.comments nav ul.pagination li.page-item, section.comments nav ul.pagination li.page-item:first-child .page-link {
-    border-radius: 10px;
-}
-section.comments nav ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
-    border-radius: 10px;
+ul.pagination li.page-item.disabled {
+    background-color: #AEB6BF;
+    cursor: default;
 }
 img.loading {
     width: auto !important;

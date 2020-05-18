@@ -2,8 +2,13 @@
 
 namespace barrilete;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -116,13 +121,71 @@ class User extends Authenticatable
         return false;
     }
 
+    /**
+     * @param $commentId
+     * @return HasOne
+     */
     public function getCommentReaction($commentId)
     {
         return $this->hasOne(CommentsUserReactions::class, 'user_id')->where('comment_id', $commentId);
     }
 
+    /**
+     * @return string
+     */
     public function receivesBroadcastNotificationsOn()
     {
         return 'Barrilete.User.'.$this->id;
+    }
+
+    /**
+     * Get User Messages
+     * @return HasMany
+     */
+    public function inboxMessages()
+    {
+        return $this->hasMany(Messages::class, 'to');
+    }
+
+    /**
+     * Get Comment Notifications
+     * @return MorphMany
+     */
+    public function getCommentNotifications()
+    {
+        return $this->notifications()
+            ->where('type', 'barrilete\Notifications\UsersCommentReaction')
+            ->orWhere('type', 'barrilete\Notifications\UsersCommentReply');
+    }
+
+    /**
+     * Get Unread Comment Notifications
+     * @return Builder
+     */
+    public function getUnreadCommentNotifications()
+    {
+        return $this->unreadNotifications()
+            ->where('type', 'barrilete\Notifications\UsersCommentReaction')
+            ->orWhere('type', 'barrilete\Notifications\UsersCommentReply');
+    }
+
+    /**
+     * Get Message Notifications
+     * @return MorphMany
+     */
+    public function getMessageNotifications()
+    {
+        return $this->notifications()
+            ->where('type','barrilete\Notifications\UsersMessages');
+    }
+
+    /**
+     * Get Unread Message Notifications
+     * @return Builder
+     */
+    public function getUnreadMessageNotifications()
+    {
+        return $this->unreadNotifications()
+            ->where('type','barrilete\Notifications\UsersMessages');
     }
 }

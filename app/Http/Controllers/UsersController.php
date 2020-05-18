@@ -2,7 +2,10 @@
 
 namespace barrilete\Http\Controllers;
 
+use Hash;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,6 +35,11 @@ class UsersController extends Controller
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
+    public function dashboard()
+    {
+        return view('auth.users');
+    }
+
     /**
      * CUENTA DE USUARIO
      * @param Request $request
@@ -42,7 +50,7 @@ class UsersController extends Controller
     public function account(Request $request, $id)
     {
         if ($request->ajax()) {
-            $user = User::find($id);
+            $user = User::query()->find($id);
             if($user) {
                 if($user->id == Auth::user()->id) {
                     return response()->json([
@@ -87,7 +95,7 @@ class UsersController extends Controller
     {
         if($request->ajax()) {
             if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
-                $user = User::find($id);
+                $user = User::query()->find($id);
                 return $user
                     ? response()->json([
                         'view' => view('auth.users.show', compact('user'))->render()
@@ -109,10 +117,11 @@ class UsersController extends Controller
     public function edit(Request $request, $id)
     {
         if($request->ajax()) {
-            $user = User::find($id);
+            $user = User::query()->find($id);
+            $view = isset($request->home) ? 'auth.myaccount.edit' : 'auth.users.edit';
             return $user
                 ? response()->json([
-                    'view' => view('auth.users.edit', compact('user'))->render()
+                    'view' => view($view, compact('user'))->render()
                 ])->header('Content-Type', 'application/json')
                 : response()->json(['error' => 'El usuario no existe'],404);
         }
@@ -126,23 +135,40 @@ class UsersController extends Controller
      */
     public function update(userRequest $request)
     {
-        $user = User::find($request->id);
+        $user = $this->updateUserData($request);
         if($user) {
-            $user->name = $request['name'];
-            $user->email = $request['email'];
-            $user->photo = $request->file('photo') ? $this->uploadImage($request->file('photo'), $user) : $user->photo;
-            $user->birthday = $request['birthday'];
-            $user->phone = $request['phone'];
-            $user->address = $request['address'];
-            $user->city = $request['city'];
-            $user->state = $request['state'];
-            $user->country = $request['country'];
-            $user->description = $request['description'];
-            $user->save();
             return view('auth.users.show', compact('user'))
             ->with(['success' => 'El usuario se ha actualizado correctamente.']);
         }
         return response()->json(['error' => 'El usuario no existe']);
+    }
+
+    public function myAccountUpdate(userRequest $request)
+    {
+        $user = $this->updateUserData($request);
+        if($user) {
+            return view('auth.myaccount.edit', compact('user'))
+                ->with(['success' => 'Tu cuenta se ha actualizado.']);
+        }
+        return response()->json(['error' => 'El usuario no existe']);
+    }
+
+    protected function updateUserData($request)
+    {
+        $user = User::query()->findOrFail($request->id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->photo = $request->file('photo') ? $this->uploadImage($request->file('photo'), $user) : $user->photo;
+        $user->birthday = $request['birthday'];
+        $user->phone = $request['phone'];
+        $user->address = $request['address'];
+        $user->city = $request['city'];
+        $user->state = $request['state'];
+        $user->country = $request['country'];
+        $user->description = $request['description'];
+        $user->save();
+
+        return $user;
     }
 
     /**
@@ -159,7 +185,7 @@ class UsersController extends Controller
         }
         $newFile = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
         $upload = public_path('img/users/' . $newFile);
-        Image::make($file->getRealPath())->resize(75, 75)->save($upload);
+        Image::make($file->getRealPath())->resize(100, 100)->save($upload);
         return $newFile;
     }
 
@@ -168,12 +194,13 @@ class UsersController extends Controller
      * @param Request $request
      * @param $id
      * @return RedirectResponse|JsonResponse
+     * @throws \Exception
      */
     public function delete(Request $request, $id)
     {
         if($request->ajax()) {
             if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
-                $user = User::find($id);
+                $user = User::query()->find($id);
                 if($user) {
                     $image_path = public_path('img/users/'.$user->photo);
                     if(File::exists($image_path)) {
@@ -204,7 +231,7 @@ class UsersController extends Controller
     {
         if($request->ajax()) {
             if(Auth::user()->is_admin) {
-                $user = User::find($id);
+                $user = User::query()->find($id);
                 if($user) {
                     if(!$user->is_admin) {
                         $user->is_admin = true;
@@ -231,7 +258,7 @@ class UsersController extends Controller
     {
         if($request->ajax()) {
             if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
-                $user = User::find($id);
+                $user = User::query()->find($id);
                 if($user) {
                     if($user->is_admin) {
                         $user->is_admin = false;
@@ -265,28 +292,92 @@ class UsersController extends Controller
      * @return JsonResponse|void
      * @throws Throwable
      */
-    public function inbox(Request $request)
+    public function notifyMessages(Request $request)
     {
         if($request->ajax()) {
-            return response()->json([view('auth.users.inbox')->render()]);
+            return response()->json([view('auth.users.notifications.messages')->render()]);
         }
         return abort(404);
     }
 
     /**
-     * Get User Unread Notifications
+     * Get User Notifications
      * @param Request $request
      * @return JsonResponse|void
      * @throws Throwable
      */
-    public function getUnreadNotifications(Request $request)
+    public function notifyReactions(Request $request)
+    {
+        if ($request->ajax() AND Auth::check()) {
+            return response()->json([view('auth.users.notifications.reactions')->render()]);
+        }
+        return abort(404);
+    }
+
+    /**
+     * Get All User Notifications
+     * @return MorphMany
+     */
+    protected function getAllUserNotifications()
+    {
+        return Auth::user()->notifications()->orderBy('created_at')->limit(10);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws Throwable
+     */
+    public function updatePassword(Request $request)
     {
         if ($request->ajax()) {
-            if (Auth::check()) {
-                $userUnreadNotifications = Auth::user()->notifications()->orderBy('created_at')->limit(10)->get();
-                return response()->json([view('auth.users.notifications', compact('userUnreadNotifications'))->render()]);
+            if (Hash::check($request->current_password, auth()->user()->password)) {
+                User::query()->find(auth()->user()->id)->update(['password' => Hash::make($request->password)]);
+                return $this->editMyPassword('success', 'La contraseña se ha actualizado correctamente.');
             }
-            return response()->json([view('auth.users.notifications')->render()]);
+            return $this->editMyPassword('error','La contraseña actual es incorrecta.');
+        }
+        return abort(404);
+    }
+
+    /**
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function editMyPrivacy()
+    {
+        return response()->json(['view' => view('auth.myaccount.privacy')->render()]);
+    }
+
+    /**
+     * @param null $status
+     * @param null $message
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function editMyPassword($status = null, $message = null)
+    {
+        return response()->json([
+            'view' => view('auth.myaccount.change-password')->render(),
+            'status' =>  $status,
+            'message' => $message
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return void|JsonResponse
+     * @throws Throwable
+     */
+    public function getUsers(Request $request)
+    {
+        if($request->ajax()) {
+            $query = $request->get('query');
+            $result = User::query()
+                ->where('name','LIKE', '%'.$query.'%')
+                ->where('id','!=', Auth::id())
+                ->get();
+            return response()->json([view('auth.myaccount.messages.autocomplete', compact('result'))->render()]);
         }
         return abort(404);
     }

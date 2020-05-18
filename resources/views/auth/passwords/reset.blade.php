@@ -8,12 +8,15 @@
     @if ($errors->has('email'))
     <p class="alert feedback-error" role="alert">{{ $errors->first('email') }}</p>
     @endif
-    <input placeholder="{{ __('E-Mail Address') }}" id="email" type="email" class="form-control{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+    <label for="email">{{ __('E-Mail Address') }}:</label>
+    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
     @if ($errors->has('password'))
     <p class="alert feedback-error" role="alert"><img src="{{ asset('svg/ajax-error.svg') }}" alt="Error"/>{{ $errors->first('password') }}</p>
     @endif
-    <input placeholder="{{ __('Password') }}" id="password" type="password" class="form-control{{ $errors->has('password') ? ' error' : '' }}" name="password" required>
-    <input placeholder="{{ __('Confirm Password') }}" id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+    <label for="password">{{ __('Password') }}:</label>
+    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' error' : '' }}" name="password" required>
+    <label for="password-confirm">{{ __('Confirm Password') }}:</label>
+    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
     <input type="submit" value="{{ __('Reset Password') }}" class="button primary" />
     <input type="hidden" name="token" value="{{ $token }}">
 </form>

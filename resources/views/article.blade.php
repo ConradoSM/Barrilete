@@ -18,9 +18,11 @@
     <h1>{{ $article -> title }}</h1>
     <p class="copete">{{ $article->article_desc }}</p>
     <p class="info">
-        <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{ $article->created_at->diffForHumans() }}
-        <img class="svg" src="{{ asset('svg/user_black.svg') }}" /> {{ $article->user->name }}
+        <img class="svg" src="{{ asset('svg/calendar.svg') }}" />{{ $article->created_at->diffForHumans() }}
+        <img class="svg" src="{{ asset('svg/user_black.svg') }}" />{{ $article->user->name }}
         <img class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $article->views }}
+        <img class="svg" src="{{ asset('svg/article-reaction.svg') }}" />{{$article->reactions($article->section_id, '1')->count()}}
+        <img class="svg dislike" src="{{ asset('svg/article-reaction.svg') }}" />{{$article->reactions($article->section_id, '0')->count()}}
     </p>
     <hr />
     {!! $article->article_body !!}

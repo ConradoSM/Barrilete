@@ -3,7 +3,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
     width: 100%;
     height: auto;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 0;
     border: 1px solid #b8b8b8;
     border-radius: 5px;
@@ -14,20 +14,18 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=url]:focus, input[type=number]:focus, input[type=date]:focus, input[type=search]:focus, select:focus, textarea:focus {
     border: 1px solid #999;
     transition: 0.3s;
-    -webkit-appearance: none;
 }
 input[type=text].error, input[type=password].error, input[type=email].error, input[type=url].error, input[type=number].error, input[type=date].error, input[type=search].error, select.error, textarea.error {
     border: 1px solid #cb0001;
 }
 input[type=submit], input[type=button], input[type=reset] {
-    -webkit-appearance: none;
-    margin-top: 10px;
+    margin: 10px 7px 0 0;
 }
 /* button */
 .button {
     padding: 5px 20px 7px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
     color: #fff !important;
     font-size: 1.6em;
@@ -87,17 +85,19 @@ input[type=submit], input[type=button], input[type=reset] {
     color: #abb2b9 !important;
     cursor: default;
 }
+form {
+    padding: 0;
+    margin: 0;
+}
 fieldset {
     position: relative;
     width: 100%;
     height: auto;
-    padding: 10px;
-    background-color: #f2f3f4;
-    border: none;
-    margin: 10px 0;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    box-shadow: 0 0 2px 0 #999;
+    padding: 0 10px 10px 10px;
+    background-color: #F8F9F9;
+    margin: 0;
+    border-radius: 5px;
+    border: 1px solid #E5E7E9;
     -webkit-appearance: none;
 }
 fieldset p {
@@ -130,6 +130,12 @@ legend {
     border-radius: 3px;
     box-shadow: 0 0 2px 0 #999;
     color: #006699;
+}
+label {
+    display: block;
+    margin: 15px 0 5px 0;
+    font-size: 1em;
+    color: rgba(49,51,53,0.75);
 }
 p.error {
     color: #cb0001;
@@ -189,7 +195,8 @@ p.error {
 
 /* INPUT CHECKBOX */
 .check-container {
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
     padding-left: 35px;
     margin-top: 10px;
@@ -207,7 +214,6 @@ p.error {
 }
 .check-mark {
     position: absolute;
-    top: 0;
     left: 0;
     height: 25px;
     width: 25px;
@@ -244,9 +250,8 @@ p.error {
 /* INPUT FILE */
 .jfilestyle {
     display: inline-block;
-    margin-right: 0;
-    margin-left: 0;
-    margin-bottom: 0;
+    width: 100%;
+    margin: 0;
     padding: 0;
     position: relative;
     border-collapse: separate;
@@ -256,29 +261,26 @@ div.jfilestyle input {
     background-color: #fff;
     color: #000;
     padding: 10px;
-    border-radius: 3px;
-    box-shadow: 0 0 3px 0 #999;
-    font-family: 'Oswald', sans-serif;
-    margin-right: -8px;
-    margin-bottom: 0;
-    margin-left: 0;
+    margin: 0;
+    border: 1px solid #b8b8b8;
+    font-size: 1.2em;
 }
 div.jfilestyle label {
     display: inline-block;
     width: auto;
     vertical-align: middle;
-    margin-top: -7px;
+    margin-top: 0;
     margin-left: -3px;
     padding: 10px 20px 10px 20px;
-    color: #fff;
     background-color: #21618C;
     border: none;
     font-size: 1.3em;
-    font-family: 'Oswald', sans-serif;
     text-align: center;
     text-transform: uppercase;
-    text-shadow:  1px 1px 0 #000;
     cursor: pointer;
+}
+div.jfilestyle label span {
+    color: #fff;
 }
 div.jfilestyle.jfilestyle-corner input:first-child {
     border-right: 0;
@@ -288,14 +290,20 @@ div.jfilestyle.jfilestyle-corner input:last-child {
 }
 div.jfilestyle.jfilestyle-corner input:first-child,
 div.jfilestyle.jfilestyle-corner span:first-child>label {
-    border-radius: 3px 0 0 3px;
+    border-radius: 5px;
 }
 
 div.jfilestyle.jfilestyle-corner input:last-child,
 div.jfilestyle.jfilestyle-corner span:last-child>label {
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 5px 5px 0;
 }
-
+.focus-jfilestyle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
 div.jfilestyle label[disabled] {
     pointer-events: none;
     opacity: 0.6;

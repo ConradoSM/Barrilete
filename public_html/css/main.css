@@ -192,7 +192,8 @@ div#user-bar {
 div#user-bar img {
     height: 36px;
     width: auto;
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
     cursor: pointer;
 }
 div#user-bar img.search-mobile {
@@ -202,18 +203,17 @@ div#user-bar img:hover {
     opacity: 0.8;
     transition: 0.3s ease;
 }
-div#notifications-count {
+/** Notifications bubbles*/
+div.notifications {
     position: absolute;
-    display: none;
     top: 0;
-    left: 80px;
     min-width: 20px;
     height: 20px;
     background-color: #C0392B;
     border-radius: 50%;
     text-align: center;
 }
-div#notifications-count span {
+div.notifications span {
     color: white;
     display: block;
     position: relative;
@@ -221,57 +221,51 @@ div#notifications-count span {
     transform: translateY(-50%);
     padding: 3px;
 }
+div.notifications.comments {
+    left: 90px;
+}
+div.notifications.messages {
+    left: 150px;
+}
 /**-- User Menu --**/
-div#user-menu ul {
-    padding: 0 0 0 15px;
-    margin: 10px;
-}
-div#user-menu ul li {
-    list-style: square;
-    margin-bottom: 5px;
-    color: #21618C;
-}
-div#user-menu ul li:hover {
-    list-style: disc;
-    color: #2980B9;
-}
-div#user-menu ul li:last-child {
-    margin-bottom: 0;
-}
-div#user-menu ul li a {
-    font-size: 1.09em;
-}
 /**-- Notifications --**/
-div.notify {
+div#user-bar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+div#user-bar ul li {
     padding: 10px;
     border-bottom: 1px solid #a5b0b0;
     cursor: pointer;
     transition: 0.2s;
 }
-div.notify:hover {
+div#user-bar ul li:last-child {
+    border-bottom: none;
+}
+div#user-bar ul li:hover {
     background-color: rgba(165, 176, 176, 0.2);
 }
 .unread {
-    background-color: rgba(194, 196, 1, 0.1);
+    background-color: rgba(255, 235, 59, 0.5);
 }
-img.reaction-notification-img {
+div#user-bar ul li p {
+    margin-bottom: 5px;
+    padding: 0;
+    font-size: 1em;
+}
+div#user-bar ul li span img {
     width: 12px !important;
     height: 12px !important;
     margin-right: 7px !important;
+    margin-left: 0;
 }
-img.reaction-notification-img:hover {
-    opacity: 1 !important;
-}
-span.date-notification {
+div#user-bar ul li span {
+    display: flex;
+    align-items: center;
     color: #808B96;
     font-size: 0.8em;
     margin-top: 5px;
-}
-p.data-notification {
-    font-size: 1em !important;
-    color: #212f3c;
-    padding: 0 !important;
-    margin: 0 !important;
 }
 /**-- Menu Button --**/
 a#menu-btn {
@@ -313,40 +307,40 @@ div#nav-container {
     width: 100%;
 }
 /**-- Nav --**/
-nav {
+div#nav-container nav {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     width: 100%;
     background-color: #d0d3d4;
 }
-nav ul {
+div#nav-container nav ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
 }
-nav ul li {
+div#nav-container nav ul li {
     margin: 0;
     padding: 10px 0 5px 0;
 }
-nav ul li a {
+div#nav-container nav ul li a {
     color: #515a5a;
     font-size: 1.5em;
     text-transform: uppercase;
     padding: 10px 15px 5px 15px;
 }
-nav ul li a:visited {
+div#nav-container nav ul li a:visited {
     color: #515a5a;
 }
-nav ul li a:hover {
+div#nav-container nav ul li a:hover {
     color: #fff !important;
     background-color: #34495e;
     text-decoration: none;
     padding: 10px 15px 5px 15px;
     transition: 0.3s;
 }
-nav ul li a.active {
+div#nav-container nav ul li a.active {
     border-bottom: 3px solid #34495e;
     color: #34495e;
 }

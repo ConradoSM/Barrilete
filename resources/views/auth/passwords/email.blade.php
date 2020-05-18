@@ -8,7 +8,8 @@
     @if ($errors->has('email'))
     <p class="alert feedback-error" role="alert">{{ $errors->first('email') }}</p>
     @endif
-    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required>
+    <label for="email">{{ __('E-Mail Address') }}:</label>
+    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ old('email') }}" required>
     <input type="submit" value="{{ __('Send Password Reset Link') }}" class="button primary" />
 </form>
 <script>

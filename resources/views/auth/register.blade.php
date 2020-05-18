@@ -4,13 +4,17 @@
 <p class="dashboard-title"><img src="{{asset('svg/adding-users.svg')}}" />{{ __('Register') }}</p>
 <form method="post" action="{{ route('register') }}" id="register">
     @csrf
-    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' error' : '' }}" name="name" value="{{ old('name') }}" placeholder="{{ __('Name') }}" required autofocus>
+    <label for="name">{{ __('Name') }}:</label>
+    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' error' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
     @if ($errors->has('name'))<p class="error" role="alert">{{ $errors->first('name') }}</p>@endif
-    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required>
+    <label for="email">{{ __('E-Mail Address') }}:</label>
+    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ old('email') }}" required>
     @if ($errors->has('email'))<p class="error" role="alert">{{ $errors->first('email') }}</p>@endif
-    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' error' : '' }}" name="password" placeholder="{{ __('Password') }}" required>
+    <label for="password">{{ __('Password') }}:</label>
+    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' error' : '' }}" name="password" required>
     @if ($errors->has('password'))<p class="error" role="alert">{{ $errors->first('password') }}</p>@endif
-    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
+    <label for="password-confirm">{{ __('Confirm Password') }}</label>
+    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
     <input type="submit" value="{{ __('Register') }}" class="button primary" />
 </form>
 <script>

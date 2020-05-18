@@ -13,8 +13,10 @@
     @if ($errors->has('password'))
     <p class="alert feedback-error" role="alert">{{ $errors->first('password') }}</p>
     @endif
-    <input id="email" type="email" class="{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autofocus>
-    <input id="password" type="password" class="{{ $errors->has('password') ? ' error' : '' }}" name="password" placeholder="{{ __('Password') }}" required>
+    <label for="email">{{ __('E-Mail Address') }}:</label>
+    <input id="email" type="email" class="{{ $errors->has('email') ? ' error' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+    <label for="password">{{ __('Password') }}:</label>
+    <input id="password" type="password" class="{{ $errors->has('password') ? ' error' : '' }}" name="password" required>
     <input type="submit" value="Ingresar" class="button primary" />
     <label class="check-container" for="remember">{{ __('Remember Me') }}
         <input type="checkbox" checked="checked" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

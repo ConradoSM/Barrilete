@@ -136,4 +136,16 @@ class Articles extends Model
         return $this->hasMany(Comments::class,'article_id')
             ->where('section_id', $sectionId);
     }
+
+    /**
+     * @param $sectionId
+     * @param $reaction
+     * @return HasMany
+     */
+    public function reactions($sectionId, $reaction)
+    {
+        return $this->hasMany(ArticlesReaction::class, 'article_id')
+            ->where('section_id', $sectionId)
+            ->where('reaction', $reaction);
+    }
 }
