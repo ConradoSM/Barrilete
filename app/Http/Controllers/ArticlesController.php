@@ -212,7 +212,7 @@ class ArticlesController extends Controller
             }
             $request = $this->_request;
             $upload = public_path('img/articles/images/' . $newPhoto);
-            $uploadThumbnail = public_path('img/articles/.thumbs/images/' . $newPhoto);
+            $uploadThumbnail = public_path('img/articles/.thumbs/' . $newPhoto);
             Image::make($request->file('photo')->getRealPath())->save($upload);
             Image::make($request->file('photo')->getRealPath())->resize(570, 310,
                 function ($constraint) {
@@ -228,7 +228,7 @@ class ArticlesController extends Controller
     {
         if ($imageName) {
             $image_path = public_path('/img/articles/images/'.$imageName);
-            $image_path_thumb = public_path('/img/articles/.thumbs/images/'.$imageName);
+            $image_path_thumb = public_path('/img/articles/.thumbs/'.$imageName);
             if (File::exists($image_path) && File::exists($image_path_thumb)) {
                 File::delete($image_path);
                 File::delete($image_path_thumb);

@@ -179,12 +179,12 @@ class UsersController extends Controller
      */
     protected function uploadImage($file, $user)
     {
-        $image_path = public_path('img/users/'.$user->photo);
+        $image_path = public_path('img/users/images/'.$user->photo);
         if (File::exists($image_path)) {
             File::delete($image_path);
         }
         $newFile = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
-        $upload = public_path('img/users/' . $newFile);
+        $upload = public_path('img/users/images/' . $newFile);
         Image::make($file->getRealPath())->resize(100, 100)->save($upload);
         return $newFile;
     }
@@ -202,7 +202,7 @@ class UsersController extends Controller
             if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $user = User::query()->find($id);
                 if($user) {
-                    $image_path = public_path('img/users/'.$user->photo);
+                    $image_path = public_path('img/users/images/'.$user->photo);
                     if(File::exists($image_path)) {
                         File::delete($image_path);
                     }

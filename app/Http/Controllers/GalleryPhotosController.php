@@ -22,7 +22,7 @@ class GalleryPhotosController extends Controller
     {
         $photo = GalleryPhotos::find($photoId);
         if ($photo) {
-            $image_path = public_path('img/galleries/'.$photo->photo);
+            $image_path = public_path('img/galleries/images/'.$photo->photo);
             $image_path_thumb = public_path('img/galleries/.thumbs/'.$photo->photo);
             if (File::exists($image_path) && File::exists($image_path_thumb)) {
                 File::delete($image_path);
@@ -72,7 +72,7 @@ class GalleryPhotosController extends Controller
         $photo = GalleryPhotos::find($request->id);
         if ($photo) {
             /** FOTO ACTUAL */
-            $actualPhoto = public_path('img/galleries/'.$request->actual_photo);
+            $actualPhoto = public_path('img/galleries/images/'.$request->actual_photo);
             $actualThumb = public_path('img/galleries/.thumbs/'.$request->actual_photo);
             /** BORRAR FOTO ACTUAL */
             if (File::exists($actualPhoto) && File::exists($actualThumb)) {
@@ -83,7 +83,7 @@ class GalleryPhotosController extends Controller
             $file = $request->file('photo');
             if ($file) {
                 $fileName = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
-                $upload = public_path('img/galleries/'.$fileName);
+                $upload = public_path('img/galleries/images/'.$fileName);
                 $uploadThumb = public_path('img/galleries/.thumbs/'.$fileName);
                 /** SUBIR FOTO NUEVA */
                 Image::make($request->file('photo')->getRealPath())->save($upload);
