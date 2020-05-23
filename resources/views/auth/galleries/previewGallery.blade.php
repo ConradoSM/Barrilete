@@ -44,7 +44,7 @@
 </article>
 @forelse ($photos as $photo)
 <article class="fotos">
-    <img src="{{ asset('img/galleries/'.$photo->photo)}}" />
+    <img src="{{ asset('img/galleries/images/'.$photo->photo)}}" />
     <p>{{$photo->title}}</p>
 </article>
 @empty

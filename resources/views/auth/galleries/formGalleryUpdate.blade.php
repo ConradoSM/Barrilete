@@ -52,7 +52,7 @@
             </form>
             <img class="update-image-button" src="{{ asset('svg/update.svg') }}" title="Actualizar imagen" />
             <a href="{{ route('deletePhoto', ['id' => $photo->id]) }}" data-confirm="¿Estás seguro que desear eliminar ésta imagen?"><img class="delete-image-button" src="{{ asset('svg/delete.svg') }}" title="Borrar imagen" /></a>
-            <img class="photo-gallery" src="{{ asset('img/galleries/'.$photo->photo) }}" />
+            <img class="photo-gallery" src="{{ asset('img/galleries/images/'.$photo->photo) }}" />
         </div>
         <div class="status"></div>
         <form method="post" class="data" action="{{ route('updateTitlePhotoGallery') }}">

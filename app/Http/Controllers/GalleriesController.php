@@ -90,7 +90,7 @@ class GalleriesController extends Controller
                 /** Upstream File */
                 $file = $photos[$key];
                 $filename = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
-                $upload = public_path('img/galleries/'.$filename);
+                $upload = public_path('img/galleries/images/'.$filename);
                 $uploadThumb = public_path('img/galleries/.thumbs/'.$filename);
                 Image::make($file->getRealPath())->save($upload);
                 Image::make($file->getRealPath())->resize(570, 310, function($constraint) {
@@ -127,7 +127,7 @@ class GalleriesController extends Controller
                 $photos = $gallery->photos;
                 if ($photos) {
                     foreach ($photos as $item) {
-                        $image_path = public_path('img/galleries/'.$item->photo);
+                        $image_path = public_path('img/galleries/images/'.$item->photo);
                         $thumb_path = public_path('img/galleries/.thumbs/'.$item->photo);
                         if (File::exists($image_path) && File::exists($thumb_path)) {
                             File::delete($image_path);
