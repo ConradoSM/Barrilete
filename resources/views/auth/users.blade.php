@@ -4,7 +4,7 @@
 @section('content')
     <div id="users-menu">
         <div class="user-info">
-            <img src="{{Auth::user()->photo ? asset('img/users/'.Auth::user()->photo) : asset('svg/user-blue.svg')}}" alt="{{Auth::user()->name}}">
+            <img src="{{Auth::user()->photo ? asset('img/users/images/'.Auth::user()->photo) : asset('svg/user-blue.svg')}}" alt="{{Auth::user()->name}}">
             <p>{{Auth::user()->name}}</p>
         </div>
         <hr>

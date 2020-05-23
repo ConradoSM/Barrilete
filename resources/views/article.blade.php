@@ -5,7 +5,7 @@
 @section('article_type', 'article')
 @section('article_desc', $article->article_desc)
 @section('article_url', route('article', ['id' => $article->id, 'section' => str_slug($article->section->name), 'title' => str_slug($article->title, '-')]))
-@section('article_photo', 'https://barrilete.com.ar/img/articles/.thumbs/images/'.$article->photo)
+@section('article_photo', 'https://barrilete.com.ar/img/articles/.thumbs/'.$article->photo)
 @section('site_name', 'Barrilete')
 @section('created_at', $article->created_at)
 @section('updated_at', $article->updated_at)
@@ -38,7 +38,7 @@
         @if ($more->video == 1)
             <img src="{{ asset('img/play-button.png') }}" class="video" onclick="location.href='{{ route('article',['id'=>$more->id,'section'=>str_slug($more->section->name),'title'=>str_slug($more->title,'-')]) }}'" />
         @endif
-        <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/.thumbs/images/'.$more->photo) }}" title="{{ $more->title }}" alt="{{ $more->title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more->id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}'" />
+        <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/.thumbs/'.$more->photo) }}" title="{{ $more->title }}" alt="{{ $more->title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more->id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}'" />
         <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}">{{ $more->title }}</a>
     </article>
     @empty

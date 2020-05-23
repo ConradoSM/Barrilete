@@ -5,7 +5,7 @@
 @section('content')
 @forelse ($galleries as $galeria)
     <article class="pubIndex">
-        <img src="{{ asset('img/before-load.png') }}" data-src="{{$loop->iteration == 1 ? asset('img/galleries/'.$galeria->photos->first()->photo) : asset('img/galleries/.thumbs/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" class="lazy" onclick="location.href='{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}'" />
+        <img src="{{ asset('img/before-load.png') }}" data-src="{{$loop->iteration == 1 ? asset('img/galleries/images/'.$galeria->photos->first()->photo) : asset('img/galleries/.thumbs/'.$galeria->photos->first()->photo)}}" title="{{$galeria->title}}" alt="{{$galeria->title}}" class="lazy" onclick="location.href='{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}'" />
         <a href="{{route('gallery',['id'=>$galeria->id,'title'=>str_slug($galeria->title,'-')])}}">{{$galeria->title}}</a>
     </article>
 @empty
