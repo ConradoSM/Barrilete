@@ -46,7 +46,7 @@ services:
 
   #MySQL
   db:
-    image: mysql:5.7.22
+    image: mysql:5.7
     container_name: db
     restart: unless-stopped
     tty: true
@@ -57,21 +57,9 @@ services:
       MYSQL_ROOT_PASSWORD: ba5Tgl28sy
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
-    networks:
-      - app-network
-
-  #Elasticsearch
-  elasticsearch:
-    image: summasolutions/elasticsearch:${ES_VERSION}
-    env_file: .env
-    ports:
-      - "9200"
-      - "9300"
     volumes:
-      - "./docker/volumes/elasticsearch:/usr/share/elasticsearch/data"
-    environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "xpack.security.enabled=false"
+      - dbdata:/var/lib/mysql/
+      - ./docker/config/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
 

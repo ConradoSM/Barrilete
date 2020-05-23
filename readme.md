@@ -68,17 +68,21 @@
                 <p>4. Instalamos las dependencias de Laravel:</p>
                 <code>$ docker-compose exec app composer install</code>
                 <hr>
-                <p>5. Si esto es correcto, podemos correr dos comandos mas para adicionar seguridad a nuestra aplicación:</p>
+                <p>5. Generamos el archivo .env</p>
+                <code>$ cp .env.example .env</code>
+                <hr>
+                <p>6. Si esto es correcto, podemos correr dos comandos mas para adicionar seguridad a nuestra aplicación:</p>
                 <code>$ docker-compose exec app php artisan key:generate</code><br>
                 <code>$ docker-compose exec app php artisan config:cache</code><br>
                 <code>$ docker-compose exec app php artisan config:clear</code><br>
                 <hr>
-                <p>6. Corremos las migraciones:</p>
+                <p>7. Corremos las migraciones y seeders:</p>
                 <code>$ docker-compose exec app php artisan migrate</code><br>
+                <code>$ docker-compose exec app php artisan db:seed</code>
                 <hr>
-                <p>7. Editamos el archivo <b>etc/hosts</b> agregando la siguiente línea:</p>
+                <p>8. Editamos el archivo <b>etc/hosts</b> agregando la siguiente línea:</p>
                 <code>127.0.0.1     local.barrilete.com.ar</code><br>
                 <hr>
-                <p>8. Probamos el sitio:</p>
+                <p>9. Probamos el sitio:</p>
                 <code>http://local.barrilete.com.ar</code><br>
 </div>
