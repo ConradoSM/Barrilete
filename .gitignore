@@ -15,4 +15,4 @@ storage/framework/.gitignore
 /public_html/img/galleries/.thumbs/*
 /public_html/img/users/*
 /node_modules
-/docker
+/docker/*
