@@ -3,9 +3,10 @@
     <h2>v2.5.1</h2>
     <h4>Notas de la versión</h4>
     <ul>
-        <li>Se incorpora Docker y Docker-Compose al proyecto</li>
-        <li>Upgrade de laravel a la versión 6.x</li>
-        <li>Instalación de la extensión Xdebug</li>
+        <li>Se integra Docker al proyecto</li>
+        <li>Se integra Laravel websockets (en fase de pruebas aún)</li>
+        <li>Upgrade de Laravel a la versión 6.x</li>
+        <li>Instalación de la extensión Xdebug para facilitar el debug de la aplicación</li>
     </ul>
     <h3>Pre-requisitos para la instalación del ambiente</h3>
     <p>- Las siguientes instrucciones están hechas solo para entornos de desarrollo basados en GNU/Linux.</p>
@@ -32,7 +33,7 @@
     </code></p>
     <p>5. Actualizamos los paquetes de nuestro sistema:</p>
     <p><code>$ sudo apt-get update</code></p>
-    <p>6. Instale la última versión de Docker Engine: comunidad y contenedor</p>
+    <p>6. Instale la última versión de Docker Engine</p>
     <p><code>$ sudo apt-get install docker-ce docker-ce-cli containerd.io</code></p>
     <p>7. Verifique que Docker Engine - Community esté instalado correctamente ejecutando la imagen hello-world.</p>
     <p><code>$ sudo docker run hello-world</code></p>
