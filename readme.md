@@ -45,7 +45,7 @@
     <p>11. Probamos la instalación:</p>
     <p><code>$ docker-compose --version</code></p>
     <hr>
-    <h4 id="ambiente">Instalación del ambiente en nuestra maquina local</h4>
+    <h3 id="ambiente">Instalación del ambiente en nuestra maquina local</h3>
     <p>1. Creamos un <b>Fork</b> en GitHub del proyecto</p>
     <p>2. Clonamos el repositorio de GitHub en nuestra computadora:</p>
     <p><code>$ git clone git@github.com:<b>'nuestro_usuario'</b>/Barrilete.git</code></p>
