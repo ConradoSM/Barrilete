@@ -2,13 +2,13 @@
 $user = $result->getSender()->id != Auth::id() ? $result->getSender() : $result->getRecipient();
 @endphp
 <p class="user-title">
-    <img src="{{asset($user->photo ? 'img/users/'.$user->photo : 'svg/user-blue.svg')}}" alt="{{$user->name}}" title="{{$user->name}}" />
+    <img src="{{asset($user->photo ? 'img/users/images/'.$user->photo : 'svg/user-blue.svg')}}" alt="{{$user->name}}" title="{{$user->name}}" />
     {{$user->name}}
 </p>
 <ul class="messages">
     <li>
         <p class="{{$result->from == Auth::id() ? 'end' : ''}}">
-            <img src="{{asset($result->getSender()->photo ? 'img/users/'.$result->getSender()->photo : 'svg/user-blue.svg')}}" alt="{{$result->getSender()->name}}" title="{{$result->getSender()->name}}" />
+            <img src="{{asset($result->getSender()->photo ? 'img/users/images/'.$result->getSender()->photo : 'svg/user-blue.svg')}}" alt="{{$result->getSender()->name}}" title="{{$result->getSender()->name}}" />
             <span>
                 {{$result->body}}
             @if($result->from == Auth::id() AND $result->status)
@@ -31,7 +31,7 @@ $user = $result->getSender()->id != Auth::id() ? $result->getSender() : $result-
     @foreach($result->replies()->get() as $item)
         <li>
             <p class="{{$item->from == Auth::id() ? 'end' : ''}}">
-                <img src="{{asset($item->getSender()->photo ? 'img/users/'.$item->getSender()->photo : 'svg/user-blue.svg')}}" alt="{{$item->getSender()->name}}" title="{{$item->getSender()->name}}"/>
+                <img src="{{asset($item->getSender()->photo ? 'img/users/images/'.$item->getSender()->photo : 'svg/user-blue.svg')}}" alt="{{$item->getSender()->name}}" title="{{$item->getSender()->name}}"/>
                 <span>
                     {{$item->body}}
                     @if($item->from == Auth::id() AND $item->status)

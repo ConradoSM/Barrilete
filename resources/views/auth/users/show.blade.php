@@ -16,7 +16,7 @@
 </div>
 <fieldset>
     @if ($user->photo)
-    <img class="avatar" src="{{ asset('img/users/'.$user->photo) }}" />
+    <img class="avatar" src="{{ asset('img/users/images/'.$user->photo) }}" />
     @else
     <img class="avatar" src="{{ asset('svg/avatar.svg') }}" />
     @endif

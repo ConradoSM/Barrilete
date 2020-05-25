@@ -3,7 +3,7 @@
     <ul class="inbox-messages">
     @foreach($result as $item)
         <li class="{{$item->status == 0 ? 'unread' : ''}}" data-link="{{route('getConversation', ['id' => $item->parent_id ? $item->parent_id : $item->id])}}">
-            <img src="{{$item->getSender()->photo ? asset('img/users/'.$item->getSender()->photo) : asset('svg/user-blue.svg')}}" alt="{{$item->getSender()->name}}">
+            <img src="{{$item->getSender()->photo ? asset('img/users/images/'.$item->getSender()->photo) : asset('svg/user-blue.svg')}}" alt="{{$item->getSender()->name}}">
             <p>
                 <span>{{$item->getSender()->name}}</span>
                 <span>{{ strlen($item->body) > 100 ? substr($item->body, 0, 100).'...' : $item->body }}</span>

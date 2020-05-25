@@ -22,6 +22,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     npm
 
+# Instalamos la última versión de npm
+RUN npm install n -g
+RUN n stable
+RUN npm -v
+
 # Configuración de Xdebug
 ARG WITH_XDEBUG=false
 RUN if [ $WITH_XDEBUG = "true" ] ; then \

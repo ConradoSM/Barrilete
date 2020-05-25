@@ -1,5 +1,5 @@
 <div class="comment-container">
-    <img class="comment-user" src="{{ $comment->user->photo ? asset('img/users/'.$comment->user->photo) : asset('svg/comment-user.svg') }}" alt="user">
+    <img class="comment-user" src="{{ $comment->user->photo ? asset('img/users/images/'.$comment->user->photo) : asset('svg/comment-user.svg') }}" alt="user">
     <p class="comment">
         @auth
             @if(Auth::user()->id == $comment->user_id)

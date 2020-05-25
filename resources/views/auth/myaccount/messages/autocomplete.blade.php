@@ -1,6 +1,6 @@
 <ul id="list">
 @forelse ($result as $user)
-    <li data-id="{{$user->id}}" data-name="{{$user->name}}"><img src="{{$user->photo ? asset('img/users/'.$user->photo) : asset('svg/user-blue.svg')}}" alt="{{$user->name}}">{{$user->name}}</li>
+    <li data-id="{{$user->id}}" data-name="{{$user->name}}"><img src="{{$user->photo ? asset('img/users/images/'.$user->photo) : asset('svg/user-blue.svg')}}" alt="{{$user->name}}">{{$user->name}}</li>
 @empty
     <li>No hay resultados.</li>
 @endforelse

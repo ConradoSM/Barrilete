@@ -40,8 +40,8 @@ $(document).ready(function() {
                     const userInfo = $('div.user-info');
                     const photo = $('input[name=home]').attr('value');
                     const name = $('input[name=name]').attr('value');
-                    if(photo) {
-                        userInfo.find('img').attr('src', '/img/users/' + photo);
+                    if (photo) {
+                        userInfo.find('img').attr('src', '/img/users/images/' + photo);
                     }
                     if (name) {
                         userInfo.find('p').text(name);
