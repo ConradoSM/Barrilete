@@ -8,10 +8,10 @@
         <li>Instalación de la extensión Xdebug</li>
     </ul>
     <h3>Pre-requisitos para la instalación del ambiente</h3>
-    <p><b>Nota</b>: Las siguientes instrucciones están hechas solo para entornos de desarrollo basados en GNU/Linux.</p>
-    <h4>Instalar docker y docker compose</h4>
-    <p><b>Nota</b>: Si ya tienes instalado en tu sistema <b>Docker</b> y <b>Docker-Compose</b>, mira directamente <b>Instalación del ambiente en nuestra maquina local</b></p>
+    <p>- Las siguientes instrucciones están hechas solo para entornos de desarrollo basados en GNU/Linux.</p>
+    <p>- Si ya tienes instalado en tu sistema <b>Docker</b> y <b>Docker-Compose</b>, mira directamente <a href="#ambiente">Instalación del ambiente en nuestra maquina local</a></p>
     <hr>
+    <h3>Instalación de Docker y Docker Compose</h3>
     <p>1. Actualizamos los paquetes del sistema:</p>
     <p><code>$ sudo apt-get update</code></p>
     <p>2. Instale paquetes para permitir que apt use un repositorio sobre HTTPS:</p>
@@ -45,7 +45,7 @@
     <p>11. Probamos la instalación:</p>
     <p><code>$ docker-compose --version</code></p>
     <hr>
-    <h4>Instalación del ambiente en nuestra maquina local</h4>
+    <h4 id="ambiente">Instalación del ambiente en nuestra maquina local</h4>
     <p>1. Creamos un <b>Fork</b> en GitHub del proyecto</p>
     <p>2. Clonamos el repositorio de GitHub en nuestra computadora:</p>
     <p><code>$ git clone git@github.com:<b>'nuestro_usuario'</b>/Barrilete.git</code></p>
