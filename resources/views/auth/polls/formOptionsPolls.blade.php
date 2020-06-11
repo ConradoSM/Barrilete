@@ -25,6 +25,5 @@
     </form>
     <br />
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-add-poll-options.js') }}"></script>

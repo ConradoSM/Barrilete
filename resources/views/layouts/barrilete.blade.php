@@ -31,11 +31,6 @@
         <meta name="app" id="app">
         <!-- Scripts js -->
         <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{asset('js/jquery-ui.min.js')}}"></script>
-        <script src="{{ asset('js/jquery-confirm.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.form.js') }}"></script>
-        <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.lazy.min.js') }}"></script>
         <script src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Hojas de estilo en cascada -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -55,7 +50,6 @@
         </script>-->
     </head>
     <body>
-    <div id="app"></div>
         <header>
             <!-- HEADER CONTAINER -->
             <div id="header-container">
@@ -130,7 +124,7 @@
                         <li><a href="{{ route('register') }}">REGISTRO</a></li>
                         <li><a href="{{ route('password.request') }}">OLVIDÉ MI CONTRASEÑA</a></li>
                         @else
-                        <li><a href="{{ route('dashboard') }}">PANEL DE CONTROL</a></li>
+                        <li><a href="{{ route('users.dashboard') }}">PANEL DE CONTROL</a></li>
                         @endguest
                     </ul>
                     <h2>Contacto</h2>

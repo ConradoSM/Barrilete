@@ -29,5 +29,4 @@
     </form>
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>

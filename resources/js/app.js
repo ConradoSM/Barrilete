@@ -9,6 +9,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import 'jquery-ui/ui/widgets/autocomplete';
+import 'jquery-validation';
+import 'jquery-confirm';
+import 'jquery-form';
+const lazy = require('jquery-lazy');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

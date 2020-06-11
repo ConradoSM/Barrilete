@@ -28,5 +28,4 @@
         <input type="hidden" name="section_id" value="{{ $section->id }}" />
     </form>
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>

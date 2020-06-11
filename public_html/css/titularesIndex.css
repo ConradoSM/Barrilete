@@ -128,7 +128,7 @@ article.galeriaIndex {
     overflow: hidden;
 }
 article.galeriaIndex img {
-    width: auto;
+    width: 100%;
     height: 100%;
 }
 article.galeriaIndex a {

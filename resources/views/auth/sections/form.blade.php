@@ -33,6 +33,5 @@
         </form>
     </fieldset>
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard.js')}}"></script>

@@ -72,7 +72,7 @@
     <p>11. Instalamos paquetes de npm</p>
     <p><code>docker-compose exec -u root app npm install</code></p>
     <p>12. Compilación automática de archivos javascript y css durante el desarrollo</p>
-    <p><code>docker-compose exec -u root app npm run watch</code></p>    
+    <p><code>docker-compose exec app npm run watch</code></p>    
     <p>13. Editamos el archivo <b>etc/hosts</b> agregando la siguiente línea:</p>
     <p><code>127.0.0.1 local.barrilete.com.ar</code></p>
     <p>14. Probamos el sitio:</p>

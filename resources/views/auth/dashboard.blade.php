@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="robots" content="noindex,nofollow,nosnippet,noarchive" />
         <meta name="googlebot" content="noindex,nofollow,nosnippet,noarchive" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{asset('css/contenido.css')}}" />
         <link rel="stylesheet" href="{{asset('css/titularesIndex.css')}}" />
         <link rel="stylesheet" href="{{asset('css/forms.css')}}" />
@@ -13,6 +14,7 @@
         <link rel="stylesheet" href="{{asset('css/alerts-messages.css')}}">
     </head>
     <body>
+        <div id="app"></div>
         <header>
             <img class="logo" src="{{ asset('svg/logo_barrilete_OLD.svg') }}" onclick="window.location = '{{ route('default') }}'" title="Home" alt="Home" />
             <div id="main-search">
@@ -75,7 +77,7 @@
             </div>
         </footer>
         <!-- scripts -->
-        <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>
         <script type="text/javascript">
             $(document).ready(function(){

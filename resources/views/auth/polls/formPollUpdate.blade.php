@@ -57,7 +57,6 @@
         <a href="{{ route('addOptions', ['id' => $poll->id]) }}" class="button primary">+ Agregar opciones</a>
     </fieldset>
 </div>
-<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-edit-form.js') }}"></script>
