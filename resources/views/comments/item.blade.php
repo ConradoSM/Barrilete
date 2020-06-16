@@ -3,8 +3,8 @@
     <p class="comment">
         @auth
             @if(Auth::user()->id == $comment->user_id)
-                <img onclick="deleteConfirm('{{ $comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}')" alt="Delete" title="Borrar" class="action delete" src="{{ asset('svg/remove-symbol.svg') }}">
-                <img onclick="editComment('{{$comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}', '{{$comment->content}}')" src="{{asset('svg/pencil.svg')}}" class="action edit" alt="Edit" title="Editar" />
+                <img onclick="deleteComment('{{ $comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}')" alt="Delete" title="Borrar" class="action delete" src="{{ asset('svg/remove-symbol.svg') }}">
+                <img onclick="replyComment('{{$comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}', null, '{{$comment->content}}')" src="{{asset('svg/pencil.svg')}}" class="action edit" alt="Edit" title="Editar" />
             @endif
         @endauth
         <b>{{ $comment->user->name }}</b>: {{ $comment->content }}
@@ -30,7 +30,7 @@
                     <a onclick="commentReactionSave('{{ Auth::user()->id }}','{{ $comment->id }}', '0')" id="dislike-{{ $comment->id }}">No me gusta</a> ·
                 @endif
             @endif
-            <a onclick="replyComment('{{ $comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}', '{{Auth::user()->id}}')" title="Responder">Responder</a>
+            <a onclick="replyComment('{{ $comment->id}}', '{{$comment->article_id}}', '{{$comment->section_id }}', '{{Auth::user()->id}}', null)" title="Responder">Responder</a>
         </p>
     @endauth
     @if ($comment->replies)

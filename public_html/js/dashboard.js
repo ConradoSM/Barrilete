@@ -1,39 +1,51 @@
 $(document).ready(function() {
-    /**
-     * FIND LINKS
-     */
-    $(document).find('a').each(function() {
-        const dataAjax = $(this).attr('data-ajax');
-        if (!dataAjax) {
-            const href = $(this).attr('href');
-            const dataConfirm = $(this).attr('data-confirm');
-            $(this).attr({href: '#'});
-            /**
-             * CLICK EVENT
-             */
-            $(this).on('click', function(e) {
-                const button = $(this);
-                $('html, body').animate({ scrollTop: 0 }, 'fast');
-                if (button.attr('class') === 'disabled') {
-                    return false;
-                }
-                /**
-                 * ADD/REMOVE SELECTED CLASS
-                 */
-                $(document).find('a').removeClass('selected');
-                button.addClass('selected');
-                /**
-                 * EXECUTE AJAX REQUEST
-                 */
-                getAjaxRequest(e, button, href, dataConfirm);
-            });
+    /** Main menu functionality **/
+    $('ul.menu').find('li').on('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const link = $(this).attr('data-link');
+        const submenu = $(this).find('ul.sub-menu');
+        const arrow = $(this).find('img.arrow');
+        if (link) {
+            getAjaxRequest(e, $(this), link, null);
         }
+        if (submenu.length) {
+            $('ul.sub-menu').slideUp();
+            $('ul.menu li').removeClass('focus');
+            $('img.arrow').removeClass('focus');
+            if (submenu.is(':hidden')) {
+                submenu.slideDown('fast');
+                $(this).addClass('focus');
+                arrow.addClass('focus');
+            } else {
+                submenu.slideUp('fast');
+                $(this).removeClass('focus');
+                arrow.removeClass('focus');
+            }
+        }
+        /** Stop ajax request running **/
+        if ($(this).data('requestRunning')) {
+            return;
+        }
+        $(this).data('requestRunning', true);
     });
 
-    /**
-     * SEARCH DASHBOARD
-     */
-    $('button#search-button').on('click', function (e) {
+    /** Find links **/
+    $(document).find('a').each(function() {
+        const href = $(this).attr('href');
+        const dataConfirm = $(this).attr('data-confirm');
+        $(this).attr({href: '#'});
+        /** Click event **/
+        $(this).on('click', function(e) {
+            if (href) {
+                /** Execute ajax request **/
+                getAjaxRequest(e, $(this), href, dataConfirm);
+            }
+        });
+    });
+
+    /** Search content **/
+    $('button#search-button').on('click', function(e) {
         const button = $(this);
         const query = $('#query').val();
         const author = $('#author').val();
@@ -42,53 +54,62 @@ $(document).ready(function() {
         getAjaxRequest(e, button, href, null);
     });
 
-    /**
-     * BEFORE AJAX REQUEST
-     */
+    /** Before ajax request **/
     function beforeSend() {
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
         $('div#user-content').hide();
-        $('#loader').fadeIn('fast');
+        $('div#loader').fadeIn('fast');
     }
 
-    /**
-     * AJAX GET REQUEST
-     */
+    /** Get ajax request **/
     function getAjaxRequest(e, button, href, dataConfirm) {
         e.preventDefault();
         e.stopImmediatePropagation();
         if (dataConfirm) {
-            if (!confirm(dataConfirm)) {
-                return false;
-            }
+            $.confirm({
+                title: '<h3>Confirmar Acción</h3>',
+                content: '<p class="alert feedback-warning">' + dataConfirm + '</p>',
+                type: 'orange',
+                boxWidth: '55%',
+                useBootstrap: false,
+                buttons: {
+                    confirmar: {
+                        btnClass: 'button danger',
+                        action: function () {
+                            ajaxCallback(button, href);
+                        }
+                    },
+                    cancelar: {
+                        btnClass: 'button default',
+                    }
+                }
+            });
+        } else {
+            ajaxCallback(button, href);
         }
-        /**
-         * STOP AJAX REQUEST RUNNING
-         */
+    }
+
+    /** Ajax Callback **/
+    function ajaxCallback(button, href) {
+        /** Stop ajax request running **/
         if (button.data('requestRunning')) {
             return;
         }
         button.data('requestRunning', true);
-        /**
-         * AJAX REQUEST STARTER
-         */
-        $.get({
-            beforeSend: beforeSend,
-            type: 'GET',
-            url: href,
-            async: true,
-            dataType: 'json',
-            contentType: 'application/json'
-        }).done(function (data) {
+        /** Ajax request starter **/
+        $.get(href, {
+            beforeSend: beforeSend
+        }).done(function(data) {
             $('#loader').fadeOut('fast', function () {
                 $('div#user-content').html(data.view).fadeIn('fast');
             });
-        }).fail(function (xhr) {
+        }).fail(function(xhr) {
             const xhrError = xhr.responseJSON.error ? xhr.responseJSON.error : xhr.statusText;
-            const errorMessage = '<p class="alert feedback-error">'+ xhr.status + ' - ' + xhrError +'</p>';
+            const errorMessage = '<p class="alert feedback-error">' + xhr.status + ' - ' + xhrError + '</p>';
             $('#loader').fadeOut('fast', function () {
                 $('div#user-content').html(errorMessage).fadeIn('fast');
             });
-        }).always(function () {
+        }).always(function() {
             button.data('requestRunning', false);
         });
     }

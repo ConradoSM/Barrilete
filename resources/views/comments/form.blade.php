@@ -21,4 +21,3 @@
 @else
     <p class="alert feedback-warning">Debes estar logueado para comentar, <a href="{{ route('login') }}">ingresa</a> o <a href="{{ route('register') }}">regístrate</a></p>
 @endif
-<script src="{{ asset('js/comments.js') }}"></script>

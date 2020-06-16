@@ -9,10 +9,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import 'jquery-form';
+import 'jquery-ui/ui/effects/effect-slide'
+import 'jquery-ui/ui/widgets/progressbar'
 import 'jquery-ui/ui/widgets/autocomplete';
 import 'jquery-validation';
 import 'jquery-confirm';
-import 'jquery-form';
 const lazy = require('jquery-lazy');
 
 /**

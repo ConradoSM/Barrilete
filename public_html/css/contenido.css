@@ -387,6 +387,9 @@ ul.pagination li.page-item {
     background-color: #F8F9F9;
     border: 1px solid #E5E7E9;
 }
+ul.pagination li.page-item:before {
+    content: none;
+}
 ul.pagination li.page-item a{
     font-size: 1em;
 }

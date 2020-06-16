@@ -8,12 +8,13 @@
 </div>
 <div id="status">
     <h1>{{ isset($article) ? 'Actualizar artículo' : 'Cargar artículo' }}</h1>
+    <div id="errors"></div>
+    <p><b>Autor</b>: {{ isset($article) ? $article->author : Auth::user()->name }}</p>
+    <p><b>Fecha de publicación</b>: {{ isset($article) ? $article->created_at->diffForHumans() : ucwords(now()->formatLocalized('%A %d %B %Y')) }}</p>
+    <hr />
     <form method="post" enctype="multipart/form-data" action="{{ isset($article) ? route('updateArticle', ['id' => $article->id]) : route('createArticle') }}">
+        <h3>Imagen y Sección</h3>
         <fieldset>
-            <legend>Información</legend>
-            <div id="errors"></div>
-            <p><b>Autor</b>: {{ isset($article) ? $article->author : Auth::user()->name }}</p>
-            <p><b>Fecha de publicación</b>: {{ isset($article) ? $article->created_at->diffForHumans() : ucwords(now()->formatLocalized('%A %d %B %Y')) }}</p>
             <select name="section_id" size="1" id="seccion" required>
                 <option value="{{ isset($article) ? $article->section->id : '' }}" selected>{{ isset($article) ? ucfirst($article->section->name) : 'Seleccionar Sección' }}</option>
                 @foreach ($sections as $section)
@@ -26,21 +27,21 @@
                 <span class="check-mark"></span>
             </label>
         </fieldset>
+        <h3>Título y Copete</h3>
         <fieldset>
-            <legend>Título y Copete</legend>
             <input type="text" name="title" value="{{ isset($article) ? $article->title : '' }}" placeholder="Título: éste es el principal título del articulo (*) Mínimo 20 caracteres" required />
             <textarea name="article_desc" placeholder="Copete: puedes incluir el primer párrafo de tu artículo (*) Mínimo 50 caracteres" required>{{ isset($article) ? $article->article_desc : '' }}</textarea>
         </fieldset>
+        <h3>Contenido</h3>
         <fieldset>
-            <legend>Contenido</legend>
             <textarea name="article_body" id="article_body">{{ isset($article) ? $article->article_body : '' }}</textarea>
-            <input type="submit" value="Guardar" id="enviar" class="button primary" />
-            <input type="reset" class="button default" value="Restablecer" />
         </fieldset>
         @csrf
         <input type="hidden" name="user_id" value="{{ isset($article) ? $article->user->id : Auth::user()->id }}" />
         <input type="hidden" name="author" value="{{ isset($article) ? $article->author : Auth::user()->name }}" />
         <input type="hidden" name="id" value="{{ isset($article) ? $article->id : '' }}" />
+        <input type="submit" value="Guardar" id="enviar" class="button primary" />
+        <input type="reset" class="button default" value="Restablecer" />
     </form>
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>

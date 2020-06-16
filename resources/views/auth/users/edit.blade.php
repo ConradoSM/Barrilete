@@ -24,10 +24,10 @@
                 <a href="{{ route('account', ['id' => Auth::user()->id]) }}" title="Ver mi perfil" class="button success" id="ver">Mi perfil</a>
         @endif
     </div>
-    <fieldset>
-        <p class="alert feedback-warning"><b>Rol</b>: {{ ucfirst($user->roles->first()->name) }}</p>
-        <div id="errors"></div>
-        <form action="{{ route('updateUser') }}" enctype="multipart/form-data" method="post">
+    <form action="{{ route('updateUser') }}" enctype="multipart/form-data" method="post">
+        <fieldset>
+            <p class="alert feedback-warning"><b>Rol</b>: {{ ucfirst($user->roles->first()->name) }}</p>
+            <div id="errors"></div>
             <input type="text" name="name" value="{{ $user->name }}" placeholder="Nombre" required />
             <input type="email" name="email" value="{{ $user->email }}" placeholder="Correo electrónico (*) Obligatorio" required />
             <input type="file" name="photo" class="jfilestyle" data-inputSize="500px" data-placeholder="Foto, 1MB Max. sólo imágenes JPG, JPEG, PNG" accept=".png, .jpg, .jpeg" />
@@ -279,14 +279,13 @@
             </select>
             <hr />
             <textarea name="description" placeholder="Acerca de mí">{{ $user->description }}</textarea>
-            <input type="submit" class="button success" value="Actualizar" />
-            <input type="reset" class="button default" value="Restablecer" />
             <input type="hidden" name="id" value="{{ $user->id }}" />
             @csrf
-        </form>
-    </fieldset>
+        </fieldset>
+        <input type="submit" class="button success" value="Actualizar" />
+        <input type="reset" class="button default" value="Restablecer" />
+    </form>
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery.filestyle.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dashboard-form.js') }}"></script>
 <script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>

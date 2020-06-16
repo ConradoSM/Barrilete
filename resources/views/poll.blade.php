@@ -55,18 +55,16 @@
             @endif
         </article>
         <hr />
-        <h2>Comentarios ( {{ $article->comments($article->section_id)->count() }} )</h2>
+        <h2 id="comments-count">Comentarios ( {{ $article->comments($article->section_id)->count() }} )</h2>
         <div id="status"></div>
         <section class="comments"></section>
         @include('comments.form')
+        <script src="{{ asset('js/comments.js') }}"></script>
         <script>
-            /**
-             * Load Comments Box
-             */
-            $(document).ready(function()
-            {
+            /** Load Comments Box **/
+            $(document).ready(function() {
                 const link = '{{URL::route('getComments',['article_id' => $article->id, 'section_id' => $article->section_id], false) }}';
-                return getComments(link);
+                getComments(link);
             });
         </script>
     </article>

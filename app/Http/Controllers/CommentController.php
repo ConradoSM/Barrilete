@@ -2,6 +2,9 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\Articles;
+use barrilete\Gallery;
+use barrilete\Poll;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -41,12 +44,47 @@ class CommentController extends Controller
                 $toUser = $parentComment->user;
                 (new CommentsUserReactionsController)->sendNotification($fromUser, $toUser, $parentComment->section->name, $parentComment->article_id, '1', 'reply');
             }
+            $articleType = $this->getArticleType($request);
             return response()->json([
                 'view' => $this->get($request->article_id, $request->section_id)->render(),
+                'count' => $this->commentsCount($articleType, $request->article_id, $request->section_id),
                 'success' => $request->parent_id ? 'Tu respuesta se ha publicado.' : 'El comentario se ha publicado.'
             ])->header('Content-Type', 'application/json');
         }
         return abort(500);
+    }
+
+    /**
+     * Get Comments Count
+     * @param $articleType
+     * @param $articleId
+     * @param $sectionId
+     * @return mixed
+     */
+    protected function commentsCount($articleType, $articleId, $sectionId)
+    {
+        $commentCount = 0;
+        if ($articleType == 'article') {
+            $commentCount = Articles::find($articleId)->comments($sectionId)->count();
+        }
+        if ($articleType == 'gallery') {
+            $commentCount = Gallery::find($articleId)->comments($sectionId)->count();
+        }
+        if ($articleType == 'poll') {
+            $commentCount = Poll::find($articleId)->comments($sectionId)->count();
+        }
+
+        return $commentCount;
+    }
+
+    /**
+     * Get Article Type
+     * @param $request
+     * @return mixed|string
+     */
+    protected function getArticleType($request)
+    {
+        return explode('/', $request->server->getHeaders()['REFERER'])[3];
     }
 
     /**
@@ -76,8 +114,10 @@ class CommentController extends Controller
             $comment = Comments::find($request->id);
             if ($comment) {
                 $comment->delete();
+                $articleType = $this->getArticleType($request);
                 return response()->json([
                     'view' => $this->get($request->article_id, $request->section_id)->render(),
+                    'count' => $this->commentsCount($articleType, $request->article_id, $request->section_id),
                     'success' => 'El comentario se ha borrado.'
                 ])->header('Content-Type', 'application/json');
             }
@@ -99,8 +139,10 @@ class CommentController extends Controller
             if ($comment) {
                 $comment->content = $request->comment;
                 $comment->save();
+                $articleType = $this->getArticleType($request);
                 return response()->json([
                     'view' => $this->get($request->article_id, $request->section_id)->render(),
+                    'count' => $this->commentsCount($articleType, $request->article_id, $request->section_id),
                     'success' => 'El comentario se ha actualizado.'
                 ])->header('Content-Type', 'application/json');
             }

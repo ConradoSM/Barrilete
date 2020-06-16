@@ -5,7 +5,7 @@
     <p class="alert feedback-error">{{ $error }}</p>
 @endif
 <h1>Administrar encuesta</h1>
-<div id="action">
+<p class="article-actions">
     @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
         @if ($poll->status == "DRAFT")
             <a href="{{ route('publishPoll',['id'=>$poll->id]) }}" class="button success" data-confirm="¿Estás seguro que deseas publicar la encuesta?">Publicar</a>
@@ -27,19 +27,19 @@
             <a href="{{ route('deletePoll',['id'=>$poll->id]) }}" class="button danger" data-confirm="¿Estás seguro que deseas borrar la encuesta?">Eliminar</a>
         @endif
     @endif
-</div>
+</p>
 <hr />
-<article class="pub_galeria">
+<article class="preview">
     <h1>{{ $poll->title }}</h1>
-    <p class="copete">{{ $poll->article_desc }}</p>
-    <p class="info">
+    <p class="article-description">{{ $poll->article_desc }}</p>
+    <p class="article-info">
         <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$poll->created_at->diffForHumans()}}
         <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$poll->user->name}}
         <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$poll->views}} lecturas
     </p>
 </article>
 <hr />
-<article class="pollOptions">
+<fieldset>
     <form action="#" method="post">
         @forelse ($poll_options as $option)
         <label class="radio-container" for="{{$option->id}}">{{ $option->option }}
@@ -51,6 +51,6 @@
         @endforelse
         <input type="submit" value="VOTAR" class="button disabled" disabled />
     </form>
-</article>
+</fieldset>
 <br />
 <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>

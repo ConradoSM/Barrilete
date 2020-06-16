@@ -444,14 +444,19 @@ footer div#footer-container div li {
 footer div#footer-container div a {
     font-size: 1.75em;
     color: #34495e;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 footer div#footer-container div a:hover {
     color: #000;
 }
 footer div#footer-container p.footerCopyright {
+    font-size: 1.1em;
+    color: #34495e;
+}
+footer div#footer-container p.footerCopyright a {
     font-size: 1em;
     color: #34495e;
+    text-transform: none;
 }
 footer div#footer-container div.footerSocialContainer {
     position: absolute;
@@ -553,7 +558,6 @@ footer div#footer-container div.footerSocialContainer img:hover {
     }
     nav {
         padding-top: 20px;
-        height: 100vh;
     }
     nav ul, nav.active ul {
         flex-flow: column nowrap;
@@ -664,7 +668,6 @@ footer div#footer-container div.footerSocialContainer img:hover {
     }
     nav {
         padding-top: 20px;
-        height: 100vh;
     }
     nav ul, nav.active ul {
         flex-flow: column nowrap;
@@ -775,7 +778,6 @@ footer div#footer-container div.footerSocialContainer img:hover {
     }
     nav {
         padding-top: 20px;
-        height: 100vh;
     }
     nav ul, nav.active ul {
         flex-flow: column nowrap;

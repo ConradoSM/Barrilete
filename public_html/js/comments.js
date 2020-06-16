@@ -1,16 +1,10 @@
 $(document).ready(function() {
-    /**
-     * Constants
-     * @type {jQuery|HTMLElement}
-     */
     const form = $('form#comments');
     const loader = $('img.loader');
     const divStatus = $('div#status');
     const container = $('section.comments');
 
-    /**
-     * New Comment Form
-     */
+    /** Post New Comment **/
     form.validate({
         messages: {
             comment: 'Debes completar éste campo.'
@@ -21,17 +15,12 @@ $(document).ready(function() {
         },
         submitHandler: function (form, e) {
             e.preventDefault();
-            ajaxPost(form.action, $(form).serialize())
+            ajaxPost(form.action, $(form).serialize());
         }
     });
 
-    /**
-     * Delete Comment Confirm
-     * @param commentID
-     * @param articleID
-     * @param sectionID
-     */
-    deleteConfirm = function (commentID, articleID, sectionID) {
+    /** Delete Comment **/
+    deleteComment = function(commentID, articleID, sectionID) {
         $.confirm({
             title: 'Borrar Comentario',
             content: '<p class="alert feedback-warning">¿Realmente quieres borrar tu comentario?</p>',
@@ -57,19 +46,15 @@ $(document).ready(function() {
                 }
             }
         })
-    };
+    }
 
-    /**
-     * Edit Comment
-     * @param commentID
-     * @param articleID
-     * @param sectionID
-     * @param commentContent
-     */
-    editComment = function (commentID, articleID, sectionID, commentContent) {
+    /** Add/Edit Comment **/
+    replyComment = function(commentID, articleID, sectionID, userID, commentContent) {
+        const title = userID ? 'Responder Comentario' : 'Editar Comentario';
+        const textareaContent = commentContent ? commentContent : '';
         $.confirm({
-            title: 'Editar Comentario',
-            content: '<textarea id="reply" placeholder="Tu respuesta:" required>'+commentContent+'</textarea>',
+            title: title,
+            content: '<form id="reply"><textarea name="reply" placeholder="Tu respuesta:" required>' + textareaContent + '</textarea></form>',
             onContentReady: function () {
                 $('textarea#reply').focus();
             },
@@ -79,17 +64,39 @@ $(document).ready(function() {
             buttons: {
                 enviar: {
                     btnClass: 'button primary',
-                    action: function () {
-                        let URL = '/comment/update';
-                        let textarea = $('textarea#reply');
-                        let data = {
-                            _token: $('meta[name="_token"]').attr('content'),
-                            id: commentID,
-                            article_id: articleID,
-                            section_id: sectionID,
-                            comment: textarea.val()
-                        };
-                        ajaxPost(URL, data);
+                    action: function() {
+                        const formReply = $('form#reply');
+                        formReply.validate({
+                            messages: {
+                                reply: 'Debes completar éste campo.'
+                            },
+                            errorElement: 'p',
+                            errorPlacement: function (error, element) {
+                                element.after(error);
+                            }
+                        });
+                        if (formReply.valid()) {
+                            let URL = userID ? '/comment/save' : '/comment/update';
+                            let textarea = formReply.find('textarea');
+                            let token = $('meta[name="_token"]').attr('content');
+                            let data = commentContent ? {
+                                _token: token,
+                                id: commentID,
+                                article_id: articleID,
+                                section_id: sectionID,
+                                comment: textarea.val()
+                            } : {
+                                _token: token,
+                                parent_id: commentID,
+                                article_id: articleID,
+                                section_id: sectionID,
+                                user_id: userID,
+                                comment: textarea.val()
+                            };
+                            ajaxPost(URL, data);
+                        } else {
+                            return false;
+                        }
                     }
                 },
                 cancelar: {
@@ -99,77 +106,23 @@ $(document).ready(function() {
         })
     };
 
-    /**
-     * Reply Comment
-     * @param commentID
-     * @param articleID
-     * @param sectionID
-     * @param userID
-     */
-    replyComment = function (commentID, articleID, sectionID, userID) {
-        $.confirm({
-            title: 'Responder Comentario',
-            content: '<textarea id="reply" placeholder="Tu respuesta:" required></textarea>',
-            onContentReady: function () {
-                $('textarea#reply').focus();
-            },
-            type: 'blue',
-            boxWidth: '55%',
-            useBootstrap: false,
-            buttons: {
-                enviar: {
-                    btnClass: 'button primary',
-                    action: function () {
-                        let URL = '/comment/save';
-                        let textarea = $('textarea#reply');
-                        let data = {
-                            _token: $('meta[name="_token"]').attr('content'),
-                            parent_id: commentID,
-                            article_id: articleID,
-                            section_id: sectionID,
-                            user_id: userID,
-                            comment: textarea.val()
-                        };
-                        ajaxPost(URL, data);
-                    }
-                },
-                cancelar: {
-                    btnClass: 'button default',
-                }
-            }
-        })
-    };
-
-    /**
-     * Get Comments
-     * @param link
-     */
-    getComments = function (link)
-    {
-        $.ajax({
-            method: 'GET',
-            url: link,
+    /** Get Comments **/
+    getComments = function(link) {
+        $.get(link, {
             beforeSend: function () {
                 loader.fadeIn('fast');
-            },
-            success: function (data) {
-                container.hide().html(data).fadeIn('normal');
-            },
-            error: function (xhr) {
-                container.hide().html('<p class="alert feedback-error">'+xhr.status+' - '+xhr.statusText+'</p>').fadeIn('normal');
-            },
-            complete: function () {
-                loader.fadeOut('fast');
             }
+        }).done(function (data) {
+            container.hide().html(data).fadeIn('normal');
+        }).fail(function (xhr) {
+            container.hide().html('<p class="alert feedback-error">' + xhr.status + ' - ' + xhr.statusText + '</p>').fadeIn('normal');
+        }).always(function () {
+            loader.fadeOut('fast');
         });
-    };
+    }
 
-    /**
-     * Ajax Post Comment
-     * @param URL
-     * @param data
-     */
-    ajaxPost = function (URL, data) {
+    /** Ajax Post Comment **/
+    ajaxPost = function(URL, data) {
         $.ajax({
             method: 'post',
             url: URL,
@@ -186,6 +139,7 @@ $(document).ready(function() {
                 divStatus.append('<p class="alert feedback-success">'+ data.success +'</p>');
                 divStatus.find('p').delay(3000).fadeOut('fast');
                 container.html(data.view).fadeIn('fast');
+                $('#comments-count').text('Comentarios ( '+data.count+' )');
                 $('html, body').animate({scrollTop:container.offset().top -250});
             },
             error: function (xhr) {
@@ -208,14 +162,9 @@ $(document).ready(function() {
                 $('html, body').animate({scrollTop:container.offset().top -250});
             }
         });
-    };
+    }
 
-    /**
-     * Comment Reaction Save
-     * @param userID
-     * @param commentID
-     * @param reaction
-     */
+    /** Comment Reaction Save **/
     commentReactionSave = function (userID, commentID, reaction) {
         $.ajax({
             method: 'post',
@@ -226,7 +175,7 @@ $(document).ready(function() {
                 comment_id: commentID,
                 reaction: reaction
             },
-            success: function (data) {
+            success: function(data) {
                 const like = $('a#like-'+commentID);
                 const dislike = $('a#dislike-'+commentID);
                 if (data.reaction === '1') {
@@ -240,15 +189,15 @@ $(document).ready(function() {
                     dislike.removeAttr('class');
                 }
             },
-            error: function (xhr) {
+            error: function(xhr) {
                 divStatus.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
             },
-            complete: function (data) {
+            complete: function(data) {
                 const likes = $('img#total-likes-'+commentID);
                 const dislikes = $('img#total-dislikes-'+commentID);
                 likes.get(0).nextSibling.nodeValue = ' '+data.responseJSON.likes;
                 dislikes.get(0).nextSibling.nodeValue = ' '+data.responseJSON.dislikes;
             }
         })
-    };
+    }
 });

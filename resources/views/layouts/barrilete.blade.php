@@ -30,8 +30,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="app" id="app">
         <!-- Scripts js -->
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="{{ asset('js/home-scripts.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Hojas de estilo en cascada -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
@@ -109,33 +109,20 @@
         <footer>
             <div id="footer-container">
                 <div>
-                    <h2>Secciones</h2>
-                    <ul>
-                        @forelse ($sections as $section)
-                        <li><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ $section->name }}</a></li>
-                        @empty
-                        @endforelse
-                    </ul>
-                </div>
-                <div>
                     <h2>Ingreso al sistema</h2>
-                    <ul>@guest
-                        <li><a href="{{ route('login') }}">LOGIN</a></li>
-                        <li><a href="{{ route('register') }}">REGISTRO</a></li>
-                        <li><a href="{{ route('password.request') }}">OLVIDÉ MI CONTRASEÑA</a></li>
-                        @else
-                        <li><a href="{{ route('users.dashboard') }}">PANEL DE CONTROL</a></li>
-                        @endguest
-                    </ul>
-                    <h2>Contacto</h2>
-                    <ul>
-                        <li><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></li>
-                    </ul>
+                    @guest
+                    <p class="footerCopyright"><a href="{{ route('login') }}">Login</a></p>
+                    <p class="footerCopyright"><a href="{{ route('register') }}">Registro</a></p>
+                    <p class="footerCopyright"><a href="{{ route('password.request') }}">Olvidé Mi Contraseña</a></p>
+                    @else
+                    <p class="footerCopyright"><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
+                    <p class="footerCopyright"><a href="{{ route('logout') }}">Salir</a></p>
+                    @endguest
                 </div>
                 <div>
                     <h2>Institucional</h2>
-                    <p class="footerCopyright">Conrado Maranguello, creador</p>
-                    <p class="footerCopyright">© 2019 todos los derechos reservados<br />v2.5</p>
+                    <p class="footerCopyright">© 2020 todos los derechos reservados - v2.5.1</p>
+                    <p class="footerCopyright"><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></p>
                 </div>
                 <div class="footerSocialContainer">
                     <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
