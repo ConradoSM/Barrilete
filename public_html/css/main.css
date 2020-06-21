@@ -206,12 +206,14 @@ div#user-bar img:hover {
 /** Notifications bubbles*/
 div.notifications {
     position: absolute;
+    display: none;
     top: 0;
     min-width: 20px;
     height: 20px;
     background-color: #C0392B;
     border-radius: 50%;
     text-align: center;
+    z-index: 2;
 }
 div.notifications span {
     color: white;
@@ -520,15 +522,22 @@ footer div#footer-container div.footerSocialContainer img:hover {
         margin-right: 10px;
     }
     div#user-bar img {
-        height: 25px;
+        height: 26px;
         margin-right: 0;
-        margin-left: 10px;
+        margin-left: 15px;
     }
     div#user-bar img:first-child {
         margin-left: 0;
     }
     div#user-bar img.search-mobile {
         display: inline;
+    }
+    /** Notifications bubbles*/
+    div.notifications.comments {
+        left: 73px;
+    }
+    div.notifications.messages {
+        left: 115px;
     }
     /**-- Menu button --**/
     a#menu-btn {
@@ -647,6 +656,13 @@ footer div#footer-container div.footerSocialContainer img:hover {
     div#user-bar img.search-mobile {
         display: inline;
     }
+    /** Notifications bubbles*/
+    div.notifications.comments {
+        left: 73px;
+    }
+    div.notifications.messages {
+        left: 120px;
+    }
     /**-- Menu button --**/
     a#menu-btn {
         position: absolute;
@@ -756,6 +772,13 @@ footer div#footer-container div.footerSocialContainer img:hover {
     }
     div#user-bar img.search-mobile {
         display: inline;
+    }
+    /** Notifications bubbles*/
+    div.notifications.comments {
+        left: 73px;
+    }
+    div.notifications.messages {
+        left: 120px;
     }
     /**-- Menu button --**/
     a#menu-btn {

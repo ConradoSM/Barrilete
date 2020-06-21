@@ -63,25 +63,28 @@ $(document).ready(function() {
     });
 
     /** User Bar **/
-    const userBar = $('div#user-bar img');
-    const divUser = $('div#user-menu');
-    userBar.on('click', function () {
-        const img = $(this);
-        if (img.attr('data-bind')) {
-            const link = $(this).attr('data-bind');
+    const userBar = $('div#user-bar img'),
+          divUser = $('div#user-menu');
+    userBar.on('click', function() {
+        const img = $(this),
+              link = $(this).attr('data-bind');
+        if (link) {
             $.get(link, {
-                beforeSend: function () {
+                beforeSend: function() {
                     if (divUser.is(':visible')) {
                         divUser.slideUp('fast');
                     }
                 }
             }).done(function(data) {
                 if (img.attr('alt') === 'Notificaciones') {
-                    $('div.notifications.comments').hide();
-                    $('div.notifications.comments span').text(0);
-                } else if(img.attr('alt') === 'Mensajes') {
-                    $('div.notifications.messages').hide();
-                    $('div.notifications.messages span').text(0);
+                    $('div#comments').hide(function() {
+                        $(this).find('span').text(0);
+                    });
+                }
+                if(img.attr('alt') === 'Mensajes') {
+                    $('div#messages').hide(function() {
+                        $(this).find('span').text(0);
+                    });
                 }
                 divUser.html(data);
             }).fail(function(xhr) {
@@ -116,22 +119,27 @@ $(document).ready(function() {
     }).keyup();
 
     /** Show User Notifications **/
-    let divNotifications = $('div.notifications.comments');
-    let spanValue = parseInt(divNotifications.find('span').text());
-    if (spanValue > 0) {
-        if (spanValue > 10) {
-            divNotifications.find('span').text('+10');
+    let divNotifications = $('div.notifications');
+    divNotifications.each(function() {
+        let spanValue = parseInt($(this).find('span').text());
+        if (spanValue > 0) {
+            if (spanValue > 10) {
+                $(this).find('span').text('+10');
+            }
+            $(this).show();
         }
-        divNotifications.show();
-    }
+    });
     let userId = $('meta[name=user_id]').attr('content');
     if (userId) {
         /** Laravel Web Sockets **/
         window.Echo.private('Barrilete.User.' + userId)
             .notification((event) => {
-                const numberOfNotifications = parseInt(divNotifications.find('span').text());
-                divNotifications.find('span').text(numberOfNotifications === +10 ? '+10' : numberOfNotifications + event.data.notification);
-                divNotifications.show();
+                const notificationContainer =
+                    event.type === 'barrilete\\Notifications\\UsersCommentReply' || event.type === 'barrilete\\Notifications\\UsersCommentReaction'
+                        ? $('div#comments') : $('div#messages');
+                const spanValue = parseInt(notificationContainer.find('span').text());
+                notificationContainer.find('span').text(spanValue === +10 ? '+10' : spanValue + event.data.notification);
+                notificationContainer.show();
             }
         );
     }

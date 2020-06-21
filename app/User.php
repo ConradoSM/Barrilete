@@ -154,8 +154,10 @@ class User extends Authenticatable
     public function getCommentNotifications()
     {
         return $this->notifications()
-            ->where('type', 'barrilete\Notifications\UsersCommentReaction')
-            ->orWhere('type', 'barrilete\Notifications\UsersCommentReply');
+            ->whereIn('type', [
+                'barrilete\Notifications\UsersCommentReply',
+                'barrilete\Notifications\UsersCommentReaction'
+            ]);
     }
 
     /**
@@ -165,8 +167,10 @@ class User extends Authenticatable
     public function getUnreadCommentNotifications()
     {
         return $this->unreadNotifications()
-            ->where('type', 'barrilete\Notifications\UsersCommentReaction')
-            ->orWhere('type', 'barrilete\Notifications\UsersCommentReply');
+            ->whereIn('type', [
+                'barrilete\Notifications\UsersCommentReply',
+                'barrilete\Notifications\UsersCommentReaction'
+            ]);
     }
 
     /**

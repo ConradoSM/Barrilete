@@ -31,7 +31,7 @@ class UsersMessages extends Notification implements ShouldBroadcast
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['broadcast', 'database'];
     }
 
     /**

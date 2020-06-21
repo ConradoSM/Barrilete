@@ -31,7 +31,7 @@
     <h2>No hay fotos</h2>
 @endforelse
     <hr />
-    <h2 id="comments-count">Comentarios ( {{ $article->comments($article->section_id)->count() }} )</h2>
+    <h2 id="comments-count"><span>{{ $article->comments($article->section_id)->count() }}</span> Comentarios</h2>
     <div id="status"></div>
     <section class="comments"></section>
     @include('comments.form')

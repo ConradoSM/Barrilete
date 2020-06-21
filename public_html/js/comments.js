@@ -139,7 +139,7 @@ $(document).ready(function() {
                 divStatus.append('<p class="alert feedback-success">'+ data.success +'</p>');
                 divStatus.find('p').delay(3000).fadeOut('fast');
                 container.html(data.view).fadeIn('fast');
-                $('#comments-count').text('Comentarios ( '+data.count+' )');
+                $('#comments-count span').text(data.count);
                 $('html, body').animate({scrollTop:container.offset().top -250});
             },
             error: function (xhr) {

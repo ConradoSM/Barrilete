@@ -8,6 +8,9 @@
     font-size: 1.1em !important;
     line-height: normal !important;
 }
+.alert a {
+    margin: 0 5px;
+}
 .feedback-success {
     background-color: #82e0aa;
     color:  #1d8348;

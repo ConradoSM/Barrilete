@@ -283,6 +283,12 @@ article.pollOptions p.totalVotes {
     margin: 0;
 }
 /**-- Comments --**/
+h2#comments-count span {
+    background: #283747;
+    border-radius: 5px;
+    padding: 0 10px;
+    color: #fff;
+}
 section.comments {
     position: relative;
 }

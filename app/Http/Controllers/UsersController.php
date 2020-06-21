@@ -3,8 +3,11 @@
 namespace barrilete\Http\Controllers;
 
 use Hash;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -20,7 +23,7 @@ use Throwable;
 class UsersController extends Controller
 {
     /**
-     * OPCIONES DE USUARIO
+     * User Options
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -35,13 +38,17 @@ class UsersController extends Controller
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
+    /**
+     * Get Dashboard
+     * @return Application|Factory|View
+     */
     public function dashboard()
     {
         return view('auth.users');
     }
 
     /**
-     * CUENTA DE USUARIO
+     * User Account
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -65,7 +72,7 @@ class UsersController extends Controller
     }
 
     /**
-     * LISTA DE USUARIOS
+     * Users List
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -85,7 +92,7 @@ class UsersController extends Controller
     }
 
     /**
-     * PERFIL USUARIO
+     * User Profile
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -108,7 +115,7 @@ class UsersController extends Controller
     }
 
     /**
-     * EDITAR USUARIO
+     * User Edit
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -129,7 +136,7 @@ class UsersController extends Controller
     }
 
     /**
-     * ACTUALIZAR USUARIO
+     * User Update
      * @param userRequest $request
      * @return Factory|JsonResponse|View
      */
@@ -143,6 +150,11 @@ class UsersController extends Controller
         return response()->json(['error' => 'El usuario no existe']);
     }
 
+    /**
+     * My Account Update
+     * @param userRequest $request
+     * @return Application|Factory|JsonResponse|View
+     */
     public function myAccountUpdate(userRequest $request)
     {
         $user = $this->updateUserData($request);
@@ -153,6 +165,11 @@ class UsersController extends Controller
         return response()->json(['error' => 'El usuario no existe']);
     }
 
+    /**
+     * Update User Data
+     * @param $request
+     * @return Builder|Builder[]|Collection|Model|null
+     */
     protected function updateUserData($request)
     {
         $user = User::query()->findOrFail($request->id);
@@ -172,7 +189,7 @@ class UsersController extends Controller
     }
 
     /**
-     * SUBIR FOTO
+     * Photo Upload
      * @param $file
      * @param $user
      * @return string
@@ -190,7 +207,7 @@ class UsersController extends Controller
     }
 
     /**
-     * BORRAR USUARIO
+     * User Delete
      * @param Request $request
      * @param $id
      * @return RedirectResponse|JsonResponse
@@ -221,7 +238,7 @@ class UsersController extends Controller
     }
 
     /**
-     * HACER ADMINISTRADOR
+     * Make Admin
      * @param Request $request
      * @param $id
      * @return JsonResponse|RedirectResponse
@@ -248,7 +265,7 @@ class UsersController extends Controller
     }
 
     /**
-     * BORRAR ADMINISTRADOR
+     * Admin Delete
      * @param Request $request
      * @param $id
      * @return JsonResponse|RedirectResponse
@@ -308,7 +325,7 @@ class UsersController extends Controller
      */
     public function notifyReactions(Request $request)
     {
-        if ($request->ajax() AND Auth::check()) {
+        if ($request->ajax()) {
             return response()->json([view('auth.users.notifications.reactions')->render()]);
         }
         return abort(404);
@@ -324,6 +341,7 @@ class UsersController extends Controller
     }
 
     /**
+     * Update User Password
      * @param Request $request
      * @return JsonResponse|void
      * @throws Throwable

@@ -66,23 +66,19 @@
                 </div>
                 <!-- BAR USER -->
                 <div id="user-bar">
+                    @auth
+                        <div class="notifications comments" id="comments">
+                            <span>{{Auth::user()->getUnreadCommentNotifications()->count()}}</span>
+                        </div>
+                        <div class="notifications messages" id="messages">
+                            <span>{{Auth::user()->getUnreadMessageNotifications()->count()}}</span>
+                        </div>
+                    @endauth
                     <img src="{{asset('svg/user-blue.svg')}}" data-bind="{{route('user-menu')}}" title="Menú" alt="Menú" />
                     <img src="{{asset('svg/alarm.svg')}}" data-bind="{{route('notifyReactions')}}" title="Notificaciones" alt="Notificaciones" />
                     <img src="{{asset('svg/chat.svg')}}" data-bind="{{route('notifyMessages')}}" title="Mensajes" alt="Mensajes" />
                     <img src="{{asset('svg/research.svg')}}" class="search-mobile" />
                     <div id="user-menu"></div>
-                    @auth
-                        @if(Auth::user()->getUnreadCommentNotifications()->count() > 0)
-                            <div class="notifications comments">
-                                <span>{{Auth::user()->getUnreadCommentNotifications()->count()}}</span>
-                            </div>
-                        @endif
-                        @if(Auth::user()->getUnreadMessageNotifications()->count() > 0)
-                            <div class="notifications messages">
-                                <span>{{Auth::user()->getUnreadMessageNotifications()->count()}}</span>
-                            </div>
-                        @endif
-                    @endauth
                 </div>
                 <!-- MENU BUTTON -->
                 <a id="menu-btn" title="Menú" class="display">
