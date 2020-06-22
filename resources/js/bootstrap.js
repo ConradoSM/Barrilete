@@ -54,5 +54,5 @@ window.Echo = new Echo({
     wsHost: '31.170.167.45',
     wsPort: 6001,
     disableStats: true,
-    encrypted: false
+    encrypted: true
 });
