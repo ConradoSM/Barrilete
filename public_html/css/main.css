@@ -16,6 +16,17 @@ html, body {
     margin: 0;
     padding: 0;
     font-size: 1em;
+    scrollbar-color: #212f3c transparent;
+    scrollbar-width: thin;
+}
+body::-webkit-scrollbar {
+    width: 4px;
+}
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+    background: #212f3c;
 }
 /**-- Links --**/
 a {
@@ -149,12 +160,25 @@ div#results, div#user-menu {
     position: absolute;
     display: none;
     width: 100%;
+    max-height: 90vh;
     top: 100%;
     left: 0;
     z-index: 1000;
     padding: 0;
     background-color: #ffffff;
     box-shadow: 0 0 3px #5f6a6a;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+div#user-menu::-webkit-scrollbar {
+    width: 2px;
+}
+div#user-menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+div#user-menu::-webkit-scrollbar-thumb {
+    background: #212f3c;
 }
 div#results {
     padding: 10px;
@@ -211,7 +235,7 @@ div.notifications {
     min-width: 20px;
     height: 20px;
     background-color: #C0392B;
-    border-radius: 50%;
+    border-radius: 20px;
     text-align: center;
     z-index: 2;
 }
@@ -232,9 +256,20 @@ div.notifications.messages {
 /**-- User Menu --**/
 /**-- Notifications --**/
 div#user-bar ul {
+    position: relative;
     margin: 0;
     padding: 0;
     list-style: none;
+}
+div#user-bar ul span.count-unread {
+    position: absolute;
+    right: 7px;
+    bottom: 7px;
+    border-radius: 10px;
+    padding: 2px 7px;
+    background: #808B96;
+    color: #fff;
+    font-size: 0.8em;
 }
 div#user-bar ul li {
     padding: 10px;

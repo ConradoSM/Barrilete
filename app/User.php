@@ -149,7 +149,7 @@ class User extends Authenticatable
 
     /**
      * Get Comment Notifications
-     * @return MorphMany
+     * @return Collection
      */
     public function getCommentNotifications()
     {
@@ -157,39 +157,46 @@ class User extends Authenticatable
             ->whereIn('type', [
                 'barrilete\Notifications\UsersCommentReply',
                 'barrilete\Notifications\UsersCommentReaction'
-            ]);
+            ])->get()
+            ->groupBy(function($item) {
+                return $item->data['from'];
+            });
     }
 
     /**
-     * Get Unread Comment Notifications
-     * @return Builder
+     * Get Unread Comment Notifications Count
+     * @return int
      */
-    public function getUnreadCommentNotifications()
+    public function getUnreadCommentNotificationsCount()
     {
         return $this->unreadNotifications()
             ->whereIn('type', [
                 'barrilete\Notifications\UsersCommentReply',
                 'barrilete\Notifications\UsersCommentReaction'
-            ]);
+            ])->count();
     }
 
     /**
      * Get Message Notifications
-     * @return MorphMany
+     * @return Collection
      */
     public function getMessageNotifications()
     {
         return $this->notifications()
-            ->where('type','barrilete\Notifications\UsersMessages');
+            ->where('type','barrilete\Notifications\UsersMessages')
+            ->get()
+            ->groupBy(function($item) {
+                return $item->data['from'];
+            });
     }
 
     /**
-     * Get Unread Message Notifications
-     * @return Builder
+     * Get Unread Message Notifications Count
+     * @return int
      */
-    public function getUnreadMessageNotifications()
+    public function getUnreadMessageNotificationsCount()
     {
         return $this->unreadNotifications()
-            ->where('type','barrilete\Notifications\UsersMessages');
+            ->where('type','barrilete\Notifications\UsersMessages')->count();
     }
 }

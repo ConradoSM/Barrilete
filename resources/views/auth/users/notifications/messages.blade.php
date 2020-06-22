@@ -1,17 +1,32 @@
-<ul>
-    @auth
-        @forelse(Auth::user()->getMessageNotifications()->get() as $notification)
-            @if ($notification->type == 'barrilete\Notifications\UsersMessages')
-                <li class="{{ $notification->read_at != null ? '' : 'unread' }}" onclick="location.href='{{ route('users.dashboard') }}?conversation_id={{$notification->data['conversation_id']}}'">
-                    <p><strong>{{$notification->data['from']}}</strong>: {{$notification->data['message']}}</p>
-                    <span><img src="{{asset('svg/mail-grey.svg')}}" />{{ucfirst($notification->created_at->diffForHumans())}}</span>
-                </li>
+@auth
+    @forelse(Auth::user()->getMessageNotifications() as $key => $notifications)
+        <ul>
+        @php($countUnread = 0)
+        @php($i = 0)
+        @foreach($notifications as $notification)
+            @if($i == 0)
+            <li {{ $notification->read_at ? '' : 'unread' }}" onclick="location.href='{{ route('users.dashboard') }}?conversation_id={{$notification->data['conversation_id']}}'">
+                <p><strong>{{$key}}</strong>: {{$notification->data['message']}}</p>
+                <span><img src="{{asset('svg/mail-grey.svg')}}" />{{ucfirst($notification->created_at->diffForHumans())}}</span>
+            </li>
             @endif
-            @php($notification->markAsRead())
-        @empty
+            @php($i++)
+            @if(!$notification->read_at)
+                @php(++$countUnread)
+                @php($notification->markAsRead())
+            @endif
+        @endforeach
+        @if($countUnread)
+            <span class="count-unread">{{$countUnread}}</span>
+        @endif
+        </ul>
+    @empty
+        <ul>
             <li>No tienes mensajes</li>
-        @endforelse
-    @else
+        </ul>
+    @endforelse
+@else
+    <ul>
         <li>No estás logueado</li>
-    @endauth
-</ul>
+    </ul>
+@endauth

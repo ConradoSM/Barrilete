@@ -68,10 +68,10 @@
                 <div id="user-bar">
                     @auth
                         <div class="notifications comments" id="comments">
-                            <span>{{Auth::user()->getUnreadCommentNotifications()->count()}}</span>
+                            <span>{{Auth::user()->getUnreadCommentNotificationsCount()}}</span>
                         </div>
                         <div class="notifications messages" id="messages">
-                            <span>{{Auth::user()->getUnreadMessageNotifications()->count()}}</span>
+                            <span>{{Auth::user()->getUnreadMessageNotificationsCount()}}</span>
                         </div>
                     @endauth
                     <img src="{{asset('svg/user-blue.svg')}}" data-bind="{{route('user-menu')}}" title="Menú" alt="Menú" />
