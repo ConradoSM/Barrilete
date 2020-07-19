@@ -37,25 +37,31 @@
             </li>
         </ul>
     </div>
-    <div id="users-content"></div>
+    <div id="users-content">
+        <img id="loader" src="{{asset('img/loader.gif')}}" alt="Cargando..." title="Cargando..." />
+        <div id="container"></div>
+    </div>
     <script>
         if (window.location.search) {
-            const url_string = window.location.href;
-            const url = new URL(url_string);
+            const url_string = window.location.href,
+                url = new URL(url_string),
+                loader = $('img#loader').show(),
+                container = $('div#container');
             if (url.searchParams.get('conversation_id') && !isNaN(url.searchParams.get('conversation_id'))) {
-                $.ajax({
-                    type: 'GET',
-                    url: '/dashboard/myaccount/messages/message/' + url.searchParams.get('conversation_id'),
+                $.get('/dashboard/myaccount/messages/message/' + url.searchParams.get('conversation_id'), {
                     beforeSend: function () {
                         $(document).scrollTop(0);
-                        $('div#users-content').html('<img id="loader" src="/img/loader.gif" />');
-                    },
-                    success: function (data) {
-                        $('div#users-content').html(data.view);
-                    },
-                    error: function (xhr) {
-                        $('div#users-content').html('<p class="alert feedback-error">' + xhr.statusText + '</p>');
+                        loader.show();
                     }
+                }).done(function(data) {
+                    container.html(data.view);
+                    if (data.status) {
+                        $('div#status').html('<p class="alert feedback-'+data.status+'">'+data.message+'</p>');
+                    }
+                }).fail(function(xhr) {
+                    container.html('<p class="alert feedback-error">' + xhr.statusText + '</p>');
+                }).always(function() {
+                    loader.hide();
                 });
             }
         }

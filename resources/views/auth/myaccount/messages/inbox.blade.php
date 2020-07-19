@@ -1,4 +1,5 @@
 <p class="user-title"><img src="{{asset('svg/email.svg')}}" alt="Mis Mensajes">Mis Mensajes</p>
+<div id="status"></div>
 @if($result->count() > 0)
     <ul class="inbox-messages">
     @foreach($result as $item)
@@ -17,29 +18,26 @@
 @endif
     {{$result->links()}}
 <script>
-    $('#select_all').click(function() {
-        const checkboxes = $('td').find(':checkbox');
-        checkboxes.prop('checked', $(this).is(':checked'));
-    });
-
     $('ul.inbox-messages').find('li').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        const link = $(this).attr('data-link');
+        const link = $(this).attr('data-link'),
+            loader = $('img#loader'),
+            container = $('div#container');
         if (link) {
-            $.ajax({
-                type: 'GET',
-                url: link,
+            $.get(link, {
                 beforeSend: function () {
                     $(document).scrollTop(0);
-                    $('div#users-content').html('<img id="loader" src="/img/loader.gif" />');
-                },
-                success: function (data) {
-                    $('div#users-content').html(data.view);
-                },
-                error: function (xhr) {
-                    $('div#users-content').html('<p class="alert feedback-error">Error: ' + xhr.status + ' - ' + xhr.statusText + '</p>');
+                    container.hide();
+                    loader.show();
                 }
+            }).done(function(data) {
+                container.html(data.view);
+            }).fail(function(xhr) {
+                container.html('<p class="alert feedback-error">Error: ' + xhr.status + ' - ' + xhr.statusText + '</p>');
+            }).always(function() {
+                container.show();
+                loader.hide();
             });
         }
     });

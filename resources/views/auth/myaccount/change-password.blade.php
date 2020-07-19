@@ -42,42 +42,40 @@
             }
         },
         errorElement: 'p',
-        errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
             element.after(error);
         },
-        submitHandler: function (form, e) {
+        submitHandler: function(form, e) {
             e.preventDefault();
-            $.ajax({
-                method: form.method,
-                url: form.action,
-                data: $(form).serialize(),
-                beforeSend: function () {
-                    $(document).scrollTop(0);
-                    $('div#users-content').html('<img id="loader" src="/img/loader.gif" />');
-                },
-                success: function (data) {
-                    $('div#users-content').html(data.view);
-                    if (data.status) {
-                        const statusClass = data.status === 'success' ? 'success' : 'error';
-                        $('div#status').html('<p class="alert feedback-'+statusClass+'">'+data.message+'</p>');
-                    }
-                },
-                error: function (xhr) {
-                    const errors = typeof xhr.responseJSON != 'undefined' ? xhr.responseJSON.errors : '';
-                    const url = '{{route('editMyPassword')}}';
-                    $.get(url, function(data) {
-                        $('div#users-content').html(data.view);
-                        const errorsContainer = $('div#status');
-                        if (errors) {
-                            $.each(errors, function (key, value) {
-                                errorsContainer.append('<p class="alert feedback-error">' + value + '</p>');
-                            });
-                        } else {
-                            errorsContainer.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
-                        }
-                    });
+            const loader = $('img#loader'),
+                container = $('div#container');
+            $(document).scrollTop(0);
+            container.hide();
+            loader.show();
+            $.post(form.action, $(form).serialize()
+            ).done(function(data) {
+                container.html(data.view);
+                if (data.status) {
+                    const statusClass = data.status === 'success' ? 'success' : 'error';
+                    $('div#status').html('<p class="alert feedback-'+statusClass+'">'+data.message+'</p>');
                 }
-
+            }).fail(function(xhr) {
+                const errors = typeof xhr.responseJSON != 'undefined' ? xhr.responseJSON.errors : '';
+                const url = '{{route('editMyPassword')}}';
+                $.get(url, function(data) {
+                    container.html(data.view);
+                    const errorsContainer = $('div#status');
+                    if (errors) {
+                        $.each(errors, function (key, value) {
+                            errorsContainer.append('<p class="alert feedback-error">' + value + '</p>');
+                        });
+                    } else {
+                        errorsContainer.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
+                    }
+                });
+            }).always(function() {
+                loader.hide();
+                container.show();
             });
         }
     });

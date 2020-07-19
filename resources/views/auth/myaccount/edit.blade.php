@@ -1,9 +1,10 @@
 <p class="user-title"><img src="{{asset('svg/pencil-blue.svg')}}" alt="Editar Cuenta">Editar Cuenta</p>
 <fieldset>
-    @if(isset($success))
-        <p class="alert feedback-success">{{ $success }}</p>
-    @endif
-    <div id="errors"></div>
+    <div id="status">
+        @if(isset($success))
+            <p class="alert feedback-success">{{ $success }}</p>
+        @endif
+    </div>
     <p class="alert feedback-warning">Rol: {{ ucfirst($user->roles->first()->name) }}</p>
     <form action="{{ route('myAccountUpdate') }}" enctype="multipart/form-data" method="post" id="edit">
         <label for="name">Nombre:</label>

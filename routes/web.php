@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/myaccount/messages/save', 'MessagesController@save')->name('saveMessage');
     Route::get('dashboard/myaccount/messages/getUsers', 'UsersController@getUsers')->name('getUsers');
     Route::get('dashboard/myaccount/messages/message/{id}', 'MessagesController@getConversationById')->name('getConversation');
+    Route::get('dashboard/myaccount/messages/message/delete/{id}', 'MessagesController@delete')->name('deleteMessage');
     Route::post('dashboard/users/update', 'UsersController@update')->name('updateUser');
     Route::get('dashboard/users/delete/{id}', 'UsersController@delete')->name('deleteUser');
     Route::get('dashboard/users/make-admin/{id}', 'UsersController@makeAdmin')->name('makeAdmin');

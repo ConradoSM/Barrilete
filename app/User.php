@@ -140,11 +140,14 @@ class User extends Authenticatable
 
     /**
      * Get User Messages
-     * @return HasMany
+     * @return Collection
      */
     public function inboxMessages()
     {
-        return $this->hasMany(Messages::class, 'to');
+        return $this->hasMany(Messages::class, 'to')
+            ->orderBy('id', 'DESC')
+            ->get()
+            ->groupBy('from');
     }
 
     /**

@@ -12,6 +12,17 @@ p.user-title img {
     box-shadow: 0 0 2px #212f3c;
     padding: 1px;
 }
+img.delete-message {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    height: 40px;
+    cursor: pointer;
+}
+img.delete-message:hover {
+    opacity: 0.8;
+}
 div#users-menu {
     width: 25%;
     background-color: #EBEDEF;
@@ -90,12 +101,20 @@ div#users-menu ul.sub-menu li:hover {
 }
 div#users-content {
     display: flex;
+    position: relative;
     flex-flow: column;
     width: 75%;
     padding-left: 30px;
 }
 img#loader {
-    align-self: center;
+    display: none;
+    position: absolute;
+    width: 120px;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
 }
 div#users {
     position: relative;
@@ -191,12 +210,27 @@ ul.inbox-messages li p span:last-child {
 }
 /** Conversation **/
 ul.messages {
+    position: relative;
     width: 100%;
+    height: 400px;
     padding: 20px;
     margin: 0;
     background-color: #F8F9F9;
     border: 1px solid #E5E7E9;
     border-radius: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-color: #212f3c transparent;
+    scrollbar-width: thin;
+}
+ul.messages::-webkit-scrollbar {
+    width: 4px;
+}
+ul.messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+ul.messages::-webkit-scrollbar-thumb {
+    background: #212f3c;
 }
 ul.messages li {
     display: flex;
@@ -204,9 +238,6 @@ ul.messages li {
     list-style: none;
     width: 100%;
     margin-bottom: 15px;
-}
-ul.messages li:last-child {
-    margin-bottom: 0;
 }
 ul.messages li p {
     position: relative;
@@ -235,6 +266,9 @@ ul.messages li p span {
     padding: 10px 15px;
     border-radius: 10px;
     background-color: #EBEDEF;
+}
+li#parent {
+    display: none;
 }
 .end {
     justify-content: flex-end;

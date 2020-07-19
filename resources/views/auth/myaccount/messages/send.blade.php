@@ -14,70 +14,61 @@
     </form>
 </fieldset>
 <script>
-    $('input#user').keyup(function() {
-        if ($(this).val().length === 0) {
-            $('div#users').slideUp('fast');
-        }
-        $('input#user_id').val('');
-        if (!$('input#submit').attr('disabled')) {
-            $('input#submit').attr('disabled', true).removeClass('primary').addClass('disabled');
-        }
-        $(this).autocomplete({
-            source: function (request) {
-                $.ajax({
-                    type: 'GET',
-                    url: '{{route('getUsers')}}',
-                    dataType: 'json',
-                    data: {
-                        query: request.term,
+    $(document).ready(function() {
+        const submitButton = $('input#submit');
+            $('input#user').keyup(function() {
+                if ($(this).val().length === 0) {
+                    $('div#users').slideUp('fast');
+                }
+                $('input#user_id').val('');
+                if (!submitButton.attr('disabled')) {
+                    submitButton.attr('disabled', true).removeClass('primary').addClass('disabled');
+                }
+                $(this).autocomplete({
+                    source: function(request) {
+                        $.get('{{route('getUsers')}}', {
+                            query: request.term
+                        }).done(function(data) {
+                            $('div#users').html(data).slideDown('fast');
+                        }).fail(function(xhr) {
+                            $('div#users').html('<p>Error: ' + xhr.status + ' - ' + xhr.statusText+'</p>').slideDown('fast');
+                        });
                     },
-                    success: function (data) {
-                        $('div#users').html(data).slideDown('fast');
-                    },
-                    error: function (xhr) {
-                        $('div#users').html('<p>Error: ' + xhr.status + ' - ' + xhr.statusText+'</p>').slideDown('fast');
-                    }
+                    minLength: 1
                 });
-            },
-            minLength: 1
-        });
-    }).keyup();
+            }).keyup();
 
-    $('form#send-message').validate({
-        messages: {
-            user: {
-                required: 'Éste campo es requerido.'
-            },
-            body: {
-                required: 'Éste campo es requerido.'
-            }
-        },
-        errorElement: 'p',
-        errorPlacement: function (error, element) {
-            element.after(error);
-        },
-        submitHandler: function (form, e) {
-            e.preventDefault();
-            $.ajax({
-                method: form.method,
-                url: form.action,
-                data: $(form).serialize(),
-                beforeSend: function () {
-                    $(document).scrollTop(0);
-                    $('div#users-content').html('<img id="loader" src="/img/loader.gif" />');
+        /** Validate form and send data **/
+        $('form#send-message').validate({
+            messages: {
+                user: {
+                    required: 'Éste campo es requerido.'
                 },
-                success: function (data) {
-                    $('div#users-content').html(data.view);
+                body: {
+                    required: 'Éste campo es requerido.'
+                }
+            },
+            errorElement: 'p',
+            errorPlacement: function(error, element) {
+                element.after(error);
+            },
+            submitHandler: function(form, e) {
+                e.preventDefault();
+                const container = $('div#container'),
+                    loader = $('img#loader');
+                loader.show();
+                container.hide();
+                $.post(form.action, $(form).serialize()).done(function(data) {
+                    container.html(data.view);
                     if (data.status) {
                         const statusClass = data.status === 'success' ? 'success' : 'error';
                         $('div#status').html('<p class="alert feedback-'+statusClass+'">'+data.message+'</p>');
                     }
-                },
-                error: function (xhr) {
+                }).fail(function(xhr) {
                     const errors = typeof xhr.responseJSON != 'undefined' ? xhr.responseJSON.errors : '';
                     const url = '{{route('writeMessage')}}';
                     $.get(url, function(data) {
-                        $('div#users-content').html(data.view);
+                        container.html(data.view);
                         const errorsContainer = $('div#status');
                         if (errors) {
                             $.each(errors, function (key, value) {
@@ -87,9 +78,11 @@
                             errorsContainer.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
                         }
                     });
-                }
-
-            });
-        }
+                }).always(function() {
+                    loader.hide();
+                    container.show();
+                });
+            }
+        });
     });
 </script>

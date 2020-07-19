@@ -1,12 +1,14 @@
 @php
 $user = $result->getSender()->id != Auth::id() ? $result->getSender() : $result->getRecipient();
+$nextPage = strpos($result->replies()->nextPageUrl(), 'save') ? str_replace('save', 'message/'.$result->id.'/', $result->replies()->nextPageUrl()) : $result->replies()->nextPageUrl();
 @endphp
 <p class="user-title">
     <img src="{{asset($user->photo ? 'img/users/images/'.$user->photo : 'svg/user-blue.svg')}}" alt="{{$user->name}}" title="{{$user->name}}" />
     {{$user->name}}
 </p>
-<ul class="messages">
-    <li>
+<img class="delete-message" src="{{asset('svg/delete-message.svg')}}" title="Borrar mensaje" alt="Borrar mensaje" data-message-id="{{$result->id}}"/>
+<ul class="messages" data-next-page="{{$nextPage}}">
+    <li id="parent">
         <p class="{{$result->from == Auth::id() ? 'end' : ''}}">
             <img src="{{asset($result->getSender()->photo ? 'img/users/images/'.$result->getSender()->photo : 'svg/user-blue.svg')}}" alt="{{$result->getSender()->name}}" title="{{$result->getSender()->name}}" />
             <span>
@@ -27,9 +29,8 @@ $user = $result->getSender()->id != Auth::id() ? $result->getSender() : $result-
     @if($result->from != Auth::id())
         @php($result->markAsRead())
     @endif
-@if($result->replies()->get())
-    @foreach($result->replies()->get() as $item)
-        <li>
+    @forelse($result->replies()->reverse() as $item)
+        <li class="replies">
             <p class="{{$item->from == Auth::id() ? 'end' : ''}}">
                 <img src="{{asset($item->getSender()->photo ? 'img/users/images/'.$item->getSender()->photo : 'svg/user-blue.svg')}}" alt="{{$item->getSender()->name}}" title="{{$item->getSender()->name}}"/>
                 <span>
@@ -50,65 +51,16 @@ $user = $result->getSender()->id != Auth::id() ? $result->getSender() : $result-
                 @php($item->markAsRead())
             @endif
         </li>
-    @endforeach
-@endif
+    @empty
+    @endforelse
 </ul>
 <form action="{{route('saveMessage')}}" method="post" id="send-message">
     <div id="status"></div>
     <label for="body">Responder:</label>
-    <textarea name="body" id="body" required></textarea>
+    <input type="text" name="body" id="body" required />
     <input type="submit" value="Enviar" class="button primary" />
     <input type="hidden" name="user_id" id="user_id" value="{{$user->id}}"/>
     <input type="hidden" name="parent_id" id="parent_id" value="{{$result->id}}">
     @csrf
 </form>
-<script>
-    $('form#send-message').validate({
-        messages: {
-            body: {
-                required: 'Éste campo es requerido.'
-            }
-        },
-        errorElement: 'p',
-        errorPlacement: function (error, element) {
-            element.after(error);
-        },
-        submitHandler: function (form, e) {
-            e.preventDefault();
-            $.ajax({
-                method: form.method,
-                url: form.action,
-                data: $(form).serialize(),
-                beforeSend: function () {
-                    $(document).scrollTop(0);
-                    $('div#users-content').html('<img id="loader" src="/img/loader.gif" />');
-                },
-                success: function (data) {
-                    $('div#users-content').html(data.view);
-                    if (data.status) {
-                        const statusClass = data.status === 'success' ? 'success' : 'error';
-                        $('div#status').html('<p class="alert feedback-'+statusClass+'">'+data.message+'</p>');
-                    }
-                },
-                error: function (xhr) {
-                    const errors = typeof xhr.responseJSON != 'undefined' ? xhr.responseJSON.errors : '';
-                    const url = '{{route('writeMessage')}}';
-                    $.get(url, function(data) {
-                        $('div#users-content').html(data.view);
-                        const errorsContainer = $('div#status');
-                        if (errors) {
-                            $.each(errors, function (key, value) {
-                                errorsContainer.append('<p class="alert feedback-error">' + value + '</p>');
-                            });
-                        } else {
-                            errorsContainer.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
-                        }
-                    });
-                },
-                complete: function() {
-                    window.scrollTo(0,document.body.scrollHeight);
-                }
-            });
-        }
-    });
-</script>
+<script src="{{asset('js/messages.js')}}" type="text/javascript"></script>

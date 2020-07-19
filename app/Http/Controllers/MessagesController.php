@@ -86,20 +86,28 @@ class MessagesController extends Controller
      * @param Request $request
      * @param $id
      * @param null $status
-     * @param null $message
+     * @param null $statusMessage
      * @return JsonResponse|void
      * @throws Throwable
      */
-    public function getConversationById(Request $request, $id, $status = null, $message = null)
+    public function getConversationById(Request $request, $id, $status = null, $statusMessage = null)
     {
         if ($request->ajax()) {
             $result = Messages::query()->find($id);
+            if ($result) {
+                $replies = $result->replies();
 
-            return response()->json([
-                'view' => view('auth.myaccount.messages.view', compact('result'))->render(),
-                'status' => $status,
-                'message' => $message
-            ]);
+                return response()->json([
+                    'view' => view('auth.myaccount.messages.view', compact('result'))->render(),
+                    'status' => $status,
+                    'message' => $statusMessage,
+                    'replies' => view('auth.myaccount.messages.replies', compact('replies'))->render(),
+                    'next_page' => $replies->nextPageUrl()
+                ]);
+            } else {
+                $statusMessage = 'Mensaje no encontrado, alguno de los integrantes ha eliminado la conversación.';
+                return $this->myMessagesInbox($request, 'warning', $statusMessage);
+            }
         }
 
         return abort(404);
@@ -108,23 +116,27 @@ class MessagesController extends Controller
     /**
      * My Messages Inbox
      * @param Request $request
+     * @param $status
+     * @param null $statusMessage
      * @return JsonResponse|void
      * @throws Throwable
      */
-    public function myMessagesInbox(Request $request)
+    public function myMessagesInbox(Request $request, $status = null, $statusMessage = null)
     {
         if ($request->ajax()) {
-            $myMessages = Auth::user()->inboxMessages()->orderBy('id', 'DESC')->get()->groupBy('from');
+            $myMessages = Auth::user()->inboxMessages();
             $result = [];
             foreach ($myMessages as $key => $value) {
                 $message = $value->first();
                 $result[$key] = $message;
             }
-            $result = $this->paginate($result);
+            $result = $this->paginate($result, 10);
             $result->setPath($request->url());
 
             return response()->json([
-                'view' => view('auth.myaccount.messages.inbox', compact('result'))->render()
+                'view' => view('auth.myaccount.messages.inbox', compact('result'))->render(),
+                'status' => $status,
+                'message' => $statusMessage
             ]);
         }
 
@@ -134,11 +146,11 @@ class MessagesController extends Controller
     /**
      * Paginate Results
      * @param $items
+     * @param $perPage
      * @return LengthAwarePaginator
      */
-    protected function paginate($items)
+    protected function paginate($items, $perPage)
     {
-        $perPage = 10;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $items = Collection::make($items);
         $currentPageResults = $items->slice(($currentPage - 1) * $perPage, $perPage)->all();
@@ -166,5 +178,30 @@ class MessagesController extends Controller
             ->first();
 
         return $messageFromMe ? $messageFromMe->id : ($messageToMe ? $messageToMe->id : null);
+    }
+
+    /**
+     * Delete Message
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws Throwable
+     */
+    public function delete(Request $request)
+    {
+        if ($request->ajax()) {
+            $id = $request->id;
+            $message = Messages::query()->find($id);
+            $replies = Messages::query()->where('parent_id', $id)->get();
+            if ($message) {
+                foreach ($replies as $reply) {
+                    $reply->delete();
+                }
+                $message->delete();
+            }
+
+            return $this->myMessagesInbox($request, 'success', 'El mensaje ha sido eliminado.');
+        }
+
+        return abort(404);
     }
 }

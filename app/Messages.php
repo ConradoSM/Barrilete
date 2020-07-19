@@ -2,10 +2,9 @@
 
 namespace barrilete;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 
 class Messages extends Model
@@ -33,11 +32,11 @@ class Messages extends Model
     }
 
     /**
-     * @return HasMany
+     * @return LengthAwarePaginator
      */
     public function replies()
     {
-        return $this->hasMany(Messages::class, 'parent_id');
+        return $this->hasMany(Messages::class, 'parent_id')->orderByDesc('id')->paginate(10);
     }
 
 
