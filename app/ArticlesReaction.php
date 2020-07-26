@@ -19,4 +19,19 @@ class ArticlesReaction extends Model
     protected $fillable = [
         'user_id', 'article_id', 'section_id', 'reaction',
     ];
+
+    /**
+     * Get Reactions
+     * @param $query
+     * @param $articleId
+     * @param $sectionId
+     * @param $reaction
+     * @return mixed
+     */
+    public function scopeReactions($query, $articleId, $sectionId, $reaction)
+    {
+        return $query->where('article_id', $articleId)
+            ->where('section_id', $sectionId)
+            ->where('reaction', $reaction);
+    }
 }

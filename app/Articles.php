@@ -138,6 +138,7 @@ class Articles extends Model
     }
 
     /**
+     * Users Article Reactions
      * @param $sectionId
      * @param $reaction
      * @return HasMany

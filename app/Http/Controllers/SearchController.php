@@ -14,6 +14,7 @@ use Throwable;
 class SearchController extends Controller
 {
     /**
+     * Search Content
      * @param Request $request
      * @return Factory|View
      */
@@ -38,6 +39,7 @@ class SearchController extends Controller
     }
 
     /**
+     * Autocomplete
      * @param Request $request
      * @return JsonResponse|void
      * @throws Throwable
@@ -88,12 +90,15 @@ class SearchController extends Controller
                     }
                 }
             }
+
             return response()->json([view('autocomplete', compact('response'))->render()]);
         }
+
         return abort(404);
     }
 
     /**
+     * Search Content in Dashboard
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -112,15 +117,18 @@ class SearchController extends Controller
                 $result = Poll::SearchAuth($search, $author);
             } else {
                 $result = [];
+
                 return response()->json([
                     'view' => view('auth.search', compact('result'))->render()
                 ])->header('Content-Type', 'application/json');
             }
             $result->appends(['query' => $search, 'sec' => $section, 'author' => $author]);
+
             return response()->json([
                 'view' => view('auth.search', compact('result'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 }

@@ -31,10 +31,7 @@ class Comments extends Model
     {
         return $query->where('article_id', $article_id)
             ->where('section_id', $section_id)
-            ->whereNull('parent_id')
-            ->orderBy('id','DESC')
-            ->paginate(10)
-            ->onEachSide(1);
+            ->whereNull('parent_id');
     }
 
     /**

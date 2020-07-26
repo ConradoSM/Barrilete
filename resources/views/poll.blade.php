@@ -16,9 +16,22 @@
         <h1>{{ $article->title }}</h1>
         <p class="copete">{{ $article->article_desc }}</p>
         <p class="info">
-            <img class="svg" src="{{ asset('svg/calendar.svg') }}" /> {{$article->created_at->diffForHumans()}}
-            <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$article->user->name}}
-            <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$article->views}}
+            <img alt="Fecha" class="svg" src="{{ asset('svg/calendar.svg') }}" />{{ $article->created_at->diffForHumans() }}
+            <img alt="Autor" class="svg" src="{{ asset('svg/user_black.svg') }}" />{{ $article->user->name }}
+            <img alt="Visitas" class="svg" src="{{ asset('svg/eye.svg') }}" /> {{ $article->views }}
+            @php($userReaction = Auth::user() ? Auth::user()->articleReaction($article->id, $article->section->id)->first() : null)
+            @if($userReaction)
+                @if($userReaction->reaction == 1)
+                    <img alt="Me gusta" title="Me gusta" class="svg article-reaction" id="like" src="{{asset('svg/like-active.svg')}}" data-reaction="1" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" />{{$article->reactions($article->section_id, '1')->count()}}
+                    <img alt="No me gusta" title="No me gusta" class="svg article-reaction dislike" id="dislike" src="{{asset('svg/article-reaction.svg')}}" data-reaction="0" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" />{{$article->reactions($article->section_id, '0')->count()}}
+                @elseif($userReaction->reaction == 0)
+                    <img alt="Me gusta" title="Me gusta" class="svg article-reaction" id="like" src="{{asset('svg/article-reaction.svg')}}" data-reaction="1" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" />{{$article->reactions($article->section_id, '1')->count()}}
+                    <img alt="No me gusta" title="No me gusta" class="svg article-reaction dislike" id="dislike" src="{{asset('svg/like-active.svg')}}" data-reaction="0" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" />{{$article->reactions($article->section_id, '0')->count()}}
+                @endif
+            @else
+                <img alt="Me gusta" title="Me gusta" class="svg article-reaction" id="like" src="{{asset('svg/article-reaction.svg')}}" data-reaction="1" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" />{{$article->reactions($article->section_id, '1')->count()}}
+                <img alt="No me gusta" title="No me gusta" class="svg article-reaction dislike" id="dislike" src="{{asset('svg/article-reaction.svg')}}" data-reaction="0" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" />{{$article->reactions($article->section_id, '0')->count()}}
+            @endif
         </p>
         <hr />
         <article class="pollOptions">
@@ -78,4 +91,5 @@
         @endforelse
     </aside>
 </div>
+<script type="text/javascript" src="{{asset('js/article-reaction.js')}}"></script>
 @endsection

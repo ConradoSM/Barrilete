@@ -2,7 +2,12 @@
 
 namespace barrilete\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 use Image;
 
 class ImageController extends Controller
@@ -10,7 +15,7 @@ class ImageController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -29,30 +34,18 @@ class ImageController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
      */
     public function store(Request $request)
     {
         if($request->hasFile('profile_image')) {
-            //get filename with extension
             $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
-
-            //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-            //get file extension
             $extension = $request->file('profile_image')->getClientOriginalExtension();
-
-            //filename to store
             $filenametostore = $filename.'_'.time().'.'.$extension;
-
-            //Upload File
             $request->file('profile_image')->storeAs('public/profile_images', $filenametostore);
             $request->file('profile_image')->storeAs('public/profile_images/thumbnail', $filenametostore);
-
-            //Resize image here
             $thumbnailpath = public_path('storage/profile_images/thumbnail/'.$filenametostore);
             $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
                 $constraint->aspectRatio();
@@ -72,8 +65,8 @@ class ImageController extends Controller
     public function showImage($image)
     {
         $file = Storage::disk('public_html/img')->get($image);
-        
-        return $file->response('jpg');       
+
+        return $file->response('jpg');
     }
 
     /**
@@ -90,7 +83,7 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

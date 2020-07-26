@@ -2,13 +2,11 @@
 
 namespace barrilete;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -105,6 +103,7 @@ class User extends Authenticatable
                 return true;
             }
         }
+
         return false;
     }
 
@@ -118,6 +117,7 @@ class User extends Authenticatable
         if ($this->roles()->where('name', $role)->first()) {
             return true;
         }
+
         return false;
     }
 
@@ -139,15 +139,29 @@ class User extends Authenticatable
     }
 
     /**
-     * Get User Messages
-     * @return Collection
+     * Get Inbox Messages
+     * @return LengthAwarePaginator
      */
     public function inboxMessages()
     {
         return $this->hasMany(Messages::class, 'to')
             ->orderBy('id', 'DESC')
-            ->get()
-            ->groupBy('from');
+            ->latest()
+            ->groupBy(['from'])
+            ->paginate(10);
+    }
+
+    /**
+     * Get Outbox Messages
+     * @return LengthAwarePaginator
+     */
+    public function outboxMessages()
+    {
+        return $this->hasMany(Messages::class, 'from')
+            ->orderBy('id', 'DESC')
+            ->latest()
+            ->groupBy(['to'])
+            ->paginate(10);
     }
 
     /**
@@ -160,8 +174,7 @@ class User extends Authenticatable
             ->whereIn('type', [
                 'barrilete\Notifications\UsersCommentReply',
                 'barrilete\Notifications\UsersCommentReaction'
-            ])->get()
-            ->groupBy(function($item) {
+            ])->get()->groupBy(function($item) {
                 return $item->data['from'];
             });
     }
@@ -201,5 +214,18 @@ class User extends Authenticatable
     {
         return $this->unreadNotifications()
             ->where('type','barrilete\Notifications\UsersMessages')->count();
+    }
+
+    /**
+     * Get User Article Reaction
+     * @param $articleId
+     * @param $sectionId
+     * @return HasOne
+     */
+    public function articleReaction($articleId, $sectionId)
+    {
+        return $this->hasOne(ArticlesReaction::class, 'user_id')
+            ->where('article_id', $articleId)
+            ->where('section_id', $sectionId);
     }
 }

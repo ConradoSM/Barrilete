@@ -57,6 +57,7 @@ class SectionsController extends Controller
     }
 
     /**
+     * Search Sections
      * @param $name
      * @return Factory|View
      */
@@ -66,15 +67,19 @@ class SectionsController extends Controller
         if ($section) {
             if ($section->name == 'galerias') {
                 $galleries = $section->galleries;
+
                 return $section->galleries()->exists() ? view('galleries', compact('galleries')) : view('errors.section');
             }
             $articles = $section->articles;
+
             return $section->articles()->exists() ? view('section', compact('articles')) : view('errors.section');
         }
+
         return view('errors.404');
     }
 
     /**
+     * Get All Sections
      * @return Factory|JsonResponse|View
      * @throws Throwable
      */
@@ -84,16 +89,20 @@ class SectionsController extends Controller
         if ($request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $sections = $this->_sections->all()->sortByDesc('id');
+
                 return response()->json([
                     'view' => view('auth.sections.index', compact('sections'))->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
+     * New Section Form
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -106,12 +115,15 @@ class SectionsController extends Controller
                     'view' => view('auth.sections.form')->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['Error' => 'No eres administrador del sistema.'], 401);
         }
+
         return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
+     * Create Section
      * @return Factory|View|JsonResponse|RedirectResponse
      */
     public function create()
@@ -124,14 +136,18 @@ class SectionsController extends Controller
                 $section->prio = $request->prio;
                 $section->save();
                 $sections = $this->_sections->all();
+
                 return view('auth.sections.index', compact('sections'))->with('success', 'La sección se ha creado correctamente.');
             }
+
             return response()->json(['Error' => 'No eres administrador del sistema.'],401);
         }
+
         return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
+     * Edit Section Form
      * @param $id
      * @return Factory|JsonResponse|RedirectResponse|View
      * @throws Throwable
@@ -141,16 +157,20 @@ class SectionsController extends Controller
         if ($this->_request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $section = $this->_sections->find($id);
+
                 return response()->json([
                     'view' => view('auth.sections.form', compact('section'))->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax.']);
     }
 
     /**
+     * Update Section
      * @param $id
      * @return Factory|View|JsonResponse|RedirectResponse
      */
@@ -159,19 +179,23 @@ class SectionsController extends Controller
         if ($this->_request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $request = $this->_request;
-                $section = $this->_sections->find($id);
+                $section = $this->_sections->query()->find($id);
                 $sections = $this->_sections->all();
                 $section->name = strtolower($request->name);
                 $section->prio = $request->prio;
                 $section->save();
+
                 return view('auth.sections.index', compact('sections'))->with('success', 'La sección se ha actualizado.');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax.']);
     }
 
     /**
+     * Delete Section
      * @param $id
      * @return JsonResponse
      * @throws Throwable
@@ -180,17 +204,20 @@ class SectionsController extends Controller
     {
         if ($this->_request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
-                $section = $this->_sections->find($id);
+                $section = $this->_sections->query()->find($id);
                 $section->delete();
                 $sections = $this->_sections->all();
+
                 return response()->json([
                     'view' => view('auth.sections.index', compact('sections'))
                         ->with('success', 'La sección se ha eliminado.')
                         ->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema.'], 401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax.']);
     }
 }

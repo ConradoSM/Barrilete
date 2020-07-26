@@ -34,6 +34,8 @@ Route::get('poll/{id}/{title}', 'PollsController@poll')->name('poll');
 Route::post('poll-vote', 'PollsController@pollVote')->name('poll-vote');
 //GET COMMENTS
 Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get')->name('getComments');
+//ARTICLES USER REACTION
+Route::post('article/reaction/save', 'ArticlesReactionController@save')->name('articleReactionSave');
 //DASHBOARD
 Route::group(['middleware' => ['auth']], function () {
     //USERS DASHBOARD
@@ -92,7 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/myaccount/privacy/edit', 'UsersController@editMyPrivacy')->name('editMyPrivacy');
     Route::get('dashboard/myaccount/password/edit', 'UsersController@editMyPassword')->name('editMyPassword');
     Route::post('dashboard/myaccount/password/update', 'UsersController@updatePassword')->name('updatePassword');
-    Route::get('dashboard/myaccount/messages/inbox', 'MessagesController@myMessagesInbox')->name('myMessagesInbox');
+    Route::get('dashboard/myaccount/messages/box/{box}', 'MessagesController@myMessages')->name('myMessages');
     Route::get('dashboard/myaccount/messages/write', 'MessagesController@writeMessage')->name('writeMessage');
     Route::post('dashboard/myaccount/messages/save', 'MessagesController@save')->name('saveMessage');
     Route::get('dashboard/myaccount/messages/getUsers', 'UsersController@getUsers')->name('getUsers');

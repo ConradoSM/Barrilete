@@ -14,7 +14,7 @@ class Poll extends Model
     protected $table = 'poll';
 
     /**
-     * UNA ENCUESTA PERTENECE A UN USUARIO
+     * User Poll
      * @return BelongsTo
      */
     public function user()
@@ -23,7 +23,7 @@ class Poll extends Model
     }
 
     /**
-     * UNA ENCUESTA PERTENECE A UNA SECCIÓN
+     * Poll Section
      * @return BelongsTo
      */
     public function section()
@@ -32,7 +32,7 @@ class Poll extends Model
     }
 
     /**
-     * UNA ENCUESTA TIENE MUCHAS OPCIONES
+     * Poll Options
      * @return HasMany
      */
     public function option()
@@ -41,7 +41,7 @@ class Poll extends Model
     }
 
     /**
-     * ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
+     * Polls in Homepage
      * @param $query
      * @return mixed
      */
@@ -54,20 +54,21 @@ class Poll extends Model
     }
 
     /**
-     * BUSCA LA ENCUESTA POR EL ID, LA MUESTRA Y ACTUALIZA LAS VISITAS
+     * Find Poll And Increment Views + 1
      * @param $query
      * @param $id
      * @return mixed
      */
     public function scopePoll($query, $id)
     {
-        $query->findOrFail($id)->where('status','PUBLISHED');
-        $query->increment('views',1);
-        return $query->first();
+        return $query->findOrFail($id)
+            ->where('status','PUBLISHED')
+            ->increment('views', 1)
+            ->first();
     }
 
     /**
-     * MUESTRA EL RESTO DE LAS ENCUESTAS
+     * Show Rest Of Polls
      * @param $query
      * @param $id
      * @return mixed
@@ -83,7 +84,7 @@ class Poll extends Model
     }
 
     /**
-     * BÚSQUEDA DE ENCUESTAS
+     * Poll Search
      * @param $query
      * @param $busqueda
      * @return mixed
@@ -96,7 +97,7 @@ class Poll extends Model
     }
 
     /**
-     * BÚSQUEDA DE ENCUESTAS USUARIOS
+     * Poll Search in Dashboard
      * @param $query
      * @param $busqueda
      * @param $author
@@ -111,7 +112,7 @@ class Poll extends Model
     }
 
     /**
-     * ENCUESTAS NO PUBLICADAS
+     * No Published Polls
      * @param $query
      * @return mixed
      */
@@ -124,6 +125,7 @@ class Poll extends Model
     }
 
     /**
+     * Get Poll Comments
      * @param $sectionId
      * @return HasMany
      */
@@ -131,5 +133,18 @@ class Poll extends Model
     {
         return $this->hasMany(Comments::class,'article_id')
             ->where('section_id', $sectionId);
+    }
+
+    /**
+     * Users Poll Reactions
+     * @param $sectionId
+     * @param $reaction
+     * @return HasMany
+     */
+    public function reactions($sectionId, $reaction)
+    {
+        return $this->hasMany(ArticlesReaction::class, 'article_id')
+            ->where('section_id', $sectionId)
+            ->where('reaction', $reaction);
     }
 }

@@ -15,7 +15,8 @@
             <li title="Mis Mensajes">
                 <p><img src="{{asset('svg/chat.svg')}}" alt="Mis Mensajes">Mis Mensajes<img src="{{asset('svg/arrow.svg')}}" class="arrow" alt="sub-menu"></p>
                 <ul class="sub-menu">
-                    <li title="Ver Todos" data-link="{{route('myMessagesInbox')}}">Ver Todos</li>
+                    <li title="Recibidos" data-link="{{route('myMessages', ['box' => 'inbox'])}}">Recibidos</li>
+                    <li title="Enviados" data-link="{{route('myMessages', ['box' => 'outbox'])}}">Enviados</li>
                     <li title="Redactar Nuevo" data-link="{{route('writeMessage')}}">Redactar Nuevo</li>
                 </ul>
             </li>

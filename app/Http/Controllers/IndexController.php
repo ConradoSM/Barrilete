@@ -43,7 +43,7 @@ class IndexController extends Controller
     }
 
     /**
-     * HOME DEL SITIO
+     * Home Site
      * @return Factory|View
      */
     public function home()
@@ -51,6 +51,7 @@ class IndexController extends Controller
         $articlesIndex = $this->_articles->articlesHome();
         $galleryIndex = $this->_gallery->galleryHome()->count() != 0 ? $this->_gallery->galleryHome()->first() : null;
         $pollsIndex = $this->_poll->pollsHome()->count() != 0 ? $this->_poll->pollsHome() : null;
+
         return view('default', compact('articlesIndex','galleryIndex','pollsIndex'));
     }
 }

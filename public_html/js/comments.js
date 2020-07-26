@@ -1,8 +1,5 @@
 $(document).ready(function() {
-    const form = $('form#comments');
-    const loader = $('img.loader');
-    const divStatus = $('div#status');
-    const container = $('section.comments');
+    const form = $('form#comments'),loader = $('img.loader'),divStatus = $('div#status'),container = $('section.comments');
 
     /** Post New Comment **/
     form.validate({
@@ -10,10 +7,10 @@ $(document).ready(function() {
             comment: 'Debes completar éste campo.'
         },
         errorElement: 'p',
-        errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
             element.after(error);
         },
-        submitHandler: function (form, e) {
+        submitHandler: function(form, e) {
             e.preventDefault();
             ajaxPost(form.action, $(form).serialize());
         }
@@ -30,7 +27,7 @@ $(document).ready(function() {
             buttons: {
                 borrar: {
                     btnClass: 'button danger',
-                    action: function () {
+                    action: function() {
                         let URL = '/comment/delete';
                         let data = {
                             _token: $('meta[name="_token"]').attr('content'),
@@ -50,8 +47,7 @@ $(document).ready(function() {
 
     /** Add/Edit Comment **/
     replyComment = function(commentID, articleID, sectionID, userID, commentContent) {
-        const title = userID ? 'Responder Comentario' : 'Editar Comentario';
-        const textareaContent = commentContent ? commentContent : '';
+        const title = userID ? 'Responder Comentario' : 'Editar Comentario', textareaContent = commentContent ? commentContent : '';
         $.confirm({
             title: title,
             content: '<form id="reply"><textarea name="reply" placeholder="Tu respuesta:" required>' + textareaContent + '</textarea></form>',
@@ -166,38 +162,31 @@ $(document).ready(function() {
 
     /** Comment Reaction Save **/
     commentReactionSave = function (userID, commentID, reaction) {
-        $.ajax({
-            method: 'post',
-            url: '/reaction/save',
-            data: {
-                _token: $('meta[name="_token"]').attr('content'),
-                user_id: userID,
-                comment_id: commentID,
-                reaction: reaction
-            },
-            success: function(data) {
-                const like = $('a#like-'+commentID);
-                const dislike = $('a#dislike-'+commentID);
-                if (data.reaction === '1') {
-                    like.addClass('reaction-active');
-                    dislike.removeAttr('class');
-                } else if (data.reaction === '0') {
-                    like.removeAttr('class');
-                    dislike.addClass('reaction-active');
-                } else {
-                    like.removeAttr('class');
-                    dislike.removeAttr('class');
-                }
-            },
-            error: function(xhr) {
-                divStatus.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
-            },
-            complete: function(data) {
-                const likes = $('img#total-likes-'+commentID);
-                const dislikes = $('img#total-dislikes-'+commentID);
-                likes.get(0).nextSibling.nodeValue = ' '+data.responseJSON.likes;
-                dislikes.get(0).nextSibling.nodeValue = ' '+data.responseJSON.dislikes;
+        $.post('/reaction/save', {
+            _token: $('meta[name="_token"]').attr('content'),
+            user_id: userID,
+            comment_id: commentID,
+            reaction: reaction
+        }, function (data) {
+            const like = $('a#like-' + commentID), dislike = $('a#dislike-' + commentID);
+            if (data.reaction === '1') {
+                like.addClass('reaction-active');
+                dislike.removeAttr('class');
+            } else if (data.reaction === '0') {
+                like.removeAttr('class');
+                dislike.addClass('reaction-active');
+            } else {
+                like.removeAttr('class');
+                dislike.removeAttr('class');
             }
-        })
+        }).done().fail(function (xhr) {
+            divStatus.html('<p class="alert feedback-error">' + xhr.status + ' - ' + xhr.statusText + '</p>');
+        }).always(function (data) {
+            if (!data.statusText) {
+                const likes = $('img#total-likes-' + commentID), dislikes = $('img#total-dislikes-' + commentID);
+                likes.get(0).nextSibling.nodeValue = ' ' + data.likes;
+                dislikes.get(0).nextSibling.nodeValue = ' ' + data.dislikes;
+            }
+        });
     }
 });

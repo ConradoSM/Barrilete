@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class CommentsUserReactionsController extends Controller
 {
     /**
+     * Save Reaction
      * @param Request $request
      * @return mixed|null
      */
@@ -37,19 +38,22 @@ class CommentsUserReactionsController extends Controller
         }
         $totalsReactions = $this->getTotalReactions($request->comment_id);
         if ($request->reaction != null) {
-            $comment = Comments::find($request->comment_id);
+            $comment = Comments::query()->find($request->comment_id);
             $this->sendNotification(Auth::user(), $comment->user, $comment->section->name, $comment->article_id, $request->reaction, 'reaction');
         }
+
         return array_merge($totalsReactions, ['reaction' => $request->reaction]);
     }
 
     /**
+     * Get Total Reactions
      * @param $commentId
      * @return array
      */
     public function getTotalReactions($commentId)
     {
-        $comment = Comments::find($commentId);
+        $comment = Comments::query()->find($commentId);
+
         return [
             'likes' => $comment->getTotalLikes->count(),
             'dislikes' => $comment->getTotalDislikes->count()
@@ -65,18 +69,18 @@ class CommentsUserReactionsController extends Controller
      * @param $reaction
      * @param $type
      */
-    public function sendNotification($fromUser, $toUser, $sectionName, $articleId, $reaction, $type)
+    protected function sendNotification($fromUser, $toUser, $sectionName, $articleId, $reaction, $type)
     {
         if ($fromUser != $toUser) {
             $routeName = 'article';
-            $title = Articles::find($articleId) ? Articles::find($articleId)->title : '';
+            $title = Articles::query()->find($articleId) ? Articles::query()->find($articleId)->title : '';
             if ($sectionName == 'galerias') {
                 $routeName = 'gallery';
-                $title = Gallery::find($articleId)->title;
+                $title = Gallery::query()->find($articleId)->title;
             }
             if ( $sectionName == 'encuestas') {
                 $routeName = 'poll';
-                $title = Poll::find($articleId)->title;
+                $title = Poll::query()->find($articleId)->title;
             }
             $options = [
                 'id' => $articleId,

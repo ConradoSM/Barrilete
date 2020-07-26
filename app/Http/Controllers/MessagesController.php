@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use barrilete\Messages;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use Throwable;
 
 class MessagesController extends Controller
@@ -42,7 +40,7 @@ class MessagesController extends Controller
                 'user_id' => 'required|integer',
                 'body' => 'required'
             ]);
-            $conversationId = $request->parent_id ? $request->parent_id : $this->getConversation($request->user_id);
+            $conversationId = $request->parent_id ? $request->parent_id : $this->getConversationId($request->user_id);
             /** Save message */
             $newMessage = new Messages();
             $newMessage->from = Auth::id();
@@ -105,8 +103,8 @@ class MessagesController extends Controller
                     'next_page' => $replies->nextPageUrl()
                 ]);
             } else {
-                $statusMessage = 'Mensaje no encontrado, alguno de los integrantes ha eliminado la conversación.';
-                return $this->myMessagesInbox($request, 'warning', $statusMessage);
+                $statusMessage = 'La conversación ha sido borrada.';
+                return $this->myMessages($request, 'warning', $statusMessage, 'inbox');
             }
         }
 
@@ -114,27 +112,22 @@ class MessagesController extends Controller
     }
 
     /**
-     * My Messages Inbox
+     * My Messages
      * @param Request $request
      * @param $status
      * @param null $statusMessage
+     * @param null $box
      * @return JsonResponse|void
      * @throws Throwable
      */
-    public function myMessagesInbox(Request $request, $status = null, $statusMessage = null)
+    public function myMessages(Request $request, $status = null, $statusMessage = null, $box = null)
     {
         if ($request->ajax()) {
-            $myMessages = Auth::user()->inboxMessages();
-            $result = [];
-            foreach ($myMessages as $key => $value) {
-                $message = $value->first();
-                $result[$key] = $message;
-            }
-            $result = $this->paginate($result, 10);
-            $result->setPath($request->url());
+            $box = $request->box ? $request->box : $box;
+            $result = $box == 'outbox' ? Auth::user()->outboxMessages() : Auth::user()->inboxMessages();
 
             return response()->json([
-                'view' => view('auth.myaccount.messages.inbox', compact('result'))->render(),
+                'view' => view('auth.myaccount.messages.inbox', compact('result'))->with('box', $box)->render(),
                 'status' => $status,
                 'message' => $statusMessage
             ]);
@@ -144,26 +137,11 @@ class MessagesController extends Controller
     }
 
     /**
-     * Paginate Results
-     * @param $items
-     * @param $perPage
-     * @return LengthAwarePaginator
-     */
-    protected function paginate($items, $perPage)
-    {
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $items = Collection::make($items);
-        $currentPageResults = $items->slice(($currentPage - 1) * $perPage, $perPage)->all();
-
-        return new LengthAwarePaginator($currentPageResults, $items->count(), $perPage);
-    }
-
-    /**
-     * Get Conversation
+     * Get Conversation Id
      * @param $userId
      * @return mixed|null
      */
-    protected function getConversation($userId)
+    protected function getConversationId($userId)
     {
         $messageFromMe = Messages::query()
             ->where('parent_id', null)
@@ -199,7 +177,7 @@ class MessagesController extends Controller
                 $message->delete();
             }
 
-            return $this->myMessagesInbox($request, 'success', 'El mensaje ha sido eliminado.');
+            return $this->myMessages($request, 'success', 'Se borró el mensaje.', 'inbox');
         }
 
         return abort(404);

@@ -3,6 +3,7 @@
 namespace barrilete;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GalleryPhotos extends Model {
 
@@ -10,8 +11,11 @@ class GalleryPhotos extends Model {
     protected $fillable = [
         'gallery_id', 'title', 'photo',
     ];
-    
-    //RELACIONA LA FOTO CON LA GALERÍA
+
+
+    /**
+     * @return BelongsTo
+     */
     public function gallery() {
 
         return $this->belongsTo(Gallery::class);

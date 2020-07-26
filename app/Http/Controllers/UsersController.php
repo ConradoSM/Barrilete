@@ -35,6 +35,7 @@ class UsersController extends Controller
                 'view' => view('auth.users.options')->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -64,10 +65,13 @@ class UsersController extends Controller
                         'view' => view('auth.users.show', compact('user'))->render()
                     ])->header('Content-Type', 'application/json');
                 }
+
                 return response()->json(['error' => 'El perfil al que estás tratando de acceder no es el tuyo']);
             }
+
             return response()->json(['error' => 'El usuario no existe']);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -82,12 +86,15 @@ class UsersController extends Controller
         if($request->ajax()) {
             if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $users = User::all();
+
                 return response()->json([
                     'view' => view('auth.users.users', compact('users'))->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema'], 401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -103,14 +110,17 @@ class UsersController extends Controller
         if($request->ajax()) {
             if(Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $user = User::query()->find($id);
+
                 return $user
                     ? response()->json([
                         'view' => view('auth.users.show', compact('user'))->render()
                     ])->header('Content-Type', 'application/json')
                     : response()->json(['error' => 'El usuario no existe'],404);
             }
+
             return response()->json(['error' => 'No eres administrador del sistema'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -126,12 +136,14 @@ class UsersController extends Controller
         if($request->ajax()) {
             $user = User::query()->find($id);
             $view = isset($request->home) ? 'auth.myaccount.edit' : 'auth.users.edit';
+
             return $user
                 ? response()->json([
                     'view' => view($view, compact('user'))->render()
                 ])->header('Content-Type', 'application/json')
                 : response()->json(['error' => 'El usuario no existe'],404);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -147,6 +159,7 @@ class UsersController extends Controller
             return view('auth.users.show', compact('user'))
             ->with(['success' => 'El usuario se ha actualizado correctamente.']);
         }
+
         return response()->json(['error' => 'El usuario no existe']);
     }
 
@@ -162,6 +175,7 @@ class UsersController extends Controller
             return view('auth.myaccount.edit', compact('user'))
                 ->with(['success' => 'Tu cuenta se ha actualizado.']);
         }
+
         return response()->json(['error' => 'El usuario no existe']);
     }
 
@@ -203,6 +217,7 @@ class UsersController extends Controller
         $newFile = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
         $upload = public_path('img/users/images/' . $newFile);
         Image::make($file->getRealPath())->resize(100, 100)->save($upload);
+
         return $newFile;
     }
 
@@ -226,14 +241,19 @@ class UsersController extends Controller
                     $user->delete();
                     if($user->id == Auth::user()->id) {
                         Auth::logout();
+
                         return redirect()->route('login')->with('success','Tu cuenta ha sido eliminada.');
                     }
+
                     return redirect()->route('users')->with('success','El usuario ha sido eliminado.');
                 }
+
                 return redirect()->route('users')->with('error','El usuario no existe.');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -253,14 +273,19 @@ class UsersController extends Controller
                     if(!$user->is_admin) {
                         $user->is_admin = true;
                         $user->save();
+
                         return redirect()->route('users')->with('success','El usuario ahora es administrador del sitio.');
                     }
+
                     return redirect()->route('users')->with('error','El usuario ya es administrador.');
                 }
+
                 return redirect()->route('users')->with('error','El usuario no existe.');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -280,18 +305,24 @@ class UsersController extends Controller
                     if($user->is_admin) {
                         $user->is_admin = false;
                         $user->save();
+
                         return redirect()->route('users')->with('success','Se quitaron todos los privilegios de administración al usuario.');
                     }
+
                     return redirect()->route('users')->with('error','El usuario no es administrador.');
                 }
+
                 return redirect()->route('users')->with('error','El usuario no existe.');
             }
+
             return response()->json(['error' => 'No eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
+     * User Menu
      * @param Request $request
      * @return JsonResponse|void
      * @throws Throwable
@@ -301,10 +332,12 @@ class UsersController extends Controller
         if($request->ajax()) {
             return response()->json([view('auth.users.menu')->render()]);
         }
+
         return abort(404);
     }
 
     /**
+     * Notify Messages
      * @param Request $request
      * @return JsonResponse|void
      * @throws Throwable
@@ -314,6 +347,7 @@ class UsersController extends Controller
         if($request->ajax()) {
             return response()->json([view('auth.users.notifications.messages')->render()]);
         }
+
         return abort(404);
     }
 
@@ -328,6 +362,7 @@ class UsersController extends Controller
         if ($request->ajax()) {
             return response()->json([view('auth.users.notifications.reactions')->render()]);
         }
+
         return abort(404);
     }
 
@@ -351,14 +386,18 @@ class UsersController extends Controller
         if ($request->ajax()) {
             if (Hash::check($request->current_password, auth()->user()->password)) {
                 User::query()->find(auth()->user()->id)->update(['password' => Hash::make($request->password)]);
+
                 return $this->editMyPassword('success', 'La contraseña se ha actualizado correctamente.');
             }
+
             return $this->editMyPassword('error','La contraseña actual es incorrecta.');
         }
+
         return abort(404);
     }
 
     /**
+     * Edit My Privacy
      * @return JsonResponse
      * @throws Throwable
      */
@@ -383,6 +422,7 @@ class UsersController extends Controller
     }
 
     /**
+     * Get Users
      * @param Request $request
      * @return void|JsonResponse
      * @throws Throwable
@@ -395,8 +435,10 @@ class UsersController extends Controller
                 ->where('name','LIKE', '%'.$query.'%')
                 ->where('id','!=', Auth::id())
                 ->get();
+
             return response()->json([view('auth.myaccount.messages.autocomplete', compact('result'))->render()]);
         }
+
         return abort(404);
     }
 }

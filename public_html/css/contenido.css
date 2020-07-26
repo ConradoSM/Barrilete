@@ -68,6 +68,12 @@ article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-prev
     margin-right: 5px;
     margin-bottom: 0;
 }
+img.article-reaction {
+    cursor: pointer;
+}
+img.article-reaction:hover {
+    opacity: 0.8;
+}
 img.dislike {
     transform: rotate(180deg) scaleX(-1);
     margin-top: 5px;
