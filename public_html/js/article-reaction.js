@@ -5,7 +5,8 @@ $(document).ready(function() {
             userID = $(this).data('user'),
             articleID = $(this).data('article'),
             sectionID = $(this).data('section'),
-            userReaction = $(this).data('reaction');
+            userReaction = $(this).data('reaction'),
+            screenWidth = $( window ).width() < 767.98 ? '90%' : '55%';
 
         $.post('/article/reaction/save', {
             _token: $('meta[name="_token"]').attr('content'),
@@ -31,13 +32,13 @@ $(document).ready(function() {
             } else {
                 $.alert({
                     title: 'Importante',
-                    content: data.error + ' <a href="/login">Ingresa</a> o <a href="/register">registrate</a>',
-                    type: 'blue',
-                    boxWidth: '55%',
+                    content: '<p class="alert feedback-warning"><span>'+data.error + ' <a href="/login">Ingresa</a> o <a href="/register">registrate</a></span></p>',
+                    closeIcon: true,
+                    boxWidth: screenWidth,
                     useBootstrap: false,
                     buttons: {
-                        OK: {
-                            btnClass: 'button primary'
+                        Cerrar: {
+                            btnClass: 'button small primary'
                         }
                     }
                 });
@@ -45,13 +46,13 @@ $(document).ready(function() {
         }).fail(function(xhr) {
             $.alert({
                 title: 'Error',
-                content: xhr.status + ' - Ha ocurrido un error, por favor intenta mas tarde.',
-                type: 'red',
-                boxWidth: '55%',
+                content: '<p class="alert feedback-error">'+xhr.status + ' - Ha ocurrido un error, por favor intenta mas tarde.</p>',
+                closeIcon: true,
+                boxWidth: screenWidth,
                 useBootstrap: false,
                 buttons: {
-                    OK: {
-                        btnClass: 'button danger'
+                    Cerrar: {
+                        btnClass: 'button small danger'
                     }
                 }
             });

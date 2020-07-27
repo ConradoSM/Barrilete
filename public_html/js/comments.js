@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    const form = $('form#comments'),loader = $('img.loader'),divStatus = $('div#status'),container = $('section.comments');
+    const form = $('form#comments'),loader = $('img.loader'),
+        divStatus = $('div#status'),
+        container = $('section.comments'),
+        screenWidth = $( window ).width() < 767.98 ? '90%' : '55%';
 
     /** Post New Comment **/
     form.validate({
@@ -20,13 +23,13 @@ $(document).ready(function() {
     deleteComment = function(commentID, articleID, sectionID) {
         $.confirm({
             title: 'Borrar Comentario',
+            closeIcon: true,
             content: '<p class="alert feedback-warning">¿Realmente quieres borrar tu comentario?</p>',
-            type: 'orange',
-            boxWidth: '55%',
+            boxWidth: screenWidth,
             useBootstrap: false,
             buttons: {
                 borrar: {
-                    btnClass: 'button danger',
+                    btnClass: 'button small danger',
                     action: function() {
                         let URL = '/comment/delete';
                         let data = {
@@ -39,7 +42,7 @@ $(document).ready(function() {
                     }
                 },
                 cancelar: {
-                    btnClass: 'button default',
+                    btnClass: 'button small default',
                 }
             }
         })
@@ -50,16 +53,16 @@ $(document).ready(function() {
         const title = userID ? 'Responder Comentario' : 'Editar Comentario', textareaContent = commentContent ? commentContent : '';
         $.confirm({
             title: title,
+            closeIcon: true,
             content: '<form id="reply"><textarea name="reply" placeholder="Tu respuesta:" required>' + textareaContent + '</textarea></form>',
-            onContentReady: function () {
-                $('textarea#reply').focus();
+            onContentReady: function() {
+                $('form#reply').find('textarea').focus();
             },
-            type: 'blue',
-            boxWidth: '55%',
+            boxWidth: screenWidth,
             useBootstrap: false,
             buttons: {
                 enviar: {
-                    btnClass: 'button primary',
+                    btnClass: 'button small primary',
                     action: function() {
                         const formReply = $('form#reply');
                         formReply.validate({
@@ -96,7 +99,7 @@ $(document).ready(function() {
                     }
                 },
                 cancelar: {
-                    btnClass: 'button default',
+                    btnClass: 'button small default',
                 }
             }
         })

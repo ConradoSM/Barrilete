@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
 * {
     font-family: 'Ropa Sans', sans-serif;
-    text-decoration: none;
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -webkit-appearance: none;
     color: #212f3c;
 }
 html, body {
@@ -13,9 +10,6 @@ html, body {
     justify-content: center;
     width: 100%;
     background-color: #fff;
-    margin: 0;
-    padding: 0;
-    font-size: 1em;
     scrollbar-color: #212f3c transparent;
     scrollbar-width: thin;
 }
@@ -30,18 +24,18 @@ body::-webkit-scrollbar-thumb {
 }
 /**-- Links --**/
 a {
-    color: #34495e;
+    color: #1B4F72;
     text-decoration: none;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 a:visited {
-    color: #34495e;
+    color: #1B4F72;
 }
 a:active:focus {
-    color: #34495e;
+    color: #1B4F72;
 }
 a:hover {
-    color: #2980B9;
+    color: #3498DB;
 }
 /**-- Hr Style --**/
 hr {
@@ -110,7 +104,7 @@ div#header-container {
 .logo:hover {
     opacity: 0.8;
 }
-.small {
+.logo.small {
     width: 300px;
 }
 /**-- Search --**/
@@ -467,27 +461,12 @@ footer div#footer-container h2 {
     color: #34495e;
     font-size: 2em;
 }
-footer div#footer-container div li {
-    margin-left: 0;
-    margin-bottom: 10px;
-    list-style: none;
-}
-footer div#footer-container div a {
-    font-size: 1.75em;
-    color: #34495e;
-    text-transform: capitalize;
-}
-footer div#footer-container div a:hover {
-    color: #000;
-}
 footer div#footer-container p.footerCopyright {
     font-size: 1.1em;
     color: #34495e;
 }
 footer div#footer-container p.footerCopyright a {
     font-size: 1em;
-    color: #34495e;
-    text-transform: none;
 }
 footer div#footer-container div.footerSocialContainer {
     position: absolute;

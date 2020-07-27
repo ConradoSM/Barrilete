@@ -13,7 +13,7 @@
 <meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pubContainer">
-<article class="pub translate">
+<article class="pub">
     <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" />
     <h1>{{ $article -> title }}</h1>
     <p class="copete">{{ $article->article_desc }}</p>

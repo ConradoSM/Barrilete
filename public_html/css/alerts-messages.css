@@ -9,10 +9,13 @@
     line-height: normal !important;
 }
 .alert a {
-    margin: 0 5px;
+    font-size: 1em !important;
 }
 .feedback-success {
     background-color: #82e0aa;
+    color:  #1d8348;
+}
+.feedback-success span {
     color:  #1d8348;
 }
 .feedback-success:before {
@@ -28,6 +31,9 @@
     background-color: #f9bfbf;
     color: #c71a1a;
 }
+.feedback-error span {
+    color: #c71a1a;
+}
 .feedback-error:before {
     background-image: url('/svg/ajax-error.svg');
     background-size: 20px 20px;
@@ -39,6 +45,9 @@
 }
 .feedback-warning {
     background-color: #eeedc2;
+    color:  #807F5F;
+}
+.feedback-warning span {
     color:  #807F5F;
 }
 .feedback-warning:before {

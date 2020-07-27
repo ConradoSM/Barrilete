@@ -27,7 +27,7 @@ article.pub blockquote p, article.pub-preview blockquote p {
     display: inline;
     color: #808b96;
 }
-article.pub ul, article.pub-preview ul, section.comments ul.pagination {
+article.pub ul, article.pub-preview ul, section.comments {
     list-style: none;
     margin: 0;
 }
@@ -49,7 +49,7 @@ article.pub_galeria, article.pub-preview {
 article.pub img, article.pub-preview img {
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
     display: flex;
@@ -200,11 +200,11 @@ div.searchResultContainer {
 p.searchFilter {
     margin: 10px 0 10px 0;
     padding-bottom: 2px;
-    font-size: 1.7em;
+    font-size: 1.5em;
     border-bottom: 1px solid #ccc;
 }
 a.searchFilterLink {
-    font-size: 1.75em;
+    font-size: 1.5em;
     margin: 10px 15px;
     color: #333;
 }
@@ -212,7 +212,7 @@ p.searchFilter a.searchFilterLink:hover {
     color: #000;
 }
 p.searchFilter a.active {
-    font-size: 1.75em;
+    font-size: 1.5em;
     margin: 10px 15px;
     color: #007600;
     border-bottom: 5px solid #007600;
@@ -220,7 +220,7 @@ p.searchFilter a.active {
 p.searchInfo {
     margin: 20px 0 20px 0;
     color: #666;
-    font-size: 1.7em;
+    font-size: 1.5em;
 }
 article.searchResult{
     width: 100%;
@@ -234,25 +234,20 @@ article.searchResult{
     border-bottom-right-radius: 3px;
 }
 article.searchResult p.searchDate {
-    font-size: 1.1em;
+    font-size: 1em;
     color: #666;
     padding: 0;
     margin: 0;
+    text-transform: initial;
 }
-article.searchResult p.searchDate img {
-    height: 1.2em;
-    margin-right: 10px;
+article.searchResult p.searchDate:first-letter {
+    text-transform: uppercase;
 }
 article.searchResult a.searchTitle {
-    font-size: 2.5em;
-    color: #006699;
-}
-article.searchResult a.searchTitle:hover {
-    color: #0084c6;
-    text-decoration: underline;
+    font-size: 1.5em;
 }
 article.searchResult p.searchCopete {
-    font-size: 1.5em;
+    font-size: 1em;
 }
 /**-- Poll View --**/
 article.pollOptions {
@@ -317,6 +312,7 @@ div.comment-container img.comment-user {
     left: 0;
     width: 50px !important;
     height: 50px !important;
+    border: 1px solid #E7ECED;
 }
 div.comment-container p.comment {
     position: relative;
@@ -326,10 +322,10 @@ div.comment-container p.comment {
     margin-bottom: 5px !important;
     margin-left: 60px;
     line-height: normal !important;
-    background-color: #EAF2F8;
+    background-color: #F8F9F9;
     padding: 20px 40px 20px 20px;
     border-radius: 20px;
-    box-shadow: inset 0 0 2px 0 #D6DBDF;
+    box-shadow: inset 0 0 2px 0 #E7ECED;
 }
 div.comment-container p.comment span.reactions {
     display: block;
@@ -385,33 +381,50 @@ div.comment-container p.actions a.reaction-active {
 /**-- Pagination --**/
 ul.pagination {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    margin: 0;
     padding: 0;
-}
-ul.pagination li.page-item {
-    margin-right: 10px;
+    margin: 0 0 20px 0 !important;
     list-style: none;
-    border-radius: 10px;
-    padding: 5px 15px;
-    font-size: 1.6em;
+}
+a.page-link {
+    border-radius: 3px;
+    padding: 0 10px;
+    background-color: #85929E;
+    border: 1px solid #85929E;
+    color: #fff;
+    font-size: 25px;
+}
+a.page-link:hover {
+    background-color: #fff;
+    color: #85929E;
+}
+span.page-link {
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 25px;
+}
+.page-item {
+    margin: 0 10px 0 0!important;
+    padding-left: 0 !important;
+    font-size: 25px !important;
+}
+.page-item:before {
+    content: none !important;
+}
+.page-item.active {
+    cursor: default;
+}
+.page-item.active span {
+    background-color: #fff;
+    color: #85929E;
+    border: 1px solid #85929E;
+}
+.page-item.disabled {
     background-color: #F8F9F9;
-    border: 1px solid #E5E7E9;
+    border: none;
 }
-ul.pagination li.page-item:before {
-    content: none;
-}
-ul.pagination li.page-item a{
-    font-size: 1em;
-}
-ul.pagination li.page-item.active {
-    background-color: #D6DBDF;
-    cursor: default;
-}
-ul.pagination li.page-item.disabled {
-    background-color: #AEB6BF;
-    cursor: default;
+.page-item.disabled span {
+    border: 1px solid #abb2b9;
+    color: #abb2b9 !important;
 }
 img.loading {
     width: auto !important;

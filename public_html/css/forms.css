@@ -6,10 +6,11 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
     margin-top: 0;
     margin-bottom: 0;
     border: 1px solid #b8b8b8;
-    border-radius: 5px;
+    border-radius: 3px;
     font-size: 1.2em;
     outline:none;
     resize: none;
+    transition: 0.2s;
 }
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=url]:focus, input[type=number]:focus, input[type=date]:focus, input[type=search]:focus, select:focus, textarea:focus {
     border: 1px solid #999;
@@ -23,71 +24,80 @@ input[type=submit], input[type=button], input[type=reset] {
 }
 /* button */
 .button {
-    padding: 5px 20px 7px 20px;
-    border: none;
-    border-radius: 5px;
+    padding: 7px 20px;
+    border-radius: 3px !important;
+    line-height: normal !important;
     cursor: pointer;
     color: #fff !important;
-    font-size: 1.6em;
+    font-size: 1.3em !important;
+    font-weight: normal !important;
+    transition: 0.2s;
+    outline: none;
+    text-transform: capitalize !important;
 }
 .small {
-    padding: 3px 10px 3px 10px;
-    font-size: 1em;
+    padding: 5px 10px !important;
+    font-size: 1em !important;
 }
 /* default button */
 .default {
-    background-color: #797D7F;
+    border: 1px solid #85929E !important;
+    background-color: #85929E;
 }
 .default:active:focus {
-    background-color: #909497;
+    background-color: #85929E;
+    color: #fff;
 }
 .default:hover {
-    background-color: #A6ACAF;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #85929E !important;
 }
 /* primary button */
 .primary {
-    background-color: #21618C;
+    border: 1px solid #34495E !important;
+    background-color: #34495E;
 }
 .primary:active:focus {
-    background-color: #21618C;
+    background-color: #34495E;
+    color: #fff !important;
 }
 .primary:hover {
-    background-color: #2E86C1;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #34495E !important;
 }
 /* danger button */
 .danger {
+    border: 1px solid #943126 !important;
     background-color: #943126;
 }
 .danger:active:focus {
     background-color: #B03A2E;
+    color: #fff !important;
 }
 .danger:hover {
-    background-color: #CB4335;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #B03A2E !important;
 }
 /* success button */
 .success {
+    border: 1px solid #1D8348 !important;
     background-color: #1D8348;
 }
 .success:active:focus {
     background-color: #239B56;
+    color: #fff !important;
 }
 .success:hover {
-    background-color: #28B463;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #28B463;
+
 }
 /* disabled button */
 .disabled {
     background-color: #EAECEE;
-    box-shadow: inset 0 0 2px 0 #abb2b9;
+    border: 1px solid #abb2b9;
     color: #abb2b9 !important;
     cursor: default;
-}
-form {
-    padding: 0;
-    margin: 0;
 }
 fieldset {
     position: relative;
@@ -166,15 +176,15 @@ p.error {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #aeb6bf;
+    background-color: #D5D8DC;
     border-radius: 50%;
 }
 .radio-container:hover input ~ .checkmark {
-    background-color: #ccc;
-    transition: 0.3s;
+    background-color: #ABB2B9;
+    transition: 0.2s;
 }
 .radio-container input:checked ~ .checkmark {
-    background-color: rgba(41,128,185,1);
+    background-color: #34495E;
 }
 .checkmark:after {
     content: "";
@@ -199,8 +209,7 @@ p.error {
     align-items: center;
     position: relative;
     padding-left: 35px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
     cursor: pointer;
     font-size: 1em;
     user-select: none;
@@ -218,16 +227,11 @@ p.error {
     height: 25px;
     width: 25px;
     background-color: #fff;
-    box-shadow: 0 0 3px #999;
+    border: 1px solid #b8b8b8;
     border-radius: 3px;
 }
-.check-container:hover input ~ .check-mark {
-    background-color: #ccc;
-    box-shadow: none;
-    transition: 0.3s;
-}
 .check-container input:checked ~ .check-mark {
-    background-color: rgba(41,128,185,1);
+    background-color: #34495E;
 }
 .check-mark:after {
     content: "";
@@ -238,8 +242,8 @@ p.error {
     display: block;
 }
 .check-container .check-mark:after {
-    left: 9px;
-    top: 5px;
+    left: 8px;
+    top: 3px;
     width: 5px;
     height: 10px;
     border: solid white;

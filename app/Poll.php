@@ -61,10 +61,10 @@ class Poll extends Model
      */
     public function scopePoll($query, $id)
     {
-        return $query->findOrFail($id)
-            ->where('status','PUBLISHED')
-            ->increment('views', 1)
-            ->first();
+        $query->findOrFail($id)->where('status','PUBLISHED');
+        $query->increment('views',1);
+
+        return $query->first();
     }
 
     /**

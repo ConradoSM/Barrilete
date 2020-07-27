@@ -33,7 +33,6 @@
                 <img alt="No me gusta" title="No me gusta" class="svg article-reaction dislike" id="dislike" src="{{asset('svg/article-reaction.svg')}}" data-reaction="0" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" />{{$article->reactions($article->section_id, '0')->count()}}
             @endif
         </p>
-        <hr />
         <article class="pollOptions">
             @if ($status)
             <h2>{{ $status }}</h2>
@@ -67,7 +66,6 @@
             </form>
             @endif
         </article>
-        <hr />
         <h2 id="comments-count"><span>{{ $article->comments($article->section_id)->count() }}</span> Comentarios</h2>
         <div id="status"></div>
         <section class="comments"></section>

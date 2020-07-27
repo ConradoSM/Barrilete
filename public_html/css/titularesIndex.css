@@ -1,16 +1,9 @@
 /**-- Lazy Images --**/
 img.lazy {
-    background-image: url('/img/loader-image.gif');
+    background-image: url('/img/loader.gif');
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-size: 50px auto;
-}
-.placeholder {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px !important;
-    height: auto !important;
+    background-size: 100px auto;
 }
 .translate img.camera, img.placeholder {
     transform: translate(-50%, -50%);

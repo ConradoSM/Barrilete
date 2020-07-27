@@ -21,7 +21,7 @@ class Articles extends Model
     ];
 
     /**
-     * RELACION UN ARTÍCULO A UN USUARIO
+     * User Article
      * @return BelongsTo
      */
     public function user()
@@ -30,7 +30,7 @@ class Articles extends Model
     }
 
     /**
-     * RELACIÓN UN ARTÍCULO A UNA SECCIÓN
+     * Article Section
      * @return BelongsTo
      */
     public function section()
@@ -39,7 +39,7 @@ class Articles extends Model
     }
 
     /**
-     * ARTÍCULOS QUE SE VAN A MOSTRAR EN LA HOMEPAGE
+     * Home Articles
      * @param $query
      * @return mixed
      */
@@ -57,7 +57,7 @@ class Articles extends Model
     }
 
     /**
-     * ARTÍCULO QUE SE VA A MOSTRAR SEGÚN EL ID
+     * Get Article
      * @param $query
      * @param $id
      * @return mixed
@@ -66,11 +66,12 @@ class Articles extends Model
     {
         $query->findOrFail($id)->where('status','PUBLISHED');
         $query->increment('views',1);
+
         return $query->first();
     }
 
     /**
-     * RESTO DE LOS ARTÍCULOS QUE SE VAN A MOSTRAR
+     * More Articles
      * @param $query
      * @param $id
      * @param $section
@@ -88,7 +89,7 @@ class Articles extends Model
     }
 
     /**
-     * BÚSQUEDA DE ARTÍCULOS
+     * Articles Search
      * @param $query
      * @param $busqueda
      * @return mixed
@@ -101,7 +102,7 @@ class Articles extends Model
     }
 
     /**
-     * BÚSQUEDA DE ARTÍCULOS USUARIOS
+     * Articles Search in Dashboard
      * @param $query
      * @param $busqueda
      * @param $author
@@ -116,7 +117,7 @@ class Articles extends Model
     }
 
     /**
-     * ARTÍCULOS NO PUBLICADOS
+     * Unpublished Articles
      * @param $query
      * @return mixed
      */
@@ -128,6 +129,7 @@ class Articles extends Model
     }
 
     /**
+     * Article Comments
      * @param $sectionId
      * @return HasMany
      */

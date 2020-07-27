@@ -73,16 +73,17 @@ $(document).ready(function() {
     $('img.delete-message').on('click', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
-        const messageID = $(this).data('message-id');
+        const messageID = $(this).data('message-id'),
+            screenWidth = $( window ).width() < 767.98 ? '90%' : '55%';
         $.confirm({
-            title: '<p>Confirmar</p>',
+            title: 'Confirmar',
+            closeIcon: true,
             content: '<p class="alert feedback-warning">¿Estás seguro que deseas borrar éste mensaje?</p>',
-            type: 'orange',
-            boxWidth: '55%',
+            boxWidth: screenWidth,
             useBootstrap: false,
             buttons: {
                 confirmar: {
-                    btnClass: 'button danger',
+                    btnClass: 'button small danger',
                     action: function() {
                         const container = $('div#container'),
                             loader = $('img#loader');
@@ -102,7 +103,7 @@ $(document).ready(function() {
                     }
                 },
                 cancelar: {
-                    btnClass: 'button default',
+                    btnClass: 'button small default',
                 }
             }
         });

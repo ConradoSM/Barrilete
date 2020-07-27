@@ -6,12 +6,14 @@ $(function() {
         threshold: 0,
         visibleOnly: false,
         placeholder: 'data:image/gif',
-        beforeLoad: function(element) {
-            element.attr('src','/img/before-load.png');
-        },
         onError: function(element) {
-            element.attr('src','/svg/placeholder.svg');
-            element.addClass('placeholder');
+            element.attr('src','/img/placeholder.png').addClass('placeholder').css({
+                'background-image': 'none',
+                'width': '100%'
+            });
+        },
+        onFinishedAll: function() {
+            $('img.lazy').css('background-image', 'none');
         }
     });
 });

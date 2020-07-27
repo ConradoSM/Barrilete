@@ -69,7 +69,7 @@ class CommentsUserReactionsController extends Controller
      * @param $reaction
      * @param $type
      */
-    protected function sendNotification($fromUser, $toUser, $sectionName, $articleId, $reaction, $type)
+    public function sendNotification($fromUser, $toUser, $sectionName, $articleId, $reaction, $type)
     {
         if ($fromUser != $toUser) {
             $routeName = 'article';

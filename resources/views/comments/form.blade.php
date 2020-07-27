@@ -19,5 +19,5 @@
         <p class="alert feedback-warning">No tienes privilegios para comentar, contáctate con el administrador del sitio</p>
     @endif
 @else
-    <p class="alert feedback-warning">Debes estar logueado para comentar, <a href="{{ route('login') }}">ingresa</a> o <a href="{{ route('register') }}">regístrate</a></p>
+    <p class="alert feedback-warning"><span>Debes estar logueado para comentar <a href="{{ route('login') }}">ingresa</a> o <a href="{{ route('register') }}">regístrate</a></span></p>
 @endif

@@ -33,6 +33,7 @@
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Hojas de estilo en cascada -->
+        <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
         <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}">
