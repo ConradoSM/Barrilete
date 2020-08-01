@@ -31,7 +31,6 @@
         <meta name="app" id="app">
         <!-- Scripts js -->
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/home-scripts.js') }}"></script>
         <!-- Hojas de estilo en cascada -->
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -108,18 +107,18 @@
                 <div>
                     <h2>Ingreso al sistema</h2>
                     @guest
-                    <p class="footerCopyright"><a href="{{ route('login') }}">Login</a></p>
-                    <p class="footerCopyright"><a href="{{ route('register') }}">Registro</a></p>
-                    <p class="footerCopyright"><a href="{{ route('password.request') }}">Olvidé Mi Contraseña</a></p>
+                    <p><a href="{{ route('login') }}">Login</a></p>
+                    <p><a href="{{ route('register') }}">Registro</a></p>
+                    <p><a href="{{ route('password.request') }}">Olvidé Mi Contraseña</a></p>
                     @else
-                    <p class="footerCopyright"><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
-                    <p class="footerCopyright"><a href="{{ route('logout') }}">Salir</a></p>
+                    <p><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
+                    <p><a href="{{ route('logout') }}">Salir</a></p>
                     @endguest
                 </div>
                 <div>
                     <h2>Institucional</h2>
-                    <p class="footerCopyright">© 2020 todos los derechos reservados - v2.5.1</p>
-                    <p class="footerCopyright"><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></p>
+                    <p>© 2020 todos los derechos reservados - v2.5.1</p>
+                    <p><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></p>
                 </div>
                 <div class="footerSocialContainer">
                     <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
@@ -127,5 +126,6 @@
                 </div>
             </div>
         </footer>
+        <script type="text/javascript" src="{{ asset('js/home-scripts.js') }}"></script>
     </body>
 </html>

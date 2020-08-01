@@ -17,8 +17,8 @@ $(document).ready(function() {
         }).done(function(data) {
             if (!data.error) {
                 const like = $('img#like'), dislike = $('img#dislike');
-                like.get(0).nextSibling.nodeValue = ' ' + data.likes;
-                dislike.get(0).nextSibling.nodeValue = ' ' + data.dislikes;
+                like.next().text(data.likes);
+                dislike.next().text(data.dislikes);
                 if (data.reaction === '1') {
                     like.attr('src', reactionActive);
                     dislike.attr('src', reactionInactive);

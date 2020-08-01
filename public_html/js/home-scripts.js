@@ -68,23 +68,19 @@ $(document).ready(function() {
     const userBar = $('div#user-bar img'),
           divUser = $('div#user-menu');
     userBar.on('click', function() {
-        const img = $(this),
-              link = $(this).attr('data-bind');
+        const img = $(this), link = $(this).attr('data-bind');
         if (link) {
-            $.get(link, {
-                beforeSend: function() {
-                    if (divUser.is(':visible')) {
-                        divUser.slideUp('fast');
-                    }
-                }
-            }).done(function(data) {
+            if (divUser.is(':visible')) {
+                divUser.slideUp('fast');
+            }
+            $.get(link).done(function(data) {
                 if (img.attr('alt') === 'Notificaciones') {
-                    $('div#comments').hide(function() {
+                    $('div#comments').hide(0,function() {
                         $(this).find('span').text(0);
                     });
                 }
                 if(img.attr('alt') === 'Mensajes') {
-                    $('div#messages').hide(function() {
+                    $('div#messages').hide(0,function() {
                         $(this).find('span').text(0);
                     });
                 }

@@ -62,7 +62,7 @@
                     </li>
                 </ul>
             </aside>
-            <div id="loader"><img src="{{ asset('img/loader.gif') }}" /></div>
+            <div id="loader"><img src="{{ asset('svg/loader.svg') }}" /></div>
             <div id="user-content"></div>
         </section>
         <footer>

@@ -1,72 +1,82 @@
 /**-- Article --**/
-div.pubContainer {
+div.pub-container {
     display: flex;
     flex-flow: row wrap;
 }
 article.pub {
-    width: 840px;
+    width: 70%;
     padding-right: 30px;
     z-index: 1;
 }
-article.pub blockquote, article.pub-preview blockquote {
-    background: #f2f3f4;
-    border-left: 10px solid #ccc;
-    margin: 1.5em 10px;
-    padding: 0.5em 10px;
+article.pub p {
+    line-height: 35px;
+}
+article.pub.gallery {
+    width: 100%;
+    padding-right: 0;
+}
+blockquote {
+    border-left: 5px solid #ccc;
+    margin: 2em 10px;
+    padding: 20px;
     quotes: "\201C""\201D";
 }
-article.pub blockquote:before, article.pub-preview blockquote:before {
+blockquote:before {
     color: #ccc;
     content: open-quote;
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
+    line-height: 0;
+    font-size: 3em;
+    margin-right: 10px;
+    vertical-align: -15px;
 }
-article.pub blockquote p, article.pub-preview blockquote p {
+blockquote:after {
+    color: #ccc;
+    content: close-quote;
+    line-height: 0;
+    font-size: 3em;
+    margin-left: 10px;
+    vertical-align: -15px;
+}
+blockquote p {
     display: inline;
-    color: #808b96;
+    color: #808B96;
 }
-article.pub ul, article.pub-preview ul, section.comments {
+article.pub h1 {
+    margin-top: 0;
+}
+article.pub ul {
     list-style: none;
     margin: 0;
+    padding-left: 20px;
 }
-article.pub ul li, article.pub-preview ul li {
-    padding-left: 10px;
-    font-size: 1.9em;
-    margin: 30px 0 30px 0;
+article.pub ul li {
+    font-size: 1.5em;
+    margin: 10px 0 10px 0;
 }
-article.pub ul li:before, article.pub-preview ul li:before {
-    content: "▪";
-    padding-right: 8px;
-    color: #566573;
+article.pub ul li:before {
+    content: "•";
+    padding-right: 10px;
 }
-article.pub_galeria, article.pub-preview {
+article.pub img {
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
 }
-article.pub img, article.pub-preview img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
-article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
+div.info {
     display: flex;
     align-items: center;
-    font-size: 1.3em;
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-transform: capitalize;
-    color: #000;
     opacity: 0.7;
-    line-height: normal;
+    margin-bottom: 30px;
 }
-article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-preview img.svg, article.pub-preview p.info img.svg {
-    width: 1.2em !important;
-    margin-left: 20px;
-    margin-right: 5px;
-    margin-bottom: 0;
+div.info span {
+    font-size: 1.5em;
+    color: #000;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+img.icon {
+    height: 1.5em !important;
+    width: auto !important;
+    margin-bottom: 0 !important;
 }
 img.article-reaction {
     cursor: pointer;
@@ -78,55 +88,8 @@ img.dislike {
     transform: rotate(180deg) scaleX(-1);
     margin-top: 5px;
 }
-article.pub p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child, article.pub-preview p.info img.svg:first-child {
-    margin-left: 0;
-}
-article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 3.2em;
-    line-height: 55px;
-    margin: 0;
-    color: #283747;
-}
-article.pub h2, article.pub_galeria h2, article.pub-preview h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    line-height: 40px;
-    color: #283747;
-}
-article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-    margin-top: -20px;
-    line-height: 1.1em;
-    color: #566573;
-}
-article.pub p, article.pub_galeria p, article.pub-preview p {
-    margin-top: 30px;
-    font-size: 1.7em;
-    line-height: 40px;
-}
-article.pub p:last-child, article.pub_galeria p:last-child, article.pub-preview p:last-child {
-    margin-bottom: 30px;
-}
-article.pub p a, article.pub_galeria p a, article.pub-preview p a {
-    font-size: 0.95em;
-}
-article.pub p.copete, article.pub_galeria p.copete, article.pub-preview p.copete {
-    font-size: 2em;
-    margin-bottom: 30px;
-    margin-top: 15px;
-}
-div.social {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
-}
-div.fb-share-button {
-    margin-right: 10px;
-}
 /**-- Photos --**/
-article.fotos {
+article.photos {
     position: relative;
     width: 100%;
     height: auto;
@@ -136,11 +99,11 @@ article.fotos {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-article.fotos img {
+article.photos img {
     width: 100%;
     height: auto;
 }
-article.fotos p {
+article.photos p {
     position: relative;
     display: block;
     padding: 10px;
@@ -149,11 +112,11 @@ article.fotos p {
     font-size: 1.5em;
 }
 /**-- Aside Pubs --**/
-aside.pubSeccion {
+aside.pub-aside {
     width: 30%;
     height: auto;
 }
-aside.pubSeccion article.pubArticle, article.morePolls {
+article.pub-article {
     position: relative;
     width: 100%;
     height: auto;
@@ -162,35 +125,32 @@ aside.pubSeccion article.pubArticle, article.morePolls {
     box-shadow: 0 0 10px 0 #5f6a6a;
     border-radius: 0 0 5px 5px;
     cursor: pointer;
+    transition: 0.2s;
 }
-aside.pubSeccion article.pubArticle:hover, article.morePolls:hover {
+article.pub-article:hover {
     background-color: #f2f3f4;
     opacity: 0.8;
     box-shadow: 0 0 10px 0 #000;
-    transition: 0.3s;
 }
-aside.pubSeccion article.pubArticle:last-child {
+article.pub-article:last-child {
     margin-bottom: 0;
 }
-aside.pubSeccion article.pubArticle img {
+article.pub-article img {
     width: 100%;
     height: 225px;
     z-index: 0;
+    margin-bottom: 20px;
 }
-article.morePolls p {
-    display: block;
-    color: #424949;
-    font-size: 1em;
-    margin: 20px 0 -10px 20px;
-}
-aside.pubSeccion article.pubArticle a, article.morePolls a {
+article.pub-article a {
     display: block;
     font-size: 1.5em;
     line-height: 30px;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 }
-aside.pubSeccion article.pubArticle a:hover, article.morePolls a:hover {
-    text-decoration: none;
+article.pub-article p {
+    font-size: 1em;
+    margin: 0;
+    padding: 20px 20px 0 20px;
 }
 /**-- Search Results --**/
 div.searchResultContainer {
@@ -284,19 +244,30 @@ article.pollOptions p.totalVotes {
     margin: 0;
 }
 /**-- Comments --**/
-h2#comments-count span {
+span#comments-count {
     background: #283747;
     border-radius: 5px;
     padding: 0 10px;
     color: #fff;
 }
+div#comment {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    min-height: 50px;
+    margin-bottom: 20px;
+}
+img.loader {
+    display: none;
+    position: absolute;
+    width: 100px !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
 section.comments {
     position: relative;
-}
-div#loader img.loader {
-    display: none;
-    width: 20px !important;
-    height: 20px !important;
 }
 div.comment-container {
     position: relative;
@@ -351,9 +322,11 @@ div.comment-container p.comment img.action:hover {
     opacity: 0.8;
 }
 img.delete {
+    display: none;
     top: 15px;
 }
 img.edit {
+    display: none;
     top: 35px;
 }
 div.comment-container p.actions {
@@ -366,14 +339,15 @@ div.comment-container p.actions {
     padding-left: 65px;
     line-height: 0;
 }
-div.comment-container p.actions a {
+a.reaction, a.edit {
     color: #808B96;
     cursor: pointer;
 }
-div.comment-container p.actions a:hover {
+a.reaction:hover, a.edit:hover {
     color: #566573 !important;
+    text-decoration: underline;
 }
-div.comment-container p.actions a.reaction-active {
+a.reaction.active {
     font-weight: bold;
     color: #21618C !important;
     transition: none;
@@ -381,9 +355,9 @@ div.comment-container p.actions a.reaction-active {
 /**-- Pagination --**/
 ul.pagination {
     display: flex;
-    padding: 0;
-    margin: 0 0 20px 0 !important;
+    margin: 20px 0 0 0 !important;
     list-style: none;
+    padding-left: 0 !important;
 }
 a.page-link {
     border-radius: 3px;

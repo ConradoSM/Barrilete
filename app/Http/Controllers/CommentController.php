@@ -42,9 +42,10 @@ class CommentController extends Controller
             }
 
             return response()->json([
-                'view' => $this->get($request->article_id, $request->section_id)->render(),
+                'view' => $this->get($request->article_id, $request->section_id, $request->current_page)->render(),
                 'count' => Comments::articles($request->article_id, $request->section_id)->count(),
-                'success' => $request->parent_id ? 'Tu respuesta se ha publicado.' : 'El comentario se ha publicado.'
+                'success' => $request->parent_id ? 'Tu respuesta se ha publicado.' : 'El comentario se ha publicado.',
+                'comment_id' => $comment->id
             ])->header('Content-Type', 'application/json');
         }
 
@@ -55,13 +56,14 @@ class CommentController extends Controller
      * Get Comments
      * @param $id
      * @param $section_id
+     * @param null $page
      * @return Factory|View
      */
-    public function get($id, $section_id)
+    public function get($id, $section_id, $page = null)
     {
         $comments = Comments::articles($id, $section_id)
             ->orderBy('id','DESC')
-            ->paginate(10)
+            ->paginate(5, ['*'], 'page', $page)
             ->onEachSide(1)
             ->setPath(route('getComments', ['article_id' => $id, 'section_id' => $section_id]));
 
@@ -88,7 +90,8 @@ class CommentController extends Controller
                 return response()->json([
                     'view' => $this->get($request->article_id, $request->section_id)->render(),
                     'count' => Comments::articles($request->article_id, $request->section_id)->count(),
-                    'success' => 'El comentario se ha borrado.'
+                    'success' => 'El comentario se ha borrado.',
+                    'comment_id' => null
                 ])->header('Content-Type', 'application/json');
             }
 
@@ -113,9 +116,10 @@ class CommentController extends Controller
                 $comment->save();
 
                 return response()->json([
-                    'view' => $this->get($request->article_id, $request->section_id)->render(),
+                    'view' => $this->get($request->article_id, $request->section_id, $request->current_page)->render(),
                     'count' => Comments::articles($request->article_id, $request->section_id)->count(),
-                    'success' => 'El comentario se ha actualizado.'
+                    'success' => 'El comentario se ha actualizado.',
+                    'comment_id' => $comment->id
                 ])->header('Content-Type', 'application/json');
             }
 

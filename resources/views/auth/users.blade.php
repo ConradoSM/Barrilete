@@ -39,7 +39,7 @@
         </ul>
     </div>
     <div id="users-content">
-        <img id="loader" src="{{asset('img/loader.gif')}}" alt="Cargando..." title="Cargando..." />
+        <img id="loader" src="{{asset('svg/loader.svg')}}" alt="Cargando..." title="Cargando..." />
         <div id="container"></div>
     </div>
     <script>
