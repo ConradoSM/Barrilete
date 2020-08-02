@@ -12,9 +12,10 @@
 <meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pub-container">
+    <h1 class="article-main-title">{{ $article -> title }}</h1>
+    <p class="article-main-description">{{ $article->article_desc }}</p>
+    <hr />
     <article class="pub">
-        <h1>{{ $article -> title }}</h1>
-        <p>{{ $article->article_desc }}</p>
         <div class="info">
             <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
             <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>
@@ -78,13 +79,16 @@
         <!-- End Comments -->
     </article>
     <aside class="pub-aside">
-        @forelse ($morePolls as $more)
-        <article class="pub-article">
-            <p>{{ucfirst($more->created_at->diffForHumans())}}</p>
-            <a href="{{route('poll',['id'=>$more->id,'title'=>str_slug($more->title,'-')])}}">{{$more->title}}</a>
-        </article>
-        @empty
-        @endforelse
+        @if($morePolls->first())
+            <h2>Más encuestas</h2>
+            @forelse ($morePolls as $more)
+            <article class="pub-article">
+                <p>{{ucfirst($more->created_at->diffForHumans())}}</p>
+                <a href="{{route('poll',['id'=>$more->id,'title'=>str_slug($more->title,'-')])}}">{{$more->title}}</a>
+            </article>
+            @empty
+            @endforelse
+        @endif
     </aside>
 </div>
 <script type="text/javascript" src="{{asset('js/article-reaction.js')}}"></script>

@@ -4,36 +4,34 @@
 @section('keywords', 'secciones, noticias, economía, editoriales, internacionales, galerías de fotos, tecnología, política, sociedad, encuestas, deportes, cultura')
 @section('content')
     @forelse ($articlesIndex as $article)
-        <article class="pubIndex translate">
-            <div class="seccion" onclick="location.href ='{{ route('section',['seccion'=>str_slug($article->section->name)]) }}'">{{ $article->section->name }}</div>
+        <article class="pubIndex">
+            <span class="section" onclick="location.href ='{{ route('section',['name'=>str_slug($article->section->name)]) }}'">{{ $article->section->name }}</span>
             @if ($article->video == 1)
-                <img src="{{ asset('img/play-button.png') }}" class="video" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
+                <img class="video" alt="video" src="{{ asset('img/play-button.png') }}" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
             @endif
-            <img src="{{ asset('img/before-load.png') }}" data-src="{{$loop->iteration == 1 ? asset('img/articles/images/'.$article->photo) : asset('img/articles/.thumbs/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
-            <a href="{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}">{{ $article->title }}</a>
-            <p>{{ ucfirst($article->created_at->diffForHumans()) }}</p>
+            <img class="lazy article-image" src="{{ asset('img/before-load.png') }}" data-src="{{$loop->iteration == 1 ? asset('img/articles/images/'.$article->photo) : asset('img/articles/.thumbs/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
+            <a class="article-link" href="{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}">{{ $article->title }}</a>
+            <span class="article-date">{{ ucfirst($article->created_at->diffForHumans()) }}</span>
         </article>
     @empty
         <h2>No hay artículos para mostrar</h2>
     @endforelse
     @if($galleryIndex)
-        <div class="galeriasContainerIndex translate">
-            <img src="{{ asset('svg/photo-camera.svg') }}" title="Galería de fotos" class="camera" />
-            <article class="galeriaIndex">
-                <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/.thumbs/'.$galleryIndex->photos->first()->photo) }}" title="{{ $galleryIndex->title }}" alt="{{ $galleryIndex->title }}" class="lazy"/>
-                <a href="{{ route('gallery',['id' => $galleryIndex->id, 'title' => str_slug($galleryIndex->title,'-')]) }}">{{ $galleryIndex->title }}</a>
-            </article>
-        </div>
+        <article class="gallery-container">
+            <img class="camera" title="Galería de fotos" alt="galeria" src="{{ asset('svg/photo-camera.svg') }}" />
+            <img class="lazy main-photo" src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/galleries/.thumbs/'.$galleryIndex->photos->first()->photo) }}" title="{{ $galleryIndex->title }}" alt="{{ $galleryIndex->title }}"/>
+            <a class="gallery-link" href="{{ route('gallery',['id' => $galleryIndex->id, 'title' => str_slug($galleryIndex->title,'-')]) }}">{{ $galleryIndex->title }}</a>
+        </article>
     @endif
     @if($pollsIndex)
-        <div class="pollsContainerIndex">
-            <h1>Últimas encuestas</h1>
+        <article class="polls-container">
+            <h2>Últimas encuestas</h2>
             @foreach ($pollsIndex as $pollIndex)
-            <article class="pollIndex">
-                <p>{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} {{ $pollIndex->option->sum('votes') == 1 ? 'voto' : 'votos'}}</p>
-                <a href="{{ route('poll',['id' => $pollIndex->id, 'title' => str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
-            </article>
+            <p class="poll-index">
+                <span class="poll-info">{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} {{ $pollIndex->option->sum('votes') == 1 ? 'voto' : 'votos'}}</span>
+                <a class="poll-link" href="{{ route('poll',['id' => $pollIndex->id, 'title' => str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
+            </p>
             @endforeach
-        </div>
+        </article>
     @endif
 @endsection

@@ -13,9 +13,10 @@
 <meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pub-container">
+    <h1 class="article-main-title">{{ $article -> title }}</h1>
+    <p class="article-main-description">{{ $article->article_desc }}</p>
+    <hr />
     <article class="pub">
-        <h1>{{ $article -> title }}</h1>
-        <p>{{ $article->article_desc }}</p>
         <div class="info">
             <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
             <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>
@@ -49,16 +50,18 @@
         <!-- End Comments -->
     </article>
     <aside class="pub-aside">
-        @forelse ($moreArticles as $more)
-        <article class="pub-article">
-            @if ($more->video == 1)
-                <img src="{{ asset('img/play-button.png') }}" class="video" onclick="location.href='{{ route('article',['id'=>$more->id,'section'=>str_slug($more->section->name),'title'=>str_slug($more->title,'-')]) }}'" />
-            @endif
-            <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/.thumbs/'.$more->photo) }}" title="{{ $more->title }}" alt="{{ $more->title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more->id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}'" />
-            <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}">{{ $more->title }}</a>
-        </article>
-        @empty
-        @endforelse
+        @if($moreArticles->first())
+            <h2>Más de {{$article->section->name}}</h2>
+            @foreach ($moreArticles as $more)
+            <article class="pub-article">
+                @if ($more->video == 1)
+                    <img alt="video" class="video" src="{{ asset('img/play-button.png') }}" onclick="location.href='{{ route('article',['id'=>$more->id,'section'=>str_slug($more->section->name),'title'=>str_slug($more->title,'-')]) }}'" />
+                @endif
+                <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/.thumbs/'.$more->photo) }}" title="{{ $more->title }}" alt="{{ $more->title }}" class="lazy" onclick="location.href='{{ route('article', ['id' => $more->id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}'" />
+                <a href="{{ route('article', ['id' => $more -> id, 'section' => str_slug($article->section->name), 'title' => str_slug($more->title, '-')]) }}">{{ $more->title }}</a>
+            </article>
+            @endforeach
+        @endif
     </aside>
 </div>
 <script type="text/javascript" src="{{asset('js/article-reaction.js')}}"></script>

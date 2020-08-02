@@ -11,21 +11,22 @@ img.lazy {
 /**-- Main Pubs --**/
 article.pubIndex {
     position: relative;
-    width: 386.66666667px;
-    height: 400px;
+    width: 32%;
+    height: 450px;
     margin-bottom: 30px;
     overflow: hidden;
-    box-shadow: 0 0 10px 0 #5f6a6a;
+    box-shadow: 0 0 3px 0 #85929E;
+    background-color: #fff;
     border-radius: 0 0 5px 5px;
     cursor: pointer;
+    transition: 0.2s;
+    opacity: 0.9;
 }
 article.pubIndex:hover {
-    background-color: #f2f3f4;
-    opacity: 0.8;
-    box-shadow: 0 0 10px 0 #000;
-    transition: 0.3s;
+    box-shadow: 0 0 3px 0 #34495e;
+    opacity: 1;
 }
-article.pubIndex div.seccion {
+article.pubIndex span.section {
     position: absolute;
     display: block;
     left: 20px;
@@ -34,48 +35,51 @@ article.pubIndex div.seccion {
     height: auto;
     padding: 7px 15px 5px 15px;
     color: #fff;
-    background-color: rgba(52,73,94,0.7);
+    background-color: #154360;
     font-size: 1em;
     text-transform: uppercase;
     z-index: 1;
     border-radius: 3px;
+    border: 1px solid #154360;
+    transition: 0.2s;
 }
-article.pubIndex div.seccion:hover {
+article.pubIndex span.section:hover {
     text-decoration: none;
     background-color: #f2f3f4;
-    color: #2e4053;
-    transition: 0.3s;
+    color: #154360;
 }
 article.pubIndex img.video {
     position: absolute;
     width: 50px;
     height: 50px;
-    left: 168px;
-    top: 100px;
+    left: 50%;
+    top: 125px;
+    transform: translate(-50%, -50%);
     box-shadow: 0 0 50px 0 rgba(255,255,255,0.2);
     border-radius: 50%;
     z-index: 1;
 }
-article.pubIndex img {
+article.pubIndex img.article-image {
     width: 100%;
     height: 250px;
     z-index: 0;
 }
-article.pubIndex a {
+article.pubIndex a.article-link {
     display: block;
     height: auto;
     font-size: 1.5em;
-    line-height: 30px;
     padding: 20px 20px 0 20px;
 }
-article.pubIndex p {
+article.pubIndex span.article-date {
     position: absolute;
-    right: 20px;
+    right: 0;
     bottom: 0;
-    font-size: 1.2em;
+    padding: 10px;
+    font-size: 1.1em;
+    color: #616161 ;
 }
 /**-- Galleries and Polls --**/
-div.galeriasContainerIndex {
+article.gallery-container {
     position: relative;
     display: flex;
     flex-flow: column wrap;
@@ -83,23 +87,21 @@ div.galeriasContainerIndex {
     height: auto;
     border-radius: 5px;
     background-color: #f2f3f4;
-    box-shadow: 0 0 10px 0 #5f6a6a;
+    box-shadow: 0 0 3px 0 #85929E;
+    overflow: hidden;
 }
-div.galeriasContainerIndex img.camera {
+article.gallery-container img.camera {
     position: absolute;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
     z-index: 1;
     filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5));
     opacity: 0.7;
 }
-div.pollsContainerIndex h1 {
-    font-size: 2em;
-    margin-top: 20px;
-}
-div.pollsContainerIndex {
+article.polls-container {
     position: relative;
     display: flex;
     flex-flow: column wrap;
@@ -108,23 +110,14 @@ div.pollsContainerIndex {
     padding: 0 20px 20px 20px;
     border-radius: 5px;
     background-color: #f2f3f4;
-    box-shadow: 0 0 10px 0 #5f6a6a;
+    box-shadow: 0 0 3px 0 #85929E;
 }
 /**-- Gallery Photo Index --**/
-article.galeriaIndex {
-    position: relative;
-    display: flex;
-    flex-flow: row wrap;
-    min-height: 400px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-article.galeriaIndex img {
+article.gallery-container img.main-photo {
     width: 100%;
     height: 100%;
 }
-article.galeriaIndex a {
+article.gallery-container a.gallery-link {
     position: absolute;
     display: block;
     width: 660px;
@@ -133,35 +126,35 @@ article.galeriaIndex a {
     left: 20px;
     text-decoration: none;
     font-size: 2em;
-    line-height: 1.2em;
     padding: 20px;
     background-color: rgba(242,243,244,0.8);
     border-radius: 3px;
 }
-article.galeriaIndex a:hover {
+article.gallery-container a.gallery-link:hover {
     background-color: #fff;
 }
 /**-- Poll Index --**/
-article.pollIndex {
+p.poll-index {
     position: relative;
     align-self: flex-start;
     width: 100%;
-    height: 140px;
+    height: auto;
     padding: 20px;
+    transition: 0.2s;
+    margin: 0;
 }
-article.pollIndex:hover {
+p.poll-index:hover {
     background-color: #e5e7e9;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
 }
-article.pollIndex p {
-    font-size: 1em;
-    margin: 0 0 10px 0;
+p.poll-index span.poll-info {
+    color: #5D6D7E;
+    font-size: 0.7em;
 }
-article.pollIndex a {
+p.poll-index a.poll-link {
+    margin-top: 10px;
     display: block;
-    font-size: 1.5em;
-    line-height: 1.2em;
+    font-size: 1.2em;
 }
 @media (max-width: 575.98px) {
     /**-- Main Pubs --**/
@@ -415,27 +408,21 @@ article.pollIndex a {
         height: 650px;
         margin-right: 30px;
         margin-bottom: 30px;
-        box-shadow: 0 0 10px 0 #5f6a6a;
         border-radius: 0 0 0 0;
     }
-    article.pubIndex:nth-child(1):hover {
-        box-shadow: 0 0 10px 0 #000;
-        transition: 0.3s;
-    }
-    article.pubIndex:nth-child(1) div.seccion {
+    article.pubIndex:nth-child(1) span.section {
         font-size: 1.5em;
     }
     article.pubIndex:nth-child(1) img.video {
         width: 100px;
         height: auto;
-        top: 250px;
-        left: 250px;
+        top: 50%;
     }
-    article.pubIndex:nth-child(1) img {
+    article.pubIndex:nth-child(1) img.article-image {
         width: auto;
         height: 650px;
     }
-    article.pubIndex:nth-child(1) a {
+    article.pubIndex:nth-child(1) a.article-link {
         position: absolute;
         display: block;
         width: 560px;
@@ -444,41 +431,30 @@ article.pollIndex a {
         left: 20px;
         text-decoration: none;
         font-size: 2em;
-        line-height: 1.2em;
         padding: 20px;
         background-color: rgba(242,243,244,0.8);
         border-radius: 3px;
     }
-    article.pubIndex:nth-child(1) a:hover, article.pubIndex:nth-child(2) a:hover, article.pubIndex:nth-child(3) a:hover {
-        background-color: #fff;
-        transition: 0.3s;
-    }
-    article.pubIndex:nth-child(1) p, article.pubIndex:nth-child(2) p, article.pubIndex:nth-child(3) p {
+    article.pubIndex:nth-child(1) span.article-date, article.pubIndex:nth-child(2) span.article-date, article.pubIndex:nth-child(3) span.article-date {
         display: none;
     }
     /**-- 2° Article --**/
-    article.pubIndex:nth-child(2){
+    article.pubIndex:nth-child(2) {
         width: 570px;
         height: 310px;
         overflow: hidden;
-        box-shadow: 0 0 10px 0 #5f6a6a;
         border-radius: 0 0 0 0;
     }
-    article.pubIndex:nth-child(2):hover, article.pubIndex:nth-child(3):hover{
-        box-shadow: 0 0 10px 0 #000;
-        transition: 0.3s;
-    }
-    article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video{
+    article.pubIndex:nth-child(2) img.video, article.pubIndex:nth-child(3) img.video {
         width: 50px;
         height: auto;
         top: 100px;
-        left: 260px;
     }
-    article.pubIndex:nth-child(2) img, article.pubIndex:nth-child(3) img{
+    article.pubIndex:nth-child(2) img.article-image, article.pubIndex:nth-child(3) img.article-image {
         width: 100%;
         height: 310px;
     }
-    article.pubIndex:nth-child(2) a, article.pubIndex:nth-child(3) a{
+    article.pubIndex:nth-child(2) a.article-link, article.pubIndex:nth-child(3) a.article-link {
         position: absolute;
         display: block;
         width: 530px;
@@ -487,7 +463,6 @@ article.pollIndex a {
         left: 20px;
         text-decoration: none;
         font-size: 1.5em;
-        line-height: 1.2em;
         padding: 20px;
         background-color: rgba(242,243,244,0.8);
         border-radius: 3px;
@@ -500,7 +475,6 @@ article.pollIndex a {
         width: 570px;
         height: 310px;
         overflow: hidden;
-        box-shadow: 0 0 10px 0 #5f6a6a;
         border-radius: 0 0 0 0;
     }
     /**-- 7° y 8° Article --**/
@@ -510,14 +484,13 @@ article.pollIndex a {
         width: 780px;
         height: 220px;
         overflow: hidden;
-        box-shadow: 0 0 10px 0 #5f6a6a;
         border-radius: 0 0 0 0;
     }
-    article.pubIndex:nth-child(10) img, article.pubIndex:nth-child(11) img {
+    article.pubIndex:nth-child(10) img.article-image, article.pubIndex:nth-child(11) img.article-image {
         width: 400px;
         height: 220px;
     }
-    article.pubIndex:nth-child(10) a, article.pubIndex:nth-child(11) a {
+    article.pubIndex:nth-child(10) a.article-link, article.pubIndex:nth-child(11) a.article-link {
         width: 380px;
         height: 220px;
         padding-top: 60px;
@@ -525,10 +498,10 @@ article.pollIndex a {
     article.pubIndex:nth-child(10) img.video, article.pubIndex:nth-child(11) img.video {
         width: 50px;
         height: 50px;
-        left: 175px;
-        top: 85px;
+        top: 50%;
+        left: 200px;
     }
-    article.pubIndex:nth-child(10) div.seccion, article.pubIndex:nth-child(11) div.seccion {
+    article.pubIndex:nth-child(10) div.section, article.pubIndex:nth-child(11) div.section {
         left: 420px;
     }
     /**-- 9° Article --**/
@@ -537,21 +510,19 @@ article.pollIndex a {
         width: 400px;
         height: 471px;
         overflow: hidden;
-        box-shadow: 0 0 10px 0 #5f6a6a;
         border-radius: 0 0 0 0;
     }
-    article.pubIndex:nth-child(12) img {
+    article.pubIndex:nth-child(12) img.article-image {
         width: 100%;
         height: 300px;
     }
-    article.pubIndex:nth-child(12) a {
+    article.pubIndex:nth-child(12) a.article-link {
         width: 100%;
         height: 171px;
     }
     article.pubIndex:nth-child(12) img.video {
         width: 50px;
         height: auto;
-        top: 130px;
-        left: 180px;
+        top: 150px;
     }
 }

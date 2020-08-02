@@ -14,8 +14,9 @@
 @section('content')
 <div class="pub-container">
 <article class="pub gallery">
-    <h1>{{ $article -> title }}</h1>
-    <p>{{ $article->article_desc }}</p>
+    <h1 class="article-main-title">{{ $article -> title }}</h1>
+    <p class="article-main-description">{{ $article->article_desc }}</p>
+    <hr />
     <div class="info">
         <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
         <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>

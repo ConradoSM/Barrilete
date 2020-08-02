@@ -23,17 +23,17 @@ $(document).ready(function() {
     $(window).scroll(function () {
         if ($(window).scrollTop() >= 95) {
             $('header').addClass('fixed');
+            $('div#header-container').css('padding','20px 0 20px 0');
             if ($(window).width() > 991.98) {
-                $('.logo').addClass('small');
-                $('div#nav-container').slideUp('fast', function () {
+                $('div#nav-container').slideUp('fast', function() {
                     $('div.menu-btn-block').removeClass('active');
                 });
                 $('a#menu-btn').removeAttr('class');
             }
         } else {
             $('header').removeAttr('class');
+            $('div#header-container').css('padding','30px 0 20px 0');
             if ($(window).width() > 991.98) {
-                $('.logo').removeClass('small');
                 $('div#nav-container').slideDown('fast', function () {
                     $('div.menu-btn-block').addClass('active');
                 });

@@ -89,6 +89,7 @@
             </div>
             <!-- DIV SECTION CONTAINER -->
             <div id="nav-container">
+                <hr />
                 <nav>
                     <ul>
                         @forelse ($sections as $section)
@@ -104,7 +105,14 @@
         </section>
         <footer>
             <div id="footer-container">
-                <div>
+                <section>
+                    <h2>Categorías</h2>
+                    @forelse ($sections as $section)
+                        <p><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ ucfirst($section->name) }}</a></p>
+                    @empty
+                    @endforelse
+                </section>
+                <section>
                     <h2>Ingreso al sistema</h2>
                     @guest
                     <p><a href="{{ route('login') }}">Login</a></p>
@@ -114,16 +122,22 @@
                     <p><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
                     <p><a href="{{ route('logout') }}">Salir</a></p>
                     @endguest
-                </div>
-                <div>
-                    <h2>Institucional</h2>
-                    <p>© 2020 todos los derechos reservados - v2.5.1</p>
+                </section>
+                <section>
+                    <h2>Acerca de</h2>
+                    <p>© 2020 todos los derechos reservados - v2.6</p>
                     <p><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></p>
-                </div>
-                <div class="footerSocialContainer">
-                    <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
-                    <a href="https://www.twitter.com/Barrilete_Info/" target="_blank"><img title="Barrilete en Twitter" src="{{ asset('svg/twitter.svg') }}" /></a>
-                </div>
+                </section>
+                <section>
+                    <h2>Redes Sociales</h2>
+                    <p>
+                        <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img alt="Facebook" class="social" title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
+                        <a href="https://www.twitter.com/Barrilete_Info/" target="_blank"><img alt="Facebook" class="social" title="Barrilete en Twitter" src="{{ asset('svg/twitter.svg') }}" /></a>
+                        <img alt="Instagram" class="social" title="Barrilete en Instagram" src="{{ asset('svg/instagram.svg') }}" />
+                        <img alt="Instagram" class="social" title="Barrilete en Instagram" src="{{ asset('svg/youtube.svg') }}" />
+                    </p>
+                </section>
+                <img class="logo-footer" alt="Barrilete" src="{{ asset('svg/logo_barrilete.svg') }}" />
             </div>
         </footer>
         <script type="text/javascript" src="{{ asset('js/home-scripts.js') }}"></script>

@@ -10,8 +10,7 @@
         <li>La página web solicitada no está disponible temporalmente, pero puede intentarlo de nuevo más tarde.</li>
         <li>Se eliminó definitivamente la página web.</li>
     </ul>
-    <br />
-    <a href="{{ route('default') }}">Volver al inicio</a>
+    <p><a href="{{ route('default') }}">Volver al inicio</a></p>
 </article>
-<img class="errorIMG" src="{{asset('img/error.gif')}}" />
+<img alt="error-404" class="errorIMG" src="{{asset('img/error.gif')}}" />
 @endsection
