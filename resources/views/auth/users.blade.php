@@ -1,6 +1,5 @@
 @extends('layouts.barrilete')
 @section('title', 'Miembros')
-<meta name="_token" content="{{ csrf_token() }}">
 @section('content')
     <div id="users-menu">
         <div class="user-info">
@@ -39,32 +38,8 @@
         </ul>
     </div>
     <div id="users-content">
-        <img id="loader" src="{{asset('svg/loader.svg')}}" alt="Cargando..." title="Cargando..." />
+        <img id="loader" class="loader" src="{{asset('svg/loader.svg')}}" alt="Cargando..." title="Cargando..." />
         <div id="container"></div>
     </div>
-    <script>
-        if (window.location.search) {
-            const url_string = window.location.href,
-                url = new URL(url_string),
-                loader = $('img#loader').show(),
-                container = $('div#container');
-            if (url.searchParams.get('conversation_id') && !isNaN(url.searchParams.get('conversation_id'))) {
-                $.get('/dashboard/myaccount/messages/message/' + url.searchParams.get('conversation_id'), {
-                    beforeSend: function () {
-                        $(document).scrollTop(0);
-                        loader.show();
-                    }
-                }).done(function(data) {
-                    container.html(data.view);
-                    if (data.status) {
-                        $('div#status').html('<p class="alert feedback-'+data.status+'">'+data.message+'</p>');
-                    }
-                }).fail(function(xhr) {
-                    container.html('<p class="alert feedback-error">' + xhr.statusText + '</p>');
-                }).always(function() {
-                    loader.hide();
-                });
-            }
-        }
-    </script>
+    <script type="text/javascript" src="{{ asset('js/dashboard-users.js') }}"></script>
 @endsection

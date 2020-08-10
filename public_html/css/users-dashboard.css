@@ -25,7 +25,7 @@ img.delete-message:hover {
 }
 div#users-menu {
     width: 25%;
-    background-color: #EBEDEF;
+    background-color: #eaecee;
     border-radius: 25px;
     padding-bottom: 25px;
 }
@@ -46,6 +46,7 @@ div.user-info img {
 }
 div.user-info p {
     font-size: 2em;
+    text-align: center;
 }
 div#users-menu ul.menu {
     margin: 0;
@@ -105,16 +106,6 @@ div#users-content {
     flex-flow: column;
     width: 75%;
     padding-left: 30px;
-}
-img#loader {
-    display: none;
-    position: absolute;
-    width: 120px;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
 }
 div#users {
     position: relative;
@@ -215,7 +206,7 @@ ul.messages {
     height: 400px;
     padding: 20px;
     margin: 0;
-    background-color: #F8F9F9;
+    background-color: #F2F3F4;
     border: 1px solid #E5E7E9;
     border-radius: 10px;
     overflow-x: hidden;
@@ -287,4 +278,24 @@ li#parent {
     margin-right: 0 !important;
     box-shadow: 0 0 0 2px #FFFFFF !important;
     border: 2px solid #3498DB;
+}
+@media (max-width: 575.98px) {
+    div#users-menu {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    div#users-content {
+        width: 100%;
+        min-height: 30px;
+        padding-left: 0;
+    }
+    p.user-title {
+        font-size: 2em;
+    }
+    p.user-title img {
+        height: 30px;
+    }
+    img.delete-message {
+        height: 30px;
+    }
 }

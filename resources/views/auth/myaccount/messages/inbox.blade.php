@@ -45,20 +45,18 @@
      */
     function ajaxCall(link) {
         const loader = $('img#loader'), container = $('div#container');
-        $.get(link, {
-            beforeSend: function () {
-                $(document).scrollTop(0);
-                container.hide();
-                loader.show();
-            }
-        }).done(function(data) {
+        container.hide();
+        loader.show();
+        $.get(link).done(function(data) {
             container.html(data.view);
         }).fail(function(xhr) {
             container.html('<p class="alert feedback-error">Error: ' + xhr.status + ' - ' + xhr.statusText + '</p>');
         }).always(function() {
-            container.show();
+            $('html, body').animate({
+                scrollTop: $('div#users-content').offset().top -250
+            });
             loader.hide();
+            container.show();
         });
     }
-
 </script>

@@ -4,10 +4,12 @@ div.pub-container {
     flex-flow: row wrap;
 }
 h1.article-main-title {
+    width: 100%;
     margin: 0;
     text-align: center;
 }
 p.article-main-description {
+    width: 100%;
     text-align: center;
     font-style: italic;
     line-height: 35px;
@@ -70,7 +72,34 @@ article.pub img {
     width: 100%;
     height: auto;
 }
+div.reactions-container {
+    position: relative;
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #d6dbdf;
+}
+div#reactions {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 20px;
+    bottom: -24px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 35px;
+    border: 2px solid #d6dbdf;
+}
+div#reactions span {
+    font-size: 1.5em;
+    margin: 0 20px 0 10px;
+    color: #34495E;
+}
+div#reactions span:last-child {
+    margin: 0 0 0 10px;
+}
 div.info {
+    position: relative;
     display: flex;
     align-items: center;
     opacity: 0.7;
@@ -89,9 +118,10 @@ img.icon {
 }
 img.article-reaction {
     cursor: pointer;
+    opacity: 0.8;
 }
 img.article-reaction:hover {
-    opacity: 0.8;
+    opacity: 1;
 }
 img.dislike {
     transform: rotate(180deg) scaleX(-1);
@@ -138,6 +168,9 @@ article.pub-article {
     transition: 0.2s;
     opacity: 0.9;
 }
+article.pub-article:last-child {
+    margin-bottom: 0;
+}
 article.pub-article:hover {
     opacity: 1;
     box-shadow: 0 0 3px 0 #34495e;
@@ -146,12 +179,11 @@ article.pub-article img {
     width: 100%;
     height: 200px;
     z-index: 0;
-    margin-bottom: 20px;
 }
 article.pub-article a {
     display: block;
     font-size: 1.5em;
-    padding: 0 20px 20px 20px;
+    padding: 20px;
 }
 article.pub-article p {
     font-size: 1em;
@@ -241,11 +273,20 @@ article.pollOptions h2 {
     color: #cb4335;
 }
 article.pollOptions p.options {
-    margin: 0 10px 0 0;
+    margin: 0 0 5px 0;
     font-size: 1.3em;
+    display: flex;
+    align-items: center;
+}
+article.pollOptions p.options span {
+    background-color: #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 0.9em;
+    margin-left: 10px;
 }
 article.pollOptions p.totalVotes {
-    font-size: 2em;
+    font-size: 1.5em;
     color: #000;
     margin: 0;
 }
@@ -262,15 +303,6 @@ div#comment {
     flex-flow: column;
     min-height: 50px;
     margin-bottom: 20px;
-}
-img.loader {
-    display: none;
-    position: absolute;
-    width: 100px !important;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
 }
 section.comments {
     position: relative;
@@ -303,6 +335,7 @@ div.comment-container p.comment {
     padding: 20px 40px 20px 20px;
     border-radius: 20px;
     box-shadow: inset 0 0 2px 0 #CACFD2;
+    word-wrap: break-word;
 }
 div.comment-container p.comment span.reactions {
     display: block;
@@ -412,261 +445,148 @@ img.loading {
 }
 @media (max-width: 575.98px) {
     /**-- Article View --**/
-    div.pubContainer {
-        flex-flow: column wrap;
+    div.pub-container {
         width: 100%;
-        height: auto;
     }
     article.pub {
         width: 100%;
-        height: auto;
         padding-right: 0;
-        overflow: hidden;
     }
-    article.pub ul li, article.pub-preview ul li {
-        font-size: 1.25em;
+    article.pub-article p {
+        padding: 10px 0 0 10px;
     }
-    article.pub p.info, article.pub_galeria p.info {
-        font-size: 0.9em;
-        line-height: 15px;
+    article.pub-article a {
+        font-size: 1.3em;
+        padding: 10px;
     }
-    article p.info img.svg, article.pub_galeria p.info img.svg {
-        vertical-align: top !important;
-        height: 1em !important;
-        margin-left: 10px !important;
-        margin-right: 0 !important;
-    }
-    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
-        margin-left: 0 !important;
-    }
-    article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-        font-size: 2.1em;
-        line-height: 35px;
-    }
-    article.pub h2, article.pub_galeria h2 {
-        font-size: 1.7em;
-        line-height: 30px;
-    }
-    article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-        font-size: 1em;
-    }
-
-    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
+    p.article-main-description {
         font-size: 1.2em;
-        line-height: 30px;
+        line-height: 25px;
     }
-    /**-- Photos --**/
-    article.fotos:last-child {
-        margin-bottom: 0;
-    }
-    article.fotos p:last-child {
-        font-size: 1em;
-    }
-    /**-- Aside Pubs --**/
-    aside.pubSeccion {
+    div.info {
         width: 100%;
-        height: auto;
-        margin-top: 30px;
+        margin: 30px 0 20px 0;
     }
-    aside.pubSeccion article.pubArticle img {
-        height: 250px;
+    img.icon {
+        height: 1em !important;
     }
-    /**-- Search Results --**/
-    div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 0.9em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchFilter a.active {
-        font-size: 0.9em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchInfo {
-        margin: 20px 0 20px 0;
-        font-size: 1.2em;
-    }
-    div.searchResultContainer article.searchResult p.searchDate {
+    div.info span {
         font-size: 1em;
-        margin-bottom: 5px;
+        margin-right: 10px;
+        margin-left: 3px;
     }
-    div.searchResultContainer article.searchResult a.searchTitle {
-        font-size: 2em;
-        line-height: 1em;
+    div#reactions {
+        padding: 5px 10px;
+        bottom: -17px;
+        right: 10px;
     }
-    div.searchResultContainer article.searchResult p.searchCopete {
+    div#reactions span {
+        font-size: 1.2em;
+        margin: 0 10px 0 5px;
+    }
+    div#reactions span:last-child {
+        margin: 0 0 0 5px;
+    }
+    article.pub p {
+        font-size: 1.2em;
+        line-height: 25px;
+    }
+    article.pub ul li {
         font-size: 1.2em;
     }
-    section.comments nav ul.pagination li.page-item a.page-link {
-        padding: 5px 10px 5px 10px;
+    aside.pub-aside {
+        width: 100%;
+        margin-top: 10px;
     }
-    section.comments nav ul.pagination li.disabled span.page-link {
-        padding: 5px 10px 5px 10px;
-    }
-    section.comments nav ul.pagination li.active span.page-link {
-        padding: 5px 10px 5px 10px;
-    }
-    section.comments nav ul.pagination li.page-item {
-        margin: 2px;
+    div.comment-container p.comment {
+        font-size: 1em !important;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
     /**-- Article View --**/
-    div.pubContainer {
-        flex-flow: column wrap;
+    div.pub-container {
         width: 100%;
-        height: auto;
     }
     article.pub {
         width: 100%;
-        height: auto;
         padding-right: 0;
-        overflow: hidden;
     }
-    article.pub ul li, article.pub-preview ul li {
-        font-size: 1.25em;
+    article.pub-article p {
+        padding: 10px 0 0 10px;
     }
-    article.pub p.info, article.pub_galeria p.info {
-        font-size: 1.3em;
-        line-height: 20px;
+    article.pub-article a {
+        font-size: 1.5em;
+        padding: 10px;
     }
-    article p.info img.svg, article.pub_galeria p.info img.svg {
-        height: 1.5em !important;
-    }
-    article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 2.5em;
-    line-height: 35px;
-    }
-    article.pub h2, article.pub_galeria h2 {
-        font-size: 2em;
-        line-height: 35px;
-    }
-    article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-    font-size: 1em;
-    }
-    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
+    p.article-main-description {
         font-size: 1.5em;
         line-height: 30px;
     }
-    /**-- Photos --**/
-    article.fotos:last-child {
-        margin-bottom: 0;
-    }
-    article.fotos p:last-child {
-        font-size: 1em;
-    }
-    /**-- Aside Pubs --**/
-    aside.pubSeccion {
+    div.info {
         width: 100%;
-        height: auto;
-        margin-top: 30px;
     }
-    aside.pubSeccion article.pubArticle img {
-        height: 350px;
+    img.icon {
+        height: 1.3em !important;
     }
-    /**-- Search Results --**/
-    div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1.5em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchFilter a.active {
-        font-size: 1.5em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchInfo {
-        margin: 20px 0 20px 0;
-        font-size: 1.7em;
-    }
-    div.searchResultContainer article.searchResult p.searchDate {
+    div.info span {
         font-size: 1em;
-        margin-bottom: 5px;
+        margin-right: 20px;
+        margin-left: 5px;
     }
-    div.searchResultContainer article.searchResult a.searchTitle {
-        font-size: 2.5em;
-        line-height: 1em;
-    }
-    div.searchResultContainer article.searchResult p.searchCopete {
+    article.pub p {
         font-size: 1.5em;
+        line-height: 30px;
+    }
+    article.pub ul li {
+        font-size: 1.5em;
+    }
+    aside.pub-aside {
+        width: 100%;
+        margin-top: 10px;
+    }
+    article.pub-article img {
+        height: 320px;
+    }
+    div.comment-container p.comment {
+        font-size: 1.2em !important;
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
-    /**-- Article View --**/
-    div.pubContainer {
-        flex-flow: column wrap;
-        width: 100%;
-        height: auto;
-    }
     article.pub {
-        width: 100%;
-        height: auto;
-        padding-right: 0;
-        overflow: hidden;
+        width: 60%;
     }
-    article.pub ul li, article.pub-preview ul li {
-        font-size: 1.25em;
+    aside.pub-aside {
+        width: 40%;
     }
-    article.pub p.info, article.pub_galeria p.info {
+    div.comment-container p.comment {
+        font-size: 1.3em !important;
+    }
+    div.comment-container p.actions {
+        margin-top: 15px !important;
+        font-size: 1.2em !important;
+    }
+    a.page-link, span.page-link {
         font-size: 1.3em;
-        line-height: 20px;
     }
-    article p.info img.svg, article.pub_galeria p.info img.svg {
-        height: 1.5em !important;
-    }
-    article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 2.5em;
-    line-height: 35px;
-    }
-    article.pub h2, article.pub_galeria h2 {
-        font-size: 2.5em;
-        line-height: 40px;
-    }
-    article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-    font-size: 1em;
-    }
-    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
-        font-size: 1.3em;
-        line-height: 30px;
-    }
-    /**-- Photos --**/
-    article.fotos:last-child {
-        margin-bottom: 0;
-    }
-    article.fotos p:last-child {
+    div.info span {
         font-size: 1em;
-    }
-    /**-- Aside Pubs --**/
-    aside.pubSeccion {
-        width: 100%;
-        height: auto;
-        margin-top: 30px;
-    }
-    aside.pubSeccion article.pubArticle img {
-        height: 400px;
-    }
-    /**-- Search Results --**/
-    div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchFilter a.active {
-        font-size: 1em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchInfo {
-        margin: 20px 0 20px 0;
-        font-size: 1.7em;
-    }
-    div.searchResultContainer article.searchResult p.searchDate {
-        font-size: 1em;
-    }
-    div.searchResultContainer article.searchResult a.searchTitle {
-        font-size: 2.5em;
-        line-height: 1em;
-    }
-    div.searchResultContainer article.searchResult p.searchCopete {
-        font-size: 1.5em;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
     article.pub {
-        width: 70%;
+        width: 60%;
+    }
+    aside.pub-aside {
+        width: 40%;
+    }
+    div.comment-container p.comment {
+        font-size: 1.3em !important;
+    }
+    div.comment-container p.actions {
+        margin-top: 15px !important;
+        font-size: 1.2em !important;
+    }
+    a.page-link, span.page-link {
+        font-size: 1.3em;
     }
 }

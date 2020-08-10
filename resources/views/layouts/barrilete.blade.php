@@ -34,11 +34,11 @@
         <!-- Hojas de estilo en cascada -->
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
         <link rel="stylesheet" href="{{ asset('css/titularesIndex.css') }}">
         <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
         <link rel="stylesheet" href="{{ asset('css/jquery-confirm.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
         <link rel="stylesheet" href="{{ asset('css/users-dashboard.css') }}">
         <!-- Global site tag (gtag.js) - Google Analytics
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129739451-1"></script>
@@ -115,29 +115,29 @@
                 <section>
                     <h2>Ingreso al sistema</h2>
                     @guest
-                    <p><a href="{{ route('login') }}">Login</a></p>
-                    <p><a href="{{ route('register') }}">Registro</a></p>
-                    <p><a href="{{ route('password.request') }}">Olvidé Mi Contraseña</a></p>
+                        <p><a href="{{ route('login') }}">Login</a></p>
+                        <p><a href="{{ route('register') }}">Registro</a></p>
+                        <p><a href="{{ route('password.request') }}">Olvidé Mi Contraseña</a></p>
                     @else
-                    <p><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
-                    <p><a href="{{ route('logout') }}">Salir</a></p>
+                        <p><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
+                        <p><a href="{{ route('logout') }}">Salir</a></p>
                     @endguest
-                </section>
-                <section>
-                    <h2>Acerca de</h2>
-                    <p>© 2020 todos los derechos reservados - v2.6</p>
+                    <h2>Contacto</h2>
                     <p><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></p>
                 </section>
-                <section>
-                    <h2>Redes Sociales</h2>
+                <section class="last">
+                    <hr />
+                    <h2>Seguinos</h2>
                     <p>
                         <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img alt="Facebook" class="social" title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
                         <a href="https://www.twitter.com/Barrilete_Info/" target="_blank"><img alt="Facebook" class="social" title="Barrilete en Twitter" src="{{ asset('svg/twitter.svg') }}" /></a>
                         <img alt="Instagram" class="social" title="Barrilete en Instagram" src="{{ asset('svg/instagram.svg') }}" />
-                        <img alt="Instagram" class="social" title="Barrilete en Instagram" src="{{ asset('svg/youtube.svg') }}" />
+                        <img alt="Instagram" class="social" title="Barrilete en YouTube" src="{{ asset('svg/youtube.svg') }}" />
                     </p>
+                    <h2>Acerca de</h2>
+                    <p><img class="logo-footer" alt="Barrilete" src="{{ asset('svg/logo_barrilete.svg') }}" /></p>
+                    <p>© 2020 todos los derechos reservados - v2.6</p>
                 </section>
-                <img class="logo-footer" alt="Barrilete" src="{{ asset('svg/logo_barrilete.svg') }}" />
             </div>
         </footer>
         <script type="text/javascript" src="{{ asset('js/home-scripts.js') }}"></script>

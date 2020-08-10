@@ -1,10 +1,3 @@
-/**-- Lazy Images --**/
-img.lazy {
-    background-image: url('/svg/loader.svg');
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: 100px auto;
-}
 .translate img.camera, img.placeholder {
     transform: translate(-50%, -50%);
 }
@@ -120,11 +113,11 @@ article.gallery-container img.main-photo {
 article.gallery-container a.gallery-link {
     position: absolute;
     display: block;
-    width: 660px;
+    width: 90%;
     height: auto;
-    bottom: 20px;
-    left: 20px;
-    text-decoration: none;
+    left: 50%;
+    bottom: 5%;
+    transform: translate(-50%, -5%);
     font-size: 2em;
     padding: 20px;
     background-color: rgba(242,243,244,0.8);
@@ -134,7 +127,7 @@ article.gallery-container a.gallery-link:hover {
     background-color: #fff;
 }
 /**-- Poll Index --**/
-p.poll-index {
+div.poll-index {
     position: relative;
     align-self: flex-start;
     width: 100%;
@@ -143,18 +136,18 @@ p.poll-index {
     transition: 0.2s;
     margin: 0;
 }
-p.poll-index:hover {
+div.poll-index:hover {
     background-color: #e5e7e9;
     border-radius: 5px;
 }
-p.poll-index span.poll-info {
+div.poll-index span.poll-info {
     color: #5D6D7E;
-    font-size: 0.7em;
+    font-size: 1em;
 }
-p.poll-index a.poll-link {
-    margin-top: 10px;
+div.poll-index a.poll-link {
+    margin-top: 5px;
     display: block;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 @media (max-width: 575.98px) {
     /**-- Main Pubs --**/
@@ -163,64 +156,55 @@ p.poll-index a.poll-link {
         flex-flow: column nowrap;
         width: 100%;
         height: auto;
-        background-color: #f2f3f4;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+    }
+    article.pubIndex:last-child {
+        margin-bottom: 0;
+    }
+    article.pubIndex img.article-image {
+        width: 100%;
+        height: 200px;
     }
     article.pubIndex img.video {
-        left: 45%;
         top: 100px;
     }
-    article.pubIndex img {
-        width: 100%;
-        height: 250px;
+    article.pubIndex a.article-link {
+        padding: 10px;
+        font-size: 1.3em;
     }
-    article.pubIndex a {
-        height: auto;
-        font-size: 1.5em;
-    }
-    article.pubIndex p {
-        align-self: flex-end;
+    article.pubIndex span.article-date {
         position: relative;
-        margin-top: 10px;
-        margin-right: 0;
-        margin-bottom: 10px;
-        font-size: 1em;
+        padding: 0 10px 10px 0;
+        text-align: right;
     }
-    /**-- Galleries --**/
-    div.galeriasContainerIndex {
+    /**-- Galleries and Polls --**/
+    article.gallery-container {
         width: 100%;
-        height: 400px;
+        margin-bottom: 30px;
     }
-    article.galeriaIndex {
-        border-radius: 0 0 5px 5px;
-    }
-    article.galeriaIndex img {
+    article.polls-container {
         width: 100%;
-        height: auto;
     }
-    article.galeriaIndex a {
+    /**-- Gallery Photo Index --**/
+    article.gallery-container img.main-photo {
         width: 100%;
-        height: auto;
-        bottom: 0;
-        left: 0;
-        border-radius: 0 0 3px 3px;
-        font-size: 1.5em;
+        height: 100%;
     }
-    /**-- Polls --**/
-    article.pollIndex {
-        height: auto;
+    article.gallery-container img.camera {
+        top: 25%;
+        transform: translate(-50%, -25%);
+        width: 60px;
+        height: 60px;
+    }
+    article.gallery-container a.gallery-link {
+        font-size: 1.3em;
         padding: 10px;
     }
-    article.pollIndex a {
-        font-size: 1.2em;
+    /**-- Poll Index --**/
+    div.poll-index {
+        padding: 5px;
     }
-    div.pollsContainerIndex {
-        width: 100%;
-        margin-top: 30px;
-    }
-    div.pollsContainerIndex h1 {
-        font-size: 1.5em;
+    div.poll-index a.poll-link {
+        font-size: 1.3em;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -230,63 +214,56 @@ p.poll-index a.poll-link {
         flex-flow: column nowrap;
         width: 100%;
         height: auto;
-        background-color: #f2f3f4;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+    }
+    article.pubIndex:last-child {
+        margin-bottom: 0;
+    }
+    article.pubIndex img.article-image {
+        width: 100%;
+        height: 320px;
     }
     article.pubIndex img.video {
-        left: 45%;
-        top: 100px;
+        top: 160px;
     }
-    article.pubIndex img {
-        width: 100%;
-        height: 250px;
-    }
-    article.pubIndex a {
-        height: auto;
+    article.pubIndex a.article-link {
+        padding: 10px;
         font-size: 1.5em;
     }
-    article.pubIndex p {
-        align-self: flex-end;
+    article.pubIndex span.article-date {
         position: relative;
-        margin-top: 10px;
-        margin-right: 0;
-        margin-bottom: 10px;
-        font-size: 1em;
+        padding: 0 10px 10px 0;
+        text-align: right;
     }
-    /**-- Galleries --**/
-    div.galeriasContainerIndex {
+    /**-- Galleries and Polls --**/
+    article.gallery-container {
         width: 100%;
-        height: 400px;
+        margin-bottom: 30px;
     }
-    article.galeriaIndex {
-        border-radius: 0 0 5px 5px;
-    }
-    article.galeriaIndex img {
+    article.polls-container {
         width: 100%;
-        height: auto;
     }
-    article.galeriaIndex a {
+    /**-- Gallery Photo Index --**/
+    article.gallery-container img.main-photo {
         width: 100%;
-        height: auto;
-        bottom: 0;
-        left: 0;
-        border-radius: 0 0 3px 3px;
+        height: 100%;
+    }
+    article.gallery-container img.camera {
+        width: 60px;
+        height: 60px;
+    }
+    article.gallery-container a.gallery-link {
         font-size: 1.5em;
-    }
-    /**-- Polls --**/
-    article.pollIndex {
-        height: auto;
         padding: 10px;
     }
-    article.pollIndex a {
-        font-size: 1.2em;
+    /**-- Poll Index --**/
+    div.poll-index {
+        padding: 5px;
+        margin-bottom: 10px;
     }
-    div.pollsContainerIndex {
-        width: 100%;
-        margin-top: 30px;
+    article.polls-container div.poll-index:last-child {
+        margin-bottom: 0;
     }
-    div.pollsContainerIndex h1 {
+    div.poll-index a.poll-link {
         font-size: 1.5em;
     }
 }
@@ -295,110 +272,69 @@ p.poll-index a.poll-link {
     article.pubIndex {
         display: flex;
         flex-flow: column nowrap;
-        width: 49%;
+        width: 48%;
         height: auto;
-        background-color: #f2f3f4;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+    }
+    article.pubIndex:first-child {
+        width: 100%;
+    }
+    article.pubIndex:last-child {
+        margin-bottom: 0;
+    }
+    article.pubIndex img.article-image {
+        width: 100%;
+        height: 320px;
+    }
+    article.pubIndex:first-child img{
+        height: auto;
     }
     article.pubIndex img.video {
-        left: 45%;
-        top: 100px;
+        top: 160px;
     }
-    article.pubIndex img {
-        width: 100%;
-        height: 250px;
-    }
-    article.pubIndex a {
-        height: auto;
+    article.pubIndex a.article-link {
+        padding: 10px;
         font-size: 1.5em;
     }
-    article.pubIndex p {
-        align-self: flex-end;
+    article.pubIndex span.article-date {
         position: relative;
-        margin-top: 10px;
-        margin-right: 0;
-        margin-bottom: 10px;
-        font-size: 1em;
+        padding: 0 10px 10px 0;
+        text-align: right;
     }
-    /**-- Galleries --**/
-    div.galeriasContainerIndex {
+    /**-- Galleries and Polls --**/
+    article.gallery-container {
         width: 100%;
-        height: 400px;
+        margin-bottom: 30px;
     }
-    article.galeriaIndex {
-        border-radius: 0 0 5px 5px;
-    }
-    article.galeriaIndex img {
+    article.polls-container {
         width: 100%;
-        height: auto;
     }
-    article.galeriaIndex a {
+    /**-- Gallery Photo Index --**/
+    article.gallery-container img.main-photo {
         width: 100%;
-        height: auto;
-        bottom: 0;
-        left: 0;
-        border-radius: 0 0 3px 3px;
+        height: 100%;
+    }
+    article.gallery-container a.gallery-link {
         font-size: 1.5em;
-    }
-    /**-- Polls --**/
-    article.pollIndex {
-        height: auto;
         padding: 10px;
     }
-    article.pollIndex a {
-        font-size: 1.2em;
+    /**-- Poll Index --**/
+    div.poll-index {
+        padding: 5px;
+        margin-bottom: 10px;
     }
-    div.pollsContainerIndex {
-        width: 100%;
-        margin-top: 30px;
+    article.polls-container div.poll-index:last-child {
+        margin-bottom: 0;
     }
-    div.pollsContainerIndex h1 {
+    div.poll-index a.poll-link {
         font-size: 1.5em;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    /**-- Main Pubs --**/
-    article.pubIndex {
-        width: 49%;
+    article.gallery-container, article.polls-container {
+        width: 48%;
     }
-    article.pubIndex img.video {
-        left: 50%;
-        top: 35%;
-        transform: translate(-50%, -35%);
-    }
-    article.pubIndex img {
-        height: 400px;
-    }
-    article.pubIndex a {
-        position: absolute;
-        width: 100%;
-        height: auto;
-        bottom: 25px;
-        left: 0;
-        background-color: rgba(242,243,244,0.8);
-        padding: 20px 20px 20px 20px;
-    }
-    article.pubIndex p {
-        padding: 5px 10px;
-        border-radius: 3px;
-        background-color: #fff;
-        right: 10px;
-    }
-    article.galeriaIndex a{
-        width: 100%;
-        height: auto;
-        bottom: 0;
-        left: 0;
-    }
-    /**-- Galleries --**/
-    div.galeriasContainerIndex {
-        flex-flow: row wrap;
-        width: 49%;
-    }
-    div.pollsContainerIndex {
-        flex-flow: row wrap;
-        width: 49%;
+    article.gallery-container a.gallery-link {
+        font-size: 1.5em;
     }
 }
 @media (min-width: 1200px) {

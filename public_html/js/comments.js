@@ -83,6 +83,9 @@ $(document).ready(function() {
 
     /** Comments Links Pagination **/
     $(document).on('click','a.page-link',function(e) {
+        $('html, body').animate({
+            scrollTop: $('span#comments-count').offset().top -250
+        }, 100);
         e.preventDefault();
         ajaxGet($(this).attr('href'));
     });
@@ -130,7 +133,7 @@ $(document).ready(function() {
                     action: function () {
                         let URL = '/comment/delete';
                         let data = {
-                            _token: $('meta[name="_token"]').attr('content'),
+                            _token: $('meta[name="csrf-token"]').attr('content'),
                             id: commentID,
                             article_id: articleID,
                             section_id: sectionID
@@ -181,7 +184,7 @@ $(document).ready(function() {
                         if (formReply.valid()) {
                             let URL = userID ? '/comment/save' : '/comment/update';
                             let textarea = formReply.find('textarea');
-                            let token = $('meta[name="_token"]').attr('content');
+                            let token = $('meta[name="csrf-token"]').attr('content');
                             let data = commentContent ? {
                                 _token: token,
                                 id: commentID,
@@ -219,7 +222,7 @@ $(document).ready(function() {
 
         divStatus.html('');
         $.post('/reaction/save', {
-            _token: $('meta[name="_token"]').attr('content'),
+            _token: $('meta[name="csrf-token"]').attr('content'),
             user_id: userID,
             comment_id: commentID,
             reaction: reaction

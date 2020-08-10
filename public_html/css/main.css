@@ -55,6 +55,23 @@ hr {
     border-bottom-color: #fff;
     margin: 10px 0 10px 0;
 }
+/**-- Loader --**/
+img.loader {
+    display: none;
+    position: absolute;
+    width: 100px !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+/**-- Lazy Images --**/
+img.lazy {
+    background-image: url('/svg/loader.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100px auto;
+}
 /**-- Header --**/
 header {
     position: relative;
@@ -65,13 +82,23 @@ header {
     box-shadow: 0 0 3px #85929E;
     background-color: #eaecee;
     z-index: 1;
+    transition: all 0.3s ease;
 }
 .fixed {
     position: fixed;
-    transition: 0.5s;
+    animation: smoothScroll 0.3s forwards;
+}
+@keyframes smoothScroll {
+    0% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 /**-- Header Container -- **/
 div#header-container {
+    position: relative;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -130,7 +157,7 @@ div#search img.search-button {
 div#search img:hover {
     opacity: 0.8;
 }
-div#results, div#user-menu {
+div#results {
     position: absolute;
     display: none;
     width: 100%;
@@ -140,7 +167,23 @@ div#results, div#user-menu {
     z-index: 1000;
     padding: 0;
     background-color: #ffffff;
-    box-shadow: 0 0 3px #5f6a6a;
+    box-shadow: 0 0 3px #85929E;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+div#user-menu {
+    position: absolute;
+    display: none;
+    width: 250px;
+    max-height: 50vh;
+    top: 125%;
+    right: 0;
+    z-index: 1000;
+    padding: 0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 3px #85929E;
     overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: none;
@@ -247,7 +290,7 @@ div#user-bar ul span.count-unread {
 }
 div#user-bar ul li {
     padding: 10px;
-    border-bottom: 1px solid #a5b0b0;
+    border-bottom: 1px solid #d6dbdf;
     cursor: pointer;
     transition: 0.2s;
 }
@@ -296,7 +339,7 @@ a#menu-btn div.menu-btn-block {
     background-color: #34495e;
     border-radius: 2px;
     transform-origin: 0 50%;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 a#menu-btn div.menu-btn-block.middle {
     margin: 9px 0;
@@ -367,6 +410,7 @@ div.dashboard-container {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    background-image: url("/img/login-background-01.jpg");
     justify-content: center;
     width: 100%;
     height: 100vh;
@@ -432,6 +476,9 @@ footer div#footer-container {
     padding: 30px;
     background-image: linear-gradient(180deg,rgba(216,219,227,1.00) 45.60%,rgba(187,192,206,1.00) 100%);
 }
+footer div#footer-container section {
+    width: 30%;
+}
 footer div#footer-container section p {
     margin: 5px;
     font-size: 1.2em;
@@ -440,12 +487,12 @@ footer div#footer-container section p a:hover {
     text-decoration: underline;
 }
 footer div#footer-container img.logo-footer {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
+    width: 250px;
     height: auto;
     opacity: 0.5;
+}
+footer div#footer-container section.last hr {
+    display: none;
 }
 footer div#footer-container section img.social {
     width: auto;
@@ -466,11 +513,17 @@ footer div#footer-container img.social:hover {
 }
 /**-- Mobile -- **/
 @media (max-width: 575.98px) {
+    img.loader {
+        width: 60px !important;
+    }
+    div#header-container {
+        padding: 20px 10px;
+    }
     /**-- Logo --**/
     .logo {
         margin-left: 50px;
         width: auto;
-        height: 25px;
+        height: 22px;
     }
     /**-- Div Search --**/
     div#search {
@@ -495,10 +548,11 @@ footer div#footer-container img.social:hover {
     }
     /**-- User Bar --**/
     div#user-bar {
+        display: flex;
         margin-right: 10px;
     }
     div#user-bar img {
-        height: 26px;
+        height: 22px;
         margin-right: 0;
         margin-left: 15px;
     }
@@ -508,19 +562,28 @@ footer div#footer-container img.social:hover {
     div#user-bar img.search-mobile {
         display: inline;
     }
+    div.notifications {
+        width: auto;
+        height: 15px;
+        min-width: 15px;
+        font-size: 0.7em;
+    }
     /** Notifications bubbles*/
     div.notifications.comments {
-        left: 73px;
+        left: 65px;
+        top: -5px;
     }
     div.notifications.messages {
-        left: 115px;
+        top: -5px;
+        left: 100px;
     }
     /**-- Menu button --**/
     a#menu-btn {
         position: absolute;
-        top: 12px;
-        left: 10px;
-        width: 30px;
+        top: 50%;
+        left: 25px;
+        width: 25px;
+        transform: translate(-50%, -50%);
     }
     a#menu-btn.display {
         display: block;
@@ -529,35 +592,52 @@ footer div#footer-container img.social:hover {
         opacity: 1;
     }
     a#menu-btn div.menu-btn-block {
-        height: 5px;
+        height: 3px;
     }
     a#menu-btn div.menu-btn-block.middle {
         margin: 5px 0;
+    }
+    a#menu-btn div.menu-btn-block.top.active {
+        transform: rotate(40.5deg);
+    }
+    a#menu-btn div.menu-btn-block.bottom.active {
+        transform: rotate(-40.5deg);
     }
     /**-- Nav Container --**/
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 49px;
-        width: 50%;
+        margin-top: 62px;
+        width: 50vw;
+        height: 100vh;
+        background-color: #D6DBDF;
     }
-    nav {
+    div#nav-container hr {
+        display: none;
+    }
+    div#nav-container nav {
         padding-top: 20px;
     }
-    nav ul, nav.active ul {
+    div#nav-container nav ul, nav.active ul {
         flex-flow: column nowrap;
     }
-    nav ul li a.active {
+    div#nav-container nav ul li {
+        border-bottom: 1px solid #85929E;
+    }
+    div#nav-container nav ul li a {
+        font-size: 1.3em;
+    }
+    div#nav-container nav ul li a.active {
         border-bottom: none;
         font-weight: bold;
     }
-    nav ul li a.active::before {
-        content: '» ';
-        margin-left: -15px;
-    }
     /**-- Login --**/
+    div.dashboard-container {
+        justify-content: normal;
+        padding: 30px 0 0 0;
+    }
     div.dashboard-container div {
-        width: 70%;
+        width: 90%;
     }
     div.logo-container img {
         width: 200px;
@@ -566,35 +646,43 @@ footer div#footer-container img.social:hover {
     section#main-container {
         max-width: 575.98px;
         padding: 20px;
+        min-height: auto;
     }
     /**-- Footer --**/
-    footer div#footer-container div {
-        display: none;
-    }
-    footer div#footer-container div.footerSocialContainer {
-        position: relative;
-        width: 100%;
-        display: flex;
+    footer div#footer-container {
         flex-flow: row wrap;
-        justify-content: center;
     }
-    footer div#footer-container div.footerSocialContainer img {
-        position: relative;
-        align-self: center;
-        width: auto;
-        height: 60px;
-        margin-right: 10px;
+    footer div#footer-container section {
+        flex: 0 50%;
     }
-    footer div#footer-container div.footerSocialContainer p {
+    footer div#footer-container section.last {
+        margin-top: 20px;
+        flex: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    footer div#footer-container section.last hr {
         display: block;
+        border-top-color: #ABB2B9;
+        border-bottom-color: #F2F4F4;
+    }
+    footer div#footer-container img.logo-footer {
+        width: 150px;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
+    img.loader {
+        width: 100px !important;
+    }
+    div#header-container {
+        padding: 20px 10px;
+    }
     /**-- Logo --**/
     .logo {
-        margin-left: 70px;
+        margin-left: 60px;
         width: auto;
-        height: 40px;
+        height: 30px;
     }
     /**-- Div Search --**/
     div#search {
@@ -619,12 +707,13 @@ footer div#footer-container img.social:hover {
     }
     /**-- User Bar --**/
     div#user-bar {
+        display: flex;
         margin-right: 10px;
     }
     div#user-bar img {
-        height: 35px;
+        height: 30px;
         margin-right: 0;
-        margin-left: 10px;
+        margin-left: 15px;
     }
     div#user-bar img:first-child {
         margin-left: 0;
@@ -632,18 +721,28 @@ footer div#footer-container img.social:hover {
     div#user-bar img.search-mobile {
         display: inline;
     }
+    div.notifications {
+        width: auto;
+        height: 18px;
+        min-width: 15px;
+        font-size: 0.9em;
+    }
     /** Notifications bubbles*/
     div.notifications.comments {
-        left: 73px;
+        left: 75px;
+        top: -5px;
     }
     div.notifications.messages {
+        top: -5px;
         left: 120px;
     }
     /**-- Menu button --**/
     a#menu-btn {
         position: absolute;
-        top: 12px;
-        left: 10px;
+        top: 50%;
+        left: 30px;
+        width: 30px;
+        transform: translate(-50%, -50%);
     }
     a#menu-btn.display {
         display: block;
@@ -651,67 +750,92 @@ footer div#footer-container img.social:hover {
     a#menu-btn:hover {
         opacity: 1;
     }
+    a#menu-btn div.menu-btn-block {
+        height: 4px;
+    }
+    a#menu-btn div.menu-btn-block.middle {
+        margin: 5px 0;
+    }
+    a#menu-btn div.menu-btn-block.top.active {
+        transform: rotate(37.2deg);
+    }
+    a#menu-btn div.menu-btn-block.bottom.active {
+        transform: rotate(-37.2deg);
+    }
     /**-- Nav Container --**/
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 60px;
-        width: 40%;
+        margin-top: 70px;
+        width: 50vw;
+        height: 100vh;
+        background-color: #D6DBDF;
     }
-    nav {
+    div#nav-container hr {
+        display: none;
+    }
+    div#nav-container nav {
         padding-top: 20px;
     }
-    nav ul, nav.active ul {
+    div#nav-container nav ul, nav.active ul {
         flex-flow: column nowrap;
     }
-    nav ul li a.active {
+    div#nav-container nav ul li a {
+        font-size: 1.5em;
+    }
+    div#nav-container nav ul li a.active {
         border-bottom: none;
         font-weight: bold;
     }
-    nav ul li a.active::before {
-        content: '» ';
-        margin-left: -15px;
+    /**-- Login --**/
+    div.dashboard-container {
+        justify-content: normal;
+        padding: 30px 0 0 0;
+    }
+    div.dashboard-container div {
+        width: 90%;
+    }
+    div.logo-container img {
+        width: 200px;
     }
     /**-- Main Container --**/
     section#main-container {
-        max-width: 575.98px;
+        max-width: 767.98px;
         padding: 20px;
-    }
-    /**-- Login --**/
-    div.dashboard-container div {
-        width: 70%;
-    }
-    div.logo-container img {
-        width: 300px;
+        min-height: auto;
     }
     /**-- Footer --**/
-    footer div#footer-container div {
-        display: none;
-    }
-    footer div#footer-container div.footerSocialContainer {
-        position: relative;
-        width: 100%;
-        display: flex;
+    footer div#footer-container {
         flex-flow: row wrap;
-        justify-content: center;
     }
-    footer div#footer-container div.footerSocialContainer img {
-        position: relative;
-        align-self: center;
-        width: auto;
-        height: 60px;
-        margin-right: 10px;
+    footer div#footer-container section {
+        flex: 0 50%;
     }
-    footer div#footer-container div.footerSocialContainer p {
+    footer div#footer-container section.last {
+        margin-top: 20px;
+        flex: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    footer div#footer-container section.last hr {
         display: block;
+        border-top-color: #ABB2B9;
+        border-bottom-color: #F2F4F4;
+    }
+    footer div#footer-container img.logo-footer {
+        width: 150px;
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
+    div#header-container {
+        padding: 20px 10px;
+    }
     /**-- Logo --**/
     .logo {
-        margin-left: 70px;
+        margin-left: 80px;
         width: auto;
-        height: 40px;
+        height: 50px;
     }
     /**-- Div Search --**/
     div#search {
@@ -736,12 +860,13 @@ footer div#footer-container img.social:hover {
     }
     /**-- User Bar --**/
     div#user-bar {
+        display: flex;
         margin-right: 10px;
     }
     div#user-bar img {
-        height: 35px;
+        height: 40px;
         margin-right: 0;
-        margin-left: 10px;
+        margin-left: 15px;
     }
     div#user-bar img:first-child {
         margin-left: 0;
@@ -749,18 +874,28 @@ footer div#footer-container img.social:hover {
     div#user-bar img.search-mobile {
         display: inline;
     }
+    div.notifications {
+        width: auto;
+        height: 18px;
+        min-width: 15px;
+        font-size: 0.9em;
+    }
     /** Notifications bubbles*/
     div.notifications.comments {
-        left: 73px;
+        left: 95px;
+        top: -5px;
     }
     div.notifications.messages {
-        left: 120px;
+        top: -5px;
+        left: 150px;
     }
     /**-- Menu button --**/
     a#menu-btn {
         position: absolute;
-        top: 12px;
-        left: 10px;
+        top: 50%;
+        left: 40px;
+        width: 40px;
+        transform: translate(-50%, -50%);
     }
     a#menu-btn.display {
         display: block;
@@ -768,91 +903,118 @@ footer div#footer-container img.social:hover {
     a#menu-btn:hover {
         opacity: 1;
     }
+    a#menu-btn div.menu-btn-block {
+        height: 4px;
+    }
+    a#menu-btn div.menu-btn-block.middle {
+        margin: 8px 0;
+    }
+    a#menu-btn div.menu-btn-block.top.active {
+        transform: rotate(37.2deg);
+    }
+    a#menu-btn div.menu-btn-block.bottom.active {
+        transform: rotate(-37.2deg);
+    }
     /**-- Nav Container --**/
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 60px;
-        width: 30%;
+        margin-top: 90px;
+        width: 50vw;
+        height: 100vh;
+        background-color: #D6DBDF;
     }
-    nav {
+    div#nav-container hr {
+        display: none;
+    }
+    div#nav-container nav {
         padding-top: 20px;
     }
-    nav ul, nav.active ul {
+    div#nav-container nav ul, nav.active ul {
         flex-flow: column nowrap;
     }
-    nav ul li a.active {
+    div#nav-container nav ul li a {
+        font-size: 1.5em;
+    }
+    div#nav-container nav ul li a.active {
         border-bottom: none;
         font-weight: bold;
     }
-    nav ul li a.active::before {
-        content: '» ';
-        margin-left: -15px;
+    /**-- Login --**/
+    div.dashboard-container {
+        justify-content: normal;
+        padding: 30px 0 0 0;
+    }
+    div.dashboard-container div {
+        width: 90%;
+    }
+    div.logo-container img {
+        width: 200px;
     }
     /**-- Main Container --**/
     section#main-container {
+        max-width: 991.98px;
         padding: 20px;
-    }
-    /**-- Login --**/
-    div.dashboard-container div {
-        width: 70%;
-    }
-    div.logo-container img {
-        width: 300px;
+        min-height: auto;
     }
     /**-- Footer --**/
-    footer div#footer-container div {
-        display: none;
-    }
-    footer div#footer-container div.footerSocialContainer {
-        position: relative;
-        width: 100%;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-    }
-    footer div#footer-container div.footerSocialContainer img {
-        position: relative;
-        align-self: center;
-        width: auto;
-        height: 60px;
-        margin-right: 10px;
-    }
-    footer div#footer-container div.footerSocialContainer p {
-        display: block;
+    footer div#footer-container img.logo-footer {
+        width: 150px;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    /**-- Logo --**/
-    .logo {
-        width: 350px;
+    div#user-bar, a#menu-btn{
+        margin-right: 20px;
     }
-    .small {
-        width: 250px;
-    }
-    /**-- Search --**/
     div#search input[type=search] {
         width: 400px;
     }
-    nav ul li a {
-        font-size: 1.25em;
+    div#nav-container nav ul li a {
+        padding: 10px 10px 5px 10px;
     }
-    /**-- Menu Button --**/
-    a#menu-btn {
-        margin-right: 10px;
+    /**-- User Bar --**/
+    div#user-bar img {
+        height: 40px;
+        margin-right: 0;
+        margin-left: 15px;
+    }
+    div#user-bar img:first-child {
+        margin-left: 0;
+    }
+    div.notifications {
+        width: auto;
+        height: 18px;
+        min-width: 15px;
+        font-size: 0.9em;
+    }
+    /** Notifications bubbles*/
+    div.notifications.comments {
+        left: 90px;
+        top: -5px;
+    }
+    div.notifications.messages {
+        top: -5px;
+        left: 145px;
+    }
+    /**-- Login --**/
+    div.dashboard-container {
+        justify-content: normal;
+        padding: 30px 0 0 0;
+    }
+    div.dashboard-container div {
+        width: 90%;
+    }
+    div.logo-container img {
+        width: 200px;
     }
     /**-- Main Container --**/
     section#main-container {
         max-width: 1199.98px;
-        min-width: 992px;
-        width: 100%;
-        padding: 30px;
+        padding: 20px;
+        min-height: auto;
     }
-    /**-- Login --**/
-    div.dashboard-container div {
-        width: 60%;
-    }
-    div.logo-container img {
-        width: 300px;
+    /**-- Footer --**/
+    footer div#footer-container img.logo-footer {
+        width: 150px;
     }
 }

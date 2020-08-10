@@ -79,6 +79,9 @@
                         }
                     });
                 }).always(function() {
+                    $('html, body').animate({
+                        scrollTop: $('div#users-content').offset().top -250
+                    });
                     loader.hide();
                     container.show();
                 });

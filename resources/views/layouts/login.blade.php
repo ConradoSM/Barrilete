@@ -16,6 +16,8 @@
     <meta name="author" content="Conrado Maranguello">
     <meta name="description" content="@yield('description')">
     <meta name="copyright" content="Barrilete.com.ar">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="app" id="app">
     <!-- Hojas de estilo en cascada -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
@@ -25,9 +27,8 @@
 </head>
 <body>
 <div class="dashboard-container">
-    <img src="{{asset('img/login-background-01.jpg')}}" class="img-background-login" />
     <div class="logo-container">
-        <a href="{{route('default')}}"><img src="{{asset('svg/logo_barrilete.svg')}}" /></a>
+        <a href="{{route('default')}}"><img alt="Barrilete" src="{{asset('svg/logo_barrilete.svg')}}" /></a>
     </div>
     <div class="dashboard-login">
         @yield('content')

@@ -27,10 +27,10 @@
         <article class="polls-container">
             <h2>Últimas encuestas</h2>
             @foreach ($pollsIndex as $pollIndex)
-            <p class="poll-index">
+            <div class="poll-index">
                 <span class="poll-info">{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} {{ $pollIndex->option->sum('votes') == 1 ? 'voto' : 'votos'}}</span>
                 <a class="poll-link" href="{{ route('poll',['id' => $pollIndex->id, 'title' => str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
-            </p>
+            </div>
             @endforeach
         </article>
     @endif

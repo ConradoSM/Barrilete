@@ -56,7 +56,7 @@ $(document).ready(function() {
 
     /** Before ajax request **/
     function beforeSend() {
-        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        $('html, body').animate({ scrollTop: $('div#users-content').offset().top }, 'fast');
         $('div#user-content').hide();
         $('div#loader').fadeIn('fast');
     }
@@ -97,9 +97,8 @@ $(document).ready(function() {
         }
         button.data('requestRunning', true);
         /** Ajax request starter **/
-        $.get(href, {
-            beforeSend: beforeSend
-        }).done(function(data) {
+        beforeSend();
+        $.get(href).done(function(data) {
             $('#loader').fadeOut('fast', function () {
                 $('div#user-content').html(data.view).fadeIn('fast');
             });

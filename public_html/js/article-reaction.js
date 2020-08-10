@@ -9,7 +9,7 @@ $(document).ready(function() {
             screenWidth = $( window ).width() < 767.98 ? '90%' : '55%';
 
         $.post('/article/reaction/save', {
-            _token: $('meta[name="_token"]').attr('content'),
+            _token: $('meta[name="csrf-token"]').attr('content'),
             user_id: userID,
             article_id: articleID,
             section_id: sectionID,

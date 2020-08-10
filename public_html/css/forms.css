@@ -32,7 +32,7 @@ input[type=submit], input[type=button], input[type=reset] {
     font-size: 1.3em !important;
     font-weight: normal !important;
     transition: 0.2s;
-    outline: none;
+    outline: none !important;
     text-transform: capitalize !important;
 }
 .small {
@@ -329,4 +329,38 @@ div.jfilestyle .count-jfilestyle {
     padding: 1px 5px;
     font-size: 12px;
     vertical-align: middle;
+}
+@media (max-width: 575.98px) {
+    .button {
+        width: 100%;
+    }
+    .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
+        width: 100%;
+        float: none;
+    }
+    .jconfirm-box div.jconfirm-content-pane {
+        margin-bottom: 10px !important;
+    }
+    .jconfirm-buttons>button {
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .button {
+        width: 100%;
+    }
+    .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
+        width: 100%;
+        float: none;
+    }
+    .jconfirm-box div.jconfirm-content-pane {
+        margin-bottom: 10px !important;
+    }
+    .jconfirm-buttons>button {
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+    }
 }

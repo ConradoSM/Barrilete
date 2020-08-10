@@ -9,17 +9,12 @@
 @section('created_at', $article->created_at)
 @section('updated_at', $article->updated_at)
 @section('article_section', $article->section->name)
-<meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pub-container">
     <h1 class="article-main-title">{{ $article -> title }}</h1>
     <p class="article-main-description">{{ $article->article_desc }}</p>
-    <hr />
-    <article class="pub">
-        <div class="info">
-            <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
-            <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>
-            <img alt="Visitas" class="icon" src="{{ asset('svg/eye.svg') }}" /><span>{{ $article->views }}</span>
+    <div class="reactions-container">
+        <div id="reactions">
             @php($userReaction = Auth::user() ? Auth::user()->articleReaction($article->id, $article->section->id)->first() : null)
             @if($userReaction)
                 @if($userReaction->reaction == 1)
@@ -34,17 +29,24 @@
                 <img alt="No me gusta" title="No me gusta" class="icon article-reaction dislike" id="dislike" src="{{asset('svg/article-reaction.svg')}}" data-reaction="0" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" /><span>{{$article->reactions($article->section_id, '0')->count()}}</span>
             @endif
         </div>
+    </div>
+    <article class="pub">
+        <div class="info">
+            <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
+            <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>
+            <img alt="Visitas" class="icon" src="{{ asset('svg/eye.svg') }}" /><span>{{ $article->views }}</span>
+        </div>
         <article class="pollOptions">
             @if ($status)
             <h2>{{ $status }}</h2>
             <hr />
             @forelse ($poll_options as $option)
-            <p class="options">{{ $option->option }} ({{ $option->votes }})</p>
+            <p class="options">{{ $option->option }} <span>{{ $option->votes }}</span></p>
             <div class="resultContainer">
                 <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes }}%">{{ round(($option->votes * 100) / $totalVotes ) }}%</p>
             </div>
             @empty
-            <h1>No hay opciones</h1>
+            <h2>No hay opciones</h2>
             @endforelse
             <hr />
             <p class="totalVotes">Votos: {{$totalVotes}}</p>
@@ -56,7 +58,7 @@
                     <span class="checkmark"></span>
                 </label>
                 @empty
-                <h1>No hay opciones</h1>
+                <h2>No hay opciones</h2>
                 @endforelse
                 <hr />
                 @csrf

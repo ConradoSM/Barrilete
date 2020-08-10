@@ -10,17 +10,12 @@
 @section('created_at', $article->created_at)
 @section('updated_at', $article->updated_at)
 @section('article_section', $article->section->name)
-<meta name="_token" content="{{ csrf_token() }}">
 @section('content')
 <div class="pub-container">
     <h1 class="article-main-title">{{ $article -> title }}</h1>
     <p class="article-main-description">{{ $article->article_desc }}</p>
-    <hr />
-    <article class="pub">
-        <div class="info">
-            <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
-            <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>
-            <img alt="Visitas" class="icon" src="{{ asset('svg/eye.svg') }}" /><span>{{ $article->views }}</span>
+    <div class="reactions-container">
+        <div id="reactions">
             @php($userReaction = Auth::user() ? Auth::user()->articleReaction($article->id, $article->section->id)->first() : null)
             @if($userReaction)
                 @if($userReaction->reaction == 1)
@@ -34,6 +29,13 @@
                 <img alt="Me gusta" title="Me gusta" class="icon article-reaction" id="like" src="{{asset('svg/article-reaction.svg')}}" data-reaction="1" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" /><span>{{$article->reactions($article->section_id, '1')->count()}}</span>
                 <img alt="No me gusta" title="No me gusta" class="icon article-reaction dislike" id="dislike" src="{{asset('svg/article-reaction.svg')}}" data-reaction="0" data-user="{{Auth::id()}}" data-section="{{$article->section_id}}" data-article="{{$article->id}}" /><span>{{$article->reactions($article->section_id, '0')->count()}}</span>
             @endif
+        </div>
+    </div>
+    <article class="pub">
+        <div class="info">
+            <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
+            <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>
+            <img alt="Visitas" class="icon" src="{{ asset('svg/eye.svg') }}" /><span>{{ $article->views }}</span>
         </div>
         <img src="{{ asset('img/before-load.png') }}" data-src="{{ asset('img/articles/images/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" class="lazy" />
         {!! $article->article_body !!}

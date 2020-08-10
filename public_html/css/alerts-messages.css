@@ -20,11 +20,11 @@
 }
 .feedback-success:before {
     background-image: url('/svg/ajax-success.svg');
+    background-repeat: no-repeat;
     background-size: 20px 20px;
     display: inline-block;
-    width: 20px;
+    width: 35px;
     height: 20px;
-    margin-right: 10px;
     content:"";
 }
 .feedback-error {
@@ -36,11 +36,11 @@
 }
 .feedback-error:before {
     background-image: url('/svg/ajax-error.svg');
+    background-repeat: no-repeat;
     background-size: 20px 20px;
     display: inline-block;
-    width: 20px;
+    width: 35px;
     height: 20px;
-    margin-right: 10px;
     content:"";
 }
 .feedback-warning {
@@ -52,10 +52,10 @@
 }
 .feedback-warning:before {
     background-image: url('/svg/ajax-warning.svg');
+    background-repeat: no-repeat;
     background-size: 20px 20px;
     display: inline-block;
-    width: 20px;
+    width: 35px;
     height: 20px;
-    margin-right: 10px;
     content:"";
 }

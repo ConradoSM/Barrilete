@@ -44,25 +44,27 @@ $(document).ready(function() {
             element.after(error);
         },
         submitHandler: function(form) {
-            const status = $('div#status');
             loader.show();
             $.post(form.action, $(form).serialize()
             ).done(function(data) {
                 $('div#container').html(data.view);
                 if (data.status) {
                     const statusClass = data.status === 'success' ? 'success' : 'error' ? 'error' : 'warning';
-                    status.html('<p class="alert feedback-'+statusClass+'">'+data.message+'</p>');
+                    $('div#status').html('<p class="alert feedback-'+statusClass+'">'+data.message+'</p>');
                 }
             }).fail(function(xhr) {
                 const errors = typeof xhr.responseJSON != 'undefined' ? xhr.responseJSON.errors : '';
                 if (errors) {
                     $.each(errors, function (key, value) {
-                        status.append('<p class="alert feedback-error">' + value + '</p>');
+                        $('div#status').append('<p class="alert feedback-error">' + value + '</p>');
                     });
                 } else {
-                    status.html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
+                    $('div#status').html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>');
                 }
             }).always(function() {
+                $('html, body').animate({
+                    scrollTop: $('div#users-content').offset().top -250
+                });
                 loader.hide();
                 form.reset();
             });
@@ -97,6 +99,9 @@ $(document).ready(function() {
                         }).fail(function(xhr) {
                             $('div#status').html('<p class="alert feedback-error">'+ xhr.status + ' - ' + xhr.statusText +'</p>')
                         }).always(function() {
+                            $('html, body').animate({
+                                scrollTop: $('div#users-content').offset().top -250
+                            });
                             loader.hide();
                             container.show();
                         });
