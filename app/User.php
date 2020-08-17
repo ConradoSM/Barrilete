@@ -228,4 +228,19 @@ class User extends Authenticatable
             ->where('article_id', $articleId)
             ->where('section_id', $sectionId);
     }
+
+    /**
+     * Is Newsletter Subscribe
+     * @return boolean
+     */
+    public function isNewsletterSubscribe()
+    {
+        $newsletter = $this->hasOne(Newsletter::class, 'user_id');
+        if ($newsletter->first()) {
+            if ($newsletter->first()->status) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

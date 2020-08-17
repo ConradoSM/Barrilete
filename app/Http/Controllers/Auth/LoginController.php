@@ -5,7 +5,9 @@ namespace barrilete\Http\Controllers\Auth;
 use Auth;
 use barrilete\Http\Controllers\Controller;
 use barrilete\Role;
+use Crypt;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Request;
 
 class LoginController extends Controller
 {
@@ -43,15 +45,20 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        $userRole = Auth::user()->roles()->first() ? Auth::user()->roles()->first()->name : null;
-        $roles = Role::exists() ? Role::get() : false;
-        if ($roles) {
-            foreach ($roles as $role) {
-                if ($role->name == $userRole) {
-                    return $role->redirectTo;
-                }
-            }
+        //$userRole = Auth::user()->roles()->first() ? Auth::user()->roles()->first()->name : null;
+        //$roles = Role::exists() ? Role::get() : false;
+        //if ($roles) {
+        //    foreach ($roles as $role) {
+        //        if ($role->name == $userRole) {
+        //            return $role->redirectTo;
+        //        }
+        //    }
+        //}
+        $referrerURL = Request::get('referrer');
+        if ($referrerURL) {
+            return Crypt::decrypt($referrerURL);
         }
+
         return self::DEFAULT_REDIRECT;
     }
 }

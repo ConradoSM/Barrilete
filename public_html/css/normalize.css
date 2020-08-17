@@ -38,10 +38,12 @@ main {
  */
 
 h1 {
+    display: flex;
     font-size: 3em;
     margin: 0.67em 0;
 }
 h2 {
+    display: flex;
     font-size: 2em;
     margin: 0.7em 0;
 }

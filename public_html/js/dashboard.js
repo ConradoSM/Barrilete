@@ -56,8 +56,9 @@ $(document).ready(function() {
 
     /** Before ajax request **/
     function beforeSend() {
-        $('html, body').animate({ scrollTop: $('div#users-content').offset().top }, 'fast');
-        $('div#user-content').hide();
+        const userContent = $('div#user-content');
+        $('html, body').animate({ scrollTop: userContent.offset().top }, 'fast');
+        userContent.hide();
         $('div#loader').fadeIn('fast');
     }
 

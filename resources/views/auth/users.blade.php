@@ -28,8 +28,8 @@
                 <p><img src="{{asset('svg/settings.svg')}}" alt="Configuración">Configuración<img src="{{asset('svg/arrow.svg')}}" class="arrow" alt="sub-menu"></p>
                 <ul class="sub-menu">
                     <li title="Editar Cuenta" data-link="{{route('editUser', ['id' => Auth::id(), 'home' => '1'])}}">Editar Cuenta</li>
-                    <li title="Privacidad" data-link="{{route('editMyPrivacy')}}">Privacidad</li>
                     <li title="Cambiar Contraseña" data-link="{{route('editMyPassword')}}">Cambiar Contraseña</li>
+                    <li title="Opciones" data-link="{{route('MyAccountConfig')}}">Opciones</li>
                 </ul>
             </li>
             <li title="Salir" onclick="location.href='{{route('logout')}}'">

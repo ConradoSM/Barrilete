@@ -1,7 +1,7 @@
 @extends('layouts.login')
 @section('title', __('Register'))
 @section('content')
-<p class="dashboard-title"><img src="{{asset('svg/adding-users.svg')}}" />{{ __('Register') }}</p>
+<h2><img alt="register" class="dashboard-title" src="{{asset('svg/adding-users.svg')}}" />{{ __('Register') }}</h2>
 <form method="post" action="{{ route('register') }}" id="register">
     @csrf
     <label for="name">{{ __('Name') }}:</label>

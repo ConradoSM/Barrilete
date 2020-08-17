@@ -108,35 +108,49 @@
                 <section>
                     <h2>Categorías</h2>
                     @forelse ($sections as $section)
-                        <p><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ ucfirst($section->name) }}</a></p>
+                    <p><a href="{{ route('section',['name'=>str_slug($section->name)]) }}" title="{{ $section->name }}">{{ ucfirst($section->name) }}</a></p>
                     @empty
                     @endforelse
                 </section>
                 <section>
                     <h2>Ingreso al sistema</h2>
                     @guest
-                        <p><a href="{{ route('login') }}">Login</a></p>
-                        <p><a href="{{ route('register') }}">Registro</a></p>
-                        <p><a href="{{ route('password.request') }}">Olvidé Mi Contraseña</a></p>
+                    <p><a href="{{ route('login') }}">Ingresar</a></p>
+                    <p><a href="{{ route('register') }}">Registrarse</a></p>
+                    <p><a href="{{ route('password.request') }}">Olvidé Mi Contraseña</a></p>
                     @else
-                        <p><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
-                        <p><a href="{{ route('logout') }}">Salir</a></p>
+                    <p><a href="{{ route('users.dashboard') }}">Mi Cuenta</a></p>
+                    <p><a href="{{ route('logout') }}">Salir</a></p>
                     @endguest
                     <h2>Contacto</h2>
                     <p><a href="mailto:info@barrilete.com.ar">info@barrilete.com.ar</a></p>
                 </section>
                 <section class="last">
                     <hr />
-                    <h2>Seguinos</h2>
+                    <h2>Boletín informativo</h2>
+                    @auth
+                    @if(Auth::user()->isNewsletterSubscribe())
+                    <p><a href="{{route('newslettersSubscribe')}}" id="subscribe" data-bind="0">Cancelar suscripción</a></p>
+                    @else
+                    <p><a href="{{route('newslettersSubscribe')}}" id="subscribe" data-bind="1">Suscribirse</a></p>
+                    @endif
+                    @else
+                    <form action="{{route('newslettersSubscribe')}}" method="post" id="newsletter">
+                        @csrf
+                        <p class="newsletter">
+                            <input name="email" id="email" type="email" value="" placeholder="Ingresa tu e-mail:" />
+                            <span><img alt="Suscribirse" title="Suscribirse" class="send-newsletter" src="{{ asset('svg/send.svg') }}"></span>
+                        </p>
+                    </form>
+                    @endauth
                     <p>
                         <a href="https://www.facebook.com/barrilete.info/" target="_blank"><img alt="Facebook" class="social" title="Barrilete en Facebook" src="{{ asset('svg/facebook.svg') }}" /></a>
                         <a href="https://www.twitter.com/Barrilete_Info/" target="_blank"><img alt="Facebook" class="social" title="Barrilete en Twitter" src="{{ asset('svg/twitter.svg') }}" /></a>
                         <img alt="Instagram" class="social" title="Barrilete en Instagram" src="{{ asset('svg/instagram.svg') }}" />
                         <img alt="Instagram" class="social" title="Barrilete en YouTube" src="{{ asset('svg/youtube.svg') }}" />
                     </p>
-                    <h2>Acerca de</h2>
                     <p><img class="logo-footer" alt="Barrilete" src="{{ asset('svg/logo_barrilete.svg') }}" /></p>
-                    <p>© 2020 todos los derechos reservados - v2.6</p>
+                    <p class="copyright">© 2020 todos los derechos reservados - v2.6</p>
                 </section>
             </div>
         </footer>

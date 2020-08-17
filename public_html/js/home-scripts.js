@@ -69,7 +69,9 @@ $(document).ready(function() {
             if (divUser.is(':visible')) {
                 divUser.slideUp('fast');
             }
-            $.get(link).done(function(data) {
+            $.get(link, {
+                login_redirect: window.location.href
+            }).done(function(data) {
                 if (img.attr('alt') === 'Notificaciones') {
                     $('div#comments').hide(0,function() {
                         $(this).find('span').text(0);
@@ -223,6 +225,76 @@ $(document).ready(function() {
                 $('div#nav-container').hide('slide', 100);
                 $('div.menu-btn-block').removeClass('active');
             }
+        }
+    });
+
+    /** Newsletter subscribe **/
+    $('p.newsletter').find('span').on('click', function() {
+        const formNewsletter = $('form#newsletter');
+        if (formNewsletter.valid()) {
+            sendSubscription(formNewsletter.attr('action'), formNewsletter.serialize());
+            formNewsletter.resetForm();
+        }
+    });
+
+    $('a#subscribe').on('click', function(e) {
+        e.preventDefault();
+        const action = $(this).attr('href'),
+            data = {
+                _token: $('meta[name="csrf-token"]').attr('content'),
+                status: $(this).attr('data-bind')
+            }
+        sendSubscription(action, data);
+    });
+
+    function sendSubscription(action, data) {
+        $.post(action, data).done(function(response) {
+            newsletterResponse(response.message, response.type);
+            const link = $('a#subscribe');
+            if (data.status === '1') {
+                link.html('Cancelar suscripción');
+                link.attr('data-bind', '0');
+            } else {
+                link.html('Suscribirse');
+                link.attr('data-bind', '1');
+            }
+        }).fail(function() {
+            newsletterResponse('Ocurrió un error al procesar tu suscripción, por favor intentalo mas tarde.', 'error');
+        });
+    }
+
+    function newsletterResponse(data, classType) {
+        const screenWidth = $(window).width() < 767.98 ? '90%' : '55%';
+        return $.alert({
+            title: 'Boletín informativo',
+            closeIcon: true,
+            content: '<p class="alert feedback-'+classType+'">' + data + '</p>',
+            boxWidth: screenWidth,
+            useBootstrap: false,
+            buttons: {
+                Cerrar: {
+                    btnClass: 'button small primary',
+                }
+            }
+        });
+    }
+
+    $('form#newsletter').validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            email: {
+                required: 'Éste campo es requerido',
+                email: 'La dirección ingresada no es válida'
+            }
+        },
+        errorElement: 'p',
+        errorPlacement: function(error, element) {
+            element.after(error);
         }
     });
 });

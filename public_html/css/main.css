@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 * {
-    font-family: 'Ropa Sans', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-decoration: none;
     box-sizing: border-box;
     color: #283747;
 }
@@ -410,15 +411,15 @@ div.dashboard-container {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    background-image: url("/img/login-background-01.jpg");
     justify-content: center;
     width: 100%;
-    height: 100vh;
-    padding: 0;
+    height: auto;
+    padding: 20px;
     margin: 0;
+    background: rgb(133,146,158);
+    background: linear-gradient(180deg, rgba(133,146,158,0.3) 0%, rgba(248,249,249,1) 100%);
 }
 div.dashboard-container div {
-    z-index: 1;
     width: 40%;
     height: auto;
     margin-bottom: 20px;
@@ -434,25 +435,23 @@ img.img-background-login {
     z-index: 0;
 }
 div.logo-container img {
-    width: 400px;
+    width: 350px;
     height: auto;
-    filter: drop-shadow(0 0 2px #fff);
 }
-div.dashboard-login {
+.dashboard-login {
     display: flex;
     flex-flow: column nowrap;
-    background-color: rgba(242, 243, 244, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 3px #000;
+    box-shadow: 0 0 2px 0 #85929E;
 }
-p.dashboard-title {
-    margin-bottom: 20px;
-    font-size: 1.6em !important;
+.dashboard-login h2 {
+    margin: 5px 0;
 }
-p.dashboard-title img {
+img.dashboard-title {
     width: auto;
-    height: 1.3em;
+    height: 1em;
     vertical-align: middle;
     margin-right: 10px;
 }
@@ -483,11 +482,15 @@ footer div#footer-container section p {
     margin: 5px;
     font-size: 1.2em;
 }
+footer div#footer-container section p.copyright {
+    opacity: 0.8;
+    font-size: 0.9em;
+}
 footer div#footer-container section p a:hover {
     text-decoration: underline;
 }
 footer div#footer-container img.logo-footer {
-    width: 250px;
+    width: 200px;
     height: auto;
     opacity: 0.5;
 }
@@ -495,12 +498,45 @@ footer div#footer-container section.last hr {
     display: none;
 }
 footer div#footer-container section img.social {
+    margin: 20px 0;
     width: auto;
     height: 30px;
+    transition: 0.2s;
+    opacity: 0.9;
 }
 footer div#footer-container img.social:hover {
-    opacity: 0.8;
+    opacity: 1;
+}
+footer div#footer-container p.newsletter {
+    position: relative;
+    width: auto;
+    height: auto;
+}
+footer div#footer-container p.newsletter input {
+    width: 100%;
+    height: 35px;
+    font-size: 0.9em;
+}
+footer div#footer-container p.newsletter span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    background-color: #34495e;
+    height: 35px;
+    width: 50px;
+    padding: 0 5px;
     transition: 0.2s;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+    opacity: 0.9;
+}
+footer div#footer-container p.newsletter span:hover {
+    opacity: 1;
+}
+footer div#footer-container p.newsletter span img {
+    width: 100%;
+    height: auto;
 }
 .errorIMG {
     position: absolute;
@@ -632,12 +668,8 @@ footer div#footer-container img.social:hover {
         font-weight: bold;
     }
     /**-- Login --**/
-    div.dashboard-container {
-        justify-content: normal;
-        padding: 30px 0 0 0;
-    }
     div.dashboard-container div {
-        width: 90%;
+        width: 100%;
     }
     div.logo-container img {
         width: 200px;
@@ -651,6 +683,7 @@ footer div#footer-container img.social:hover {
     /**-- Footer --**/
     footer div#footer-container {
         flex-flow: row wrap;
+        padding: 10px;
     }
     footer div#footer-container section {
         flex: 0 50%;

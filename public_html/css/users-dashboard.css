@@ -155,12 +155,13 @@ ul.inbox-messages li {
     margin-bottom: 10px;
     border-radius: 10px;
     padding: 0;
-    background-color: #E5E7E9;
+    background-color: #FFF;
+    border: 1px solid #d6dbdf;
     cursor: pointer;
     transition: 0.2s;
 }
 ul.inbox-messages li:hover {
-    background-color: #85929E;
+    background-color: #eaecee;
 }
 ul.inbox-messages li.unread {
     background-color: #FFF9C4;
@@ -169,25 +170,23 @@ ul.inbox-messages li.unread:hover {
     background-color: #FFF176;
 }
 ul.inbox-messages li img {
-    width: 45px;
-    margin: 0 15px 0 15px;
+    width: 50px;
+    margin: 0 10px 0 10px;
     border-radius: 50%;
     background-color: white;
-    box-shadow: 0 0 2px #212f3c;
+    box-shadow: 0 0 2px #707B7C;
     padding: 1px;
 }
 ul.inbox-messages li p {
     width: 100%;
-    background-color: #F8F9F9;
     padding: 10px;
     margin: 0;
-    border: 1px solid #E5E7E9;
 }
 
 ul.inbox-messages li p span {
     display: block;
     bottom: 10px;
-    color: #A6ACAF;
+    color: #707B7C;
     font-size: 0.7em;
 }
 ul.inbox-messages li p span:first-child {

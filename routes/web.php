@@ -36,6 +36,9 @@ Route::post('poll-vote', 'PollsController@pollVote')->name('poll-vote');
 Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get')->name('getComments');
 //ARTICLES USER REACTION
 Route::post('article/reaction/save', 'ArticlesReactionController@save')->name('articleReactionSave');
+//NEWSLETTER SUBSCRIBE
+Route::post('newsletters/subscribe', 'NewsletterController@create')->name('newslettersSubscribe');
+Route::get('newsletter/delete/{email}', 'NewsletterController@delete')->name('NewsletterDelete');
 //DASHBOARD
 Route::group(['middleware' => ['auth']], function () {
     //USERS DASHBOARD
@@ -91,7 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/users/show/{id}', 'UsersController@show')->name('showUser');
     Route::get('dashboard/users/edit/{id}', 'UsersController@edit')->name('editUser');
     Route::post('dashboard/myaccount/update', 'UsersController@myAccountUpdate')->name('myAccountUpdate');
-    Route::get('dashboard/myaccount/privacy/edit', 'UsersController@editMyPrivacy')->name('editMyPrivacy');
+    Route::get('dashboard/myaccount/configuration', 'UsersController@myAccountConfig')->name('MyAccountConfig');
     Route::get('dashboard/myaccount/password/edit', 'UsersController@editMyPassword')->name('editMyPassword');
     Route::post('dashboard/myaccount/password/update', 'UsersController@updatePassword')->name('updatePassword');
     Route::get('dashboard/myaccount/messages/box/{box}', 'MessagesController@myMessages')->name('myMessages');
@@ -102,6 +105,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/myaccount/messages/message/delete/{id}', 'MessagesController@delete')->name('deleteMessage');
     Route::post('dashboard/users/update', 'UsersController@update')->name('updateUser');
     Route::get('dashboard/users/delete/{id}', 'UsersController@delete')->name('deleteUser');
+    Route::post('dashboard/users/delete', 'UsersController@deleteOwnAccount')->name('deleteOwnAccount');
     Route::get('dashboard/users/make-admin/{id}', 'UsersController@makeAdmin')->name('makeAdmin');
     Route::get('dashboard/users/delete-admin/{id}', 'UsersController@deleteAdmin')->name('deleteAdmin');
     //DASHBOARD CREATE POLL

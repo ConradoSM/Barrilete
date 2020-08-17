@@ -296,6 +296,7 @@ span#comments-count {
     border-radius: 5px;
     padding: 0 10px;
     color: #fff;
+    margin-right: 10px;
 }
 div#comment {
     position: relative;

@@ -1,7 +1,7 @@
 @extends('layouts.login')
 @section('title', __('Reset Password'))
 @section('content')
-<p class="dashboard-title"><img src="{{asset('svg/lock.svg')}}" />{{ __('Reset Password') }}</p>
+<h2><img alt="reset password" class="dashboard-title" src="{{asset('svg/lock.svg')}}" />{{ __('Reset Password') }}</h2>
  @if (session('status'))<p class="alert feedback-success" role="alert">{{ session('status') }}</p>@endif
 <form method="post" action="{{ route('password.email') }}" id="email">
     @csrf

@@ -384,23 +384,23 @@ img.user-photo {
     margin-right: 20px;
 }
 table.table {
-    background-color: #212f3c;
+    background-color: #34495E;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     box-shadow: 0 0 3px 0 #999;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
 }
 table.table thead tr th {
     text-align: left;
-    padding: 20px;
+    padding: 10px;
     color: #fff;
     font-size: 1.3em;
 }
 table.table tbody tr td {
     text-align: left;
-    padding: 20px;
+    padding: 10px;
     font-size: 1.2em;
 }
 table.table tbody tr td:last-child {
@@ -446,3 +446,52 @@ p.searchFilter a.active {
     color: #007600;
     border-bottom: 5px solid #007600;
 }
+/**-- Pagination --**/
+ul.pagination {
+    display: flex;
+    margin: 20px 0 0 0 !important;
+    list-style: none;
+    padding-left: 0 !important;
+}
+a.page-link {
+    border-radius: 3px;
+    padding: 0 10px;
+    background-color: #85929E;
+    border: 1px solid #85929E;
+    color: #fff;
+    font-size: 25px;
+}
+a.page-link:hover {
+    background-color: #fff;
+    color: #85929E;
+}
+span.page-link {
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 25px;
+}
+.page-item {
+    margin: 0 10px 0 0!important;
+    padding-left: 0 !important;
+    font-size: 25px !important;
+}
+.page-item:before {
+    content: none !important;
+}
+.page-item.active {
+    cursor: default;
+}
+.page-item.active span {
+    background-color: #fff;
+    color: #85929E;
+    border: 1px solid #85929E;
+}
+.page-item.disabled {
+    background-color: #F8F9F9;
+    border: none;
+}
+.page-item.disabled span {
+    border: 1px solid #abb2b9;
+    color: #abb2b9 !important;
+}
+

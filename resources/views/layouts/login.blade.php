@@ -19,6 +19,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app" id="app">
     <!-- Hojas de estilo en cascada -->
+    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
     <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">

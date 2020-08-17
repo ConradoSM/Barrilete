@@ -1,9 +1,9 @@
 @extends('layouts.login')
 @section('title',  __('Login'))
 @section('content')
-<p class="dashboard-title"><img src="{{asset('svg/log-in.svg')}}" />{{ __('Login') }}</p>
+<h2><img alt="login" class="dashboard-title" src="{{asset('svg/login.svg')}}" />{{ __('Login') }}</h2>
 @if (session('success'))
-<p class="alert feedback-success"><img src="{{ asset('svg/ajax-success.svg') }}" alt="Exito"/>{{ session('success') }}</p>
+<p class="alert feedback-success">{{ session('success') }}</p>
 @endif
 <form method="post" action="{{ route('login') }}" id="login">
     @csrf
@@ -22,6 +22,11 @@
         <input type="checkbox" checked="checked" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
         <span class="check-mark"></span>
     </label>
+    @if (Request::has('previous'))
+        <input type="hidden" name="referrer" value="{{ Request::get('referrer') }}">
+    @else
+        <input type="hidden" name="referrer" value="{{ Crypt::encrypt(URL::previous()) }}">
+    @endif
 </form>
 <script>
     $('form#login').validate({

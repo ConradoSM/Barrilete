@@ -2,6 +2,9 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\Newsletter;
+use Crypt;
+use Exception;
 use Hash;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -226,7 +229,7 @@ class UsersController extends Controller
      * @param Request $request
      * @param $id
      * @return RedirectResponse|JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function delete(Request $request, $id)
     {
@@ -255,6 +258,25 @@ class UsersController extends Controller
         }
 
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws Exception
+     */
+    public function deleteOwnAccount(Request $request)
+    {
+        if ($request->ajax()) {
+            $user = User::query()->find(Auth::id());
+            $user->delete();
+            Auth::logout();
+            $request->session()->flash('success', 'Tu cuenta ha sido eliminada.');
+
+            return response()->json([route('login')]);
+        }
+
+        return abort(404);
     }
 
     /**
@@ -330,7 +352,8 @@ class UsersController extends Controller
     public function menu(Request $request)
     {
         if($request->ajax()) {
-            return response()->json([view('auth.users.menu')->render()]);
+            $loginRedirect = Crypt::encrypt($request->login_redirect);
+            return response()->json([view('auth.users.menu', compact('loginRedirect'))->render()]);
         }
 
         return abort(404);
@@ -401,9 +424,11 @@ class UsersController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function editMyPrivacy()
+    public function myAccountConfig()
     {
-        return response()->json(['view' => view('auth.myaccount.privacy')->render()]);
+        return response()->json([
+            'view' => view('auth.myaccount.privacy')->render()
+        ]);
     }
 
     /**
