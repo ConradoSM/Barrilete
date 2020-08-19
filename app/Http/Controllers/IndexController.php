@@ -2,6 +2,9 @@
 namespace barrilete\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\View;
 use barrilete\Articles;
 use barrilete\Gallery;
@@ -48,11 +51,75 @@ class IndexController extends Controller
      */
     public function home()
     {
-        $breakingNews = $this->_articles->query()->where('is_breaking', true)->latest()->take(1)->first();
-        $articlesIndex = $this->_articles->articlesHome();
-        $galleryIndex = $this->_gallery->galleryHome()->count() != 0 ? $this->_gallery->galleryHome()->first() : null;
-        $pollsIndex = $this->_poll->pollsHome()->count() != 0 ? $this->_poll->pollsHome() : null;
+        /** Get Breaking News **/
+        $breakingNews = $this->breakingNews();
 
-        return view('default', compact('articlesIndex','galleryIndex','pollsIndex', 'breakingNews'));
+        /** Get Index Content **/
+        $articlesIndex = $this->articlesIndex();
+        $galleryIndex = $this->galleryIndex();
+        $pollsIndex = $this->pollsIndex();
+
+        /** Get top 5 articles **/
+        $mostSeen = $this->mostSeen();
+        $mostCommented = $this->mostCommented();
+        $mostLikes = $this->mostLikes();
+
+        return view('default', compact('articlesIndex','galleryIndex','pollsIndex', 'breakingNews', 'mostSeen' ,'mostCommented', 'mostLikes'));
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function articlesIndex()
+    {
+        return $this->_articles->articlesHome();
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function galleryIndex()
+    {
+        return $this->_gallery->galleryHome()->count() != 0 ? $this->_gallery->galleryHome()->first() : null;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function pollsIndex()
+    {
+        return $this->_poll->pollsHome()->count() != 0 ? $this->_poll->pollsHome() : null;
+    }
+
+    /**
+     * @return Builder|Model|object|null
+     */
+    protected function breakingNews()
+    {
+        return $this->_articles->query()->where('is_breaking', true)->first();
+    }
+
+    /**
+     * @return Builder[]|Collection
+     */
+    protected function mostCommented()
+    {
+        return $this->_articles->query()->withCount('comments')->take(3)->orderBy('comments_count', 'DESC')->get();
+    }
+
+    /**
+     * @return Builder[]|Collection
+     */
+    protected function mostLikes()
+    {
+        return $this->_articles->query()->withCount('reactions')->take(3)->orderBy('reactions_count', 'DESC')->get();
+    }
+
+    /**
+     * @return Builder[]|Collection
+     */
+    protected function mostSeen()
+    {
+        return $this->_articles->query()->orderBy('views', 'DESC')->take(3)->get();
     }
 }

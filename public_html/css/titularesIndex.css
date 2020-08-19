@@ -5,30 +5,37 @@
 article.breaking-news {
     width: 100%;
     background-color: #C0392B;
-    border-radius: 5px;
-    padding: 20px;
+    border-radius: 5px 5px 0 0;
     margin-bottom: 30px;
 }
 article.breaking-news h1 {
+    position: relative;
     display: block;
     color: #fff;
     background-color: #A93226;
     padding: 10px 0 10px 0;
-    margin: 0 0 20px 0;
+    margin: 0;
     text-align: center;
     border-radius: 5px;
+}
+article.breaking-news h1 img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 1em;
+    cursor: pointer;
+}
+article.breaking-news h1 img:hover {
+    opacity: 0.8;
 }
 div.breaking-news-content {
     display: flex;
 }
-div.breaking-news-content h2 {
-    margin: 0 0 20px 0;
-}
 .breaking-news-image {
-    width: 300px;
-    height: auto;
+    width: 500px;
+    height: 100%;
     margin-right: 20px;
-    border-radius: 10px;
 }
 article.breaking-news a {
     color: #fff;
@@ -141,7 +148,7 @@ article.gallery-container img.camera {
     filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5));
     opacity: 0.7;
 }
-article.polls-container {
+article.polls {
     position: relative;
     display: flex;
     flex-flow: column wrap;
@@ -151,6 +158,27 @@ article.polls-container {
     border-radius: 5px;
     background-color: #f2f3f4;
     box-shadow: 0 0 3px 0 #85929E;
+}
+article.polls h2 {
+    border-bottom: 3px solid #34495E;
+    color: #34495E;
+    padding-bottom: 10px;
+}
+article.polls h2 img {
+    height: 1.2em;
+    width: auto;
+    margin-right: 10px;
+}
+/**-- Poll Index --**/
+article.polls p {
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+}
+article.polls p span {
+    display: block;
+    color: #5D6D7E;
+    font-size: 0.8em;
+    margin-bottom: 5px;
 }
 /**-- Gallery Photo Index --**/
 article.gallery-container img.main-photo {
@@ -165,7 +193,7 @@ article.gallery-container a.gallery-link {
     left: 50%;
     bottom: 5%;
     transform: translate(-50%, -5%);
-    font-size: 2em;
+    font-size: 1.5em;
     padding: 20px;
     background-color: rgba(242,243,244,0.8);
     border-radius: 3px;
@@ -173,46 +201,59 @@ article.gallery-container a.gallery-link {
 article.gallery-container a.gallery-link:hover {
     background-color: #fff;
 }
-/**-- Poll Index --**/
-div.poll-index {
-    position: relative;
-    align-self: flex-start;
+/**-- Ranking -- **/
+section.ranking {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     width: 100%;
-    height: auto;
-    padding: 20px;
-    transition: 0.2s;
-    margin: 0;
+    margin-top: 30px;
 }
-div.poll-index:hover {
-    background-color: #e5e7e9;
-    border-radius: 5px;
+div.most {
+    width: 31%;
 }
-div.poll-index span.poll-info {
-    color: #5D6D7E;
-    font-size: 1em;
+div.most hr:last-child {
+    display: none;
 }
-div.poll-index a.poll-link {
-    margin-top: 5px;
+div.most h2 {
+    border-bottom: 3px solid #34495E;
+    color: #34495E;
+    padding-bottom: 10px;
+}
+div.most h2 img {
+    height: 1.2em;
+    width: auto;
+    margin-right: 10px;
+}
+div.most p {
+    margin: 0 0 20px 0;
+    font-size: 1.2em;
+}
+div.most p span {
     display: block;
-    font-size: 1.5em;
+    margin-bottom: 5px;
+    font-size: 0.8em;
+    color: #5D6D7E;
 }
 @media (max-width: 575.98px) {
     /**-- Breaking News --**/
     article.breaking-news {
-        padding: 10px;
+        padding: 0;
     }
     article.breaking-news h1 {
-        margin: 0 0 10px 0;
+        margin: 0;
     }
     div.breaking-news-content {
         flex-flow: column;
     }
     div.breaking-news-content h2 {
-        margin: 0 0 10px 0;
+        padding: 10px;
+        margin: 0;
     }
     .breaking-news-image {
         width: 100%;
         margin-right: 0;
+        border-radius: 0;
     }
     article.breaking-news a {
         color: #fff;
@@ -220,9 +261,14 @@ div.poll-index a.poll-link {
     }
     article.breaking-news p {
         color: #D0D3D4;
+        padding: 10px;
+        font-size: 1em;
         margin: 0;
     }
     /**-- Main Pubs --**/
+    div.articles-index {
+        margin-bottom: 20px;
+    }
     article.pubIndex {
         display: flex;
         flex-flow: column nowrap;
@@ -253,9 +299,6 @@ div.poll-index a.poll-link {
         width: 100%;
         margin-bottom: 30px;
     }
-    article.polls-container {
-        width: 100%;
-    }
     /**-- Gallery Photo Index --**/
     article.gallery-container img.main-photo {
         width: 100%;
@@ -272,30 +315,39 @@ div.poll-index a.poll-link {
         padding: 10px;
     }
     /**-- Poll Index --**/
-    div.poll-index {
-        padding: 5px;
+    article.polls {
+        width: 100%;
     }
-    div.poll-index a.poll-link {
-        font-size: 1.3em;
+    /**-- Ranking -- **/
+    section.ranking {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        margin-top: 30px;
+    }
+    div.most {
+        width: 100%;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
     /**-- Breaking News --**/
     article.breaking-news {
-        padding: 10px;
+        padding: 0;
     }
     article.breaking-news h1 {
-        margin: 0 0 10px 0;
+        margin: 0;
     }
     div.breaking-news-content {
         flex-flow: column;
     }
     div.breaking-news-content h2 {
-        margin: 0 0 10px 0;
+        padding: 10px;
+        margin: 0;
     }
     .breaking-news-image {
         width: 100%;
         margin-right: 0;
+        border-radius: 0;
     }
     article.breaking-news a {
         color: #fff;
@@ -303,6 +355,8 @@ div.poll-index a.poll-link {
     }
     article.breaking-news p {
         color: #D0D3D4;
+        padding: 10px;
+        font-size: 1em;
         margin: 0;
     }
     /**-- Main Pubs --**/
@@ -353,15 +407,18 @@ div.poll-index a.poll-link {
         padding: 10px;
     }
     /**-- Poll Index --**/
-    div.poll-index {
-        padding: 5px;
-        margin-bottom: 10px;
+    article.polls {
+        width: 100%;
     }
-    article.polls-container div.poll-index:last-child {
-        margin-bottom: 0;
+    /**-- Ranking -- **/
+    section.ranking {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        margin-top: 30px;
     }
-    div.poll-index a.poll-link {
-        font-size: 1.5em;
+    div.most {
+        width: 100%;
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -410,7 +467,7 @@ div.poll-index a.poll-link {
         width: 100%;
         margin-bottom: 30px;
     }
-    article.polls-container {
+    article.polls {
         width: 100%;
     }
     /**-- Gallery Photo Index --**/
@@ -421,17 +478,6 @@ div.poll-index a.poll-link {
     article.gallery-container a.gallery-link {
         font-size: 1.5em;
         padding: 10px;
-    }
-    /**-- Poll Index --**/
-    div.poll-index {
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-    article.polls-container div.poll-index:last-child {
-        margin-bottom: 0;
-    }
-    div.poll-index a.poll-link {
-        font-size: 1.5em;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {

@@ -297,4 +297,9 @@ $(document).ready(function() {
             element.after(error);
         }
     });
+
+    /** Close breakingNews info **/
+    $('img#close-breakingnews').on('click', function() {
+        $('article.breaking-news').slideUp();
+    });
 });

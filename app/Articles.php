@@ -129,10 +129,15 @@ class Articles extends Model
      * @param $sectionId
      * @return HasMany
      */
-    public function comments($sectionId)
+    public function comments($sectionId = null)
     {
+        if ($sectionId) {
+            return $this->hasMany(Comments::class,'article_id')
+                ->where('section_id', $sectionId);
+        }
+
         return $this->hasMany(Comments::class,'article_id')
-            ->where('section_id', $sectionId);
+            ->whereColumn('comments.section_id', '=','articles.section_id');
     }
 
     /**
@@ -141,10 +146,16 @@ class Articles extends Model
      * @param $reaction
      * @return HasMany
      */
-    public function reactions($sectionId, $reaction)
+    public function reactions($sectionId = null, $reaction = null)
     {
+        if ($sectionId) {
+            return $this->hasMany(ArticlesReaction::class, 'article_id')
+                ->where('section_id', $sectionId)
+                ->where('reaction', $reaction);
+        }
+
         return $this->hasMany(ArticlesReaction::class, 'article_id')
-            ->where('section_id', $sectionId)
-            ->where('reaction', $reaction);
+            ->whereColumn('articles_reactions.section_id', '=','articles.section_id')
+            ->where('articles_reactions.reaction','1');
     }
 }
