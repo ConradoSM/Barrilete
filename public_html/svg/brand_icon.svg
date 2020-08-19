@@ -1,0 +1,18 @@
+<svg width="64" height="60" xmlns="http://www.w3.org/2000/svg" class="hovered-paths">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="62" width="66" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_11">
+   <path stroke="null" id="svg_4" fill="#34495E" class="hovered-path active-path" d="m33.72704,59.42469l20.24344,-32.94557l-0.71792,-0.90394c-5.59413,-4.95504 -12.37296,-7.76301 -19.52552,-7.95533l0,41.80484z"/>
+   <path stroke="null" id="svg_5" fill="#34495E" class="hovered-path active-path" d="m17.927,17.17575c4.03864,-1.89529 8.37568,-2.9426 12.84566,-3.05275l0,-13.10095"/>
+   <path stroke="null" id="svg_6" fill="#34495E" class="hovered-path active-path" d="m11.24566,25.57693l-0.71644,0.90219l20.24344,32.94557l0,-41.80484c-7.15404,0.19408 -13.93287,3.0003 -19.527,7.95708z"/>
+   <path stroke="null" id="svg_7" fill="#34495E" class="hovered-path active-path" d="m33.72704,1.02205l0,13.10095c4.46998,0.1119 8.80702,1.15746 12.84566,3.05275"/>
+   <path stroke="null" id="svg_8" fill="#34495E" class="hovered-path active-path" d="m2.72522,30.50224l-1.17289,1.73619l2.30737,2.18203l1.17289,-1.73444c1.8332,-2.71181 3.92785,-5.08267 6.21307,-7.10735l6.68134,-8.40118c-5.87775,2.75727 -11.12178,7.28918 -15.20178,13.32475z"/>
+   <path stroke="null" id="svg_9" fill="#34495E" class="hovered-path active-path" d="m59.46711,32.68428l1.17289,1.73619l2.30737,-2.18203l-1.17289,-1.73793c-4.08,-6.03381 -9.32403,-10.56748 -15.20178,-13.32475l6.67986,8.39943c2.28669,2.02642 4.38135,4.39729 6.21455,7.1091z"/>
+  </g>
+ </g>
+</svg>

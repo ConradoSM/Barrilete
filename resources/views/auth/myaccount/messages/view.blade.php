@@ -6,7 +6,7 @@ $nextPage = strpos($result->replies()->nextPageUrl(), 'save') ? str_replace('sav
     <img src="{{asset($user->photo ? 'img/users/images/'.$user->photo : 'svg/user-blue.svg')}}" alt="{{$user->name}}" title="{{$user->name}}" />
     {{$user->name}}
 </p>
-<img class="delete-message" src="{{asset('svg/delete-message.svg')}}" title="Borrar mensaje" alt="Borrar mensaje" data-message-id="{{$result->id}}"/>
+<img class="message-bar delete-message" src="{{asset('svg/delete-message.svg')}}" title="Borrar mensaje" alt="Borrar mensaje" data-message-id="{{$result->id}}"/>
 <ul class="messages" data-next-page="{{$nextPage}}">
     <li id="parent">
         <p class="{{$result->from == Auth::id() ? 'end' : ''}}">

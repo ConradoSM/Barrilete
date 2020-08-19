@@ -113,8 +113,8 @@ div#header-container {
 }
 /**-- Logo --**/
 .logo {
-    width: 300px;
-    height: 45px;
+    width: auto;
+    height: 40px;
     cursor: pointer;
     transition: 0.2s;
 }

@@ -93,7 +93,7 @@ div#reactions {
 div#reactions span {
     font-size: 1.5em;
     margin: 0 20px 0 10px;
-    color: #34495E;
+    color: rgba(0,0,0,0.8) !important;
 }
 div#reactions span:last-child {
     margin: 0 0 0 10px;
@@ -103,7 +103,7 @@ div.info {
     display: flex;
     align-items: center;
     opacity: 0.7;
-    margin: 20px 0 30px 0;
+    margin: 20px 0;
 }
 div.info span {
     font-size: 1.5em;
@@ -118,6 +118,9 @@ img.icon {
 }
 img.article-reaction {
     cursor: pointer;
+    opacity: 0.8;
+}
+img.article-views {
     opacity: 0.8;
 }
 img.article-reaction:hover {
@@ -464,6 +467,9 @@ img.loading {
         font-size: 1.2em;
         line-height: 25px;
     }
+    div.reactions-container {
+        margin-top: 10px;
+    }
     div.info {
         width: 100%;
         margin: 30px 0 20px 0;
@@ -472,7 +478,7 @@ img.loading {
         height: 1em !important;
     }
     div.info span {
-        font-size: 1em;
+        font-size: 1.1em;
         margin-right: 10px;
         margin-left: 3px;
     }
@@ -522,6 +528,9 @@ img.loading {
     p.article-main-description {
         font-size: 1.5em;
         line-height: 30px;
+    }
+    div.reactions-container {
+        margin-top: 10px;
     }
     div.info {
         width: 100%;

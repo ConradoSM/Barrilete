@@ -12,16 +12,21 @@ p.user-title img {
     box-shadow: 0 0 2px #212f3c;
     padding: 1px;
 }
-img.delete-message {
+img.message-bar {
     position: absolute;
-    right: 0;
     top: 0;
     width: auto;
     height: 40px;
     cursor: pointer;
 }
-img.delete-message:hover {
+img.message-bar:hover {
     opacity: 0.8;
+}
+.delete-message {
+    right: 0;
+}
+.user-block {
+    right: 50px;
 }
 div#users-menu {
     width: 25%;

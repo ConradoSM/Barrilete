@@ -48,10 +48,11 @@ class IndexController extends Controller
      */
     public function home()
     {
+        $breakingNews = $this->_articles->query()->where('is_breaking', true)->latest()->take(1)->first();
         $articlesIndex = $this->_articles->articlesHome();
         $galleryIndex = $this->_gallery->galleryHome()->count() != 0 ? $this->_gallery->galleryHome()->first() : null;
         $pollsIndex = $this->_poll->pollsHome()->count() != 0 ? $this->_poll->pollsHome() : null;
 
-        return view('default', compact('articlesIndex','galleryIndex','pollsIndex'));
+        return view('default', compact('articlesIndex','galleryIndex','pollsIndex', 'breakingNews'));
     }
 }

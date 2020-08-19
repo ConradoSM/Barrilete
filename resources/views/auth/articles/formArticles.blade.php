@@ -22,8 +22,16 @@
                 @endforeach
             </select>
             <input type="file" class="jfilestyle" data-inputSize="500px" data-placeholder="Imagen Principal (*) Oligatoria, sólo imágenes JPG, JPEG, PNG" id="foto" name="photo" accept=".png, .jpg, .jpeg" {{ isset($article) ? '' : 'required' }} />
+        </fieldset>
+        <h3>Opciones</h3>
+        <fieldset>
             <label class="check-container" for="video">La publicación contiene video de Youtube u otras fuentes
                 <input type="checkbox" name="video" id="video" value="1" {{ isset($article) && $article->video == true  ? 'checked' : '' }} />
+                <span class="check-mark"></span>
+            </label>
+            <br>
+            <label class="check-container" for="is_breaking">Es noticia de último momento
+                <input type="checkbox" name="is_breaking" id="is_breaking" value="1" {{ isset($article) && $article->is_breaking == true  ? 'checked' : '' }} />
                 <span class="check-mark"></span>
             </label>
         </fieldset>

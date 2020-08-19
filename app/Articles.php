@@ -45,13 +45,9 @@ class Articles extends Model
      */
     public function scopeArticlesHome($query)
     {
-        return $query->where('status','PUBLISHED')
-        ->latest()
-        ->take(24)
-        ->get()
-        ->sortByDesc(
-            function($post)
-            {
+        return $query->where('status','PUBLISHED')->where('is_breaking', false)
+            ->latest()->take(24)->get()->sortByDesc(
+            function($post) {
                 return sprintf('%-12s%s',$post->section->prio, $post->created_at);
             });
     }

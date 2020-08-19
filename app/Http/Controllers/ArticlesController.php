@@ -211,7 +211,16 @@ class ArticlesController extends Controller
         $article->status = 'DRAFT';
         $article->views = !$article ? 0 : false;
         $article->author = $request['author'];
+        $article->is_breaking = $request['is_breaking'];
         $article->save();
+
+        /** Unset is breaking articles */
+        if ($request['is_breaking']) {
+            $articles = $this->_articles->query()->where('is_breaking', true)->where('id', '!=', $article->id);
+            if ($articles->first()) {
+                $articles->update(['is_breaking' => false]);
+            }
+        }
 
         return $article;
     }
