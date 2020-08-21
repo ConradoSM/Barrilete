@@ -83,6 +83,7 @@ $(document).ready(function() {
             content: '<p class="alert feedback-warning">¿Estás seguro que deseas borrar éste mensaje?</p>',
             boxWidth: screenWidth,
             useBootstrap: false,
+            type: 'dark',
             buttons: {
                 confirmar: {
                     btnClass: 'button small danger',

@@ -2,7 +2,14 @@
 
 namespace barrilete\Http\Controllers;
 
+use barrilete\Articles;
+use barrilete\Gallery;
+use barrilete\Poll;
+use barrilete\Sections;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use barrilete\Comments;
@@ -127,5 +134,93 @@ class CommentController extends Controller
         }
 
         return abort(404);
+    }
+
+    /**
+     * @param array $message
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function getAllComments($message = [])
+    {
+        $comments = Comments::query()->orderBy('created_at', 'DESC')
+            ->paginate(20)->setPath(route('getAllComments'));
+
+        return response()->json([
+            'view' => view('comments.all-comments', compact('comments', 'message'))->render()
+        ])->header('Content-Type', 'application/json');
+    }
+
+    /**
+     * @param Request $request
+     * @return Builder[]|Builder[][]|Collection|Collection[]|Model[]|mixed|null[]
+     */
+    public function getCommentById(Request $request)
+    {
+        $comment = Comments::query()->findOrFail($request->id);
+
+        return response()->json([
+            'date' => ucfirst($comment->created_at->diffForHumans()),
+            'content' => $comment->content,
+            'article_link' => $this->getArticleLink($comment->article_id, $comment->section_id)
+        ]);
+    }
+
+    /**
+     * @param $article_id
+     * @param $section_id
+     * @return string
+     */
+    protected function getArticleLink($article_id, $section_id)
+    {
+        $article = Articles::query()->where('id', $article_id)->where('section_id', $section_id)->first();
+        $gallery = Gallery::query()->where('id', $article_id)->where('section_id', $section_id)->first();
+        $poll = Poll::query()->where('id', $article_id)->where('section_id', $section_id)->first();
+
+        $link = '';
+        if ($article) {
+            $link = route('article', [
+                'id' => $article->id,
+                'section' => str_slug($article->section->name),
+                'title' => str_slug($article->title,'-')
+            ]);
+        }
+
+        if ($gallery) {
+            $link = route('gallery', [
+                'id' => $gallery->id,
+                'title' => str_slug($gallery->title,'-')
+            ]);
+        }
+
+        if ($poll) {
+            $link = route('poll', [
+                'id' => $poll->id,
+                'title' => str_slug($poll->title,'-')
+            ]);
+        }
+
+        return $link;
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function deleteCommentById(Request $request)
+    {
+        $comment = Comments::query()->find($request->id);
+        $message = [
+            'type' => 'error',
+            'value' => 'El comentario no existe.'
+        ];
+        if ($comment->first()) {
+            $comment->delete();
+            $message['type'] = 'success';
+            $message['value'] = 'El comentario se ha borrado.';
+        }
+
+        return $this->getAllComments($message);
     }
 }

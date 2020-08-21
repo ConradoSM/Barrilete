@@ -36,6 +36,7 @@ $(document).ready(function() {
                     closeIcon: true,
                     boxWidth: screenWidth,
                     useBootstrap: false,
+                    type: 'dark',
                     buttons: {
                         Cerrar: {
                             btnClass: 'button small primary'
@@ -50,6 +51,7 @@ $(document).ready(function() {
                 closeIcon: true,
                 boxWidth: screenWidth,
                 useBootstrap: false,
+                type: 'dark',
                 buttons: {
                     Cerrar: {
                         btnClass: 'button small danger'

@@ -89,7 +89,7 @@ section.dashboard aside.tools-bar {
 /*LOGO*/
 img.logo {
     width: auto;
-    height: 40px;
+    height: 45px;
     cursor: default;
     align-self: center;
     margin-bottom: 20px;
@@ -389,8 +389,9 @@ table.table {
     border-collapse: collapse;
     border-spacing: 0;
     box-shadow: 0 0 3px 0 #999;
-    border-radius: 10px;
+    border-radius: 5px 5px 0 0;
     overflow: hidden;
+    cursor: default;
 }
 table.table thead tr th {
     text-align: left;
@@ -493,5 +494,15 @@ span.page-link {
 .page-item.disabled span {
     border: 1px solid #abb2b9;
     color: #abb2b9 !important;
+}
+p.comment-info {
+    font-size: 1em;
+    color: #808B96;
+}
+p.comment-content {
+    background-color: #F8F9F9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #E5E7E9;
 }
 

@@ -7,7 +7,7 @@ $(document).ready(function() {
         const submenu = $(this).find('ul.sub-menu');
         const arrow = $(this).find('img.arrow');
         if (link) {
-            getAjaxRequest(e, $(this), link, null);
+            getConfirm(e, $(this), link, null, null);
         }
         if (submenu.length) {
             $('ul.sub-menu').slideUp();
@@ -32,26 +32,27 @@ $(document).ready(function() {
 
     /** Find links **/
     $(document).find('a').each(function() {
-        const href = $(this).attr('href');
-        const dataConfirm = $(this).attr('data-confirm');
+        const href = $(this).attr('href'),
+            dataConfirm = $(this).attr('data-confirm'),
+            dataView = $(this).attr('data-view');
         $(this).attr({href: '#'});
         /** Click event **/
         $(this).on('click', function(e) {
             if (href) {
                 /** Execute ajax request **/
-                getAjaxRequest(e, $(this), href, dataConfirm);
+                getConfirm(e, $(this), href, dataConfirm, dataView);
             }
         });
     });
 
     /** Search content **/
     $('button#search-button').on('click', function(e) {
-        const button = $(this);
-        const query = $('#query').val();
-        const author = $('#author').val();
-        const sec = $('#sec').val();
-        const href = $('form#search').attr('action')+'?sec='+sec+'&author='+author+'&query='+query;
-        getAjaxRequest(e, button, href, null);
+        const button = $(this),
+            query = $('#query').val(),
+            author = $('#author').val(),
+            sec = $('#sec').val(),
+            href = $('form#search').attr('action')+'?sec='+sec+'&author='+author+'&query='+query;
+        getConfirm(e, button, href, null, null);
     });
 
     /** Before ajax request **/
@@ -63,7 +64,7 @@ $(document).ready(function() {
     }
 
     /** Get ajax request **/
-    function getAjaxRequest(e, button, href, dataConfirm) {
+    function getConfirm(e, button, href, dataConfirm, dataView) {
         e.preventDefault();
         e.stopImmediatePropagation();
         if (dataConfirm) {
@@ -73,6 +74,7 @@ $(document).ready(function() {
                 type: 'orange',
                 boxWidth: '55%',
                 useBootstrap: false,
+                closeIcon: true,
                 buttons: {
                     confirmar: {
                         btnClass: 'button danger',
@@ -85,6 +87,28 @@ $(document).ready(function() {
                     }
                 }
             });
+        } else if (dataView) {
+            $.alert({
+                title: '<h3>Comentario</h3>',
+                boxWidth: '55%',
+                useBootstrap: false,
+                content: function(){
+                    const self = this;
+                    return $.get(href).done(function(response) {
+                        self.setContentAppend('<div><p class="comment-info">'+response.date+' · <a href="'+response.article_link+'">Artículo</a></p><p class="comment-content">'+response.content+'</p></div>');
+                    }).fail(function(xhr){
+                        const xhrError = xhr.responseJSON.error ? xhr.responseJSON.error : xhr.statusText;
+                        self.setContentAppend('<p class="alert feedback-error">' + xhr.status + ' - ' + xhrError + '</p>');
+                    });
+                },
+                type: 'dark',
+                closeIcon: true,
+                buttons: {
+                    Listo: {
+                        btnClass: 'button primary'
+                    }
+                }
+            })
         } else {
             ajaxCallback(button, href);
         }
@@ -104,8 +128,8 @@ $(document).ready(function() {
                 $('div#user-content').html(data.view).fadeIn('fast');
             });
         }).fail(function(xhr) {
-            const xhrError = xhr.responseJSON.error ? xhr.responseJSON.error : xhr.statusText;
-            const errorMessage = '<p class="alert feedback-error">' + xhr.status + ' - ' + xhrError + '</p>';
+            const xhrError = xhr.responseJSON.error ? xhr.responseJSON.error : xhr.statusText,
+                errorMessage = '<p class="alert feedback-error">' + xhr.status + ' - ' + xhrError + '</p>';
             $('#loader').fadeOut('fast', function () {
                 $('div#user-content').html(errorMessage).fadeIn('fast');
             });

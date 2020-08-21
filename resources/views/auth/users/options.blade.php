@@ -1,4 +1,4 @@
-<h1>Opciones</h1>
+<h1>Administrar</h1>
 <fieldset>
     <div class="user-options">
         <img src="{{ asset('svg/admin.svg') }}" alt="General" />
@@ -16,6 +16,18 @@
     <div class="user-options">
         <img src="{{ asset('svg/clipboard.svg') }}" alt="Secciones"/>
         <p><a href="{{ route('sectionsIndex') }}">Secciones</a> Ver, agregar, modificar las secciones del sitio</p>
+    </div>
+</fieldset>
+<fieldset>
+    <div class="user-options">
+        <img src="{{ asset('svg/newsletter_gray.svg') }}" alt="Newsletter"/>
+        <p><a href="{{ route('getAllSubscriptions') }}">Newsletters</a> Administrar suscripciones al bolettín informativo</p>
+    </div>
+</fieldset>
+<fieldset>
+    <div class="user-options">
+        <img src="{{ asset('svg/remark.svg') }}" alt="Commentarios"/>
+        <p><a href="{{ route('getAllComments') }}">Comentarios</a> Administrar los comentarios de los usuarios</p>
     </div>
 </fieldset>
 @endif

@@ -1,4 +1,3 @@
-
 <p class="user-title"><img src="{{asset('svg/mail.svg')}}" alt="Newsletter">Boletín informativo</p>
 <fieldset>
     <p>El boletín informativo le permite estar al tanto de los artículos más recientes por correo electrónico. Para suscribirse, selecciona el campo que aparece a continuación. Puede anular su suscripción a la lista de distribución de correo a través del enlace especial incluido en los correos electrónicos.</p>
@@ -49,6 +48,7 @@
                 content: '<p class="alert feedback-'+classType+'">' + data + '</p>',
                 boxWidth: screenWidth,
                 useBootstrap: false,
+                type: 'dark',
                 buttons: {
                     Cerrar: {
                         btnClass: 'button small primary',
@@ -67,6 +67,7 @@
                 content: '<p class="alert feedback-warning">¿Realmente quieres borrar tu cuenta?</p>',
                 boxWidth: screenWidth,
                 useBootstrap: false,
+                type: 'dark',
                 buttons: {
                     borrar: {
                         btnClass: 'button small danger',

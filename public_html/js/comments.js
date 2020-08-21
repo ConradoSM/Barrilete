@@ -124,6 +124,7 @@ $(document).ready(function() {
         $.confirm({
             title: 'Borrar Comentario',
             closeIcon: true,
+            type: 'dark',
             content: '<p class="alert feedback-warning">¿Realmente quieres borrar tu comentario?</p>',
             boxWidth: screenWidth,
             useBootstrap: false,
@@ -167,6 +168,7 @@ $(document).ready(function() {
             },
             boxWidth: screenWidth,
             useBootstrap: false,
+            type: 'dark',
             buttons: {
                 enviar: {
                     btnClass: 'button small primary',

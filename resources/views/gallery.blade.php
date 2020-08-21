@@ -17,6 +17,7 @@
         <p class="article-main-description">{{ $article->article_desc }}</p>
         <div class="reactions-container">
             <div id="reactions">
+                <img alt="Visitas" class="icon article-views" src="{{ asset('svg/eye.svg') }}" /><span>{{ $article->views }}</span>
                 @php($userReaction = Auth::user() ? Auth::user()->articleReaction($article->id, $article->section->id)->first() : null)
                 @if($userReaction)
                     @if($userReaction->reaction == 1)
@@ -35,7 +36,6 @@
         <div class="info">
             <img alt="Fecha" class="icon" src="{{ asset('svg/calendar.svg') }}" /><span>{{ ucfirst($article->created_at->diffForHumans()) }}</span>
             <img alt="Autor" class="icon" src="{{ asset('svg/user_black.svg') }}" /><span>{{ $article->user->name }}</span>
-            <img alt="Visitas" class="icon" src="{{ asset('svg/eye.svg') }}" /><span>{{ $article->views }}</span>
         </div>
         @forelse ($photos as $photo)
         <article class="photos">

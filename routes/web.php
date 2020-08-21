@@ -135,4 +135,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/unpublished/articles','ArticlesController@unpublished')->name('unpublishedArticles');
     Route::get('dashboard/unpublished/galleries','GalleriesController@unpublishedGalleries')->name('unpublishedGalleries');
     Route::get('dashboard/unpublished/polls','PollsController@unpublishedPolls')->name('unpublishedPolls');
+
+    //MANAGE USERS NEWSLETTER SUBSCRIPTIONS
+    Route::get('dashboard/newsletters/subscriptions','NewsletterController@getAllSubscriptions')->name('getAllSubscriptions');
+    Route::get('dashboard/newsletters/cancel/{email}', 'NewsletterController@adminCancel')->name('NewsletterAdminCancel');
+    Route::get('dashboard/newsletters/delete/{email}', 'NewsletterController@adminDelete')->name('NewsletterAdminDelete');
+
+    //MANAGE USERS COMMENTS
+    Route::get('dashboard/comments/all','CommentController@getAllComments')->name('getAllComments');
+    Route::get('dashboard/comment/get/{id}','CommentController@getCommentById')->name('getCommentById');
+    Route::get('dashboard/comment/delete/{id}','CommentController@deleteCommentById')->name('deleteCommentById');
 });

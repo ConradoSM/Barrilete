@@ -3,6 +3,7 @@
 namespace barrilete;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Newsletter extends Model
 {
@@ -17,4 +18,12 @@ class Newsletter extends Model
     protected $fillable = [
         'email', 'user_id', 'status', 'additional_information'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

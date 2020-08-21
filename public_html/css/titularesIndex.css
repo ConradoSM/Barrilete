@@ -13,9 +13,9 @@ article.breaking-news h1 {
     display: block;
     color: #fff;
     background-color: #A93226;
-    padding: 10px 0 10px 0;
+    padding: 15px 10px 10px 15px;
     margin: 0;
-    text-align: center;
+    text-align: left;
     border-radius: 5px;
 }
 article.breaking-news h1 img {
@@ -23,7 +23,7 @@ article.breaking-news h1 img {
     right: 0;
     top: 50%;
     transform: translate(-50%, -50%);
-    height: 1em;
+    height: 0.8em;
     cursor: pointer;
 }
 article.breaking-news h1 img:hover {

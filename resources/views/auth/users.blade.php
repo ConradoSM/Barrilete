@@ -29,7 +29,7 @@
                 <ul class="sub-menu">
                     <li title="Editar Cuenta" data-link="{{route('editUser', ['id' => Auth::id(), 'home' => '1'])}}">Editar Cuenta</li>
                     <li title="Cambiar Contraseña" data-link="{{route('editMyPassword')}}">Cambiar Contraseña</li>
-                    <li title="Opciones" data-link="{{route('MyAccountConfig')}}">Opciones</li>
+                    <li title="Administrar" data-link="{{route('MyAccountConfig')}}">Administrar</li>
                 </ul>
             </li>
             <li title="Salir" onclick="location.href='{{route('logout')}}'">

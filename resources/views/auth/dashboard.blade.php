@@ -55,7 +55,7 @@
                     <li title="Sistema">
                         <p><img src="{{ asset('svg/gear.svg') }}" alt="Sistema">Sistema<img src="{{asset('svg/down-arrow.svg')}}" class="arrow" alt="sub-menu"></p>
                         <ul class="sub-menu">
-                            <li title="Opciones" data-link="{{ route('options') }}">Opciones</li>
+                            <li title="Administrar" data-link="{{ route('options') }}">Administrar</li>
                             <li title="Ir al sitio" onclick="window.location = '{{ route('default') }}'">Ir al sitio</li>
                             <li title="Salir" onclick="window.location = '{{ route('logout') }}'">Salir</li>
                         </ul>

@@ -92,8 +92,8 @@ $(document).ready(function() {
     });
 
     /** Autocomplete Search Functionality **/
-    const inputSearch = $('input#search-input');
-    const divResults = $('div#results');
+    const inputSearch = $('input#search-input'),
+        divResults = $('div#results');
     let searchAPI = function() {
         inputSearch.autocomplete({
             source: function(request) {
@@ -271,6 +271,7 @@ $(document).ready(function() {
             content: '<p class="alert feedback-'+classType+'">' + data + '</p>',
             boxWidth: screenWidth,
             useBootstrap: false,
+            type: 'dark',
             buttons: {
                 Cerrar: {
                     btnClass: 'button small primary',

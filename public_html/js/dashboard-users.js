@@ -38,9 +38,9 @@ $(document).ready(function() {
                 processData: false,
                 success: function(data) {
                     container.html(data);
-                    const userInfo = $('div.user-info');
-                    const photo = $('input[name=home]').attr('value');
-                    const name = $('input[name=name]').attr('value');
+                    const userInfo = $('div.user-info'),
+                        photo = $('input[name=home]').attr('value'),
+                        name = $('input[name=name]').attr('value');
                     if (photo) {
                         userInfo.find('img').attr('src', '/img/users/images/' + photo);
                     }
@@ -49,8 +49,8 @@ $(document).ready(function() {
                     }
                 },
                 error: function(xhr) {
-                    const errors = typeof xhr.responseJSON != 'undefined' ? xhr.responseJSON.errors : '';
-                    const url = window.location.origin+'/dashboard/users/edit/'+userId+'?home=1';
+                    const errors = typeof xhr.responseJSON != 'undefined' ? xhr.responseJSON.errors : '',
+                        url = window.location.origin+'/dashboard/users/edit/'+userId+'?home=1';
                     ajaxErrorGet(url, container, errors);
                 },
                 complete: function() {

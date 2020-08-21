@@ -6,10 +6,12 @@ use Auth;
 use barrilete\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use barrilete\Newsletter;
 use Illuminate\View\View;
+use Throwable;
 
 class NewsletterController extends Controller
 {
@@ -88,5 +90,86 @@ class NewsletterController extends Controller
         }
 
         return view('newsletter.delete', compact('response'));
+    }
+
+    /**
+     * @param array $message
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function getAllSubscriptions($message = [])
+    {
+        $subscriptions = Newsletter::query()->orderBy('created_at', 'DESC')
+            ->paginate(20)
+            ->setPath(route('getAllSubscriptions'));
+
+        return response()->json([
+            'view' => view('newsletter.subscriptions', compact('subscriptions', 'message'))->render()
+        ])->header('Content-Type', 'application/json');
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse | void
+     * @throws Throwable
+     */
+    public function adminCancel(Request $request)
+    {
+        if ($request->ajax()) {
+            $email = $request->email;
+            $newsletter = $this->getNewsletterByEmail($email);
+            $message = [
+                'type' => 'error',
+                'value' => 'El email no existe.'
+            ];
+
+            if ($newsletter->first()) {
+                $newsletter->update([
+                    'status' => false
+                ]);
+                $message['type'] = 'success';
+                $message['value'] = 'La suscripción se ha cancelado.';
+            }
+
+            return $this->getAllSubscriptions($message);
+        }
+
+        return abort(404);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse | void
+     * @throws Throwable
+     */
+    public function adminDelete(Request $request)
+    {
+        if ($request->ajax()) {
+            $email = $request->email;
+            $newsletter = $this->getNewsletterByEmail($email);
+            $message = [
+                'type' => 'error',
+                'value' => 'El email ' . $email . ' no existe.'
+            ];
+
+            if ($newsletter->first()) {
+                $newsletter->delete();
+                $message['type'] = 'success';
+                $message['value'] = 'La suscripción se ha borrado.';
+            }
+
+            return $this->getAllSubscriptions($message);
+        }
+
+        return abort(404);
+    }
+
+    /**
+     * @param $email
+     * @return Builder
+     */
+    protected function getNewsletterByEmail($email)
+    {
+        return Newsletter::query()->where('email', $email);
     }
 }
