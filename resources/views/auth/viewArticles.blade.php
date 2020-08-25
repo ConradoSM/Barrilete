@@ -11,7 +11,21 @@
         @else
         <img src="{{ asset('svg/checked.svg') }}" title="Publicado" alt="Publicado" />
         @endif
-        {{ $article->created_at->diffForHumans() }} · {{ $article->section ? ucfirst($article->section->name) : $status}} · {{ $article->views }} lecturas @if($status == 'encuestas') · {{ $article->option->sum('votes') }} votos @endif
+        {{ $article->created_at->diffForHumans() }} ·
+        {{ $article->section ? ucfirst($article->section->name) : $status}} ·
+        {{ $article->views }} lecturas
+        @if($status == 'encuestas') · {{ $article->option->sum('votes') }} votos
+        @php($fromDate = \Carbon\Carbon::parse($article->valid_from))
+        @php($toDate = \Carbon\Carbon::parse($article->valid_to))
+        @php($now = \Carbon\Carbon::now())
+        @if($toDate->isPast())
+        <span class="poll-close">Encuesta cerrada</span>
+        @elseif($fromDate->isFuture())
+        <span class="poll-warning">Encuesta no activa aún</span>
+        @elseif($now->between($fromDate, $toDate))
+        <span class="poll-active">Encuesta activa</span>
+        @endif
+        @endif
     </p>
     @if ($status == 'artículos')
     <h3><a href="{{ route('previewArticle', ['id'=>$article->id]) }}">{{ $article->title }}</a></h3>

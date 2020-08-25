@@ -2,6 +2,7 @@
 
 namespace barrilete;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -48,9 +49,10 @@ class Poll extends Model
     public function scopePollsHome($query)
     {
         return $query->where('status','PUBLISHED')
-        ->latest()
-        ->take(3)
-        ->get();
+            ->whereDate('valid_from','<=', Carbon::now())
+            ->latest()
+            ->take(3)
+            ->get();
     }
 
     /**
@@ -75,12 +77,12 @@ class Poll extends Model
      */
     public function scopeMorePolls($query, $id)
     {
-        return $query->select('id','title','created_at')
-        ->where('id','!=',$id)
-        ->where('status','PUBLISHED')
-        ->latest()
-        ->take(8)
-        ->get();
+        return $query->whereDate('valid_from','<=', Carbon::now())
+            ->where('id','!=',$id)
+            ->where('status','PUBLISHED')
+            ->latest()
+            ->take(8)
+            ->get();
     }
 
     /**

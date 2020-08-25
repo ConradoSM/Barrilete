@@ -18,6 +18,13 @@
             <input type="text" name="title" value="" placeholder="Título: éste es el principal título de la encuesta (*) Mínimo 20 caracteres" required />
             <textarea name="article_desc" placeholder="Copete: puedes incluir el primer párrafo de tu encuesta (*) Mínimo 50 caracteres" required></textarea>
         </fieldset>
+        <h3>Validez</h3>
+        <fieldset>
+            <label for="valid_from">Desde:</label>
+            <input type="datetime-local" name="valid_from" id="valid_from" required />
+            <label for="valid_to">Hasta:</label>
+            <input type="datetime-local" name="valid_to" id="valid_to" required />
+        </fieldset>
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
         <input type="hidden" name="author" value="{{ Auth::user()->name }}" />

@@ -61,6 +61,12 @@ $(document).ready(function () {
                 },
                 option: {
                     required: required
+                },
+                valid_from: {
+                    required: required
+                },
+                valid_to: {
+                    required: required
                 }
             },
             errorElement: 'p',

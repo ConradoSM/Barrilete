@@ -78,6 +78,7 @@ div.reactions-container {
     height: 2px;
     width: 100%;
     background-color: #d6dbdf;
+    margin-top: 20px;
 }
 div#reactions {
     position: absolute;
@@ -157,6 +158,7 @@ article.photos p {
 aside.pub-aside {
     width: 30%;
     height: auto;
+    margin-top: 20px;
 }
 article.pub-article {
     position: relative;
@@ -254,10 +256,11 @@ article.searchResult p.searchCopete {
 article.pollOptions {
     width: 100%;
     height: auto;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 5px;
     background-color: #f2f3f4;
     margin-bottom: 20px;
+    box-shadow: 0 0 3px 0 #85929E;
 }
 article.pollOptions div.resultContainer {
     width: 100%;
@@ -283,14 +286,13 @@ article.pollOptions p.options {
 }
 article.pollOptions p.options span {
     background-color: #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 0 10px;
     font-size: 0.9em;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 article.pollOptions p.totalVotes {
     font-size: 1.5em;
-    color: #000;
     margin: 0;
 }
 /**-- Comments --**/
@@ -503,7 +505,7 @@ img.loading {
     }
     aside.pub-aside {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 0;
     }
     div.comment-container p.comment {
         font-size: 1em !important;
@@ -552,7 +554,7 @@ img.loading {
     }
     aside.pub-aside {
         width: 100%;
-        margin-top: 10px;
+        margin-top: 0;
     }
     article.pub-article img {
         height: 320px;

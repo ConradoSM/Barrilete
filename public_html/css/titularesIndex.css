@@ -311,12 +311,15 @@ div.most p span {
         height: 60px;
     }
     article.gallery-container a.gallery-link {
-        font-size: 1.3em;
+        font-size: 1.1em;
         padding: 10px;
     }
     /**-- Poll Index --**/
     article.polls {
         width: 100%;
+    }
+    article.polls p {
+        font-size: 1.2em;
     }
     /**-- Ranking -- **/
     section.ranking {
@@ -360,6 +363,9 @@ div.most p span {
         margin: 0;
     }
     /**-- Main Pubs --**/
+    div.articles-index {
+        margin-bottom: 30px;
+    }
     article.pubIndex {
         display: flex;
         flex-flow: column nowrap;
@@ -371,10 +377,10 @@ div.most p span {
     }
     article.pubIndex img.article-image {
         width: 100%;
-        height: 320px;
+        height: 450px;
     }
     article.pubIndex img.video {
-        top: 160px;
+        top: 225px;
     }
     article.pubIndex a.article-link {
         padding: 10px;
@@ -440,9 +446,6 @@ div.most p span {
     article.pubIndex:first-child {
         width: 100%;
     }
-    article.pubIndex:last-child {
-        margin-bottom: 0;
-    }
     article.pubIndex img.article-image {
         width: 100%;
         height: 320px;
@@ -476,7 +479,6 @@ div.most p span {
         height: 100%;
     }
     article.gallery-container a.gallery-link {
-        font-size: 1.5em;
         padding: 10px;
     }
 }

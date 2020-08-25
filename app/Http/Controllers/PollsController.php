@@ -3,6 +3,7 @@
 namespace barrilete\Http\Controllers;
 
 use barrilete\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -26,24 +27,26 @@ class PollsController extends Controller
     public function poll($id)
     {
         $article = Poll::poll($id);
-        if ($article) {
+        if ($article && $article->valid_from <= Carbon::now()) {
             $ipRequest = Request()->getClientIp();
             $ip = PollIp::where('poll_id',$id)
             ->where('ip',$ipRequest)
             ->first();
-            if (!$ip) {
-                $poll_options = $article->option;
-                $morePolls = Poll::morePolls($id);
-
-                return view('poll', compact('article','poll_options','morePolls'))->with('status', false);
-
-            }
+            $morePolls = Poll::morePolls($id);
             $poll_options = $article->option;
             $totalVotes = $poll_options->sum('votes');
-            $morePolls = Poll::morePolls($id);
 
-            return view('poll', compact('article','poll_options','totalVotes','morePolls'))
-            ->with('status', 'Ya has votado!');
+            if ($article->valid_to <= Carbon::now()) {
+                return view('poll', compact('article','poll_options','totalVotes','morePolls'))
+                    ->with('status', 'La encuesta ha cerrado.');
+            }
+
+            if ($ip) {
+                return view('poll', compact('article','poll_options','totalVotes','morePolls'))
+                    ->with('status', 'Ya has votado!');
+            }
+
+            return view('poll', compact('article','poll_options','morePolls'))->with('status', false);
         }
 
         return abort(404);
@@ -107,6 +110,8 @@ class PollsController extends Controller
         $poll->section_id = $request->section_id;
         $poll->author = $request->author;
         $poll->article_desc = $request->article_desc;
+        $poll->valid_from = $request->valid_from;
+        $poll->valid_to = $request->valid_to;
         $poll->save();
 
         return view('auth.polls.formOptionsPolls', compact('poll'));
@@ -256,6 +261,8 @@ class PollsController extends Controller
             $poll->section_id = $request->section_id;
             $poll->author = $request->author;
             $poll->status = 'DRAFT';
+            $poll->valid_from = $request->valid_from;
+            $poll->valid_to = $request->valid_to;
             $poll->save();
             $options = $poll->option->first() ? $poll->option : [];
 

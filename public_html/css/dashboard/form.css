@@ -9,6 +9,7 @@ input[type=url],
 input[type=number],
 input[type=date],
 input[type=search],
+input[type=datetime-local],
 select,
 textarea {
     display: block;
@@ -29,6 +30,7 @@ input[type=url]:last-child,
 input[type=number]:last-child,
 input[type=date]:last-child,
 input[type=search]:last-child,
+input[type=datetime-local]:last-child,
 select:last-child,
 textarea:last-child {
     margin-bottom: 0;
@@ -40,6 +42,7 @@ input[type=url]:hover,
 input[type=number]:hover,
 input[type=date]:hover,
 input[type=search]:hover,
+input[type=datetime-local]:hover,
 select:hover,
 textarea:hover {
     border: 1px solid #828282;
@@ -51,6 +54,7 @@ input[type=url]:focus,
 input[type=number]:focus,
 input[type=date]:focus,
 input[type=search]:focus,
+input[type=datetime-local]:focus,
 select:focus,
 textarea:focus {
     border: 1px solid #828282;
@@ -62,6 +66,7 @@ input[type=url].error,
 input[type=number].error,
 input[type=date].error,
 input[type=search].error,
+input[type=datetime-local].error,
 select.error,
 textarea.error {
     border: 1px solid #cb0001;

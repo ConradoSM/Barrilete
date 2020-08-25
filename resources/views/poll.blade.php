@@ -41,7 +41,7 @@
             <h2>{{ $status }}</h2>
             <hr />
             @forelse ($poll_options as $option)
-            <p class="options">{{ $option->option }} <span>{{ $option->votes }}</span></p>
+            <p class="options"><span>{{ $option->votes }}</span>{{ $option->option }}</p>
             <div class="resultContainer">
                 <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes }}%">{{ round(($option->votes * 100) / $totalVotes ) }}%</p>
             </div>
@@ -51,7 +51,7 @@
             <hr />
             <p class="totalVotes">Votos: {{$totalVotes}}</p>
             @else
-            <form action="{{route('poll-vote')}}" method="post">
+            <form action="{{route('poll-vote')}}" method="post" id="poll">
                 @forelse ($poll_options as $option)
                 <label class="radio-container" for="{{$option->id}}">{{ $option->option }}
                     <input type="radio" name="id_opcion" id="{{$option->id}}" value="{{$option->id}}" required />
@@ -84,8 +84,18 @@
         @if($morePolls->first())
             <h2>Más encuestas</h2>
             @forelse ($morePolls as $more)
+            @php($fromDate = \Carbon\Carbon::parse($more->valid_from))
+            @php($toDate = \Carbon\Carbon::parse($more->valid_to))
+            @php($now = \Carbon\Carbon::now())
             <article class="pub-article">
-                <p>{{ucfirst($more->created_at->diffForHumans())}}</p>
+                <p>
+                    {{ucfirst($more->created_at->diffForHumans())}}
+                    @if($toDate->isPast())
+                        · <text style="color: #922B21">Encuesta cerrada</text>
+                    @elseif($now->between($fromDate, $toDate))
+                        · <text style="color: #1D8348">Encuesta activa</text>
+                    @endif
+                </p>
                 <a href="{{route('poll',['id'=>$more->id,'title'=>str_slug($more->title,'-')])}}">{{$more->title}}</a>
             </article>
             @empty

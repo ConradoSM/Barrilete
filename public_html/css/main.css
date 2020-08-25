@@ -643,7 +643,7 @@ footer div#footer-container p.newsletter span img {
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 62px;
+        margin-top: 65px;
         width: 50vw;
         height: 100vh;
         background-color: #D6DBDF;
@@ -651,11 +651,10 @@ footer div#footer-container p.newsletter span img {
     div#nav-container hr {
         display: none;
     }
-    div#nav-container nav {
-        padding-top: 20px;
-    }
     div#nav-container nav ul, nav.active ul {
         flex-flow: column nowrap;
+        width: 90%;
+        margin-top: 10px;
     }
     div#nav-container nav ul li {
         border-bottom: 1px solid #85929E;
@@ -686,14 +685,17 @@ footer div#footer-container p.newsletter span img {
         padding: 10px;
     }
     footer div#footer-container section {
-        flex: 0 50%;
+        width: auto;
     }
     footer div#footer-container section.last {
         margin-top: 20px;
-        flex: 100%;
+        width: 100%;
         display: flex;
         flex-flow: column;
         align-items: center;
+    }
+    footer div#footer-container section.last form {
+        width: 80%;
     }
     footer div#footer-container section.last hr {
         display: block;
@@ -799,22 +801,30 @@ footer div#footer-container p.newsletter span img {
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 70px;
-        width: 50vw;
+        margin-top: 73px;
+        padding-bottom: 80px;
+        width: 30vw;
         height: 100vh;
+        overflow-y: auto;
         background-color: #D6DBDF;
+        z-index: 0;
     }
     div#nav-container hr {
         display: none;
     }
-    div#nav-container nav {
-        padding-top: 20px;
-    }
     div#nav-container nav ul, nav.active ul {
         flex-flow: column nowrap;
+        width: 90%;
+        margin-top: 10px;
+    }
+    div#nav-container nav ul li {
+        border-bottom: 1px solid #85929E;
+    }
+    div#nav-container nav ul li:last-child {
+        border-bottom: none;
     }
     div#nav-container nav ul li a {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
     div#nav-container nav ul li a.active {
         border-bottom: none;
@@ -842,14 +852,17 @@ footer div#footer-container p.newsletter span img {
         flex-flow: row wrap;
     }
     footer div#footer-container section {
-        flex: 0 50%;
+        width: auto;
     }
     footer div#footer-container section.last {
         margin-top: 20px;
-        flex: 100%;
+        width: 100%;
         display: flex;
         flex-flow: column;
         align-items: center;
+    }
+    footer div#footer-container section.last form {
+        width: 80%;
     }
     footer div#footer-container section.last hr {
         display: block;
@@ -952,26 +965,30 @@ footer div#footer-container p.newsletter span img {
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 90px;
-        width: 50vw;
+        margin-top: 85px;
+        padding-bottom: 80px;
+        width: 30vw;
         height: 100vh;
+        overflow-y: auto;
         background-color: #D6DBDF;
+        z-index: 0;
     }
     div#nav-container hr {
         display: none;
     }
-    div#nav-container nav {
-        padding-top: 20px;
-    }
     div#nav-container nav ul, nav.active ul {
         flex-flow: column nowrap;
+        width: 90%;
+        margin-top: 10px;
+    }
+    div#nav-container nav ul li {
+        border-bottom: 1px solid #85929E;
+    }
+    div#nav-container nav ul li:last-child {
+        border-bottom: none;
     }
     div#nav-container nav ul li a {
-        font-size: 1.5em;
-    }
-    div#nav-container nav ul li a.active {
-        border-bottom: none;
-        font-weight: bold;
+        font-size: 1.3em;
     }
     /**-- Login --**/
     div.dashboard-container {

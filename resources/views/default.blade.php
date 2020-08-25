@@ -43,8 +43,19 @@
         <article class="polls">
             <h2><img src="{{ asset('svg/poll_blue.svg') }}">Últimas encuestas</h2>
             @foreach ($pollsIndex as $pollIndex)
+                @php($fromDate = \Carbon\Carbon::parse($pollIndex->valid_from))
+                @php($toDate = \Carbon\Carbon::parse($pollIndex->valid_to))
+                @php($now = \Carbon\Carbon::now())
             <p>
-                <span class="poll-info">{{ ucfirst($pollIndex->created_at->diffForHumans()) }} · {{ $pollIndex->option->sum('votes') }} {{ $pollIndex->option->sum('votes') == 1 ? 'voto' : 'votos'}}</span>
+                <span class="poll-info">
+                    {{ ucfirst($pollIndex->created_at->diffForHumans()) }} ·
+                    {{ $pollIndex->option->sum('votes') }} {{ $pollIndex->option->sum('votes') == 1 ? 'voto' : 'votos'}}
+                    @if($toDate->isPast())
+                    · <text style="color: #922B21">Encuesta cerrada</text>
+                    @elseif($now->between($fromDate, $toDate))
+                    · <text style="color: #1D8348">Encuesta activa</text>
+                    @endif
+                </span>
                 <a class="poll-link" href="{{ route('poll',['id' => $pollIndex->id, 'title' => str_slug($pollIndex->title,'-')]) }}">{{ $pollIndex->title }}</a>
             </p>
             @endforeach

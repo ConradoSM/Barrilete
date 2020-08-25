@@ -303,4 +303,18 @@ $(document).ready(function() {
     $('img#close-breakingnews').on('click', function() {
         $('article.breaking-news').slideUp();
     });
+
+    /** Form Poll Validate **/
+    $('form#poll').validate({
+        messages: {
+            id_opcion: {
+                required: 'Debes escoger alguna opción',
+            }
+        },
+        errorElement: 'p',
+        errorPlacement: function(error) {
+            $(document).find('p#id_opcion-error').remove();
+            $('form#poll').after(error);
+        }
+    });
 });

@@ -209,7 +209,6 @@ class ArticlesController extends Controller
         $article->video = $request['video'] ? 1 : 0;
         $article->article_body = $request['article_body'];
         $article->status = 'DRAFT';
-        $article->views = !$article ? 0 : false;
         $article->author = $request['author'];
         $article->is_breaking = $request['is_breaking'] ? true : false;
         $article->save();

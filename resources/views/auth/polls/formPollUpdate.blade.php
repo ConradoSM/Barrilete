@@ -39,6 +39,13 @@
             <input type="hidden" name="author" value="{{ $poll->author }}" />
             <input type="hidden" name="section_id" value="{{ $poll->section_id }}" />
         </fieldset>
+        <h3>Validez</h3>
+        <fieldset>
+            <label for="valid_from">Desde:</label>
+            <input type="datetime-local" name="valid_from" id="valid_from" value="{{ $poll->valid_from ? date("Y-m-d\TH:i:s", strtotime($poll->valid_from)) : '' }}" required />
+            <label for="valid_to">Hasta:</label>
+            <input type="datetime-local" name="valid_to" id="valid_to" value="{{ $poll->valid_to ? date("Y-m-d\TH:i:s", strtotime($poll->valid_to)) : '' }}" required />
+        </fieldset>
         <input type="submit" value="Actualizar" class="button success" />
     </form>
     <h3>Editar Opciones</h3>
