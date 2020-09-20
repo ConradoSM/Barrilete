@@ -178,7 +178,7 @@ div#user-menu {
     display: none;
     width: 250px;
     max-height: 50vh;
-    top: 125%;
+    top: 140%;
     right: 0;
     z-index: 1000;
     padding: 0;
@@ -553,11 +553,11 @@ footer div#footer-container p.newsletter span img {
         width: 60px !important;
     }
     div#header-container {
-        padding: 20px 10px;
+        padding: 20px 5px;
     }
     /**-- Logo --**/
     .logo {
-        margin-left: 50px;
+        margin-left: 45px;
         width: auto;
         height: 25px;
     }
@@ -588,7 +588,7 @@ footer div#footer-container p.newsletter span img {
         margin-right: 10px;
     }
     div#user-bar img {
-        height: 22px;
+        height: 20px;
         margin-right: 0;
         margin-left: 15px;
     }
@@ -606,12 +606,12 @@ footer div#footer-container p.newsletter span img {
     }
     /** Notifications bubbles*/
     div.notifications.comments {
-        left: 65px;
+        left: 60px;
         top: -5px;
     }
     div.notifications.messages {
         top: -5px;
-        left: 100px;
+        left: 95px;
     }
     /**-- Menu button --**/
     a#menu-btn {
@@ -643,7 +643,7 @@ footer div#footer-container p.newsletter span img {
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 65px;
+        margin-top: 60px;
         width: 50vw;
         height: 100vh;
         background-color: #D6DBDF;
