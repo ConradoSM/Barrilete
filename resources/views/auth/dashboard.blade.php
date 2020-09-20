@@ -67,7 +67,7 @@
         </section>
         <footer>
             <div>
-                <p>© 2020 todos los derechos reservados - v2.5.1</p>
+                <p>© 2020 todos los derechos reservados - v2.6</p>
                 <p><a href="mailto:info@barrilete.com.ar" data-ajax="false">info@barrilete.com.ar</a></p>
             </div>
             <div>

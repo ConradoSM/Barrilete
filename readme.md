@@ -1,6 +1,6 @@
 <div>
     <a href="https://barrilete.com.ar/"><img alt="Barrilete" src="https://barrilete.com.ar/svg/logo_barrilete.svg"></a>
-    <h2>v2.5.1</h2>
+    <h2>v2.6</h2>
     <h4>Notas de la versión</h4>
     <ul>
         <li>Se integra Docker al proyecto</li>
