@@ -20,7 +20,7 @@ services:
     env_file: .env
     volumes:
       - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
     ports:
@@ -36,17 +36,15 @@ services:
     tty: true
     ports:
       - 80:80
-      - 443:443
     volumes:
       - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-      - ./nginx/certs/:/etc/nginx/certs/
+      - ./docker/config/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
 
   #MySQL
   db:
-    image: mysql:5.7.22
+    image: mysql:5.7
     container_name: db
     restart: unless-stopped
     tty: true
@@ -59,7 +57,7 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - dbdata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./docker/config/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
 

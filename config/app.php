@@ -172,7 +172,7 @@ return [
          */
         barrilete\Providers\AppServiceProvider::class,
         barrilete\Providers\AuthServiceProvider::class,
-        // barrilete\Providers\BroadcastServiceProvider::class,
+        barrilete\Providers\BroadcastServiceProvider::class,
         barrilete\Providers\EventServiceProvider::class,
         barrilete\Providers\RouteServiceProvider::class,
 

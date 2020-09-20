@@ -1,5 +1,7 @@
 <h1>Lista de secciones</h1>
-<a href="{{ route('newSection') }}" class="button primary" title="Nueva sección" id="crear">+ Nueva sección</a>
+<div id="action">
+    <a href="{{ route('newSection') }}" class="button primary" title="Nueva sección">+ Nueva sección</a>
+</div>
 @if (isset($success))
 <p class="alert feedback-success">{{ $success }}</p>
 @elseif (isset($error))
@@ -8,10 +10,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th width="10%">ID</th>
-      <th width="22%">Nombre</th>
-      <th width="50%">Prioridad</th>
-      <th width="18%">Acción</th>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Prioridad</th>
+      <th>Acción</th>
     </tr>
   </thead>
   <tbody>

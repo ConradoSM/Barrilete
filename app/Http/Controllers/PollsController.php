@@ -3,6 +3,7 @@
 namespace barrilete\Http\Controllers;
 
 use barrilete\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -19,37 +20,42 @@ use Throwable;
 class PollsController extends Controller
 {
     /**
-     * MOSTRAR ENCUESTA
+     * Show Poll In Frontend
      * @param $id
-     * @return Factory|View
+     * @return Factory|View|void
      */
     public function poll($id)
     {
-        $poll = Poll::poll($id);
-        if ($poll) {
+        $article = Poll::poll($id);
+        if ($article && $article->valid_from <= Carbon::now()) {
             $ipRequest = Request()->getClientIp();
             $ip = PollIp::where('poll_id',$id)
             ->where('ip',$ipRequest)
             ->first();
-            if (!$ip) {
-                $poll_options = $poll->option;
-                $morePolls = Poll::morePolls($id);
-                return view('poll', compact('poll','poll_options','morePolls'))->with('status', false);
-
-            }
-            $poll_options = $poll->option;
-            $totalVotes = $poll_options->sum('votes');
             $morePolls = Poll::morePolls($id);
-            return view('poll', compact('poll','poll_options','totalVotes','morePolls'))
-            ->with('status', 'Ya has votado!');
+            $poll_options = $article->option;
+            $totalVotes = $poll_options->sum('votes');
+
+            if ($article->valid_to <= Carbon::now()) {
+                return view('poll', compact('article','poll_options','totalVotes','morePolls'))
+                    ->with('status', 'La encuesta ha cerrado.');
+            }
+
+            if ($ip) {
+                return view('poll', compact('article','poll_options','totalVotes','morePolls'))
+                    ->with('status', 'Ya has votado!');
+            }
+
+            return view('poll', compact('article','poll_options','morePolls'))->with('status', false);
         }
-        return view('errors.404');
+
+        return abort(404);
     }
 
     /**
-     * VOTOS DE LA ENCUESTA
+     * Set Poll Vote
      * @param Request $request
-     * @return Factory|RedirectResponse|Redirector|View
+     * @return Factory|RedirectResponse|Redirector|View|void
      */
     public function pollVote(Request $request)
     {
@@ -64,13 +70,15 @@ class PollsController extends Controller
                 'poll_id' => $poll_id,
                 'ip' => $ip
             ]);
+
             return redirect('poll/'.$poll_id.'/'. $pollTitle);
         }
-        return view('errors.404');
+
+        return abort(404);
     }
 
     /**
-     * MOSTRAR ENCUESTA
+     * Show Poll In Admin
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -80,15 +88,17 @@ class PollsController extends Controller
         $poll = Poll::findOrFail($id);
         if ($poll) {
             $poll_options = $poll->option;
+
             return response()->json([
                 'view' => view('auth.polls.previewPoll', compact('poll','poll_options'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'La encuesta no existe.'],404);
     }
 
     /**
-     * CREAR ENCUESTA
+     * Create Poll
      * @param pollRequest $request
      * @return Factory|View
      */
@@ -100,12 +110,15 @@ class PollsController extends Controller
         $poll->section_id = $request->section_id;
         $poll->author = $request->author;
         $poll->article_desc = $request->article_desc;
+        $poll->valid_from = $request->valid_from;
+        $poll->valid_to = $request->valid_to;
         $poll->save();
+
         return view('auth.polls.formOptionsPolls', compact('poll'));
     }
 
     /**
-     * GUARDAR OPCIONES
+     * Create Options
      * @param Request $request
      * @return Factory|JsonResponse|View
      */
@@ -123,6 +136,7 @@ class PollsController extends Controller
                     $PollOption->save();
                 }
             $poll_options = $poll->option;
+
             return view('auth.polls.previewPoll', compact('poll', 'poll_options'))
             ->with(['success' => 'La encuesta se ha creado correctamente.']);
         }
@@ -130,7 +144,7 @@ class PollsController extends Controller
     }
 
     /**
-     * FORMULARIO AGREGAR MAS OPCIONES
+     * More Options Form
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -143,11 +157,12 @@ class PollsController extends Controller
                 'view' => view('auth.polls.formOptionsPolls', compact('poll'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'La encuesta no existe.'],404);
     }
 
     /**
-     * BORRAR ENCUESTA
+     * Delete Poll
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -161,6 +176,7 @@ class PollsController extends Controller
             if ($poll) {
                 $poll->delete();
                 $articles = $user->poll()->orderBy('id','DESC')->paginate(10);
+
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))
                         ->with('status','encuestas')
@@ -168,13 +184,15 @@ class PollsController extends Controller
                         ->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'La encuesta no existe.'],404);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * PUBLICAR ENCUESTA
+     * Publish Poll
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -190,22 +208,27 @@ class PollsController extends Controller
                     if ($poll_options) {
                         $poll->status = 'PUBLISHED';
                         $poll->save();
+
                         return response()->json([
                             'view' => view('auth.polls.previewPoll', compact('poll', 'poll_options'))
                                 ->with(['success' => 'La encuesta se ha publicado correctamente.'])->render()
                         ])->header('Content-Type', 'application/json');
                     }
+
                     return response()->json(['error' => 'La encuesta no se publicó, porque no hay opciones relacionadas.'],403);
                 }
+
                 return response()->json(['error' => 'La encuesta no existe.'],404);
             }
+
             return response()->json(['error' => 'Debes ser administrador del sitio para publicar contenido.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * FORMULARIO ACTUALIZAR ENCUESTA
+     * Poll Form
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -215,15 +238,17 @@ class PollsController extends Controller
         $poll = Poll::find($id);
         if ($poll) {
             $options = $poll->option->first() ? $poll->option : [];
+
             return response()->json([
                 'view' => view('auth.polls.formPollUpdate', compact('poll','options'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'La encuesta no existe.'],404);
     }
 
     /**
-     * ACTUALIZAR ENCUESTA
+     * Update Poll
      * @param pollRequest $request
      * @return Factory|View|JsonResponse
      */
@@ -236,16 +261,20 @@ class PollsController extends Controller
             $poll->section_id = $request->section_id;
             $poll->author = $request->author;
             $poll->status = 'DRAFT';
+            $poll->valid_from = $request->valid_from;
+            $poll->valid_to = $request->valid_to;
             $poll->save();
             $options = $poll->option->first() ? $poll->option : [];
+
             return view('auth.polls.formPollUpdate', compact('poll','options'))
                 ->with('success', 'Se actualizó la encuesta.');
         }
+
         return response()->json(['error' => 'La encuesta no existe.'],404);
     }
 
     /**
-     * ACTUALIZAR OPCIONES DE LA ENCUESTA
+     * Update Options Poll
      * @param Request $request
      * @return Factory|View|JsonResponse
      */
@@ -259,14 +288,16 @@ class PollsController extends Controller
             $poll->status = 'DRAFT';
             $poll->save();
             $options = $poll->option->first() ? $poll->option : [];
+
             return view('auth.polls.formPollUpdate', compact('poll','options'))
                 ->with('success', 'Se actualizó la opción de la encuesta.');
         }
+
         return response()->json(['error' => 'La opción de la encuesta no existe.'],404);
     }
 
     /**
-     * BORRAR OPCIONES DE LA ENCUESTA
+     * Delete Options Poll
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -282,16 +313,18 @@ class PollsController extends Controller
             $poll->status = 'DRAFT';
             $poll->save();
             $options = $poll->option->first() ? $poll->option : [];
+
             return response()->json([
                 'view' => view('auth.polls.formPollUpdate', compact('poll','options'))
                     ->with('success','Se ha borrado la opción.')->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'La opción de la encuesta no existe.'],404);
     }
 
     /**
-     * ENCUESTAS SIN PUBLICAR
+     * Unpublished Polls
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -301,12 +334,15 @@ class PollsController extends Controller
         if ($request->ajax()) {
             if (Auth::user()->authorizeRoles(User::ADMIN_USER_ROLE)) {
                 $articles = Poll::unpublished();
+
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))->with('status','encuestas')->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'Tu no eres administrador del sistema.']);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 }

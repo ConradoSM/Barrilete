@@ -5,6 +5,7 @@ namespace barrilete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Comments extends Model
 {
@@ -30,10 +31,15 @@ class Comments extends Model
     {
         return $query->where('article_id', $article_id)
             ->where('section_id', $section_id)
-            ->whereNull('parent_id')
-            ->orderBy('id','DESC')
-            ->paginate(10)
-            ->onEachSide(1);
+            ->whereNull('parent_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function section()
+    {
+        return $this->belongsTo(Sections::class, 'section_id');
     }
 
     /**
@@ -58,5 +64,37 @@ class Comments extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get User Reaction
+     * @param $userId
+     * @return Model|HasOne|object|null
+     */
+    public function getUserReaction($userId)
+    {
+        return $this->hasOne(CommentsUserReactions::class, 'comment_id')
+            ->where('user_id', $userId)
+            ->first();
+    }
+
+    /**
+     * Get Totals Likes
+     * @return HasMany
+     */
+    public function getTotalLikes()
+    {
+        return $this->hasMany(CommentsUserReactions::class, 'comment_id')
+            ->where('reaction', '1');
+    }
+
+    /**
+     * Get Totals Dislikes
+     * @return HasMany
+     */
+    public function getTotalDislikes()
+    {
+        return $this->hasMany(CommentsUserReactions::class, 'comment_id')
+            ->where('reaction', '0');
     }
 }

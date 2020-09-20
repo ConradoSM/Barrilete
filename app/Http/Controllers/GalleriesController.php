@@ -19,22 +19,24 @@ use Throwable;
 class GalleriesController extends Controller
 {
     /**
-     * MOSTRAR GALERÍA SEGÚN ID
+     * Show Gallery
      * @param $id
      * @return Factory|View
      */
     public function showGallery($id)
     {
-        $gallery = Gallery::gallery($id);
-        if ($gallery) {
-            $photos  = $gallery->photos;
-            return view('gallery', compact('gallery', 'photos'));
+        $article = Gallery::gallery($id);
+        if ($article) {
+            $photos  = $article->photos;
+
+            return view('gallery', compact('article', 'photos'));
         }
+
         return view('errors.404');
     }
 
     /**
-     * PREVIEW GALERÍA
+     * Gallery Preview
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -43,20 +45,23 @@ class GalleriesController extends Controller
     public function preview(Request $request, $id)
     {
         if ($request->ajax()) {
-            $gallery = Gallery::find($id);
+            $gallery = Gallery::query()->find($id);
             if ($gallery) {
                 $photos = $gallery->photos->first() ? $gallery->photos : [];
+
                 return response()->json([
                     'view' => view('auth.galleries.previewGallery', compact('gallery', 'photos'))->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'La galería no existe.'],404);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * CREAR GALERÍA
+     * Create Gallery
      * @param galleryRequest $request
      * @return Factory|JsonResponse|View
      */
@@ -72,11 +77,12 @@ class GalleriesController extends Controller
         if ($gallery) {
             return view('auth.galleries.formPhotosGalleries', compact('gallery'));
         }
+
         return response()->json(['error' => 'Ha ocurrido un error al cargar la galería.'],500);
     }
 
     /**
-     * GUARDAR FOTOS
+     * Set Photos Gallery
      * @param galleryPhotosRequest $request
      * @return Factory|JsonResponse|View
      */
@@ -87,33 +93,35 @@ class GalleriesController extends Controller
         if ($request->hasFile('photo')) {
             $photos = $request->photo;
             foreach ($photos as $key => $val) {
-                /** SUBIR FOTOS AL SERVIDOR */
+                /** Upstream File */
                 $file = $photos[$key];
                 $filename = date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension();
-                $upload = public_path('img/galleries/'.$filename);
+                $upload = public_path('img/galleries/images/'.$filename);
                 $uploadThumb = public_path('img/galleries/.thumbs/'.$filename);
                 Image::make($file->getRealPath())->save($upload);
                 Image::make($file->getRealPath())->resize(570, 310, function($constraint) {
                 $constraint->aspectRatio(); })->save($uploadThumb);
-                /** GUARDAR EN BASE DE DATOS */
+                /** Save in Data Base */
                 $galleryPhotos = new GalleryPhotos;
                 $galleryPhotos->gallery_id = $gallery_id;
                 $galleryPhotos->title = $titles[$key];
                 $galleryPhotos->photo = $filename;
                 $galleryPhotos->save();
             }
-            $gallery = Gallery::find($gallery_id);
+            $gallery = Gallery::query()->find($gallery_id);
             $gallery->status = 'DRAFT';
             $gallery->save();
             $photos = $gallery->photos;
+
             return view('auth.galleries.previewGallery', compact('gallery', 'photos'))
                 ->with(['success' => 'La galería de fotos se ha creado correctamente.']);
         }
+
         return response()->json(['error' => 'Error al leer el formato de la imagen.'],500);
     }
 
     /**
-     * BORRAR GALERÍA
+     * Delete Gallery
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -122,12 +130,12 @@ class GalleriesController extends Controller
     public function delete(Request $request, $id)
     {
         if ($request->ajax()) {
-            $gallery = Gallery::find($id);
+            $gallery = Gallery::query()->find($id);
             if ($gallery) {
                 $photos = $gallery->photos;
                 if ($photos) {
                     foreach ($photos as $item) {
-                        $image_path = public_path('img/galleries/'.$item->photo);
+                        $image_path = public_path('img/galleries/images/'.$item->photo);
                         $thumb_path = public_path('img/galleries/.thumbs/'.$item->photo);
                         if (File::exists($image_path) && File::exists($thumb_path)) {
                             File::delete($image_path);
@@ -138,6 +146,7 @@ class GalleriesController extends Controller
                 $gallery->delete();
                 $user = Auth::user();
                 $articles = $user->articles()->orderBy('id','DESC')->paginate(10);
+
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))
                         ->with('status','galerías')
@@ -145,13 +154,15 @@ class GalleriesController extends Controller
                         ->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'La galería de fotos no existe.'],404);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * PUBLICAR GALERÍA
+     * Publish Gallery
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -161,68 +172,69 @@ class GalleriesController extends Controller
     {
         if ($request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
-                $gallery = Gallery::find($id);
+                $gallery = Gallery::query()->find($id);
                 $photos = $gallery->photos->first() ? $gallery->photos : [];
                 if ($photos) {
                     $gallery->status = 'PUBLISHED';
                     $gallery->save();
+
                     return response()->json([
                         'view' => view('auth.galleries.previewGallery', compact('gallery','photos'))
                             ->with(['success' => 'La galería de fotos se ha publicado correctamente.'])->render()
                     ])->header('Content-Type', 'application/json');
                 }
-                /**
-                return response()->json([
-                    'view' => view('auth.galleries.previewGallery', compact('gallery','photos'))
-                        ->with(['error' => 'La galería de fotos no se publicó, porque no hay fotos relacionadas.'])->render()
-                ])->header('Content-Type', 'application/json');
-                 */
+
                 return response()->json(['error' => 'La galería de fotos no se publicó, porque no hay fotos relacionadas.'],403);
             }
+
             return response()->json(['error' => 'Tu no eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * ACTUALIZAR GALERIA
+     * Update Gallery
      * @param galleryRequest $request
      * @return JsonResponse|Factory|View
      */
     public function update(galleryRequest $request)
     {
-        $gallery = Gallery::find($request->id);
+        $gallery = Gallery::query()->find($request->id);
         if ($gallery) {
             $gallery->title = $request->title;
             $gallery->article_desc = $request->article_desc;
             $gallery->status = 'DRAFT';
             $gallery->save();
             $photos  = $gallery->photos->first() ? $gallery->photos : [];
+
             return view('auth.galleries.formGalleryUpdate', compact('gallery', 'photos'))
                 ->with(['success' => 'Se ha actuaizado correctamente.']);
         }
+
         return response()->json(['error' => 'La galería no existe.'],404);
     }
 
     /**
-     * MAS FOTOS
+     * Add More Photos
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
      */
     public function morePhotos(Request $request)
     {
-        $gallery = Gallery::find($request->id);
+        $gallery = Gallery::query()->find($request->id);
         if ($gallery) {
             return response()->json([
                 'view' => view('auth.galleries.formPhotosGalleries', compact('gallery'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'La galería no existe.'],404);
     }
 
     /**
-     * GALERÍAS SIN PUBLICAR
+     * Unpublished Galleries
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -232,12 +244,15 @@ class GalleriesController extends Controller
         if ($request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $articles = Gallery::unpublished();
+
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))->with('status','galerías')->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'Tu no eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 }

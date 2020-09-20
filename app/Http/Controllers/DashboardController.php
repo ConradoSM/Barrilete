@@ -29,11 +29,12 @@ class DashboardController extends Controller
         if (Auth::user()->authorizeRoles(['editor', 'admin'])) {
             return view('auth.dashboard');
         }
+
         return redirect(self::DEFAULT_REDIRECT);
     }
 
     /**
-     * ARTÍCULOS DE LOS USUARIOS
+     * User Articles
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -42,17 +43,19 @@ class DashboardController extends Controller
     public function userArticles(Request $request, $id)
     {
         if ($request->ajax()) {
-            $user = User::find($id);
+            $user = User::query()->find($id);
             $articles = $user->articles()->orderBy('id','DESC')->paginate(10);
+
             return response()->json([
                 'view' => view('auth.viewArticles', compact('articles'))->with('status','artículos')->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * GALERÍAS DE LOS USUARIOS
+     * User Galleries
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -61,17 +64,19 @@ class DashboardController extends Controller
     public function userGalleries(Request $request, $id)
     {
         if ($request->ajax()) {
-            $user = User::find($id);
+            $user = User::query()->find($id);
             $articles = $user->gallery()->orderBy('id','DESC')->paginate(10);
+
             return response()->json([
                 'view' => view('auth.viewArticles', compact('articles'))->with('status','galerías')->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * ENCUESTAS DE LOS USUARIOS
+     * User Polls
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -80,17 +85,19 @@ class DashboardController extends Controller
     public function userPolls(Request $request, $id)
     {
         if ($request->ajax()) {
-            $user = User::find($id);
+            $user = User::query()->find($id);
             $articles = $user->poll()->orderBy('id','DESC')->paginate(10);
+
             return response()->json([
                 'view' => view('auth.viewArticles', compact('articles'))->with('status','encuestas')->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * FORMULARIO CARGAR ARTÍCULO
+     * Add Article Form
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -99,22 +106,28 @@ class DashboardController extends Controller
     {
         if ($request->ajax()) {
             $article = null;
-            $sections = Sections::select('id','name')->where('name','!=','Encuestas')->where('name','!=','Galerias')->get();
+            $sections = Sections::query()
+                ->select('id','name')
+                ->where('name','!=','Encuestas')
+                ->where('name','!=','Galerias')
+                ->get();
             if ($request->id) {
-                $article = Articles::find($request->id);
+                $article = Articles::query()->find($request->id);
             }
             if (!$sections->first()) {
                 return response()->json(['error' => 'Primero debes crear alguna sección'], 500);
             }
+
             return response()->json([
                 'view' => view('auth.articles.formArticles', compact('sections', 'article'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * FORMULARIO CARGAR GALERÍA
+     * Add Gallery Form
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -122,19 +135,21 @@ class DashboardController extends Controller
     public function formGallery(Request $request)
     {
         if ($request->ajax()) {
-            $section = Sections::where('name','galerias')->first();
+            $section = Sections::query()->where('name','galerias')->first();
             if (!$section) {
                 return response()->json(['error' => 'Primero debes crear la sección "galerias"'], 500);
             }
+
             return response()->json([
                 'view' => view('auth.galleries.formGalleries', compact('section'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * FORMULARIO ACTUALIZAR GALERÍA
+     * Update Gallery Form
      * @param Request $request
      * @param $id
      * @return Factory|JsonResponse|View
@@ -143,20 +158,23 @@ class DashboardController extends Controller
     public function formUpdateGallery(Request $request, $id)
     {
         if ($request->ajax()) {
-            $gallery = Gallery::find($id);
+            $gallery = Gallery::query()->find($id);
             if ($gallery) {
                 $photos = $gallery->photos->first() ? $gallery->photos : [];
+
                 return response()->json([
                     'view' => view('auth.galleries.formGalleryUpdate', compact('gallery','photos'))->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'La galería no existe.'],404);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * FORMULARIO CARGAR ENCUESTA
+     * Add Poll Form
      * @param Request $request
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -164,22 +182,27 @@ class DashboardController extends Controller
     public function formPoll(Request $request)
     {
         if ($request->ajax()) {
-            $section = Sections::where('name','encuestas')->first();
+            $section = Sections::query()->where('name','encuestas')->first();
             if (!$section) {
                 return response()->json(['error' => 'Primero debes crear la sección "encuestas"'], 500);
             }
+
             return response()->json([
                 'view' => view('auth.polls.formPoll', compact('section'))->render()
             ])->header('Content-Type', 'application/json');
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
+     * Log Out
      * @return RedirectResponse|Redirector
      */
-    public function logout() {
+    public function logout()
+    {
         auth()->logout();
+
         return redirect('/');
     }
 }

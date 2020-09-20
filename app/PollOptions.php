@@ -13,7 +13,6 @@ class PollOptions extends Model {
     ];
 
     /**
-     * UNA OPCION PERTENECE A UNA ENCUESTA
      * @return BelongsTo
      */
     public function poll()

@@ -3,87 +3,99 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
     width: 100%;
     height: auto;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 0;
     border: 1px solid #b8b8b8;
-    border-radius: 5px;
+    border-radius: 3px;
     font-size: 1.2em;
     outline:none;
     resize: none;
+    transition: 0.2s;
 }
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=url]:focus, input[type=number]:focus, input[type=date]:focus, input[type=search]:focus, select:focus, textarea:focus {
     border: 1px solid #999;
     transition: 0.3s;
-    -webkit-appearance: none;
 }
 input[type=text].error, input[type=password].error, input[type=email].error, input[type=url].error, input[type=number].error, input[type=date].error, input[type=search].error, select.error, textarea.error {
     border: 1px solid #cb0001;
 }
 input[type=submit], input[type=button], input[type=reset] {
-    -webkit-appearance: none;
-    margin-top: 10px;
+    margin: 10px 7px 0 0;
 }
 /* button */
 .button {
-    padding: 5px 20px 7px 20px;
-    border: none;
-    border-radius: 3px;
+    padding: 7px 20px;
+    border-radius: 3px !important;
+    line-height: normal !important;
     cursor: pointer;
     color: #fff !important;
-    font-size: 1.6em;
+    font-size: 1.3em !important;
+    font-weight: normal !important;
+    transition: 0.2s;
+    outline: none !important;
+    text-transform: capitalize !important;
 }
 .small {
-    padding: 3px 10px 3px 10px;
-    font-size: 1em;
+    padding: 5px 10px !important;
+    font-size: 1em !important;
 }
 /* default button */
 .default {
-    background-color: #797D7F;
+    border: 1px solid #85929E !important;
+    background-color: #85929E;
 }
 .default:active:focus {
-    background-color: #909497;
+    background-color: #85929E;
+    color: #fff;
 }
 .default:hover {
-    background-color: #A6ACAF;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #85929E !important;
 }
 /* primary button */
 .primary {
-    background-color: #21618C;
+    border: 1px solid #34495E !important;
+    background-color: #34495E;
 }
 .primary:active:focus {
-    background-color: #21618C;
+    background-color: #34495E;
+    color: #fff !important;
 }
 .primary:hover {
-    background-color: #2E86C1;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #34495E !important;
 }
 /* danger button */
 .danger {
+    border: 1px solid #943126 !important;
     background-color: #943126;
 }
 .danger:active:focus {
     background-color: #B03A2E;
+    color: #fff !important;
 }
 .danger:hover {
-    background-color: #CB4335;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #B03A2E !important;
 }
 /* success button */
 .success {
+    border: 1px solid #1D8348 !important;
     background-color: #1D8348;
 }
 .success:active:focus {
     background-color: #239B56;
+    color: #fff !important;
 }
 .success:hover {
-    background-color: #28B463;
-    transition: 0.3s;
+    background-color: #fff;
+    color: #28B463;
+
 }
 /* disabled button */
 .disabled {
     background-color: #EAECEE;
-    box-shadow: inset 0 0 2px 0 #abb2b9;
+    border: 1px solid #abb2b9;
     color: #abb2b9 !important;
     cursor: default;
 }
@@ -91,17 +103,21 @@ fieldset {
     position: relative;
     width: 100%;
     height: auto;
-    padding: 10px;
-    background-color: #f2f3f4;
-    border: none;
-    margin: 10px 0;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    box-shadow: 0 0 2px 0 #999;
+    padding: 0 10px 10px 10px;
+    background-color: #FFF;
+    margin: 0 0 10px 0;
+    border-radius: 5px;
+    border: 1px solid #d6dbdf;
     -webkit-appearance: none;
 }
 fieldset p {
-    font-size: 1.4em;
+    font-size: 1.1em;
+}
+fieldset ul {
+    list-style-type: square;
+}
+fieldset ul li {
+    font-size: 1.1em;
 }
 fieldset img {
     width: 100%;
@@ -123,13 +139,19 @@ fieldset img.delete:hover {
     transition: 0.3s;
 }
 legend {
-    width: 100%;
+    width: auto;
     font-size: 2em;
     background-color: #e2e2e2;
     padding: 0 20px;
     border-radius: 3px;
     box-shadow: 0 0 2px 0 #999;
     color: #006699;
+}
+label {
+    display: block;
+    margin: 15px 0 5px 0;
+    font-size: 1em;
+    color: rgba(49,51,53,0.75);
 }
 p.error {
     color: #cb0001;
@@ -160,15 +182,15 @@ p.error {
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: #aeb6bf;
+    background-color: #D5D8DC;
     border-radius: 50%;
 }
 .radio-container:hover input ~ .checkmark {
-    background-color: #ccc;
-    transition: 0.3s;
+    background-color: #ABB2B9;
+    transition: 0.2s;
 }
 .radio-container input:checked ~ .checkmark {
-    background-color: rgba(41,128,185,1);
+    background-color: #34495E;
 }
 .checkmark:after {
     content: "";
@@ -189,11 +211,11 @@ p.error {
 
 /* INPUT CHECKBOX */
 .check-container {
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
     padding-left: 35px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
     cursor: pointer;
     font-size: 1em;
     user-select: none;
@@ -207,21 +229,15 @@ p.error {
 }
 .check-mark {
     position: absolute;
-    top: 0;
     left: 0;
     height: 25px;
     width: 25px;
     background-color: #fff;
-    box-shadow: 0 0 3px #999;
+    border: 1px solid #b8b8b8;
     border-radius: 3px;
 }
-.check-container:hover input ~ .check-mark {
-    background-color: #ccc;
-    box-shadow: none;
-    transition: 0.3s;
-}
 .check-container input:checked ~ .check-mark {
-    background-color: rgba(41,128,185,1);
+    background-color: #34495E;
 }
 .check-mark:after {
     content: "";
@@ -232,8 +248,8 @@ p.error {
     display: block;
 }
 .check-container .check-mark:after {
-    left: 9px;
-    top: 5px;
+    left: 8px;
+    top: 3px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -244,9 +260,8 @@ p.error {
 /* INPUT FILE */
 .jfilestyle {
     display: inline-block;
-    margin-right: 0;
-    margin-left: 0;
-    margin-bottom: 0;
+    width: 100%;
+    margin: 0;
     padding: 0;
     position: relative;
     border-collapse: separate;
@@ -256,29 +271,30 @@ div.jfilestyle input {
     background-color: #fff;
     color: #000;
     padding: 10px;
-    border-radius: 3px;
-    box-shadow: 0 0 3px 0 #999;
-    font-family: 'Oswald', sans-serif;
-    margin-right: -8px;
-    margin-bottom: 0;
-    margin-left: 0;
+    margin: 0;
+    border: 1px solid #b8b8b8;
+    font-size: 1.2em;
 }
 div.jfilestyle label {
     display: inline-block;
     width: auto;
     vertical-align: middle;
-    margin-top: -7px;
+    margin-top: 0;
     margin-left: -3px;
     padding: 10px 20px 10px 20px;
-    color: #fff;
-    background-color: #21618C;
-    border: none;
-    font-size: 1.3em;
-    font-family: 'Oswald', sans-serif;
+    background-color: #34495E;
+    border: 1px solid #34495E;
+    font-size: 1.2em;
     text-align: center;
     text-transform: uppercase;
-    text-shadow:  1px 1px 0 #000;
     cursor: pointer;
+    transition: 0.2s;
+}
+div.jfilestyle label span {
+    color: #fff;
+}
+div.jfilestyle label:hover span {
+    color: #34495E;
 }
 div.jfilestyle.jfilestyle-corner input:first-child {
     border-right: 0;
@@ -288,14 +304,20 @@ div.jfilestyle.jfilestyle-corner input:last-child {
 }
 div.jfilestyle.jfilestyle-corner input:first-child,
 div.jfilestyle.jfilestyle-corner span:first-child>label {
-    border-radius: 3px 0 0 3px;
+    border-radius: 5px;
 }
 
 div.jfilestyle.jfilestyle-corner input:last-child,
 div.jfilestyle.jfilestyle-corner span:last-child>label {
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 5px 5px 0;
 }
-
+.focus-jfilestyle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
 div.jfilestyle label[disabled] {
     pointer-events: none;
     opacity: 0.6;
@@ -303,8 +325,7 @@ div.jfilestyle label[disabled] {
     cursor: not-allowed;
 }
 div.jfilestyle label:hover {
-    background-color: #2E86C1;
-    transition: 0.3s;
+    background-color: #fff;
 }
 div.jfilestyle label:active {
     background-color: #21618C;
@@ -317,4 +338,38 @@ div.jfilestyle .count-jfilestyle {
     padding: 1px 5px;
     font-size: 12px;
     vertical-align: middle;
+}
+@media (max-width: 575.98px) {
+    .button {
+        width: 100%;
+    }
+    .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
+        width: 100%;
+        float: none;
+    }
+    .jconfirm-box div.jconfirm-content-pane {
+        margin-bottom: 10px !important;
+    }
+    .jconfirm-buttons>button {
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .button {
+        width: 100%;
+    }
+    .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons {
+        width: 100%;
+        float: none;
+    }
+    .jconfirm-box div.jconfirm-content-pane {
+        margin-bottom: 10px !important;
+    }
+    .jconfirm-buttons>button {
+        margin-left: 0 !important;
+        margin-bottom: 10px !important;
+        margin-right: 0 !important;
+    }
 }

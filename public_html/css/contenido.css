@@ -1,125 +1,138 @@
-/************************
-***ARTICLE PUBLICACION***
-************************/
-div.pubContainer {
+/**-- Article --**/
+div.pub-container {
     display: flex;
     flex-flow: row wrap;
 }
+h1.article-main-title {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+p.article-main-description {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    line-height: 35px;
+}
 article.pub {
-    width: 840px;
+    width: 70%;
     padding-right: 30px;
     z-index: 1;
 }
-article.pub blockquote, article.pub-preview blockquote {
-    background: #f2f3f4;
-    border-left: 10px solid #ccc;
-    margin: 1.5em 10px;
-    padding: 0.5em 10px;
+article.pub p {
+    line-height: 35px;
+}
+article.pub.gallery {
+    width: 100%;
+    padding-right: 0;
+}
+blockquote {
+    border-left: 5px solid #ccc;
+    margin: 2em 10px;
+    padding: 20px;
     quotes: "\201C""\201D";
 }
-article.pub blockquote:before, article.pub-preview blockquote:before {
+blockquote:before {
     color: #ccc;
     content: open-quote;
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
+    line-height: 0;
+    font-size: 3em;
+    margin-right: 10px;
+    vertical-align: -15px;
 }
-article.pub blockquote p, article.pub-preview blockquote p {
+blockquote:after {
+    color: #ccc;
+    content: close-quote;
+    line-height: 0;
+    font-size: 3em;
+    margin-left: 10px;
+    vertical-align: -15px;
+}
+blockquote p {
     display: inline;
-    color: #808b96;
+    color: #808B96;
 }
-article.pub ul, article.pub-preview ul, section.comments ul.pagination {
+article.pub h1 {
+    margin-top: 0;
+}
+article.pub ul {
     list-style: none;
     margin: 0;
+    padding-left: 20px;
 }
-article.pub ul li, article.pub-preview ul li {
-    padding-left: 10px;
-    font-size: 1.9em;
-    margin: 30px 0 30px 0;
+article.pub ul li {
+    font-size: 1.5em;
+    margin: 10px 0 10px 0;
 }
-article.pub ul li:before, article.pub-preview ul li:before {
-    content: "▪";
-    padding-right: 8px;
-    color: #566573;
+article.pub ul li:before {
+    content: "•";
+    padding-right: 10px;
 }
-article.pub_galeria, article.pub-preview {
+article.pub img {
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
 }
-article.pub img, article.pub-preview img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-article.pub p.info, article.pub_galeria p.info, article.pub-preview p.info {
-    font-size: 1.3em;
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-transform: capitalize;
-    color: #000;
-    opacity: 0.6;
-}
-article.pub p.info img.svg, article.pub_galeria p.info img.svg, article.pub-preview img.svg, article.pub-preview p.info img.svg {
+div.reactions-container {
     position: relative;
-    width: 1.5em !important;
-    vertical-align: middle;
-    margin-left: 20px;
-    margin-right: 5px;
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #d6dbdf;
+    margin-top: 20px;
 }
-article.pub p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child, article.pub-preview p.info img.svg:first-child {
-    margin-left: 0;
-}
-article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 3.2em;
-    line-height: 55px;
-    margin: 0;
-    color: #283747;
-}
-article.pub h2, article.pub_galeria h2, article.pub-preview h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    line-height: 40px;
-    color: #283747;
-}
-article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-    margin-top: -20px;
-    line-height: 1.1em;
-    color: #566573;
-}
-article.pub p, article.pub_galeria p, article.pub-preview p {
-    margin-top: 30px;
-    font-size: 1.7em;
-    line-height: 40px;
-}
-article.pub p:last-child, article.pub_galeria p:last-child, article.pub-preview p:last-child {
-    margin-bottom: 30px;
-}
-article.pub p a, article.pub_galeria p a, article.pub-preview p a {
-    font-size: 0.95em;
-}
-article.pub p.copete, article.pub_galeria p.copete, article.pub-preview p.copete {
-    font-size: 2em;
-    margin-bottom: 30px;
-    margin-top: 15px;
-    color: #5d6d7e;
-}
-div.social {
+div#reactions {
+    position: absolute;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
+    align-items: center;
+    right: 20px;
+    bottom: -24px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 35px;
+    border: 2px solid #d6dbdf;
 }
-div.fb-share-button {
-    margin-right: 10px;
+div#reactions span {
+    font-size: 1.5em;
+    margin: 0 20px 0 10px;
+    color: rgba(0,0,0,0.8) !important;
 }
-/**********
-***FOTOS***
-***********/
-article.fotos {
+div#reactions span:last-child {
+    margin: 0 0 0 10px;
+}
+div.info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+    margin: 20px 0;
+}
+div.info span {
+    font-size: 1.5em;
+    color: #000;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+img.icon {
+    height: 1.5em !important;
+    width: auto !important;
+    margin-bottom: 0 !important;
+}
+img.article-reaction {
+    cursor: pointer;
+    opacity: 0.8;
+}
+img.article-views {
+    opacity: 0.8;
+}
+img.article-reaction:hover {
+    opacity: 1;
+}
+img.dislike {
+    transform: rotate(180deg) scaleX(-1);
+    margin-top: 5px;
+}
+/**-- Photos --**/
+article.photos {
     position: relative;
     width: 100%;
     height: auto;
@@ -129,11 +142,11 @@ article.fotos {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-article.fotos img {
+article.photos img {
     width: 100%;
     height: auto;
 }
-article.fotos p {
+article.photos p {
     position: relative;
     display: block;
     padding: 10px;
@@ -141,67 +154,60 @@ article.fotos p {
     margin-top: 0;
     font-size: 1.5em;
 }
-/************************
-***ASIDE PUBLICACIONES***
-************************/
-aside.pubSeccion {
+/**-- Aside Pubs --**/
+aside.pub-aside {
     width: 30%;
     height: auto;
+    margin-top: 20px;
 }
-aside.pubSeccion article.pubArticle, article.morePolls {
+article.pub-article {
     position: relative;
     width: 100%;
     height: auto;
     margin-bottom: 30px;
     overflow: hidden;
-    box-shadow: 0 0 10px 0 #5f6a6a;
+    box-shadow: 0 0 3px 0 #85929E;
+    background-color: #fff;
     border-radius: 0 0 5px 5px;
     cursor: pointer;
+    transition: 0.2s;
+    opacity: 0.9;
 }
-aside.pubSeccion article.pubArticle:hover, article.morePolls:hover {
-    background-color: #f2f3f4;
-    opacity: 0.8;
-    box-shadow: 0 0 10px 0 #000;
-    transition: 0.3s;
-}
-aside.pubSeccion article.pubArticle:last-child {
+article.pub-article:last-child {
     margin-bottom: 0;
 }
-aside.pubSeccion article.pubArticle img {
+article.pub-article:hover {
+    opacity: 1;
+    box-shadow: 0 0 3px 0 #34495e;
+}
+article.pub-article img {
     width: 100%;
-    height: 225px;
+    height: 200px;
     z-index: 0;
 }
-article.morePolls p {
-    display: block;
-    color: #424949;
-    font-size: 1em;
-    margin: 20px 0px -10px 20px;
-}
-aside.pubSeccion article.pubArticle a, article.morePolls a {
+article.pub-article a {
     display: block;
     font-size: 1.5em;
-    line-height: 30px;
     padding: 20px;
 }
-aside.pubSeccion article.pubArticle a:hover, article.morePolls a:hover {
-    text-decoration: none;
+article.pub-article p {
+    font-size: 1em;
+    margin: 0;
+    padding: 20px 20px 0 20px;
 }
-/************************
-***SEARCH RESULTS***
-************************/
+/**-- Search Results --**/
 div.searchResultContainer {
     width: 100%;
     height: auto;
 }
 p.searchFilter {
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
     padding-bottom: 2px;
-    font-size: 1.7em;
+    font-size: 1.5em;
     border-bottom: 1px solid #ccc;
 }
 a.searchFilterLink {
-    font-size: 1.75em;
+    font-size: 1.5em;
     margin: 10px 15px;
     color: #333;
 }
@@ -209,7 +215,7 @@ p.searchFilter a.searchFilterLink:hover {
     color: #000;
 }
 p.searchFilter a.active {
-    font-size: 1.75em;
+    font-size: 1.5em;
     margin: 10px 15px;
     color: #007600;
     border-bottom: 5px solid #007600;
@@ -217,7 +223,7 @@ p.searchFilter a.active {
 p.searchInfo {
     margin: 20px 0 20px 0;
     color: #666;
-    font-size: 1.7em;
+    font-size: 1.5em;
 }
 article.searchResult{
     width: 100%;
@@ -231,81 +237,30 @@ article.searchResult{
     border-bottom-right-radius: 3px;
 }
 article.searchResult p.searchDate {
-    font-size: 1.1em;
+    font-size: 1em;
     color: #666;
     padding: 0;
     margin: 0;
+    text-transform: initial;
 }
-article.searchResult p.searchDate img {
-    height: 1.2em;
-    margin-right: 10px;
+article.searchResult p.searchDate:first-letter {
+    text-transform: uppercase;
 }
 article.searchResult a.searchTitle {
-    font-size: 2.5em;
-    color: #006699;
-}
-article.searchResult a.searchTitle:hover {
-    color: #0084c6;
-    text-decoration: underline;
-}
-article.searchResult p.searchCopete {
     font-size: 1.5em;
 }
-ul.pagination {
-    display: flex;
-    flex-flow: row nowrap;
-    list-style: none;
-    padding-left: 0px;
+article.searchResult p.searchCopete {
+    font-size: 1em;
 }
-ul.pagination li.page-item {
-    border: none;
-    margin: 0;
-    padding: 5px 0 5px 0;
-}
-ul.pagination li.page-item a.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #0086b3;
-    font-size: 2em;
-    color: #fff;
-}
-ul.pagination li.page-item a.page-link:hover {
-    background-color: #00abe5;
-    transition: 0.3s;
-}
-ul.pagination li.disabled span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #f2f3f4;
-    font-size: 2em;
-    color: #666;
-    box-shadow: inset 0 0 2px 0 #999;
-}
-ul.pagination li.active span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #005b7a;
-    font-size: 2em;
-    color: #fff;
-}
-ul.pagination li.page-item, ul.pagination li.page-item:first-child .page-link {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
-ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-/*****************
-***VER ENCUESTA***
-*****************/
+/**-- Poll View --**/
 article.pollOptions {
     width: 100%;
     height: auto;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 5px;
     background-color: #f2f3f4;
     margin-bottom: 20px;
+    box-shadow: 0 0 3px 0 #85929E;
 }
 article.pollOptions div.resultContainer {
     width: 100%;
@@ -324,420 +279,326 @@ article.pollOptions h2 {
     color: #cb4335;
 }
 article.pollOptions p.options {
-    margin: 0 10px 0 0;
+    margin: 0 0 5px 0;
     font-size: 1.3em;
+    display: flex;
+    align-items: center;
+}
+article.pollOptions p.options span {
+    background-color: #ccc;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: 0.9em;
+    margin-right: 10px;
 }
 article.pollOptions p.totalVotes {
-    font-size: 2em;
-    color: #000;
+    font-size: 1.5em;
     margin: 0;
+}
+/**-- Comments --**/
+span#comments-count {
+    background: #283747;
+    border-radius: 5px;
+    padding: 0 10px;
+    color: #fff;
+    margin-right: 10px;
+}
+div#comment {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    min-height: 50px;
+    margin-bottom: 20px;
 }
 section.comments {
     position: relative;
 }
-div#loader img.loader {
-    display: none;
-    width: 20px !important;
-    height: 20px !important;
+div.comment-container {
+    position: relative;
+    margin-top: 10px;
 }
-div.comment p {
+div.comment-container div {
+    margin-left: 60px;
+}
+div.comment-container img.comment-user {
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px !important;
+    height: 50px !important;
+    border: 1px solid #E7ECED;
+}
+div.comment-container p.comment {
+    position: relative;
+    min-height: 65px;
     font-size: 1.1em !important;
     margin-top: 0 !important;
     margin-bottom: 5px !important;
-    margin-left: 70px;
+    margin-left: 60px;
     line-height: normal !important;
-    background-color: #EAF2F8;
-    padding: 20px 30px 20px 20px;
+    background-color: #F2F3F4;
+    padding: 20px 40px 20px 20px;
     border-radius: 20px;
-    box-shadow: inset 0 0 2px 0 #D6DBDF;
+    box-shadow: inset 0 0 2px 0 #CACFD2;
+    word-wrap: break-word;
 }
-div.comment p img.delete {
+div.comment-container p.comment span.reactions {
+    display: block;
+    font-size: 0.8em;
+    color: #808B96;
+    margin-top: 10px;
+}
+div.comment-container p.comment span.reactions img {
+    width: 10px !important;
+    height: auto !important;
+    margin-right: 0;
+    margin-left: 7px;
+    margin-bottom: 0 !important;
+}
+div.comment-container p.comment img.action {
     position: absolute;
     right: 15px;
-    top: 15px;
     height: 15px;
     width: 15px;
     cursor: pointer;
 }
-div.comment p img.delete:hover {
+div.comment-container p.comment img.action:hover {
     opacity: 0.8;
 }
-div.comment p span {
+img.delete {
+    display: none;
+    top: 15px;
+}
+img.edit {
+    display: none;
+    top: 35px;
+}
+div.comment-container p.actions {
+    position: relative;
     display: block;
     font-size: 0.8em !important;
     color: #4c4c4c;
     margin-top: 10px;
+    padding-bottom: 25px;
+    padding-left: 65px;
+    line-height: 0;
 }
-div.comment p span {
+a.reaction, a.edit {
     color: #808B96;
-}
-div.comment p span a {
-    color: #808B96 !important;
     cursor: pointer;
 }
-div.comment p span a:hover {
+a.reaction:hover, a.edit:hover {
     color: #566573 !important;
+    text-decoration: underline;
 }
-div.comment {
-    position: relative;
-    margin-top: 10px;
+a.reaction.active {
+    font-weight: bold;
+    color: #21618C !important;
+    transition: none;
 }
-div.comment div {
-    margin-left: 60px;
-}
-div.comment img.user {
-    border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 50px !important;
-    height: 50px !important;
-}
-div.comment span img.reply {
-    width: 10px !important;
-    height: auto !important;
-    margin-right: 5px;
-    margin-left: 10px;
-    margin-bottom: 0 !important;
-}
-/** Comments Navigation **/
-section.comments nav {
-    background-color: #ffffff;
-    margin-top: 10px;
-    flex-flow: row nowrap;
-}
-section.comments ul li:before {
-    content: none;
-}
-section.comments nav ul.pagination {
+/**-- Pagination --**/
+ul.pagination {
     display: flex;
-    flex-flow: row nowrap;
+    margin: 20px 0 0 0 !important;
     list-style: none;
-    padding-left: 0;
+    padding-left: 0 !important;
 }
-section.comments nav ul.pagination li.page-item {
-    border: none;
-    margin: 10px;
-}
-section.comments nav ul.pagination li.page-item a.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #EAF2F8;
-    box-shadow: inset 0 0 2px 0 #D6DBDF;
-    font-size: 1em;
-    color: #808B96;
-    border-radius: 10px;
-}
-section.comments nav ul.pagination li.page-item a.page-link:hover {
-    background-color: #566573;
-    transition: 0.3s;
-}
-section.comments nav ul.pagination li.disabled span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    font-size: 1em;
-    color: #666;
-    border-radius: 10px;
-}
-section.comments nav ul.pagination li.active span.page-link {
-    margin: 0;
-    padding: 5px 15px 5px 15px;
-    background-color: #95a0ab;
-    font-size: 1em;
+a.page-link {
+    border-radius: 3px;
+    padding: 0 10px;
+    background-color: #85929E;
+    border: 1px solid #85929E;
     color: #fff;
-    border-radius: 10px;
+    font-size: 25px;
 }
-section.comments nav ul.pagination li.page-item, section.comments nav ul.pagination li.page-item:first-child .page-link {
-    border-radius: 10px;
+a.page-link:hover {
+    background-color: #fff;
+    color: #85929E;
 }
-section.comments nav ul.pagination li.page-item, ul.pagination li.page-item:last-child .page-link {
-    border-radius: 10px;
+span.page-link {
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 25px;
+}
+.page-item {
+    margin: 0 10px 0 0!important;
+    padding-left: 0 !important;
+    font-size: 25px !important;
+}
+.page-item:before {
+    content: none !important;
+}
+.page-item.active {
+    cursor: default;
+}
+.page-item.active span {
+    background-color: #fff;
+    color: #85929E;
+    border: 1px solid #85929E;
+}
+.page-item.disabled {
+    background-color: #F8F9F9;
+    border: none;
+}
+.page-item.disabled span {
+    border: 1px solid #abb2b9;
+    color: #abb2b9 !important;
 }
 img.loading {
     width: auto !important;
     height: auto !important;
 }
 @media (max-width: 575.98px) {
-    /************************
-    ***ARTICLE PUBLICACION***
-    ************************/
-    div.pubContainer {
-        flex-flow: column wrap;
+    /**-- Article View --**/
+    div.pub-container {
         width: 100%;
-        height: auto;
     }
     article.pub {
         width: 100%;
-        height: auto;
         padding-right: 0;
-        overflow: hidden;
     }
-    article.pub ul li, article.pub-preview ul li {
-        font-size: 1.25em;
+    article.pub-article p {
+        padding: 10px 0 0 10px;
     }
-    article.pub p.info, article.pub_galeria p.info {
-        font-size: 0.9em;
-        line-height: 15px;
+    article.pub-article a {
+        font-size: 1.3em;
+        padding: 10px;
     }
-    article p.info img.svg, article.pub_galeria p.info img.svg {
-        vertical-align: top !important;
-        height: 1em !important;
-        margin-left: 10px !important;
-        margin-right: 0 !important;
-    }
-    article p.info img.svg:first-child, article.pub_galeria p.info img.svg:first-child {
-        margin-left: 0 !important;
-    }
-    article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-        font-size: 2.1em;
-        line-height: 32px;
-    }
-    article.pub h2, article.pub_galeria h2 {
-        font-size: 1.7em;
-        line-height: 30px;
-    }
-    article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-        font-size: 1em;
-    }
-
-    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
+    p.article-main-description {
         font-size: 1.2em;
-        line-height: 30px;
+        line-height: 25px;
     }
-    /**********
-    ***FOTOS***
-    ***********/
-    article.fotos:last-child {
-        margin-bottom: 0;
+    div.reactions-container {
+        margin-top: 10px;
     }
-    article.fotos p:last-child {
-        font-size: 1em;
-    }
-    /************************
-    ***ASIDE PUBLICACIONES***
-    ************************/
-    aside.pubSeccion {
+    div.info {
         width: 100%;
-        height: auto;
-        margin-top: 30px;
+        margin: 30px 0 20px 0;
     }
-    aside.pubSeccion article.pubArticle img {
-        height: 250px;
+    img.icon {
+        height: 1em !important;
     }
-    /************************
-    ***SEARCH RESULTS***
-    ************************/
-    div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 0.9em;
-        margin: 10px 10px;
+    div.info span {
+        font-size: 1.1em;
+        margin-right: 10px;
+        margin-left: 3px;
     }
-    div.searchResultContainer p.searchFilter a.active {
-        font-size: 0.9em;
-        margin: 10px 10px;
+    div#reactions {
+        padding: 5px 10px;
+        bottom: -17px;
+        right: 10px;
     }
-    div.searchResultContainer p.searchInfo {
-        margin: 20px 0 20px 0;
+    div#reactions span {
+        font-size: 1.2em;
+        margin: 0 10px 0 5px;
+    }
+    div#reactions span:last-child {
+        margin: 0 0 0 5px;
+    }
+    article.pub p {
+        font-size: 1.2em;
+        line-height: 25px;
+    }
+    article.pub ul li {
         font-size: 1.2em;
     }
-    div.searchResultContainer article.searchResult p.searchDate {
-        font-size: 1em;
-        margin-bottom: 5px;
+    aside.pub-aside {
+        width: 100%;
+        margin-top: 0;
     }
-    div.searchResultContainer article.searchResult a.searchTitle {
-        font-size: 2em;
-        line-height: 1em;
-    }
-    div.searchResultContainer article.searchResult p.searchCopete {
-        font-size: 1.2em;
-    }
-    section.comments nav ul.pagination li.page-item a.page-link {
-        padding: 5px 10px 5px 10px;
-    }
-    section.comments nav ul.pagination li.disabled span.page-link {
-        padding: 5px 10px 5px 10px;
-    }
-    section.comments nav ul.pagination li.active span.page-link {
-        padding: 5px 10px 5px 10px;
-    }
-    section.comments nav ul.pagination li.page-item {
-        margin: 2px;
+    div.comment-container p.comment {
+        font-size: 1em !important;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
-    /************************
-    ***ARTICLE PUBLICACION***
-    ************************/
-    div.pubContainer {
-        flex-flow: column wrap;
+    /**-- Article View --**/
+    div.pub-container {
         width: 100%;
-        height: auto;
     }
     article.pub {
         width: 100%;
-        height: auto;
         padding-right: 0;
-        overflow: hidden;
     }
-    article.pub ul li, article.pub-preview ul li {
-        font-size: 1.25em;
+    article.pub-article p {
+        padding: 10px 0 0 10px;
     }
-    article.pub p.info, article.pub_galeria p.info {
-        font-size: 1.3em;
-        line-height: 20px;
+    article.pub-article a {
+        font-size: 1.5em;
+        padding: 10px;
     }
-    article p.info img.svg, article.pub_galeria p.info img.svg {
-        height: 1.5em !important;
-    }
-    article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 2.5em;
-    line-height: 35px;
-    }
-    article.pub h2, article.pub_galeria h2 {
-        font-size: 2em;
-        line-height: 35px;
-    }
-    article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-    font-size: 1em;
-    }
-    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
+    p.article-main-description {
         font-size: 1.5em;
         line-height: 30px;
     }
-    /**********
-    ***FOTOS***
-    ***********/
-    article.fotos:last-child {
-        margin-bottom: 0;
+    div.reactions-container {
+        margin-top: 10px;
     }
-    article.fotos p:last-child {
-        font-size: 1em;
-    }
-    /************************
-    ***ASIDE PUBLICACIONES***
-    ************************/
-    aside.pubSeccion {
+    div.info {
         width: 100%;
-        height: auto;
-        margin-top: 30px;
     }
-    aside.pubSeccion article.pubArticle img {
-        height: 350px;
+    img.icon {
+        height: 1.3em !important;
     }
-    /************************
-    ***SEARCH RESULTS***
-    ************************/
-    div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1.5em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchFilter a.active {
-        font-size: 1.5em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchInfo {
-        margin: 20px 0 20px 0;
-        font-size: 1.7em;
-    }
-    div.searchResultContainer article.searchResult p.searchDate {
+    div.info span {
         font-size: 1em;
-        margin-bottom: 5px;
+        margin-right: 20px;
+        margin-left: 5px;
     }
-    div.searchResultContainer article.searchResult a.searchTitle {
-        font-size: 2.5em;
-        line-height: 1em;
-    }
-    div.searchResultContainer article.searchResult p.searchCopete {
+    article.pub p {
         font-size: 1.5em;
+        line-height: 30px;
+    }
+    article.pub ul li {
+        font-size: 1.5em;
+    }
+    aside.pub-aside {
+        width: 100%;
+        margin-top: 0;
+    }
+    article.pub-article img {
+        height: 320px;
+    }
+    div.comment-container p.comment {
+        font-size: 1.2em !important;
     }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
-    /************************
-    ***ARTICLE PUBLICACION***
-    ************************/
-    div.pubContainer {
-        flex-flow: column wrap;
-        width: 100%;
-        height: auto;
-    }
     article.pub {
-        width: 100%;
-        height: auto;
-        padding-right: 0px;
-        overflow: hidden;
+        width: 60%;
     }
-    article.pub ul li, article.pub-preview ul li {
-        font-size: 1.25em;
+    aside.pub-aside {
+        width: 40%;
     }
-    article.pub p.info, article.pub_galeria p.info {
+    div.comment-container p.comment {
+        font-size: 1.3em !important;
+    }
+    div.comment-container p.actions {
+        margin-top: 15px !important;
+        font-size: 1.2em !important;
+    }
+    a.page-link, span.page-link {
         font-size: 1.3em;
-        line-height: 20px;
     }
-    article p.info img.svg, article.pub_galeria p.info img.svg {
-        height: 1.5em !important;
-    }
-    article.pub h1, article.pub_galeria h1, article.pub-preview h1 {
-    font-size: 2.5em;
-    line-height: 35px;
-    }
-    article.pub h2, article.pub_galeria h2 {
-        font-size: 2.5em;
-        line-height: 40px;
-    }
-    article.pub h3, article.pub_galeria h3, article.pub-preview h3 {
-    font-size: 1em;
-    }
-    article.pub p, article.pub_galeria p, article.pub p.copete, article.pub_galeria p.copete {
-        font-size: 1.3em;
-        line-height: 30px;
-    }
-    /**********
-    ***FOTOS***
-    ***********/
-    article.fotos:last-child {
-        margin-bottom: 0px;
-    }
-    article.fotos p:last-child {
+    div.info span {
         font-size: 1em;
-    }
-    /************************
-    ***ASIDE PUBLICACIONES***
-    ************************/
-    aside.pubSeccion {
-        width: 100%;
-        height: auto;
-        margin-top: 30px;
-    }
-    aside.pubSeccion article.pubArticle img {
-        height: 400px;
-    }
-    /************************
-    ***SEARCH RESULTS***
-    ************************/
-    div.searchResultContainer p.searchFilter a.searchFilterLink {
-        font-size: 1em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchFilter a.active {
-        font-size: 1em;
-        margin: 10px 10px;
-    }
-    div.searchResultContainer p.searchInfo {
-        margin: 20px 0px 20px 0px;
-        font-size: 1.7em;
-    }
-    div.searchResultContainer article.searchResult p.searchDate {
-        font-size: 1em;
-    }
-    div.searchResultContainer article.searchResult a.searchTitle {
-        font-size: 2.5em;
-        line-height: 1em;
-    }
-    div.searchResultContainer article.searchResult p.searchCopete {
-        font-size: 1.5em;
     }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
     article.pub {
-        width: 70%;
-}
+        width: 60%;
+    }
+    aside.pub-aside {
+        width: 40%;
+    }
+    div.comment-container p.comment {
+        font-size: 1.3em !important;
+    }
+    div.comment-container p.actions {
+        margin-top: 15px !important;
+        font-size: 1.2em !important;
+    }
+    a.page-link, span.page-link {
+        font-size: 1.3em;
+    }
 }

@@ -21,7 +21,7 @@ class Articles extends Model
     ];
 
     /**
-     * RELACION UN ARTÍCULO A UN USUARIO
+     * User Article
      * @return BelongsTo
      */
     public function user()
@@ -30,7 +30,7 @@ class Articles extends Model
     }
 
     /**
-     * RELACIÓN UN ARTÍCULO A UNA SECCIÓN
+     * Article Section
      * @return BelongsTo
      */
     public function section()
@@ -39,25 +39,21 @@ class Articles extends Model
     }
 
     /**
-     * ARTÍCULOS QUE SE VAN A MOSTRAR EN LA HOMEPAGE
+     * Home Articles
      * @param $query
      * @return mixed
      */
     public function scopeArticlesHome($query)
     {
-        return $query->where('status','PUBLISHED')
-        ->latest()
-        ->take(24)
-        ->get()
-        ->sortByDesc(
-            function($post)
-            {
+        return $query->where('status','PUBLISHED')->where('is_breaking', false)
+            ->latest()->take(24)->get()->sortByDesc(
+            function($post) {
                 return sprintf('%-12s%s',$post->section->prio, $post->created_at);
             });
     }
 
     /**
-     * ARTÍCULO QUE SE VA A MOSTRAR SEGÚN EL ID
+     * Get Article
      * @param $query
      * @param $id
      * @return mixed
@@ -66,11 +62,12 @@ class Articles extends Model
     {
         $query->findOrFail($id)->where('status','PUBLISHED');
         $query->increment('views',1);
+
         return $query->first();
     }
 
     /**
-     * RESTO DE LOS ARTÍCULOS QUE SE VAN A MOSTRAR
+     * More Articles
      * @param $query
      * @param $id
      * @param $section
@@ -88,7 +85,7 @@ class Articles extends Model
     }
 
     /**
-     * BÚSQUEDA DE ARTÍCULOS
+     * Articles Search
      * @param $query
      * @param $busqueda
      * @return mixed
@@ -97,12 +94,11 @@ class Articles extends Model
     {
         return $query->whereRaw("MATCH (title,article_desc,article_body) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
         ->where('status','PUBLISHED')
-        ->orderBy('id', 'DESC')
-        ->paginate(10);
+        ->orderBy('id', 'DESC');
     }
 
     /**
-     * BÚSQUEDA DE ARTÍCULOS USUARIOS
+     * Articles Search in Dashboard
      * @param $query
      * @param $busqueda
      * @param $author
@@ -117,7 +113,7 @@ class Articles extends Model
     }
 
     /**
-     * ARTÍCULOS NO PUBLICADOS
+     * Unpublished Articles
      * @param $query
      * @return mixed
      */
@@ -129,10 +125,37 @@ class Articles extends Model
     }
 
     /**
+     * Article Comments
+     * @param $sectionId
      * @return HasMany
      */
-    public function comments()
+    public function comments($sectionId = null)
     {
-        return $this->hasMany(Comments::class,'article_id');
+        if ($sectionId) {
+            return $this->hasMany(Comments::class,'article_id')
+                ->where('section_id', $sectionId);
+        }
+
+        return $this->hasMany(Comments::class,'article_id')
+            ->whereColumn('comments.section_id', '=','articles.section_id');
+    }
+
+    /**
+     * Users Article Reactions
+     * @param $sectionId
+     * @param $reaction
+     * @return HasMany
+     */
+    public function reactions($sectionId = null, $reaction = null)
+    {
+        if ($sectionId) {
+            return $this->hasMany(ArticlesReaction::class, 'article_id')
+                ->where('section_id', $sectionId)
+                ->where('reaction', $reaction);
+        }
+
+        return $this->hasMany(ArticlesReaction::class, 'article_id')
+            ->whereColumn('articles_reactions.section_id', '=','articles.section_id')
+            ->where('articles_reactions.reaction','1');
     }
 }

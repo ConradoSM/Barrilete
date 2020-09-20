@@ -9,8 +9,7 @@
         <li>Un error de programación.</li>
         <li>Un conflicto en los plugins del sitio.</li>
     </ul>
-    <br />
-    <a href="{{ route('default') }}">Volver al inicio</a>
+    <p><a href="{{ route('default') }}">Volver al inicio</a></p>
 </article>
-<img class="errorIMG" src="{{asset('img/error.gif')}}" />
+<img alt="error-500" class="errorIMG" src="{{asset('img/error.gif')}}" />
 @endsection

@@ -20,6 +20,11 @@ Route::get('/', 'IndexController@home')->name('default');
 Route::get('sec/{name}', 'SectionsController@searchSection')->name('section');
 //SEARCH
 Route::get('search', 'SearchController@search')->name('search');
+Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
+//USER MENU
+Route::get('user-menu', 'UsersController@menu')->name('user-menu');
+Route::get('notifications', 'UsersController@notifyReactions')->name('notifyReactions');
+Route::get('inbox', 'UsersController@notifyMessages')->name('notifyMessages');
 //VIEW ARTICLES
 Route::get('article/{id}/{section}/{title}', 'ArticlesController@show')->name('article');
 //VIEW GALLERIES
@@ -29,12 +34,22 @@ Route::get('poll/{id}/{title}', 'PollsController@poll')->name('poll');
 Route::post('poll-vote', 'PollsController@pollVote')->name('poll-vote');
 //GET COMMENTS
 Route::get('comments/articles/{article_id}/{section_id}', 'CommentController@get')->name('getComments');
+//ARTICLES USER REACTION
+Route::post('article/reaction/save', 'ArticlesReactionController@save')->name('articleReactionSave');
+//NEWSLETTER SUBSCRIBE
+Route::post('newsletters/subscribe', 'NewsletterController@create')->name('newslettersSubscribe');
+Route::get('newsletter/delete/{email}', 'NewsletterController@delete')->name('NewsletterDelete');
 //DASHBOARD
 Route::group(['middleware' => ['auth']], function () {
+    //USERS DASHBOARD
+    Route::get('users/dashboard', 'UsersController@dashboard')->name('users.dashboard');
     //COMMENTS
     Route::post('comment/save', 'CommentController@save')->name('commentsSave');
+    Route::post('comment/update', 'CommentController@update')->name('commentUpdate');
     Route::post('comment/delete', 'CommentController@delete')->name('deleteComment');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    //COMMENTS USER REACTIONS
+    Route::post('reaction/save', 'CommentsUserReactionsController@save')->name('commentReactionSave');
     //DASHBOARD USER ARTICLES, GALLERIES, POLLS LIST
     Route::get('dashboard/view/articles/{id}', 'DashboardController@userArticles')->name('viewArticles');
     Route::get('dashboard/view/galleries/{id}', 'DashboardController@userGalleries')->name('viewGalleries');
@@ -78,8 +93,19 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/users/list', 'UsersController@users')->name('users');
     Route::get('dashboard/users/show/{id}', 'UsersController@show')->name('showUser');
     Route::get('dashboard/users/edit/{id}', 'UsersController@edit')->name('editUser');
+    Route::post('dashboard/myaccount/update', 'UsersController@myAccountUpdate')->name('myAccountUpdate');
+    Route::get('dashboard/myaccount/configuration', 'UsersController@myAccountConfig')->name('MyAccountConfig');
+    Route::get('dashboard/myaccount/password/edit', 'UsersController@editMyPassword')->name('editMyPassword');
+    Route::post('dashboard/myaccount/password/update', 'UsersController@updatePassword')->name('updatePassword');
+    Route::get('dashboard/myaccount/messages/box/{box}', 'MessagesController@myMessages')->name('myMessages');
+    Route::get('dashboard/myaccount/messages/write', 'MessagesController@writeMessage')->name('writeMessage');
+    Route::post('dashboard/myaccount/messages/save', 'MessagesController@save')->name('saveMessage');
+    Route::get('dashboard/myaccount/messages/getUsers', 'UsersController@getUsers')->name('getUsers');
+    Route::get('dashboard/myaccount/messages/message/{id}', 'MessagesController@getConversationById')->name('getConversation');
+    Route::get('dashboard/myaccount/messages/message/delete/{id}', 'MessagesController@delete')->name('deleteMessage');
     Route::post('dashboard/users/update', 'UsersController@update')->name('updateUser');
     Route::get('dashboard/users/delete/{id}', 'UsersController@delete')->name('deleteUser');
+    Route::post('dashboard/users/delete', 'UsersController@deleteOwnAccount')->name('deleteOwnAccount');
     Route::get('dashboard/users/make-admin/{id}', 'UsersController@makeAdmin')->name('makeAdmin');
     Route::get('dashboard/users/delete-admin/{id}', 'UsersController@deleteAdmin')->name('deleteAdmin');
     //DASHBOARD CREATE POLL
@@ -109,4 +135,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard/unpublished/articles','ArticlesController@unpublished')->name('unpublishedArticles');
     Route::get('dashboard/unpublished/galleries','GalleriesController@unpublishedGalleries')->name('unpublishedGalleries');
     Route::get('dashboard/unpublished/polls','PollsController@unpublishedPolls')->name('unpublishedPolls');
+
+    //MANAGE USERS NEWSLETTER SUBSCRIPTIONS
+    Route::get('dashboard/newsletters/subscriptions','NewsletterController@getAllSubscriptions')->name('getAllSubscriptions');
+    Route::get('dashboard/newsletters/cancel/{email}', 'NewsletterController@adminCancel')->name('NewsletterAdminCancel');
+    Route::get('dashboard/newsletters/delete/{email}', 'NewsletterController@adminDelete')->name('NewsletterAdminDelete');
+
+    //MANAGE USERS COMMENTS
+    Route::get('dashboard/comments/all','CommentController@getAllComments')->name('getAllComments');
+    Route::get('dashboard/comment/get/{id}','CommentController@getCommentById')->name('getCommentById');
+    Route::get('dashboard/comment/delete/{id}','CommentController@deleteCommentById')->name('deleteCommentById');
 });

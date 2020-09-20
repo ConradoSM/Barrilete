@@ -8,7 +8,7 @@
     <p class="alert feedback-warning">Ésta galería no posee fotos</p>
 @endif
 <h1>Administrar galería de fotos</h1>
-<div id="action">
+<p class="article-actions">
     @if (Auth::user()->authorizeRoles([\barrilete\User::ADMIN_USER_ROLE]))
         @if ($gallery->status == "DRAFT")
             <a href="{{ route('publishGallery',['id'=>$gallery->id]) }}" class="button success" data-confirm="¿Estás seguro que desea publicar ésta galería de fotos?">Publicar</a>
@@ -30,12 +30,12 @@
             <a href="{{ route('deleteGallery',['id'=>$gallery->id]) }}" class="button danger" data-confirm="¿Estás seguro que desea borrar ésta galería de fotos?">Eliminar</a>
         @endif
     @endif
-</div>
+</p>
 <hr />
-<article class="pub_galeria">
+<article class="preview">
     <h1>{{$gallery->title}}</h1>
-    <p class="copete">{{$gallery->article_desc}}</p>
-    <p class="info">
+    <p class="article-description">{{$gallery->article_desc}}</p>
+    <p class="article-info">
     <img class="svg" src="{{asset('svg/calendar.svg')}}" /> {{$gallery->created_at->diffForHumans()}}
     <img class="svg" src="{{asset('svg/user_black.svg')}}" /> {{$gallery->user->name}}
     <img class="svg" src="{{asset('svg/eye.svg')}}" /> {{$gallery->views}} lecturas
@@ -43,10 +43,10 @@
     <hr />
 </article>
 @forelse ($photos as $photo)
-<article class="fotos">
-    <img src="{{ asset('img/galleries/'.$photo->photo)}}" />
-    <p>{{$photo->title}}</p>
-</article>
+<fieldset>
+    <img class="article-main-image" src="{{ asset('img/galleries/images/'.$photo->photo)}}" alt="{{$photo->title}}" />
+    <p class="article-image-description">{{$photo->title}}</p>
+</fieldset>
 @empty
 @endforelse
 <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>

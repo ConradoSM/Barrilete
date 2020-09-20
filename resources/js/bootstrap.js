@@ -12,7 +12,6 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-    require('admin-lte');
 } catch (e) {}
 
 /**
@@ -48,13 +47,12 @@ if (token) {
 import Echo from "laravel-echo"
 
 window.Pusher = require('pusher-js');
-
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    key: '34ee6691028a57270a86',
+    cluster: 'us2',
     wsHost: window.location.hostname,
     wsPort: 6001,
-    wssPort: 6001,
-    disableStats: true
+    disableStats: true,
+    encrypted: false
 });

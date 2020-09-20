@@ -19,7 +19,13 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    curl \
+    npm
+
+# Instalamos la última versión de npm
+RUN npm install n -g
+RUN n stable
+RUN npm -v
 
 # Configuración de Xdebug
 ARG WITH_XDEBUG=false
@@ -67,5 +73,7 @@ USER www
 EXPOSE 9000
 EXPOSE 9001
 EXPOSE 6001
+EXPOSE 9200
+EXPOSE 9300
 
 CMD ["php-fpm"]

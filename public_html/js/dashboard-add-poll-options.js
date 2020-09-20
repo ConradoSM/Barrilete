@@ -1,18 +1,15 @@
 $(document).ready(function () {
-    /**
-     * AGREGAR OPCIONES
-     * @type {number}
-     */
+    /**Add options **/
     const MaxInputs = 5;
     const content = $('div#fields');
     const AddButton = $('#add-field');
-    let x = $('div#fields div').length + 1;
-    let FieldCount = x - 1;
-
+    let x = $('div#fields div').length + 1,
+        FieldCount = x - 1;
+    $('input#submit').hide();
     AddButton.on('click', function(e) {
         e.preventDefault();
         if (x > 2) {
-            $('input#submit').removeAttr('disabled').removeClass('disabled').addClass('primary');
+            $('input#submit').show();
         }
         if (x <= MaxInputs) {
             FieldCount++;
@@ -21,13 +18,17 @@ $(document).ready(function () {
         }
         return false;
     });
-    $('body').on('click','.delete', function(e){
-        e.preventDefault;
+    $('body').on('click','.delete', function(e) {
+        e.preventDefault();
         if (x > 1) {
-            $(this).parent('fieldset').fadeOut(400, 'linear', function(){
+            $(this).parent('fieldset').fadeOut(400, 'linear', function() {
                 $(this).remove();
             });
             x--;
+            FieldCount--;
+        }
+        if (x === 1) {
+            $('input#submit').hide();
         }
         return false;
     });

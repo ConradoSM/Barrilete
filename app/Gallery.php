@@ -30,7 +30,7 @@ class Gallery extends Model
     }
 
     /**
-     * RELACIONA LA GALERÍA CON LA SECCIÓN
+     * Get Section
      * @return BelongsTo
      */
     public function section()
@@ -39,7 +39,7 @@ class Gallery extends Model
     }
 
     /**
-     * GALERÍA DE FOTOS DE LA HOMEPAGE
+     * Gallery Home
      * @param $query
      * @return mixed
      */
@@ -52,7 +52,7 @@ class Gallery extends Model
     }
 
     /**
-     * BUSCA LA LISTA DE GALERÍAS
+     * Get Published Galleries
      * @param $query
      * @return mixed
      */
@@ -64,7 +64,7 @@ class Gallery extends Model
     }
 
     /**
-     * RELACIONA LA GALERÍA CON LAS FOTOS CARGADAS
+     * Gallery Photos
      * @return HasMany
      */
     public function photos()
@@ -73,7 +73,7 @@ class Gallery extends Model
     }
 
     /**
-     * BUSCA LA GALERÍA POR ID
+     * Get Gallery By Id
      * @param $query
      * @param $id
      * @return mixed
@@ -82,11 +82,12 @@ class Gallery extends Model
     {
         $query->findOrFail($id)->where('status','PUBLISHED');
         $query->increment('views',1);
+
         return $query->first();
     }
 
     /**
-     * BUSQUEDA DE GALERÍAS
+     * Galleries Search
      * @param $query
      * @param $search
      * @return mixed
@@ -95,12 +96,11 @@ class Gallery extends Model
     {
         return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($search))
         ->where('status','PUBLISHED')
-        ->orderBy('id', 'DESC')
-        ->paginate(10);
+        ->orderBy('id', 'DESC');
     }
 
     /**
-     * BÚSQUEDA DE GALERIAS USUARIOS
+     * Galleries Search in Dashboard
      * @param $query
      * @param $search
      * @param $author
@@ -115,7 +115,7 @@ class Gallery extends Model
     }
 
     /**
-     * GALERÍAS NO PUBLICADAS
+     * Unpublished Galleries
      * @param $query
      * @return mixed
      */
@@ -125,5 +125,29 @@ class Gallery extends Model
         ->where('status','DRAFT')
         ->orderBy('id','desc')
         ->paginate(10);
+    }
+
+    /**
+     * Gallery Comments
+     * @param $sectionId
+     * @return HasMany
+     */
+    public function comments($sectionId)
+    {
+        return $this->hasMany(Comments::class,'article_id')
+            ->where('section_id', $sectionId);
+    }
+
+    /**
+     * Users Gallery Reactions
+     * @param $sectionId
+     * @param $reaction
+     * @return HasMany
+     */
+    public function reactions($sectionId, $reaction)
+    {
+        return $this->hasMany(ArticlesReaction::class, 'article_id')
+            ->where('section_id', $sectionId)
+            ->where('reaction', $reaction);
     }
 }

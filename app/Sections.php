@@ -13,7 +13,6 @@ class Sections extends Model
     protected $table = 'sections';
 
     /**
-     * RELACIONA LOS ARTÍCULOS VINCULADOS A UNA SECCIÓN
      * @return HasMany
      */
     public function articles()
@@ -25,7 +24,6 @@ class Sections extends Model
     }
 
     /**
-     * RELACIONA LAS GALERIAS VINCULADAS A UNA SECCIÓN
      * @return HasMany
      */
     public function galleries()
@@ -37,7 +35,6 @@ class Sections extends Model
     }
 
     /**
-     * BUSCA LA SECCIÓN POR SU NOMBRE
      * @param $query
      * @param $name
      * @return mixed

@@ -15,19 +15,19 @@ class RoleTableSeeder extends Seeder
         /** Admin Role */
         $role = new Role();
         $role->name = 'admin';
-        $role->redirectTo = '/dashboard';
+        $role->redirectTo = '/users/dashboard';
         $role->description = 'Administrator';
         $role->save();
         /** Editor Role */
         $role = new Role();
         $role->name = 'editor';
-        $role->redirectTo = '/dashboard';
+        $role->redirectTo = '/users/dashboard';
         $role->description = 'Editor';
         $role->save();
         /** User Role */
         $role = new Role();
         $role->name = 'user';
-        $role->redirectTo = '/';
+        $role->redirectTo = '/users/dashboard';
         $role->description = 'User';
         $role->save();
     }

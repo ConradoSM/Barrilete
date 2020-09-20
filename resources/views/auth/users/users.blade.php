@@ -10,7 +10,7 @@
       <th>Rol</th>
       <th>Nombre</th>
       <th>Correo electrónico</th>
-      <th width="23%">Acción</th>
+      <th>Acción</th>
     </tr>
   </thead>
   <tbody>
@@ -25,7 +25,7 @@
           @if (!(Auth::user()->id == $user->id))
           <a href="{{ route('deleteUser', ['id' => $user->id]) }}" class="button danger small" title="Borrar usuario" data-confirm="¿Estás seguro que quieres borrar éste usuario?">Borrar</a>
           @else
-          <a href="{{ route('options') }}" class="button danger small" title="Borrar cuenta" data-confirm="Para borrar tu usuario debes ir a opciones de usuario -> eliminar cuenta">Borrar</a>
+          <a href="{{ route('options') }}" class="button danger small" title="Borrar cuenta" data-confirm="Para borrar tu usuario debes ir a Opciones -> Eliminar Cuenta">Borrar</a>
           @endif
       </td>
     </tr>

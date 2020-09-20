@@ -2,7 +2,10 @@
 
 namespace barrilete;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Poll extends Model
 {
@@ -12,8 +15,8 @@ class Poll extends Model
     protected $table = 'poll';
 
     /**
-     * UNA ENCUESTA PERTENECE A UN USUARIO
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * User Poll
+     * @return BelongsTo
      */
     public function user()
     {
@@ -21,8 +24,8 @@ class Poll extends Model
     }
 
     /**
-     * UNA ENCUESTA PERTENECE A UNA SECCIÓN
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Poll Section
+     * @return BelongsTo
      */
     public function section()
     {
@@ -30,8 +33,8 @@ class Poll extends Model
     }
 
     /**
-     * UNA ENCUESTA TIENE MUCHAS OPCIONES
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Poll Options
+     * @return HasMany
      */
     public function option()
     {
@@ -39,20 +42,21 @@ class Poll extends Model
     }
 
     /**
-     * ENCUESTAS QUE SE MUESTRAN EN LA HOMEPAGE
+     * Polls in Homepage
      * @param $query
      * @return mixed
      */
     public function scopePollsHome($query)
     {
         return $query->where('status','PUBLISHED')
-        ->latest()
-        ->take(3)
-        ->get();
+            ->whereDate('valid_from','<=', Carbon::now())
+            ->latest()
+            ->take(3)
+            ->get();
     }
 
     /**
-     * BUSCA LA ENCUESTA POR EL ID, LA MUESTRA Y ACTUALIZA LAS VISITAS
+     * Find Poll And Increment Views + 1
      * @param $query
      * @param $id
      * @return mixed
@@ -61,27 +65,28 @@ class Poll extends Model
     {
         $query->findOrFail($id)->where('status','PUBLISHED');
         $query->increment('views',1);
+
         return $query->first();
     }
 
     /**
-     * MUESTRA EL RESTO DE LAS ENCUESTAS
+     * Show Rest Of Polls
      * @param $query
      * @param $id
      * @return mixed
      */
     public function scopeMorePolls($query, $id)
     {
-        return $query->select('id','title','created_at')
-        ->where('id','!=',$id)
-        ->where('status','PUBLISHED')
-        ->latest()
-        ->take(8)
-        ->get();
+        return $query->whereDate('valid_from','<=', Carbon::now())
+            ->where('id','!=',$id)
+            ->where('status','PUBLISHED')
+            ->latest()
+            ->take(8)
+            ->get();
     }
 
     /**
-     * BÚSQUEDA DE ENCUESTAS
+     * Poll Search
      * @param $query
      * @param $busqueda
      * @return mixed
@@ -90,12 +95,11 @@ class Poll extends Model
     {
         return $query->whereRaw("MATCH (title,article_desc) AGAINST (? IN BOOLEAN MODE)", array($busqueda))
         ->where('status','PUBLISHED')
-        ->orderBy('id', 'DESC')
-        ->paginate(10);
+        ->orderBy('id', 'DESC');
     }
 
     /**
-     * BÚSQUEDA DE ENCUESTAS USUARIOS
+     * Poll Search in Dashboard
      * @param $query
      * @param $busqueda
      * @param $author
@@ -110,7 +114,7 @@ class Poll extends Model
     }
 
     /**
-     * ENCUESTAS NO PUBLICADAS
+     * No Published Polls
      * @param $query
      * @return mixed
      */
@@ -120,5 +124,29 @@ class Poll extends Model
         ->where('status','DRAFT')
         ->orderBy('id','desc')
         ->paginate(10);
+    }
+
+    /**
+     * Get Poll Comments
+     * @param $sectionId
+     * @return HasMany
+     */
+    public function comments($sectionId)
+    {
+        return $this->hasMany(Comments::class,'article_id')
+            ->where('section_id', $sectionId);
+    }
+
+    /**
+     * Users Poll Reactions
+     * @param $sectionId
+     * @param $reaction
+     * @return HasMany
+     */
+    public function reactions($sectionId, $reaction)
+    {
+        return $this->hasMany(ArticlesReaction::class, 'article_id')
+            ->where('section_id', $sectionId)
+            ->where('reaction', $reaction);
     }
 }

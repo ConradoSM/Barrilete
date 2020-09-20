@@ -42,7 +42,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * VER ARTÍCULO SEGÚN  ID Y SECCIÓN
+     * Show Article
      * @param $id
      * @return Factory|View
      */
@@ -51,25 +51,28 @@ class ArticlesController extends Controller
         $article = $this->_articles->showArticle($id);
         if ($article) {
             $moreArticles = $this->_articles->moreArticles($id, $article->section_id);
+
             return view('article', compact('article', 'moreArticles'));
         }
+
         return view('errors.404');
     }
 
     /**
-     * CARGAR ARTÍCULO
+     * Create Article
      * @param articleRequest $request
      * @return Factory|RedirectResponse|View
      */
     public function create(articleRequest $request)
     {
         $article = $this->saveArticle($article = null, $id = null);
+
         return view('auth.articles.previewArticle', compact('article'))
             ->with(['success' => 'El artículo se ha creado correctamente.']);
     }
 
     /**
-     * ACTUALIZAR ARTÍCULO
+     * Update Article
      * @param articleRequest $request
      * @param $id
      * @return Factory|RedirectResponse|View
@@ -77,12 +80,13 @@ class ArticlesController extends Controller
     public function update(articleRequest $request, $id)
     {
         $article = $this->saveArticle($this->_request, $id);
+
         return view('auth.articles.previewArticle', compact('article'))
             ->with(['success' => 'El artículo se ha actualizado correctamente.']);
     }
 
     /**
-     * BORRAR ARTÍCULO
+     * Delete Article
      * @param $id
      * @return JsonResponse
      * @throws Throwable
@@ -91,11 +95,12 @@ class ArticlesController extends Controller
     {
         if ($this->_request->ajax()) {
             $user = Auth::user();
-            $article = $this->_articles->find($id);
+            $article = $this->_articles->query()->find($id);
             if ($article) {
                 $this->deleteImage($article->photo);
                 $article->delete();
                 $articles = $user->articles()->orderBy('id','DESC')->paginate(10);
+
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))
                         ->with('status','artículos')
@@ -103,13 +108,15 @@ class ArticlesController extends Controller
                         ->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'El artículo no existe'],404);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * PREVIEW ARTÍCULO
+     * Article Preview
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -117,19 +124,21 @@ class ArticlesController extends Controller
     public function preview($id)
     {
         if ($this->_request->ajax()) {
-            $article = $this->_articles->find($id);
+            $article = $this->_articles->query()->find($id);
             if ($article) {
                 return response()->json([
                     'view' => view('auth.articles.previewArticle', compact('article'))->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['error' => 'El artículo no existe.'],404);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * PUBLICAR ARTÍCULO
+     * Publish Article
      * @param $id
      * @return Factory|JsonResponse|View
      * @throws Throwable
@@ -138,24 +147,28 @@ class ArticlesController extends Controller
     {
         if ($this->_request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
-                $article = $this->_articles->find($id);
+                $article = $this->_articles->query()->find($id);
                 if ($article) {
                     $article->status = 'PUBLISHED';
                     $article->save();
+
                     return response()->json([
                         'view' => view('auth.articles.previewArticle', compact('article'))
                             ->with(['success' => 'El artículo se ha publicado correctamente.'])->render()
                     ])->header('Content-Type', 'application/json');
                 }
+
                 return response()->json(['error' => 'El artículo no existe.'],404);
             }
+
             return response()->json(['error' => 'Tu no eres administrador del sistema.'],401);
         }
+
         return response()->json(['error' => 'Ésta no es una petición Ajax!']);
     }
 
     /**
-     * ARTÍCULOS SIN PUBLICAR
+     * Unpublished Articles
      * @return Factory|JsonResponse|View
      * @throws Throwable
      */
@@ -164,12 +177,15 @@ class ArticlesController extends Controller
         if ($this->_request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {
                 $articles = $this->_articles->unpublished();
+
                 return response()->json([
                     'view' => view('auth.viewArticles', compact('articles'))->with('status','artículos')->render()
                 ])->header('Content-Type', 'application/json');
             }
+
             return response()->json(['Error' => 'Tu no eres administrador del sistema.'],401);
         }
+
         return response()->json(['Error' => 'Ésta no es una petición Ajax!']);
     }
 
@@ -181,7 +197,7 @@ class ArticlesController extends Controller
     protected function saveArticle($article, $id)
     {
         $request = $this->_request;
-        $article = $article ? $this->_articles->find($id) : new $this->_articles;
+        $article = $article ? $this->_articles->query()->find($id) : new $this->_articles;
         $article->user_id = $request['user_id'];
         $article->title = $request['title'];
         $article->section_id = $request['section_id'];
@@ -193,9 +209,18 @@ class ArticlesController extends Controller
         $article->video = $request['video'] ? 1 : 0;
         $article->article_body = $request['article_body'];
         $article->status = 'DRAFT';
-        $article->views = !$article ? 0 : false;
         $article->author = $request['author'];
+        $article->is_breaking = $request['is_breaking'] ? true : false;
         $article->save();
+
+        /** Unset is breaking articles */
+        if ($request['is_breaking']) {
+            $articles = $this->_articles->query()->where('is_breaking', true)->where('id', '!=', $article->id);
+            if ($articles->first()) {
+                $articles->update(['is_breaking' => false]);
+            }
+        }
+
         return $article;
     }
 
@@ -212,7 +237,7 @@ class ArticlesController extends Controller
             }
             $request = $this->_request;
             $upload = public_path('img/articles/images/' . $newPhoto);
-            $uploadThumbnail = public_path('img/articles/.thumbs/images/' . $newPhoto);
+            $uploadThumbnail = public_path('img/articles/.thumbs/' . $newPhoto);
             Image::make($request->file('photo')->getRealPath())->save($upload);
             Image::make($request->file('photo')->getRealPath())->resize(570, 310,
                 function ($constraint) {
@@ -228,7 +253,7 @@ class ArticlesController extends Controller
     {
         if ($imageName) {
             $image_path = public_path('/img/articles/images/'.$imageName);
-            $image_path_thumb = public_path('/img/articles/.thumbs/images/'.$imageName);
+            $image_path_thumb = public_path('/img/articles/.thumbs/'.$imageName);
             if (File::exists($image_path) && File::exists($image_path_thumb)) {
                 File::delete($image_path);
                 File::delete($image_path_thumb);
@@ -242,6 +267,7 @@ class ArticlesController extends Controller
     protected function imageName()
     {
         $file = $this->_request->file('photo');
+
         return $file
         ? date('h-i-s').'-'.str_slug($file->getClientOriginalName(),'-').'.'.$file->getClientOriginalExtension()
         : null;

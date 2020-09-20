@@ -1,47 +1,66 @@
 /* alert message */
-.alert {
-    padding: 10px !important;
-    margin: 10px 0 !important;
+p.alert {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    padding: 10px;
+    margin: 10px 0;
     border-radius: 3px;
-    font-size: 1.1em !important;
+    font-size: 1em !important;
+    line-height: normal !important;
+}
+p.alert span {
+    font-size: 1em;
     line-height: normal !important;
 }
 .feedback-success {
     background-color: #82e0aa;
     color:  #1d8348;
 }
-.feedback-success:before {
+.feedback-success span {
+    color:  #1d8348;
+}
+.feedback-success::before {
     background-image: url('/svg/ajax-success.svg');
-    background-size: 15px 15px;
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-    content:"";
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    margin-right: 7px;
+    display: block;
+    min-width: 20px;
+    height: 20px;
+    content: '';
 }
 .feedback-error {
     background-color: #f9bfbf;
     color: #c71a1a;
 }
-.feedback-error:before {
+.feedback-error span {
+    color: #c71a1a;
+}
+.feedback-error::before {
     background-image: url('/svg/ajax-error.svg');
-    background-size: 15px 15px;
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-    content:"";
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    margin-right: 7px;
+    display: block;
+    min-width: 20px;
+    height: 20px;
+    content: '';
 }
 .feedback-warning {
     background-color: #eeedc2;
     color:  #807F5F;
 }
-.feedback-warning:before {
+.feedback-warning span {
+    color:  #807F5F;
+}
+.feedback-warning::before {
     background-image: url('/svg/ajax-warning.svg');
-    background-size: 15px 15px;
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-    content:"";
+    background-repeat: no-repeat;
+    background-size: 20px;
+    margin-right: 7px;
+    display: block;
+    min-width: 20px;
+    height: 20px;
+    content: '';
 }
