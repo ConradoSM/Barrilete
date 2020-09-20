@@ -40,14 +40,14 @@
         <link rel="stylesheet" href="{{ asset('css/alerts-messages.css') }}">
         <link rel="stylesheet" href="{{ asset('css/contenido.css') }}">
         <link rel="stylesheet" href="{{ asset('css/users-dashboard.css') }}">
-        <!-- Global site tag (gtag.js) - Google Analytics
+        <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129739451-1"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'UA-129739451-1');
-        </script>-->
+        </script>
     </head>
     <body>
         <header>
