@@ -4,6 +4,7 @@ div.pub-container {
     flex-flow: row wrap;
 }
 h1.article-main-title {
+    display: block;
     width: 100%;
     margin: 0;
     text-align: center;

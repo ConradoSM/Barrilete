@@ -27,7 +27,7 @@
         </tr>
     @empty
         <tr>
-            <td colspan="4">No hay secciones</td>
+            <td colspan="5">No hay secciones</td>
         </tr>
     @endforelse
     </tbody>

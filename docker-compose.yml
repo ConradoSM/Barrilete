@@ -61,6 +61,21 @@ services:
     networks:
       - app-network
 
+  #Varnish
+  varnish:
+    image: varnish
+    container_name: varnish
+    tty: true
+    depends_on:
+      - webserver
+    restart: always
+    networks:
+      - app-network
+    ports:
+      - 8080:8080
+    volumes:
+      - ./docker/config/varnish/default.vcl:/etc/varnish/default.vcl
+
 #Redes
 networks:
   app-network:

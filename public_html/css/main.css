@@ -178,7 +178,7 @@ div#user-menu {
     display: none;
     width: 250px;
     max-height: 50vh;
-    top: 140%;
+    top: 130%;
     right: 0;
     z-index: 1000;
     padding: 0;
@@ -643,7 +643,7 @@ footer div#footer-container p.newsletter span img {
     div#nav-container {
         position: fixed;
         display: none;
-        margin-top: 60px;
+        margin-top: 65px;
         width: 50vw;
         height: 100vh;
         background-color: #D6DBDF;

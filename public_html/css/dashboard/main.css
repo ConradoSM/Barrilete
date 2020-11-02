@@ -430,8 +430,8 @@ table.table tbody tr td {
     padding: 10px;
     font-size: 1.2em;
 }
-table.table tbody tr td:last-child {
-    text-align: right;
+table.table tbody tr td:only-child {
+    text-align: center !important;
 }
 table.table tbody tr:nth-child(odd) {
     background-color: #fff;
