@@ -15,9 +15,9 @@ View::composer(['layouts.barrilete'], function ($view) {
 //LOGOUT
 Route::get('/logout', 'DashboardController@logout')->name('logout');
 //HOME INDEX
-Route::group(['middleware' => 'cacheable'], function() {
+//Route::group(['middleware' => 'cacheable'], function() {
     Route::get('/', 'IndexController@home')->name('default');
-});
+//});
 //SECTIONS
 Route::get('sec/{name}', 'SectionsController@searchSection')->name('section');
 //SEARCH
