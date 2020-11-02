@@ -11,16 +11,18 @@
 @section('updated_at', $articles->first()->updated_at)
 @section('article_section', $articles->first()->section->name)
 @section('content')
-    @forelse ($articles as $sec)
-        <article class="pubIndex">
-            @if ($sec->video == 1)
-                <img class="video" alt="video" src="{{ asset('img/play-button.png') }}" onclick="location.href ='{{ route('article', ['id' => $sec->id, 'section' => $sec->section->name ,'title' => str_slug($sec->title, '-')]) }}'" />
-            @endif
-            <img class="lazy article-image" src="{{ asset('img/before-load.png') }}" data-src="{{ $loop->iteration == 1 ? asset('/img/articles/images/'.$sec->photo) : asset('/img/articles/.thumbs/'.$sec->photo) }}" title="{{ $sec->title }}" alt="{{ $sec->title }}" onclick="location.href ='{{ route('article', ['id' => $sec->id, 'section' => $sec->section->name ,'title' => str_slug($sec->title, '-')]) }}'" />
-            <a class="article-link" href="{{ route('article', ['id' => $sec -> id, 'section' => $sec -> section -> name ,'title' => str_slug($sec->title, '-')]) }}">{{ $sec->title  }}</a>
-            <span class="article-date">{{ ucfirst($sec->created_at->diffForHumans()) }}</span>
-        </article>
-    @empty
-        <h2>No hay artículos para mostrar</h2>
-    @endforelse
+    <div class="articles-index">
+        @forelse ($articles as $article)
+            <article class="pubIndex">
+                @if ($article->video == 1)
+                    <img class="video" alt="video" src="{{ asset('img/play-button.png') }}" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
+                @endif
+                <img class="lazy article-image" src="{{ asset('img/before-load.png') }}" data-src="{{$loop->iteration == 1 ? asset('img/articles/images/'.$article->photo) : asset('img/articles/.thumbs/'.$article->photo) }}" title="{{ $article->title }}" alt="{{ $article->title }}" onclick="location.href='{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}'" />
+                <a class="article-link" href="{{ route('article',['id'=>$article->id,'section'=>str_slug($article->section->name),'title'=>str_slug($article->title,'-')]) }}">{{ $article->title }}</a>
+                <span class="article-date">{{ ucfirst($article->created_at->diffForHumans()) }}</span>
+            </article>
+        @empty
+            <h2>No hay artículos para mostrar</h2>
+        @endforelse
+    </div>
 @endsection

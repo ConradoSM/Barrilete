@@ -32,17 +32,19 @@ $(document).ready(function() {
 
     /** Find links **/
     $(document).find('a').each(function() {
-        const href = $(this).attr('href'),
-            dataConfirm = $(this).attr('data-confirm'),
-            dataView = $(this).attr('data-view');
-        $(this).attr({href: '#'});
-        /** Click event **/
-        $(this).on('click', function(e) {
-            if (href) {
-                /** Execute ajax request **/
-                getConfirm(e, $(this), href, dataConfirm, dataView);
-            }
-        });
+        if (!$(this).attr('data-ajax')) {
+            const href = $(this).attr('href'),
+                dataConfirm = $(this).attr('data-confirm'),
+                dataView = $(this).attr('data-view');
+            $(this).attr({href: '#'});
+            /** Click event **/
+            $(this).on('click', function (e) {
+                if (href) {
+                    /** Execute ajax request **/
+                    getConfirm(e, $(this), href, dataConfirm, dataView);
+                }
+            });
+        }
     });
 
     /** Search content **/

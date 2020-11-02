@@ -41,9 +41,10 @@
             <h2>{{ $status }}</h2>
             <hr />
             @forelse ($poll_options as $option)
+                @php($votesPercent = $totalVotes > 0 ? round(($option->votes * 100) / $totalVotes) : 0)
             <p class="options"><span>{{ $option->votes }}</span>{{ $option->option }}</p>
             <div class="resultContainer">
-                <p class="barResult" style="width: {{ ($option->votes * 100) / $totalVotes }}%">{{ round(($option->votes * 100) / $totalVotes ) }}%</p>
+                <p class="barResult" style="width: {{ $votesPercent }}%">{{ $votesPercent }}%</p>
             </div>
             @empty
             <h2>No hay opciones</h2>

@@ -18,7 +18,8 @@
         "laravel/framework": "6.0.*",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-sitemap": "^5.2"
+        "spatie/laravel-sitemap": "^5.2",
+        "spatie/laravel-varnish": "^2.8"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
