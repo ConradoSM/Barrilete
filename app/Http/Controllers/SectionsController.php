@@ -3,6 +3,7 @@
 namespace barrilete\Http\Controllers;
 
 use barrilete\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -124,7 +125,7 @@ class SectionsController extends Controller
 
     /**
      * Create Section
-     * @return Factory|View|JsonResponse|RedirectResponse
+     * @return Factory|Application|JsonResponse|View
      */
     public function create()
     {
@@ -172,7 +173,7 @@ class SectionsController extends Controller
     /**
      * Update Section
      * @param $id
-     * @return Factory|View|JsonResponse|RedirectResponse
+     * @return Application|Factory|JsonResponse|View
      */
     public function update($id)
     {
@@ -200,7 +201,7 @@ class SectionsController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function delete($id)
+    public function delete($id) : JsonResponse
     {
         if ($this->_request->ajax()) {
             if (Auth::user()->authorizeRoles([User::ADMIN_USER_ROLE])) {

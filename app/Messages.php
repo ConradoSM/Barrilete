@@ -26,7 +26,7 @@ class Messages extends Model
     /**
      * @return BelongsTo
      */
-    public function parent()
+    public function parent() : BelongsTo
     {
         return $this->belongsTo(Messages::class, 'parent_id');
     }
@@ -34,7 +34,7 @@ class Messages extends Model
     /**
      * @return LengthAwarePaginator
      */
-    public function replies()
+    public function replies() : LengthAwarePaginator
     {
         return $this->hasMany(Messages::class, 'parent_id')->orderByDesc('id')->paginate(10);
     }
@@ -43,7 +43,7 @@ class Messages extends Model
     /**
      * @return BelongsTo
      */
-    public function getSender()
+    public function getSender() : BelongsTo
     {
         return $this->belongsTo(User::class, 'from')->first();
     }
@@ -51,7 +51,7 @@ class Messages extends Model
     /**
      * @return BelongsTo
      */
-    public function getRecipient()
+    public function getRecipient() : BelongsTo
     {
         return $this->belongsTo(User::class, 'to')->first();
     }

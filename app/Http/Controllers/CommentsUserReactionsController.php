@@ -18,9 +18,9 @@ class CommentsUserReactionsController extends Controller
     /**
      * Save Reaction
      * @param Request $request
-     * @return mixed|null
+     * @return array
      */
-    public function save(Request $request)
+    public function save(Request $request) : array
     {
         $existReaction = CommentsUserReactions::reactionExist($request->user_id, $request->comment_id);
         if (!$existReaction->first()) {
@@ -50,7 +50,7 @@ class CommentsUserReactionsController extends Controller
      * @param $commentId
      * @return array
      */
-    public function getTotalReactions($commentId)
+    public function getTotalReactions($commentId) : array
     {
         $comment = Comments::query()->find($commentId);
 

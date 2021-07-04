@@ -211,7 +211,7 @@ class UsersController extends Controller
      * @param $user
      * @return string
      */
-    protected function uploadImage($file, $user)
+    protected function uploadImage($file, $user) : string
     {
         $image_path = public_path('img/users/images/'.$user->photo);
         if (File::exists($image_path)) {
@@ -393,7 +393,7 @@ class UsersController extends Controller
      * Get All User Notifications
      * @return MorphMany
      */
-    protected function getAllUserNotifications()
+    protected function getAllUserNotifications() : MorphMany
     {
         return Auth::user()->notifications()->orderBy('created_at')->limit(10);
     }
@@ -424,7 +424,7 @@ class UsersController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function myAccountConfig()
+    public function myAccountConfig() : JsonResponse
     {
         return response()->json([
             'view' => view('auth.myaccount.privacy')->render()
@@ -437,7 +437,7 @@ class UsersController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function editMyPassword($status = null, $message = null)
+    public function editMyPassword($status = null, $message = null) : JsonResponse
     {
         return response()->json([
             'view' => view('auth.myaccount.change-password')->render(),

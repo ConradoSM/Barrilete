@@ -4,6 +4,7 @@ namespace barrilete\Http\Controllers;
 
 use barrilete\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -55,7 +56,7 @@ class PollsController extends Controller
     /**
      * Set Poll Vote
      * @param Request $request
-     * @return Factory|RedirectResponse|Redirector|View|void
+     * @return Application|Redirector|RedirectResponse|void
      */
     public function pollVote(Request $request)
     {
@@ -168,7 +169,7 @@ class PollsController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function delete(Request $request, $id)
+    public function delete(Request $request, $id) : JsonResponse
     {
         if ($request->ajax()) {
             $user = Auth::user();
@@ -303,7 +304,7 @@ class PollsController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function deleteOption(Request $request, $id)
+    public function deleteOption(Request $request, $id) : JsonResponse
     {
         $pollOption = PollOptions::find($id);
         if ($pollOption) {

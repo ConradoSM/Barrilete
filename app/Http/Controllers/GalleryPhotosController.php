@@ -19,7 +19,7 @@ class GalleryPhotosController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function deletePhoto($photoId)
+    public function deletePhoto($photoId) : JsonResponse
     {
         $photo = GalleryPhotos::query()->find($photoId);
         if ($photo) {

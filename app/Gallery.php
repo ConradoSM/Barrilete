@@ -24,7 +24,7 @@ class Gallery extends Model
      * RELACIONA LA GALERÍA CON EL USUARIO QUE LA CARGÓ
      * @return BelongsTo
      */
-    public function user()
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -33,7 +33,7 @@ class Gallery extends Model
      * Get Section
      * @return BelongsTo
      */
-    public function section()
+    public function section() : BelongsTo
     {
         return $this->belongsTo(Sections::class);
     }
@@ -67,7 +67,7 @@ class Gallery extends Model
      * Gallery Photos
      * @return HasMany
      */
-    public function photos()
+    public function photos() : HasMany
     {
         return $this->hasMany(GalleryPhotos::class);
     }
@@ -132,7 +132,7 @@ class Gallery extends Model
      * @param $sectionId
      * @return HasMany
      */
-    public function comments($sectionId)
+    public function comments($sectionId) : HasMany
     {
         return $this->hasMany(Comments::class,'article_id')
             ->where('section_id', $sectionId);
@@ -144,7 +144,7 @@ class Gallery extends Model
      * @param $reaction
      * @return HasMany
      */
-    public function reactions($sectionId, $reaction)
+    public function reactions($sectionId, $reaction) : HasMany
     {
         return $this->hasMany(ArticlesReaction::class, 'article_id')
             ->where('section_id', $sectionId)
