@@ -28,7 +28,7 @@
         "jquery-lazy": "^1.7.10"
     },
     "dependencies": {
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "laravel-echo": "^1.6.1",
         "pusher-js": "^5.1.1",
         "vue-sticky": "^3.3.4"
