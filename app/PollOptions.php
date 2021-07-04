@@ -15,7 +15,7 @@ class PollOptions extends Model {
     /**
      * @return BelongsTo
      */
-    public function poll()
+    public function poll() : BelongsTo
     {
         return $this->belongsTo(Poll::class);
     }

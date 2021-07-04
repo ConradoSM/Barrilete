@@ -127,7 +127,7 @@ class GalleriesController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function delete(Request $request, $id)
+    public function delete(Request $request, $id) : JsonResponse
     {
         if ($request->ajax()) {
             $gallery = Gallery::query()->find($id);

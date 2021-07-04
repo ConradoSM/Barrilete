@@ -24,7 +24,7 @@ class Articles extends Model
      * User Article
      * @return BelongsTo
      */
-    public function user()
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -33,7 +33,7 @@ class Articles extends Model
      * Article Section
      * @return BelongsTo
      */
-    public function section()
+    public function section() : BelongsTo
     {
         return $this->belongsTo(Sections::class);
     }
@@ -129,7 +129,7 @@ class Articles extends Model
      * @param $sectionId
      * @return HasMany
      */
-    public function comments($sectionId = null)
+    public function comments($sectionId = null) : HasMany
     {
         if ($sectionId) {
             return $this->hasMany(Comments::class,'article_id')
@@ -146,7 +146,7 @@ class Articles extends Model
      * @param $reaction
      * @return HasMany
      */
-    public function reactions($sectionId = null, $reaction = null)
+    public function reactions($sectionId = null, $reaction = null) : HasMany
     {
         if ($sectionId) {
             return $this->hasMany(ArticlesReaction::class, 'article_id')

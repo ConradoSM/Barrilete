@@ -43,7 +43,7 @@ class User extends Authenticatable
      * User Articles Relation
      * @return HasMany
      */
-    public function articles()
+    public function articles() : HasMany
     {
        return $this->hasMany(Articles::class);
     }
@@ -52,7 +52,7 @@ class User extends Authenticatable
      * User Gallery Relation
      * @return HasMany
      */
-    public function gallery()
+    public function gallery() : HasMany
     {
        return $this->hasMany(Gallery::class);
     }
@@ -61,7 +61,7 @@ class User extends Authenticatable
      * User Poll Relation
      * @return HasMany
      */
-    public function poll()
+    public function poll() : HasMany
     {
        return $this->hasMany(Poll::class);
     }
@@ -70,7 +70,7 @@ class User extends Authenticatable
      * User Roles
      * @return BelongsToMany
      */
-    public function roles()
+    public function roles() : BelongsToMany
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
@@ -80,7 +80,7 @@ class User extends Authenticatable
      * @param $roles
      * @return bool
      */
-    public function authorizeRoles($roles)
+    public function authorizeRoles($roles) : bool
     {
         return $this->hasAnyRole($roles);
     }
@@ -90,7 +90,7 @@ class User extends Authenticatable
      * @param $roles
      * @return bool
      */
-    public function hasAnyRole($roles)
+    public function hasAnyRole($roles) : bool
     {
         if (is_array($roles)) {
             foreach ($roles as $role) {
@@ -112,7 +112,7 @@ class User extends Authenticatable
      * @param $role
      * @return bool
      */
-    public function hasRole($role)
+    public function hasRole($role) : bool
     {
         if ($this->roles()->where('name', $role)->first()) {
             return true;
@@ -125,7 +125,7 @@ class User extends Authenticatable
      * @param $commentId
      * @return HasOne
      */
-    public function getCommentReaction($commentId)
+    public function getCommentReaction($commentId) : HasOne
     {
         return $this->hasOne(CommentsUserReactions::class, 'user_id')->where('comment_id', $commentId);
     }
@@ -133,7 +133,7 @@ class User extends Authenticatable
     /**
      * @return string
      */
-    public function receivesBroadcastNotificationsOn()
+    public function receivesBroadcastNotificationsOn() : string
     {
         return 'Barrilete.User.'.$this->id;
     }
@@ -142,7 +142,7 @@ class User extends Authenticatable
      * Get Inbox Messages
      * @return LengthAwarePaginator
      */
-    public function inboxMessages()
+    public function inboxMessages() : LengthAwarePaginator
     {
         return $this->hasMany(Messages::class, 'to')
             ->orderBy('id', 'DESC')
@@ -155,7 +155,7 @@ class User extends Authenticatable
      * Get Outbox Messages
      * @return LengthAwarePaginator
      */
-    public function outboxMessages()
+    public function outboxMessages() : LengthAwarePaginator
     {
         return $this->hasMany(Messages::class, 'from')
             ->orderBy('id', 'DESC')
@@ -168,7 +168,7 @@ class User extends Authenticatable
      * Get Comment Notifications
      * @return Collection
      */
-    public function getCommentNotifications()
+    public function getCommentNotifications() : Collection
     {
         return $this->notifications()
             ->whereIn('type', [
@@ -183,7 +183,7 @@ class User extends Authenticatable
      * Get Unread Comment Notifications Count
      * @return int
      */
-    public function getUnreadCommentNotificationsCount()
+    public function getUnreadCommentNotificationsCount() : int
     {
         return $this->unreadNotifications()
             ->whereIn('type', [
@@ -196,7 +196,7 @@ class User extends Authenticatable
      * Get Message Notifications
      * @return Collection
      */
-    public function getMessageNotifications()
+    public function getMessageNotifications() : Collection
     {
         return $this->notifications()
             ->where('type','barrilete\Notifications\UsersMessages')
@@ -210,7 +210,7 @@ class User extends Authenticatable
      * Get Unread Message Notifications Count
      * @return int
      */
-    public function getUnreadMessageNotificationsCount()
+    public function getUnreadMessageNotificationsCount() : int
     {
         return $this->unreadNotifications()
             ->where('type','barrilete\Notifications\UsersMessages')->count();
@@ -222,7 +222,7 @@ class User extends Authenticatable
      * @param $sectionId
      * @return HasOne
      */
-    public function articleReaction($articleId, $sectionId)
+    public function articleReaction($articleId, $sectionId) : HasOne
     {
         return $this->hasOne(ArticlesReaction::class, 'user_id')
             ->where('article_id', $articleId)
@@ -233,7 +233,7 @@ class User extends Authenticatable
      * Is Newsletter Subscribe
      * @return boolean
      */
-    public function isNewsletterSubscribe()
+    public function isNewsletterSubscribe() : bool
     {
         $newsletter = $this->hasOne(Newsletter::class, 'user_id');
         if ($newsletter->first()) {

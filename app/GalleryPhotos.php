@@ -16,8 +16,8 @@ class GalleryPhotos extends Model {
     /**
      * @return BelongsTo
      */
-    public function gallery() {
-
+    public function gallery(): BelongsTo
+    {
         return $this->belongsTo(Gallery::class);
     }
 }

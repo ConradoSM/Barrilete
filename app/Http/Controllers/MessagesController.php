@@ -40,7 +40,7 @@ class MessagesController extends Controller
                 'user_id' => 'required|integer',
                 'body' => 'required'
             ]);
-            $conversationId = $request->parent_id ? $request->parent_id : $this->getConversationId($request->user_id);
+            $conversationId = $request->parent_id ?: $this->getConversationId($request->user_id);
             /** Save message */
             $newMessage = new Messages();
             $newMessage->from = Auth::id();
@@ -50,7 +50,7 @@ class MessagesController extends Controller
             $newMessage->status = false;
             $newMessage->save();
             /** Get parent id */
-            $parentId = $conversationId ? $conversationId : $newMessage->id;
+            $parentId = $conversationId ?: $newMessage->id;
             /** Sen Notification */
             $this->sendNotification($parentId, $newMessage->to, $newMessage->body);
 

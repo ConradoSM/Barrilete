@@ -15,7 +15,7 @@ class Sections extends Model
     /**
      * @return HasMany
      */
-    public function articles()
+    public function articles() : HasMany
     {
         return $this->hasMany(Articles::class, 'section_id')
         ->where('status','PUBLISHED')
@@ -26,7 +26,7 @@ class Sections extends Model
     /**
      * @return HasMany
      */
-    public function galleries()
+    public function galleries() : HasMany
     {
         return $this->hasMany(Gallery::class, 'section_id')
         ->where('status','PUBLISHED')

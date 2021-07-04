@@ -36,7 +36,7 @@ class CommentController extends Controller
             ]);
             $comment = new Comments();
             $comment->content = $request->comment;
-            $comment->parent_id = $request->parent_id ? $request->parent_id : null;
+            $comment->parent_id = $request->parent_id ?: null;
             $comment->user_id = $request->user_id;
             $comment->article_id = $request->article_id;
             $comment->section_id = $request->section_id;
@@ -141,7 +141,7 @@ class CommentController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function getAllComments($message = [])
+    public function getAllComments(array $message = []) : JsonResponse
     {
         $comments = Comments::query()->orderBy('created_at', 'DESC')
             ->paginate(20)->setPath(route('getAllComments'));
@@ -153,9 +153,9 @@ class CommentController extends Controller
 
     /**
      * @param Request $request
-     * @return Builder[]|Builder[][]|Collection|Collection[]|Model[]|mixed|null[]
+     * @return JsonResponse
      */
-    public function getCommentById(Request $request)
+    public function getCommentById(Request $request) : JsonResponse
     {
         $comment = Comments::query()->findOrFail($request->id);
 
@@ -171,7 +171,7 @@ class CommentController extends Controller
      * @param $section_id
      * @return string
      */
-    protected function getArticleLink($article_id, $section_id)
+    protected function getArticleLink($article_id, $section_id) : string
     {
         $article = Articles::query()->where('id', $article_id)->where('section_id', $section_id)->first();
         $gallery = Gallery::query()->where('id', $article_id)->where('section_id', $section_id)->first();
@@ -208,7 +208,7 @@ class CommentController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function deleteCommentById(Request $request)
+    public function deleteCommentById(Request $request) : JsonResponse
     {
         $comment = Comments::query()->find($request->id);
         $message = [

@@ -37,7 +37,7 @@ class Comments extends Model
     /**
      * @return BelongsTo
      */
-    public function section()
+    public function section() : BelongsTo
     {
         return $this->belongsTo(Sections::class, 'section_id');
     }
@@ -45,7 +45,7 @@ class Comments extends Model
     /**
      * @return BelongsTo
      */
-    public function parent()
+    public function parent() : BelongsTo
     {
         return $this->belongsTo(Comments::class, 'parent_id');
     }
@@ -53,7 +53,7 @@ class Comments extends Model
     /**
      * @return HasMany
      */
-    public function replies()
+    public function replies() : HasMany
     {
         return $this->hasMany(Comments::class, 'parent_id');
     }
@@ -61,7 +61,7 @@ class Comments extends Model
     /**
      * @return BelongsTo
      */
-    public function user()
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -82,7 +82,7 @@ class Comments extends Model
      * Get Totals Likes
      * @return HasMany
      */
-    public function getTotalLikes()
+    public function getTotalLikes() : HasMany
     {
         return $this->hasMany(CommentsUserReactions::class, 'comment_id')
             ->where('reaction', '1');
@@ -92,7 +92,7 @@ class Comments extends Model
      * Get Totals Dislikes
      * @return HasMany
      */
-    public function getTotalDislikes()
+    public function getTotalDislikes() : HasMany
     {
         return $this->hasMany(CommentsUserReactions::class, 'comment_id')
             ->where('reaction', '0');

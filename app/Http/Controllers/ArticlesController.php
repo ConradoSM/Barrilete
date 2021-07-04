@@ -3,6 +3,7 @@
 namespace barrilete\Http\Controllers;
 
 use barrilete\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -61,7 +62,7 @@ class ArticlesController extends Controller
     /**
      * Create Article
      * @param articleRequest $request
-     * @return Factory|RedirectResponse|View
+     * @return Factory|Application|View
      */
     public function create(articleRequest $request)
     {
@@ -75,7 +76,7 @@ class ArticlesController extends Controller
      * Update Article
      * @param articleRequest $request
      * @param $id
-     * @return Factory|RedirectResponse|View
+     * @return Application|Factory|View
      */
     public function update(articleRequest $request, $id)
     {
@@ -91,7 +92,7 @@ class ArticlesController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function delete($id)
+    public function delete($id) : JsonResponse
     {
         if ($this->_request->ajax()) {
             $user = Auth::user();
@@ -203,14 +204,14 @@ class ArticlesController extends Controller
         $article->section_id = $request['section_id'];
         $article->article_desc = $request['article_desc'];
         $newPhoto = $request['photo'] ? $this->imageName() : null;
-        $oldPhoto = $article->photo ? $article->photo : null;
+        $oldPhoto = $article->photo ?: null;
         $this->uploadImage($newPhoto, $oldPhoto);
         $article->photo = !$newPhoto ? $article->photo : $newPhoto;
         $article->video = $request['video'] ? 1 : 0;
         $article->article_body = $request['article_body'];
         $article->status = 'DRAFT';
         $article->author = $request['author'];
-        $article->is_breaking = $request['is_breaking'] ? true : false;
+        $article->is_breaking = $request['is_breaking'] ? 1 : 0;
         $article->save();
 
         /** Unset is breaking articles */

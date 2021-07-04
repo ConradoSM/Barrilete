@@ -97,7 +97,7 @@ class NewsletterController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function getAllSubscriptions($message = [])
+    public function getAllSubscriptions(array $message = []) : JsonResponse
     {
         $subscriptions = Newsletter::query()->orderBy('created_at', 'DESC')
             ->paginate(20)

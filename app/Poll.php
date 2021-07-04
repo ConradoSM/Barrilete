@@ -18,7 +18,7 @@ class Poll extends Model
      * User Poll
      * @return BelongsTo
      */
-    public function user()
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -27,7 +27,7 @@ class Poll extends Model
      * Poll Section
      * @return BelongsTo
      */
-    public function section()
+    public function section() : BelongsTo
     {
         return $this->belongsTo(Sections::class);
     }
@@ -36,7 +36,7 @@ class Poll extends Model
      * Poll Options
      * @return HasMany
      */
-    public function option()
+    public function option() : HasMany
     {
         return $this->hasMany(PollOptions::class)->orderBy('votes','desc');
     }
@@ -131,7 +131,7 @@ class Poll extends Model
      * @param $sectionId
      * @return HasMany
      */
-    public function comments($sectionId)
+    public function comments($sectionId) : HasMany
     {
         return $this->hasMany(Comments::class,'article_id')
             ->where('section_id', $sectionId);
@@ -143,7 +143,7 @@ class Poll extends Model
      * @param $reaction
      * @return HasMany
      */
-    public function reactions($sectionId, $reaction)
+    public function reactions($sectionId, $reaction) : HasMany
     {
         return $this->hasMany(ArticlesReaction::class, 'article_id')
             ->where('section_id', $sectionId)
