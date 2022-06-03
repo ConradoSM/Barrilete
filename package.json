@@ -24,7 +24,7 @@
         "jquery-ui": "^1.12.1",
         "jquery-confirm": "^3.3.4",
         "jquery-form": "^4.3.0",
-        "jquery-validation": "^1.19.3",
+        "jquery-validation": "^1.19.4",
         "jquery-lazy": "^1.7.10"
     },
     "dependencies": {
