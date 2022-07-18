@@ -21,7 +21,7 @@
         "sass-loader": "^8.0.2",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.11",
-        "jquery-ui": "^1.12.1",
+        "jquery-ui": "^1.13.2",
         "jquery-confirm": "^3.3.4",
         "jquery-form": "^4.3.0",
         "jquery-validation": "^1.19.3",
